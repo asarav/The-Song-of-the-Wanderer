@@ -68,6 +68,8 @@ Format:
   prompt rules, and promotion criteria.
 - Added a unified art-direction requirement: one visual language across all assets, with
   style anchors, consistency checks, and escalation rules.
+- Documented public-domain and open-access reference sources, license rules, and a
+  reference-asset manifest shape for development agility.
 - Attempted four exploratory image generations; all failed with invalid credentials, so no
   exploratory images are committed.
 - Verification: `pnpm check` green; documentation links checked.

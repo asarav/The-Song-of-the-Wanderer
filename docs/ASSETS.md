@@ -127,7 +127,67 @@ Each exploratory file is one of:
 - It does not generate final game art automatically. The agent generates on demand; the
   project still owns review, manifest wiring, and fallback coverage.
 
-## 5. Production pipeline (M18)
+## 5. Public domain and open-access references
+
+Public-domain and open-access museum images are valuable for development agility, but they
+are not automatically shippable game art.
+
+### 6.1 Good uses
+
+- research and dossier support
+- codex or object illustrations where a photograph is appropriate
+- UI placeholders during greybox development
+- style, material, and proportion references for artists
+- map or diagram references for internal review
+
+### 6.2 Sources to check first
+
+- The Metropolitan Museum of Art Open Access collection
+- Walters Art Museum open-access images
+- LACMA public-domain images
+- Wikimedia Commons, with attention to each file's stated license
+- museum APIs and catalogues that explicitly permit reuse
+
+### 6.3 License rules
+
+- **Public domain:** no permission or fee is required, but record the source, object
+  number, and URL in the asset manifest or dossier.
+- **CC0:** treat like public domain, but still record provenance.
+- **CC-BY / CC-BY-SA:** attribution is required. CC-BY-SA also requires compatible
+  sharing of adaptations. Do not use these in shipped game art without a license review.
+- **All rights reserved or unclear:** reference only. Do not commit or ship.
+
+### 6.4 Do not confuse reference with style
+
+A photograph of an ancient bronze figure is useful evidence. It is not the game's
+illustration style. Public-domain artifact images should not be dropped into scenes as if
+they were unified game art unless an ADR explicitly approves that treatment.
+
+### 6.5 Manifest fields for references
+
+Reference assets should carry:
+
+```jsonc
+{
+  "id": "ref.met.32.18.1",
+  "kind": "reference",
+  "source": "The Metropolitan Museum of Art",
+  "url": "https://www.metmuseum.org/...",
+  "license": "public-domain",
+  "objectNumber": "32.18.1",
+  "period": "Late Bronze Age",
+  "culture": "Canaanite",
+  "use": "dossier-reference | placeholder | codex | style-reference",
+  "reviewStatus": "draft | reviewed | approved-reference"
+}
+```
+
+### 6.6 Agility rule
+
+Use public-domain references to move faster in design and review. Do not let them bypass
+the unified art direction, provenance, or license checks.
+
+## 6. Production pipeline (M18)
 
 The eventual pipeline is defined in `milestones/M9-M19-production-waves.md`:
 
