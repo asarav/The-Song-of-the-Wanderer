@@ -79,6 +79,8 @@ Format:
   decisions to cover the main development workflows.
 - Moved canonical skills to `.agents/skills/` and mirrored them to Claude Code, Cline,
   Cursor, GitHub Copilot, Kilo, Freebuff/OpenCode-compatible, and Codex directories.
+- Fixed GitHub Actions CI by pinning `pnpm/action-setup` to `v4.2.0` to avoid the
+  v4.3.0 cache restore regression, and added an explicit lockfile cache dependency path.
 - Added `tools/sync-skills.mjs`, `pnpm skills:sync`, and `pnpm skills:check` so skills
   and agents can be kept available across harnesses.
 - Attempted four exploratory image generations; all failed with invalid credentials, so no
