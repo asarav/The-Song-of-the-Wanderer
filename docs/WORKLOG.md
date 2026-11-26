@@ -44,3 +44,24 @@ Format:
 - Added authoring templates for region timelines and character arcs, and extended the
   content skill's schema reference with events, propagation, facts, and knowledge.
 - Verification: `pnpm check` green; documentation links reviewed manually.
+
+## 2026-11-25 — Data model — Canonical entity shapes
+
+- Added `DATA_MODEL.md`: four representations (definition, state, view, knowledge) and
+  entity shapes for player identity/deeds, regions, destinations, routes/waypoints, mobile
+  groups, day context, characters, arcs, factions, culture, language, religion, cultural
+  works, economy, objects, facts, and knowledge.
+- Added the entity-model non-negotiable to `AGENTS.md` and linked the new doc from the
+  documentation index and plan.
+- Specified `DayContext`, climate phases, observances, and astronomical/religious events
+  in `WORLD_MODEL.md`; expanded the event envelope to match the spec.
+- Added character position, fame, allegiance, worldview, and authored reaction rules to
+  `NARRATIVE_SYSTEMS.md`; added explicit `ArcState`.
+- Aligned `ARCHITECTURE.md` and `SCALING.md` with player identity/deeds, route/waypoint
+  views, and the data-model boundaries.
+- Expanded M5, M6, M7, and M8 tasks, coverage checks, and content folders for the new
+  entity types.
+- Updated templates, skills, `src/content/README.md`, and M0–M4 milestones to use the
+  expanded entity model.
+- Updated the content schema cheat sheet and event shape to the canonical model.
+- Verification: `pnpm check` green; documentation links checked.

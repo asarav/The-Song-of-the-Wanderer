@@ -35,6 +35,10 @@ Do not read the whole specification. It is 2,000 lines; grep the section you nee
    `docs/STATUS.md`, and `docs/WORKLOG.md` are updated and `pnpm check` passes.
 9. **Never invent canon silently.** Names, dates, place details, and character facts
    belong in `docs/design/` before they appear in content.
+10. **Model entities explicitly.** Every thing the game knows has a definition, optional
+    runtime state, a derived view, and a knowledge projection where the player can learn
+    it. Shared data is referenced, not copied. The canonical entity shapes are in
+    `docs/DATA_MODEL.md`; do not invent an ad hoc shape in a feature branch.
 
 ---
 
@@ -45,9 +49,10 @@ Do not read the whole specification. It is 2,000 lines; grep the section you nee
 1. Read `docs/STATUS.md` (≤150 lines: phase, active task, next tasks, blockers).
 2. Open the active milestone file, e.g. `docs/milestones/M5-world-timeline.md`.
 3. Read only the docs that task touches:
-   - engine → `docs/ARCHITECTURE.md`
-   - time/events/rumours → `docs/WORLD_MODEL.md`
-   - characters/arcs → `docs/NARRATIVE_SYSTEMS.md`
+   - engine / state / saves → `docs/ARCHITECTURE.md`, `docs/DATA_MODEL.md` §1–4, §14
+   - time/events/rumours → `docs/WORLD_MODEL.md`, `docs/DATA_MODEL.md` §7, §13
+   - characters/arcs → `docs/NARRATIVE_SYSTEMS.md`, `docs/DATA_MODEL.md` §8–9
+   - culture/factions/economy → `docs/DATA_MODEL.md` §5, §6, §10–12
    - systems/packs/saves → `docs/SCALING.md`
    - tools/QA → `docs/TOOLING.md`
    - content → `docs/CONTENT.md`; history → `docs/HISTORY.md`
@@ -77,7 +82,7 @@ A new agent needs one instruction: *"Read `AGENTS.md` and continue from
 ## Layout
 
 ```
-docs/                 plan, live status, architecture, world/narrative/tooling rules
+docs/                 plan, status, architecture, data model, world/narrative/tooling rules
 docs/design/          distilled design decisions (read these instead of the spec)
 docs/milestones/      one file per milestone with task IDs and acceptance criteria
 docs/templates/       dossier, region timeline, character, arc, event, route templates
@@ -113,6 +118,7 @@ Full catalogue: `docs/TOOLING.md`.
 - [ ] `pnpm check` is green; new checks are part of the gate.
 - [ ] New engine behaviour has a unit or scenario test.
 - [ ] New historical content has provenance and, where needed, a dossier entry.
+- [ ] New data has a definition, state/view/knowledge plan, and coverage entry.
 - [ ] Player-facing views read knowledge, not truth.
 - [ ] New content is in a pack with a manifest and references validated.
 - [ ] `STATUS.md` and `WORKLOG.md` are updated.

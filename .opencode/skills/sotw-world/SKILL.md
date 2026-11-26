@@ -27,10 +27,12 @@ it one or cut it.
    propagation.
 3. **Regional processes**: slow pressures (drought, war, migration) that create local
    eligibility.
-4. **Local events**: per destination and phase, tied to a concrete place and person.
-5. **Route plan**: which routes open, close, become risky, and why.
-6. **Knowledge plan**: what can be learned, from whom, with what delay and distortion.
-7. **Character impact table**: which recurring characters are affected, how, and when.
+4. **Day context**: seasons, climate phases, festivals, market days, astronomical events,
+   and local observances. These produce a derived `DayContext`, never a global mood.
+5. **Local events**: per destination and phase, tied to a concrete place and person.
+6. **Route plan**: routes, segments, waypoints, waypoint states, and why they change.
+7. **Knowledge plan**: what can be learned, from whom, with what delay and distortion.
+8. **Character impact table**: which recurring characters are affected, how, and when.
 
 ## Rules
 
@@ -45,6 +47,13 @@ it one or cut it.
 - Regional timelines differ. Do not synchronise events for drama.
 - No single cause for a multi-causal process.
 - Use `afterDays` for consequences. Instant consequences rob travel of meaning.
+- Climate change is an authored phase or regional process; weather is deterministic local
+  colour and never rewrites history.
+- Religious and divine events record observances, claims, and interpretations. They never
+  assert a metaphysical fact.
+- A route is a corridor with waypoints, not a bare edge. Give the between-space places,
+  people, and quiet moments.
+- `DayContext`, prices, presence, and route availability are derived; never save them.
 
 ## Event checklist
 
@@ -80,6 +89,9 @@ If a phase, price, or route looks wrong:
 | Player knows too much | UI reading facts instead of knowledge |
 | Rumour arrives instantly | Missing latency/hops, or knowledge granted at source |
 | Region stuck in a phase | No exit transition, or transition condition never true |
+| Same festival everywhere | One global calendar; observances are local and cultural |
+| Route feels empty | No waypoints, encounter pools, or calm/reflection storylets |
+| Divine event feels confirmed | Event asserted a fact instead of an interpretation |
 
 ## Validation
 

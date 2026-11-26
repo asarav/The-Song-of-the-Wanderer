@@ -17,6 +17,10 @@ session; do not append. History belongs in `WORKLOG.md`.
 - Scale architecture is specified in `WORLD_MODEL.md`, `NARRATIVE_SYSTEMS.md`,
   `SCALING.md`, and `TOOLING.md`, with ADR-0004 (truth vs knowledge) and ADR-0005
   (packs, derived state, delta saves).
+- `DATA_MODEL.md` is the canonical entity model: player identity/deeds, places, routes
+  and waypoints, day context, characters and arcs, factions, culture, language, religion,
+  economy, and knowledge. Every entity is a definition plus optional state, derived view,
+  and knowledge projection.
 - There are no game systems yet. `src/engine` contains only version constants.
 - `src/content` is empty apart from a README. Nothing historical has been authored.
 
@@ -37,6 +41,8 @@ See `docs/milestones/M1-engine-spine.md`.
 - **M0-T01..T05** — scaffold, docs, skills, check pipeline, timeline skeleton.
 - **Planning expansion** — M5–M19 specified; world model, narrative systems, scaling,
   and tooling documented; new skills added (`sotw-world`, `sotw-character`, `sotw-qa`).
+- **Data model** — `DATA_MODEL.md` added; milestones, tooling, content rules, and skills
+  aligned with the four representations and the expanded entity catalogue.
 
 ## Blockers
 

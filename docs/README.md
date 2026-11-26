@@ -9,6 +9,7 @@ opened the repository.
 | `STATUS.md` | Live state: phase, active task, next tasks, blockers | Always, second |
 | `PLAN.md` | Roadmap M0–M19, waves, gates, risks | Starting or re-planning |
 | `ARCHITECTURE.md` | Layers, command/event flow, state model, saves, modules | Touching `src/engine` or `src/store` |
+| `DATA_MODEL.md` | Canonical entity shapes: player, places, routes, time, characters, arcs, factions, culture, knowledge | Designing or extending any entity, save field, or content type |
 | `WORLD_MODEL.md` | Eras, phases, world/local events, propagation, truth vs knowledge | Timeline, events, rumours, destination states |
 | `NARRATIVE_SYSTEMS.md` | Characters, arcs, lineages, recurrence, storylets, journal | Any character, arc, or scene |
 | `SCALING.md` | Modules, content packs, save partitioning, performance, testing tiers | Adding a system, pack, or dependency |
@@ -35,11 +36,11 @@ If two conflict, the higher entry wins and the lower one is corrected in the sam
 
 | Task | Read |
 |---|---|
-| Engine kernel, DSL, saves | `ARCHITECTURE.md` §2–6, ADR-0003, ADR-0005 |
-| Timeline, phases, events, rumours | `WORLD_MODEL.md`, ADR-0004, `design/00-timeline.md` |
-| Character, arc, lineage, storylet | `NARRATIVE_SYSTEMS.md`, `templates/character.md` |
-| New region or destination | `design/01-regions.md`, `HISTORY.md`, `templates/destination-dossier.md` |
-| Faction, culture, language, economy | `SCALING.md` §3, `NARRATIVE_SYSTEMS.md` §9–10 |
+| Engine kernel, DSL, saves | `ARCHITECTURE.md` §2–6, `DATA_MODEL.md` §1–4, §14, ADR-0003, ADR-0005 |
+| Timeline, phases, events, rumours | `WORLD_MODEL.md`, `DATA_MODEL.md` §7, §13, ADR-0004, `design/00-timeline.md` |
+| Character, arc, lineage, storylet | `NARRATIVE_SYSTEMS.md`, `DATA_MODEL.md` §8–9, `templates/character.md`, `templates/arc.md` |
+| New region or destination | `design/01-regions.md`, `HISTORY.md`, `DATA_MODEL.md` §5–6, `templates/destination-dossier.md`, `templates/region-timeline.md` |
+| Faction, culture, language, economy | `DATA_MODEL.md` §5–6, §10–12, `SCALING.md` §3 |
 | Tooling or QA | `TOOLING.md` |
 | Ending or act structure | `design/03-acts.md`, `design/02-protagonist.md` |
 

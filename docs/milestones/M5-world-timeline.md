@@ -14,16 +14,25 @@ consequences propagating to places, people, prices, routes, and knowledge.
 
 ## Tasks
 
-### M5-T01 — Eras, phases, and regional state
+### M5-T01 — Eras, phases, regional state, and day context
 
 - [ ] `EraDef`, `RegionPhaseDef`, `PhaseTransition` schemas.
+- [ ] `CalendarDef`, `SeasonDef`, `ClimatePhaseDef`, `ObservanceDef`,
+      `AstronomicalEventDef` schemas.
 - [ ] Phase table per region with date ranges and optional preconditions.
 - [ ] `deriveRegionPhase(world, region, day)` pure and deterministic.
+- [ ] `deriveDayContext(world, region, day, knowledge)` returns date, season, phase,
+      climate, weather flavour, observances, astronomical events, active events, and
+      modifiers. It is derived, never saved.
 - [ ] Destination existence and activity availability derived from phase.
-- [ ] Validator: phase gaps, overlaps, transitions outside range.
+- [ ] Validator: phase gaps, overlaps, transitions outside range, observances outside a
+      calendar, astronomical events with no visible region.
+- [ ] Religious and divine events record claims and interpretations, not metaphysical
+      facts.
 
 **Acceptance:** Ugarit and Cyprus are represented as one region phase each, and the slice
-plays identically through derivation.
+plays identically through derivation. Jumping to a festival day or a reported eclipse
+changes the day context without changing world truth.
 
 ### M5-T02 — Facts ledger
 
@@ -66,13 +75,19 @@ plays identically through derivation.
 - [ ] No event fires twice unless explicitly repeatable.
 - [ ] Tests: ordering, lateness, cancellation, save mid-schedule.
 
-### M5-T07 — Destination phase states and route states
+### M5-T07 — Destinations, routes, and waypoints
 
-- [ ] Phase-specific destination content: intro, activities, cast, market, routes.
+- [ ] Phase-specific destination content: intro, activities, cast, market, routes,
+      sites, and event pools.
+- [ ] Destination profiles reference climate, culture, language, religion, architecture,
+      economy, and currency; no inline copies.
 - [ ] Local deltas: destroyed, occupied, festival, quarantine, siege.
 - [ ] Route states open/risky/closed/seasonal with authored reasons.
-- [ ] UI-facing explanation for every unavailable activity or route.
-- [ ] Tests: derivation composition, delta removal of activities, route closure.
+- [ ] Route segments and waypoints: pass, ford, anchorage, shrine, wonder, battlefield,
+      camp, calm place.
+- [ ] Encounter pools by context and tag; calm/reflection storylets are first-class.
+- [ ] UI-facing explanation for every unavailable activity, route, or waypoint.
+- [ ] Tests: derivation composition, delta removal, route closure, waypoint state.
 
 ### M5-T08 — Rumour system
 

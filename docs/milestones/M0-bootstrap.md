@@ -28,7 +28,7 @@ toolchain and documentation system the rest of the project depends on.
 - [x] `ARCHITECTURE.md`, `CONTENT.md`, `HISTORY.md`.
 - [x] ADR-0001 (stack), ADR-0002 (content as data), ADR-0003 (determinism/saves).
 - [x] `design/`: timeline, regions, protagonist, acts.
-- [x] `templates/`: destination dossier, character, event, route.
+- [x] `templates/`: destination dossier, region timeline, character, arc, event, route.
 
 ### M0-T03 — Agent skills
 

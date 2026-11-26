@@ -28,6 +28,10 @@ simulate causes.
 Dates are a planning horizon, not a claim that every region changed on cue. Regional
 storylines carry their own clocks.
 
+Climate phases, seasons, observances, and astronomical events are regional and authored.
+They feed a derived `DayContext`; they are not a global mood. See `DATA_MODEL.md` §7 and
+`WORLD_MODEL.md` §2.1.
+
 ## 2. Regional anchors
 
 ### Eastern Mediterranean

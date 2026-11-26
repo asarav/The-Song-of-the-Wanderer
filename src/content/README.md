@@ -20,17 +20,34 @@ packs/<name>/
   manifest.json     id, contentVersion, requires, entity lists
   regions/
   destinations/
+  sites/
   routes/
+  waypoints/
+  groups/
   goods/
+  currencies/
   characters/
-  events/
-  dialogues/
-  arcs/
   families/
+  arcs/
+  events/
   storylets/
+  dialogues/
   journal/
   codex/
+  languages/
+  factions/
+  cultures/
+  religions/
+  works/
+  climates/
+  ecologies/
+  phases/
+  observances/
+  objects/
 ```
+
+Entity shapes, the four representations, and reference-vs-copy rules are in
+`docs/DATA_MODEL.md`.
 
 Rules the linter enforces now:
 

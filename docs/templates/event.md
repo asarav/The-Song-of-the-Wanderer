@@ -1,7 +1,7 @@
 # Event / encounter — `<title>`
 
-**ID:** `evt.<scope>.<slug>` · **Kind:** travel / destination / scheduled / dialogue-beat
-**Region:** … · **Locations:** … · **Phase:** … · **Major:** yes / no
+**ID:** `evt.<scope>.<slug>` · **Kind:** world / regional / local / character / storylet
+**Scope:** regions / destinations / routes / waypoints / groups · **Phase:** … · **Major:** yes / no
 **Author:** … · **Provenance:** documented / strongly-supported / plausible / fictional / unresolved
 
 ## Purpose
@@ -12,9 +12,15 @@ show them that nothing else does?
 ## Setup
 
 - **Trigger conditions:** (DSL sketch)
+- **Scope:** regions, destinations, routes, waypoints, groups
 - **Cast:**
+- **Scene:**
 - **Required knowledge/language/relationship:**
 - **Where the player is coming from and going to:**
+- **Effects / propagation / knowledge:** (closed vocabularies only)
+- **Journal:** entry, or null with a reason in notes
+- **Follow-ups:** inDays
+- **Art / audio:**
 
 ## Scene
 

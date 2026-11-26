@@ -31,6 +31,14 @@ From M8, also run the fast long-run if you changed world, character, or economy 
 pnpm simulate:long -- --years 20 --seeds 3
 ```
 
+If you added or changed an entity type, also check:
+- destinations have climate, culture, language, religion, architecture, economy, and
+  currency profiles;
+- routes have segments and waypoints; waypoints have encounters or knowledge;
+- characters have position, allegiance, wants, fears, and reaction rules;
+- factions have interests, territory, obligations, and phase states;
+- observances have calendars; works have variants and knowledge paths.
+
 ## Wave gate
 
 Run the full tier:
@@ -97,6 +105,7 @@ Use the studio instead of adding temporary `console.log` calls to the engine.
 - Coverage claimed from reading code rather than running the tool.
 - A long-run failure “fixed” by changing a seed.
 - A save edited to avoid a migration.
+- A local entity copied a shared profile instead of referencing it.
 - A prose rule changed to allow an anachronism because a line was good.
 
 ## Reporting

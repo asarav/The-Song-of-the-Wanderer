@@ -56,7 +56,8 @@ Command set grows by milestone. Core commands: `advanceTime`, `travel`, `resolve
 ## 3. State model
 
 The slice stores the subset it needs. The full model is partitioned by rate of change and
-ownership (ADR-0005):
+ownership (ADR-0005). Entity-level shapes — definitions, states, views, and knowledge —
+are canonical in `DATA_MODEL.md`; this section is the save partition.
 
 ```ts
 GameState = {
@@ -72,15 +73,22 @@ GameState = {
     migrations: MigrationRecord[]
   }
   player: {
-    location: DestinationId
+    identity: {
+      selfName: string
+      presentation: Presentation
+      background: BackgroundId[]
+      localNames: Record<RegionId, string[]>
+    }
+    location: DestinationId | RouteId
     money: number
     inventory: CargoEntry[]
     capacity: number
     transport: TransportId
     languages: Record<LanguageId, { xp: number; tier: LanguageTier }>
+    deeds: DeedRecord[]                         // what the player has done
+    reputation: Record<ReputationKey, ReputationBand>
+    obligations: ObligationId[]
     flags: Record<string, boolean | number | string>
-    presentation: Presentation
-    background: BackgroundId[]
   }
   knowledge: {
     entries: KnowledgeEntry[]                  // facts learned, sources, beliefs
@@ -105,8 +113,11 @@ Invariants:
 - Every ID resolves to validated content.
 - `calendar.day` only moves forward.
 - `pending` is `null` or a fully described scene; no half-open dialogue.
-- Derived values (destination display state, prices, presence) are never stored.
+- Derived values (destination display state, prices, presence, `DayContext`) are never
+  stored.
 - Player-facing read models read `knowledge`, never `world.facts`.
+- Entity shapes follow `DATA_MODEL.md`; a new field without a definition/state/view/
+  knowledge story is not added to `GameState`.
 
 ## 4. Conditions and effects
 
@@ -193,6 +204,8 @@ The UI never reads world truth directly. It reads derived, player-facing views:
 | Map | known destinations/routes + rumour state | closed routes the player has not heard about |
 | Codex | phase-appropriate authored entries | deliberate ambiguity resolutions |
 | Market | derived destination state + player knowledge | hidden modifiers without an in-world reason |
+| Day context | calendar + phases + active events | events the protagonist has not learned of |
+| Route view | route def + route state + knowledge | unknown closures, waypoints, or dangers |
 
 A "no truth leak" test suite is mandatory from M5.
 
@@ -201,7 +214,8 @@ A "no truth leak" test suite is mandatory from M5.
 1. Player selects route and mode in travel preparation.
 2. `travel` validates requirements (knowledge, pass, language, guide, season, capacity).
 3. Time advances by base duration modified by mode and events.
-4. Encounter slots are generated deterministically from route, date, and state.
+4. Encounter slots and waypoint stops are generated deterministically from route, date,
+   and state.
 5. Eligible authored events are selected by priority and seeded weight; `major` events
    bypass randomness.
 6. A scene is presented; choices apply conditions/effects; unresolved scenes pause travel.

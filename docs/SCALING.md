@@ -142,16 +142,16 @@ Rules:
 ## 5. State partitioning and derivation
 
 `GameState` is not one flat blob of world truth. It is split by rate of change and by
-ownership:
+ownership. Entity shapes are canonical in `DATA_MODEL.md`; this is the save partition:
 
 ```ts
 GameState = {
   meta: { saveVersion, engineVersion, contentVersions, seed }
   calendar: { day }
-  world: WorldState            // phases, deltas, facts, routes, migrations
-  player: PlayerState          // location, money, inventory, transport, languages, flags
+  world: WorldState            // phases, climate, deltas, facts, routes, waypoints, migrations
+  player: PlayerState          // identity, location, resources, deeds, reputation, languages
   knowledge: KnowledgeState    // facts learned, rumours, map, index entries
-  narrative: NarrativeState    // arc states, pending scene, storylet cooldowns
+  narrative: NarrativeState    // arcs, characters, factions, pending scene, cooldowns
   rng: RngState
 }
 ```
@@ -159,8 +159,10 @@ GameState = {
 Derivation rules:
 
 - Untouched regions are derived from the timeline; only deltas are stored.
+- `DayContext` = calendar + phases + climate + observances + active events + knowledge.
 - Destination display state = region phase + destination delta + local events.
-- Character display state = def + runtime status + itinerary + player knowledge.
+- Route display state = route definition + route state + waypoint state + knowledge.
+- Character display state = def + runtime status + itinerary + fame + knowledge.
 - Market prices = authored band + modifiers + deterministic jitter.
 - Never persist a derived value. If a save contains one, a migration or a test removes it.
 

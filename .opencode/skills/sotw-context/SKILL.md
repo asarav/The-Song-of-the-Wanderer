@@ -21,6 +21,7 @@ not authoritative. Disk is.
    - modules, packs, performance, repo evolution → `docs/SCALING.md`
    - tools and QA → `docs/TOOLING.md`
    - content authoring → `docs/CONTENT.md` + `docs/templates/`
+   - entity shapes and data representation → `docs/DATA_MODEL.md`
    - anything historical → `docs/HISTORY.md` + the destination dossier
    - narrative / character / tone → `docs/design/02-protagonist.md`,
      `docs/design/03-acts.md`

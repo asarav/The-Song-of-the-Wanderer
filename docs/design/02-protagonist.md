@@ -64,8 +64,9 @@ Rules:
 - Names can contradict: benevolent in one place, a trickster in another.
 - A name never functions as a key that unlocks all content. It changes how people talk,
   not what is mechanically possible.
-- Track names in `docs/design/dossiers/` per region and in the `flags` namespace
-  (`name.ugarit.*`).
+- Track names in `docs/design/dossiers/` per region and in the player identity
+  (`player.identity.localNames`). Use `flags` only for small local conditions, not as the
+  primary record of identity or accomplishment. See `docs/DATA_MODEL.md` §4.
 
 ## 5. Longevity mechanics
 

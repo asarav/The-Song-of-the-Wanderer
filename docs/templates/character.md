@@ -7,9 +7,23 @@
 
 - **Name and pronunciation:**
 - **Form of address:** (by status, age, gender, relationship)
+- **Culture:** `culture.`
 - **Language(s):**
-- **Social position:** household, craft, trade, religion, court, military, marginal
+- **Position:** role, rank, institution or faction
+- **Allegiances:** household, faction, temple, court, or debt
+- **Fame:** region / faction / social stratum where known
 - **Appearance:** three concrete details, no caricature
+
+## Data fields
+
+- **Wants:**
+- **Fears:**
+- **Contradiction:**
+- **Worldview:**
+- **Itinerary:** reasons, routes, dates, conditions
+- **Reaction rules:** trigger, conditions, authored response, effects
+- **Knowledge at introduction:**
+- **Relationships at introduction:**
 
 ## Daily life
 

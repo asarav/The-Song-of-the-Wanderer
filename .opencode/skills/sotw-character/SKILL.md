@@ -19,6 +19,20 @@ Before writing dialogue, answer:
 
 Use `docs/templates/character.md`. A character without a want is a vending machine.
 
+## Data fields that make a character legible
+
+Every major or recurring character needs these authored fields, not just a role:
+
+- **Position** — role, rank, institution or household.
+- **Allegiances** — ties and obligations, not a single faction.
+- **Fame** — keyed by region, faction, and social stratum.
+- **Wants, fears, contradiction, worldview** — what they value and misjudge.
+- **Reaction rules** — triggers, conditions, authored responses, effects.
+- **Itinerary** — where, when, why, and by what route.
+- **Knowledge and memory** — what they know, believe, and remember about the player.
+
+See `docs/DATA_MODEL.md` §8 and `docs/NARRATIVE_SYSTEMS.md` §2.4–2.5.
+
 ## Tiers and budget
 
 | Tier | Per region | Requirement |
@@ -103,4 +117,6 @@ impossible ages, no descendant before birth, no appearance without a feasible ro
 | Player learns a secret instantly | Route it through knowledge, not facts |
 | Descendant appears too early | Check birth window and generation timing |
 | Same tone every travel | Tag storylets and enforce cooldowns |
+| Fame as one global number | Key fame by region, faction, and stratum |
+| Reaction improvised | Use an authored `ReactionRule` |
 | Mystery solved by a character | Remove the confirmation; leave a mundane reading |

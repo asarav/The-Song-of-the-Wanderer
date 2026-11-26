@@ -44,8 +44,12 @@ src/content/packs/<pack>/
   manifest.json
   regions/*.json
   destinations/*.json
+  sites/*.json
   routes/*.json
+  waypoints/*.json
+  groups/*.json
   goods/*.json
+  currencies/*.json
   characters/*.json
   families/*.json
   arcs/*.json
@@ -57,13 +61,25 @@ src/content/packs/<pack>/
   languages/*.json
   factions/*.json
   cultures/*.json
+  religions/*.json
+  works/*.json
+  climates/*.json
+  ecologies/*.json
   phases/*.json
+  observances/*.json
   rumors/*.json
+  objects/*.json
 ```
 
 One entity per file. Arrays are tolerated for bootstrap data but avoid them for anything
 referenced elsewhere. JSON only — no comments, no trailing commas. Prose lives in
 `text` fields, not in sidecar files.
+
+Every entity follows the four representations in `DATA_MODEL.md`: an authored definition,
+optional saved state, a derived view, and a knowledge projection where the player can learn
+it. A destination references shared climate, culture, language, religion, architecture,
+economy, and currency profiles; it does not copy them. A route is a corridor with
+waypoints, not a bare edge.
 
 Pack manifests declare `id`, `contentVersion`, `requires`, and the entity lists. The pack
 dependency graph is acyclic. Cross-pack references are validated at build time. Details:
@@ -114,29 +130,33 @@ inside a destination file.
 
 ## 5. Events
 
-An event is authored content selected by eligibility, not a script. Required fields
-(spec §20.2):
+An event is authored content selected by eligibility, not a script. Shape (spec §20.2):
 
 ```jsonc
 {
   "id": "evt.slice.recognition",
-  "kind": "travel | destination | scheduled | dialogue-beat",
+  "kind": "world | regional | local | character | storylet",
   "title": "The woman who knows your face",
+  "description": "A merchant recognises a name she should not know.",
   "dateRange": { "from": "1230-03", "to": "1230-12" },   // optional; omit for any time
-  "regions": ["region.levant"],
-  "locations": ["dest.ugarit"],
-  "confidence": "fictional",
-  "provenance": { "...": "..." },
-  "major": true,                    // bypasses random selection
-  "priority": 100,
-  "weight": 0,                      // ignored when major
+  "scope": {
+    "regions": ["region.levant"],
+    "destinations": ["dest.ugarit"]
+  },
   "conditions": { "all": [] },
-  "cast": ["char.ugarit.amnit"],
+  "priority": 100,
+  "major": true,                    // bypasses random selection
   "scene": "dlg.slice.recognition",
-  "consequences": { "all": [] },
-  "followUps": [{ "event": "evt.slice.recognition-aftermath", "inDays": 30 }],
+  "cast": ["char.ugarit.amnit"],
+  "effects": [],
   "journal": "journal.slice.recognition",
-  "art": "art.slice.recognition"
+  "followUps": [{ "event": "evt.slice.recognition-aftermath", "inDays": 30 }],
+  "art": "art.slice.recognition",
+  "provenance": {
+    "confidence": "fictional",
+    "sources": [],
+    "notes": "Invented scene in a real place."
+  }
 }
 ```
 
@@ -144,10 +164,12 @@ Rules:
 
 - `major: true` events never depend on luck and must not be skippable by random rolls.
 - Minor events are selected from eligible pools by priority then seeded weight.
-- Every consequence is a DSL effect. No prose in `consequences`.
+- Every consequence is a DSL effect. No prose in `effects`.
 - Every event that changes the world writes a journal entry or explicitly sets
-  `"journal": null` with a reason in `notes`.
+  `"journal": null` with a reason in `provenance.notes`.
 - Follow-ups must be schedulable: no absolute dates inside effects, use `inDays`.
+- Religious or divine events record observances and claims, never metaphysical facts.
+- The full envelope and propagation vocabulary are in `WORLD_MODEL.md` §3–4.
 
 ## 6. Dialogue graphs
 

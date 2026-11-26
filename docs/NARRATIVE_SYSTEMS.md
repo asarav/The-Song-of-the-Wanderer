@@ -35,6 +35,13 @@ type CharacterDef = {
   tier: 'major' | 'recurring' | 'local' | 'ambient'
   roles: RoleId[]                  // merchant, scribe, priestess, smith...
   household?: FamilyId
+  position: { role: RoleId; rank?: RankId; institution?: FactionId }
+  allegiances: AllegianceRef[]
+  fame: Record<FameKey, number>    // region / faction / social stratum
+  wants: string[]
+  fears: string[]
+  contradiction: string
+  worldview: WorldviewRef
   brief: DossierRef                // docs/design/characters/<id>.md
   appearance: AppearanceRef
   voice: VoiceRef
@@ -42,6 +49,7 @@ type CharacterDef = {
   arcs: ArcId[]
   knowledge: KnownFactRef[]        // what they know at introduction
   relationships: InitialRelationship[]
+  reactionRules: ReactionRule[]
   provenance: Provenance
 }
 ```
@@ -53,6 +61,9 @@ type CharacterState = {
   status: 'alive' | 'missing' | 'dead' | 'displaced' | 'unknown'
   location: DestinationId | 'travelling' | 'unknown'
   age: number | 'unknown'
+  fame: Record<FameKey, number>
+  position: { role: RoleId; rank?: RankId; institution?: FactionId }
+  allegiances: AllegianceRef[]
   arcStates: Record<ArcId, ArcState>
   relationships: Record<CharacterId, Relationship>
   flags: Record<string, boolean | number | string>
@@ -73,6 +84,38 @@ type CharacterState = {
 
 The cast budget is a design constraint, not a target. Coverage tooling reports characters
 used once and never again, and characters used so often they become a tour guide.
+
+### 2.4 Position, fame, and allegiance
+
+A character's social data is not one role string:
+
+- **Position** — household head, temple scribe, harbour official, guest, exile. It can
+  change by phase or event.
+- **Fame** — keyed by region, faction, and social stratum. A person can be famous in one
+  city, unknown in the next, and notorious to one institution.
+- **Allegiance** — a set of ties and obligations, not a team colour. Loyalty to a
+  household, a debt to a temple, fear of a court, and affection for the player can coexist.
+- **Worldview** — values, prejudices, taboos, and what they think is wrong with the world.
+  It conditions dialogue and reactions.
+
+### 2.5 Reaction rules
+
+Characters react through authored rules, not a general AI:
+
+```ts
+type ReactionRule = {
+  id: ReactionId
+  trigger: EventId | FactId | 'player-arrives' | 'player-leaves' | 'news-arrives'
+  conditions: Condition
+  response: 'welcome' | 'bargain' | 'flee' | 'report' | 'hide' | 'help' | 'challenge' | ...
+  effects: Effect[]
+  memory?: { fact: FactId; belief: 'believed' | 'doubted' | 'disbelieved' }
+}
+```
+
+A rule may read the character's memory, relationship bands, position, allegiances, fame,
+and the local `DayContext`. It may not improvise a response outside the authored
+vocabulary. The canonical entity shapes are in `DATA_MODEL.md` §8.
 
 ## 3. Schedules, itineraries, and movement
 
@@ -135,7 +178,21 @@ type BeatDef = {
   next?: BeatId | BeatId[]
   cooldownDays?: number
 }
+
+type ArcState = {
+  arc: ArcId
+  owner: EntityId
+  current: BeatId
+  flags: Record<string, boolean | number | string>
+  lastAdvanced: Day
+  visibility: 'player-present' | 'offscreen' | 'reported'
+  stranded: boolean
+}
 ```
+
+The definition says what can happen next; the state says where the arc is, who owns it, and
+whether it has stalled. A beat can resolve off-screen and arrive later as a letter, rumour,
+changed status, or inherited obligation.
 
 ### 4.2 Director
 

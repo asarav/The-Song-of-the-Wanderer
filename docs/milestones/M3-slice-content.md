@@ -22,9 +22,9 @@ and answer the spec's seven questions.
 
 ### M3-T01 — Ugarit destination
 
-- [ ] Destination entity: activities, description, routes, local goods, state phases.
+- [ ] Destination entity: profiles, activities, sites, routes, local goods, state phases.
 - [ ] Harbour, market, palace gate, temple, and one residential/workplace quarter as
-      narrative activities, not maps.
+      narrative activities, not maps. Shared profiles are referenced, not copied.
 - [ ] 5–7 characters from ordinary life, trade, craft, and one religious specialist.
 - [ ] Dossier linked; provenance on every historical claim.
 - [ ] Scenario: arrival, market visit, one conversation, departure.
@@ -33,7 +33,8 @@ and answer the spec's seven questions.
 
 - [ ] Harbour community and copper-working settlement.
 - [ ] 3–5 characters; at least one from the Ugarit crossing or connected to it.
-- [ ] Distinct sensory and material identity from Ugarit.
+- [ ] Distinct sensory and material identity from Ugarit, including climate, culture,
+      language, currency, architecture, art, and music profiles.
 - [ ] Scenario: arrival, copper negotiation, one relationship beat, return preparation.
 
 ### M3-T03 — Goods and markets
@@ -45,8 +46,10 @@ and answer the spec's seven questions.
 
 ### M3-T04 — Route and travel modes
 
-- [ ] Ugarit ↔ Cyprus route with coastal and open-water modes.
+- [ ] Ugarit ↔ Cyprus route with coastal and open-water modes, segments, and waypoints.
 - [ ] Requirements: knowledge, a captain/guide, season, capacity.
+- [ ] Waypoints include at least one quiet vignette and one encounter that depends on
+      language, relationship, or faction.
 - [ ] 8 travel encounters across pools, including at least one quiet vignette.
 - [ ] One encounter that depends on language, one on a relationship, one on a faction.
 

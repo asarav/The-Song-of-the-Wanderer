@@ -19,8 +19,10 @@ rules can be exercised entirely from scripted scenarios.
 ### M1-T01 — GameState and schemas
 
 - [ ] `src/engine/state/schema.ts` defines `GameState` with Zod, derived TS types.
-- [ ] Use the partitioned shape in `ARCHITECTURE.md` §3; the slice implements the subset
-      it needs (`meta`, `calendar`, `player`, `knowledge`, `narrative`, `rng`).
+- [ ] Use the partitioned shape in `ARCHITECTURE.md` §3 and `DATA_MODEL.md` §4, §14; the
+      slice implements the subset it needs (`meta`, `calendar`, `player`, `knowledge`,
+      `narrative`, `rng`). Player state includes identity, location, resources,
+      languages, deeds, reputation, obligations, and flags.
 - [ ] Every persisted field is JSON-serializable (no `Map`, `Set`, `Date`, class).
 - [ ] `createInitialState(input: NewGameInput)` returns a valid state.
 - [ ] `validateState` rejects unknown top-level keys and reports a readable path.

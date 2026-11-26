@@ -16,8 +16,11 @@ with authored arcs that advance whether or not the player is present.
 ### M6-T01 — Character definitions and runtime
 
 - [ ] `CharacterDef`, `CharacterState`, tier, roles, household, voice, appearance.
+- [ ] Position, allegiance, fame keyed by region/faction/stratum, wants, fears,
+      contradiction, and worldview.
+- [ ] `ReactionRule` schema: trigger, conditions, authored response, effects, memory.
 - [ ] Status lifecycle: alive, missing, dead, displaced, unknown.
-- [ ] Validation: home exists, languages exist, tier budget.
+- [ ] Validation: home exists, languages exist, tier budget, reaction vocabulary closed.
 - [ ] Migration from slice character flags.
 
 ### M6-T02 — Itineraries and presence
@@ -38,7 +41,9 @@ with authored arcs that advance whether or not the player is present.
 
 ### M6-T04 — Arc definitions
 
-- [ ] `ArcDef`, `BeatDef`, branches, resolution states, failure states, successors.
+- [ ] `ArcDef`, `BeatDef`, `ArcState`, branches, resolution states, failure states,
+      successors.
+- [ ] `ArcState`: current beat, flags, last advanced, visibility, stranded.
 - [ ] Validation: every arc has a reachable resolution and a failure state.
 - [ ] Validation: beat `next` targets resolve; no beat after resolution.
 - [ ] Scenario coverage requirement: one path per arc per milestone.
@@ -48,9 +53,12 @@ with authored arcs that advance whether or not the player is present.
 - [ ] Evaluates on time advance, arrival, and major events.
 - [ ] Filters by owner status/location, conditions, windows, cooldowns.
 - [ ] One beat per character per day; never interrupts an active scene.
+- [ ] Evaluate `ReactionRule` on events, news, arrival, and departure; responses are
+      authored, never generated.
 - [ ] Off-screen resolution with knowledge delivery.
 - [ ] Stranded-arc detection.
-- [ ] Tests: ordering, cooldown, off-screen resolution, interruption queue.
+- [ ] Tests: ordering, cooldown, off-screen resolution, interruption queue, reactions
+      varying by belief, relationship, allegiance, and fame.
 
 ### M6-T06 — Lineages and generations
 

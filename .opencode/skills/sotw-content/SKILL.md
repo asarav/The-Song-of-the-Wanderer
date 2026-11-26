@@ -22,6 +22,19 @@ Read `docs/CONTENT.md` first. It is the full ruleset; this skill is the working 
 7. If the content changes history, phases, or propagation, read `WORLD_MODEL.md` and use
    `sotw-world`. If it creates a character, arc, or lineage, use `sotw-character`.
 
+## Data representation
+
+- Every entity follows the four representations in `docs/DATA_MODEL.md`: authored
+  definition, optional saved state, derived view, and knowledge projection.
+- A destination references shared climate, culture, language, religion, architecture,
+  economy, and currency profiles; it does not copy them.
+- A route is a corridor with segments and waypoints; mobile groups are distinct from
+  factions.
+- `DayContext` is derived. Climate change is authored; weather is deterministic local
+  colour.
+- Religious or divine content records observances, claims, and interpretations, never a
+  metaphysical fact.
+
 ## Writing rules
 
 - **IDs:** `dest.ugarit`, `char.ugarit.amnit`, `evt.slice.recognition`,

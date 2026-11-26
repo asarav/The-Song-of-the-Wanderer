@@ -14,11 +14,13 @@ history through authored rules — without an economic simulation.
 
 ### M7-T01 — Factions and obligations
 
-- [ ] `FactionDef`: type, interests, hierarchy, parent faction, phase state.
+- [ ] `FactionDef`: type, ideology, interests, goals, resources, hierarchy, territory,
+      members, symbols, rituals, parent faction, phase state.
+- [ ] Internal currents and sub-factions; no faction is a monolith.
 - [ ] Relationship fields: trust, favour, obligation, standing, suspicion.
 - [ ] Obligations between factions and between factions and characters.
 - [ ] Conflicts with authored goals; no automatic war resolution.
-- [ ] Tests: obligation creation/expiry, relationship changes, nested factions.
+- [ ] Tests: obligation creation/expiry, relationship changes, nested factions, currents.
 
 ### M7-T02 — Political consequences
 
@@ -28,15 +30,23 @@ history through authored rules — without an economic simulation.
 - [ ] Local reputation distinct from faction standing.
 - [ ] Tests: a favour opens one route and closes another; a letter changes a checkpoint.
 
-### M7-T03 — Culture profiles
+### M7-T03 — Culture, religion, and cultural works
 
-- [ ] `CultureDef`: naming conventions, forms of address, hospitality, taboos,
-      festivals, body language, food/music/story/dossier references.
+- [ ] `CultureDef`: naming, address, kinship, hospitality, taboos, purity, festivals,
+      dress, food, body language, law, material culture, currency conventions.
+- [ ] Architecture, art, literature, music, and religion are referenced shared entities,
+      not strings copied into every city.
+- [ ] `ReligionDef` / `CultDef`: powers, practices, festivals, sacred places, clergy,
+      texts, taboos, secrecy, internal disagreement.
+- [ ] `CulturalWorkDef`: song, poem, inscription, myth, motif, performance; variants,
+      language, knowledge, performance context.
+- [ ] No universal pantheon; similar domains across cultures are not the same being.
 - [ ] Regions may contain multiple cultures; destinations reference local variants.
 - [ ] Dialogue and events can require cultural knowledge or respect.
 - [ ] Validation: every named character's name fits their culture's convention or is
       marked as an exception with a reason.
-- [ ] Tests: address form selection, taboo violations, hospitality outcomes.
+- [ ] Tests: address form selection, taboo violations, hospitality outcomes, local
+      variant composition, cult knowledge, work variants.
 
 ### M7-T04 — Languages, scripts, and interpreters
 
@@ -51,6 +61,8 @@ history through authored rules — without an economic simulation.
 ### M7-T05 — Goods and regional economies
 
 - [ ] Goods taxonomy with categories, substitutes, weight, fragility, perishability.
+- [ ] `CurrencyDef`: units, bases, local acceptance, and exchange conventions. No coinage
+      unless the period and place support it.
 - [ ] Regional production and consumption profiles with authored bands.
 - [ ] Availability by phase, faction control, and local events.
 - [ ] Price modifiers stack in a fixed order; no unbounded arbitrage in persona runs.

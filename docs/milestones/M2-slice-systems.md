@@ -30,16 +30,20 @@ playable in a greybox interface.
 
 ### M2-T03 — Routes and travel preparation
 
-- [ ] Route entity: modes, duration, cost, capacity, requirements, risk, encounter pools.
+- [ ] Route entity: segments, waypoints, modes, duration, cost, capacity, requirements,
+      risk, encounter pools, mobile groups.
 - [ ] Travel preparation screen data: known routes, requirements met/missing, why.
+- [ ] Route display state is derived; no waypoint or route state is saved.
 - [ ] `travel` command validates knowledge, pass, guide, language, season, capacity.
 - [ ] Tests: each requirement class blocks and unblocks correctly.
 
 ### M2-T04 — Journey and encounter resolution
 
-- [ ] Encounter slot generation from route/date/state using the `encounters` stream.
+- [ ] Encounter slot generation from route segments, waypoints, date, and state using
+      the `encounters` stream.
 - [ ] Eligibility filtering, priority, weights; `major` events bypass randomness.
-- [ ] Journey phases: departure → events → quiet vignette → arrival.
+- [ ] Journey phases: departure → events → quiet vignette → arrival; waypoints are
+      playable stops, not loading screens.
 - [ ] Interrupted journeys (save mid-route) resume exactly.
 - [ ] Tests: eligibility matrix, major-event guarantee, resume-from-save.
 

@@ -6,6 +6,9 @@
 A dossier is written before content. If a section is thin, say so. Thin is better than
 confident invention.
 
+This dossier feeds `dest.<slug>`. The entity shape and profile references are in
+`docs/DATA_MODEL.md` §5.
+
 ## 1. People and social roles
 
 | Role | Attested? | Notes |
@@ -90,6 +93,15 @@ Who might flee, return, or be remembered by descendants?
 - Colours and materials:
 - Animals:
 - Crowd and quiet:
+
+## Data model hooks
+
+- **Profiles:** climate, ecology, cultures, languages, religions, architecture, economy,
+  currency, arts.
+- **Sites:**
+- **Routes and waypoints:**
+- **Cast and event pools:**
+- **Phase states and deltas:**
 
 ## Evidence ledger
 

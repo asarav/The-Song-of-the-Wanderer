@@ -7,23 +7,33 @@ code disagree, the code wins; update this file.
 
 | Folder | Prefix | Key fields |
 |---|---|---|
-| `regions/` | `region.` | `id`, `name`, `description`, `destinations[]`, `phases[]`, `provenance` |
-| `destinations/` | `dest.` | `id`, `region`, `name`, `phaseStates[]`, `characters[]`, `routes[]`, `provenance` |
-| `routes/` | `route.` | `id`, `from`, `to`, `modes[]`, `encounterPools[]`, `requirements`, `phases[]`, `provenance` |
+| `regions/` | `region.` | `id`, `name`, `description`, `climate`, `ecology`, `cultures[]`, `languages[]`, `destinations[]`, `phases[]`, `provenance` |
+| `destinations/` | `dest.` | `id`, `kind`, `region`, `name`, `profiles`, `sites[]`, `institutions[]`, `phaseStates[]`, `characters[]`, `routes[]`, `provenance` |
+| `sites/` | `site.` | `id`, `parent`, `kind`, `function`, `access`, `characters[]`, `eventPools[]`, `provenance` |
+| `routes/` | `route.` | `id`, `kind`, `from`, `to`, `segments[]`, `waypoints[]`, `modes[]`, `encounterPools[]`, `requirements`, `phaseStates[]`, `provenance` |
+| `waypoints/` | `waypoint.` | `id`, `route`, `kind`, `name`, `description`, `characters[]`, `eventPools[]`, `knowledgeRefs[]`, `provenance` |
+| `groups/` | `group.` | `id`, `kind`, `territory[]`, `motives[]`, `taboos[]`, `strength`, `seasonality[]`, `relationships[]`, `provenance` |
 | `goods/` | `good.` | `id`, `name`, `category`, `weight`, `baseValue`, `tags[]`, `substitutes[]`, `provenance` |
-| `characters/` | `char.` | `id`, `home`, `name`, `tier`, `roles[]`, `languages[]`, `itinerary[]`, `arcs[]`, `provenance` |
+| `currencies/` | `currency.` | `id`, `name`, `units[]`, `basis`, `conventions[]`, `provenance` |
+| `characters/` | `char.` | `id`, `home`, `name`, `tier`, `culture`, `languages[]`, `position`, `allegiances[]`, `fame`, `wants[]`, `fears[]`, `worldview`, `itinerary[]`, `arcs[]`, `reactionRules[]`, `provenance` |
 | `families/` | `family.` | `id`, `name`, `home`, `generations[]`, `inheritance[]` |
-| `arcs/` | `arc.` | `id`, `owner`, `premise`, `beats[]`, `resolutionStates[]`, `failureStates[]`, `successor?` |
+| `arcs/` | `arc.` | `id`, `owner`, `premise`, `beats[]`, `resolutionStates[]`, `failureStates[]`, `successor?`, `provenance` |
 | `events/` | `evt.` | see event shape below |
 | `dialogues/` | `dlg.` | `id`, `speaker`, `start`, `nodes`, `provenance` |
-| `storylets/` | `evt.` | `pool`, `conditions`, `weight`, `cooldownDays`, `tags[]`, `scene` |
+| `storylets/` | `evt.` | `pool`, `conditions`, `weight`, `cooldownDays`, `tags[]`, `scene`, `provenance` |
 | `journal/` | `journal.` | `id`, `title`, `body`, `voice`, `knowledgeRefs[]` |
 | `codex/` | `codex.` | `id`, `title`, `body`, `sources[]`, `provenance` |
 | `languages/` | `lang.` | `id`, `family`, `script`, `related[]`, `tradeRole?`, `tiers` |
-| `factions/` | `faction.` | `id`, `type`, `interests[]`, `parent?`, `phaseStates[]` |
-| `cultures/` | `culture.` | `id`, `naming`, `address`, `hospitality`, `taboos[]`, `festivals[]` |
-| `phases/` | `phase.` | `id`, `region`, `from`, `to`, `description`, `destinations[]` |
+| `factions/` | `faction.` | `id`, `type`, `ideology`, `interests[]`, `resources[]`, `hierarchy[]`, `territory[]`, `relationships[]`, `currents[]?`, `phaseStates[]`, `provenance` |
+| `cultures/` | `culture.` | `id`, `naming`, `address`, `hospitality`, `taboos[]`, `festivals[]`, `dress`, `food`, `art[]`, `music[]`, `literature[]`, `materialCulture`, `provenance` |
+| `religions/` | `religion.` / `cult.` | `id`, `powers[]`, `practices[]`, `festivals[]`, `sacredPlaces[]`, `clergy[]`, `taboos[]`, `secrecy`, `provenance` |
+| `works/` | `work.` | `id`, `kind`, `culture`, `language`, `medium`, `variants[]`, `knowledgeRefs[]`, `provenance` |
+| `climates/` | `climate.` | `id`, `bands`, `seasons[]`, `hazards[]`, `effects`, `provenance` |
+| `ecologies/` | `ecology.` | `id`, `flora[]`, `fauna[]`, `resources[]`, `hazards[]`, `seasonality[]`, `provenance` |
+| `phases/` | `phase.` | `id`, `region`, `from`, `to`, `description`, `destinations[]`, `provenance` |
+| `observances/` | `observance.` | `id`, `calendar`, `date`, `culture`, `religion`, `public`, `effects`, `provenance` |
 | `rumors/` | `rumor.` | `id`, `about`, `variants[]`, `baseDelayDays`, `hops[]` |
+| `objects/` | `object.` | `id`, `kind`, `holder`, `location`, `knowledgeRefs[]`, `provenance` |
 
 ## Pack manifest
 
@@ -55,23 +65,37 @@ code disagree, the code wins; update this file.
 ```jsonc
 {
   "id": "evt.slice.example",
-  "kind": "travel | destination | scheduled | dialogue-beat",
+  "kind": "world | regional | local | character | storylet",
   "title": "Short title",
+  "description": "One line of context.",
   "dateRange": { "from": "1230-03", "to": "1230-12" },
-  "regions": ["region.levant"],
-  "locations": ["dest.ugarit"],
-  "major": false,
-  "priority": 10,
-  "weight": 1,
+  "scope": {
+    "regions": ["region.levant"],
+    "destinations": ["dest.ugarit"],
+    "routes": [],
+    "waypoints": [],
+    "groups": []
+  },
   "conditions": { "all": [] },
-  "cast": ["char.ugarit.amnit"],
+  "priority": 10,
+  "once": true,
+  "cooldownDays": 0,
+  "major": false,
   "scene": "dlg.ugarit.amnit.example",
-  "consequences": { "all": [] },
-  "followUps": [{ "event": "evt.slice.example-after", "inDays": 30 }],
+  "cast": ["char.ugarit.amnit"],
+  "effects": [],
+  "propagation": [],
+  "knowledge": [],
   "journal": "journal.slice.example",
+  "followUps": [{ "event": "evt.slice.example-after", "inDays": 30 }],
+  "art": "art.slice.example",
+  "audio": "audio.slice.example",
   "provenance": {}
 }
 ```
+
+Major events bypass weighting. `effects`, `propagation`, and `knowledge` use the closed
+vocabularies; never put prose in them.
 
 ## Condition atoms
 

@@ -27,6 +27,9 @@ Historically appropriate modes only. No universal vehicle.
 
 ## Journey structure
 
+- **Segments:** (ordered legs with terrain, duration, hazards)
+- **Waypoints:** (pass, ford, anchorage, shrine, wonder, battlefield, camp, calm place)
+- **Mobile groups:** (bandits, pirates, foragers, pastoralists, pilgrims, hermits)
 - **Departure scene:**
 - **Encounter slots:** (how many, which pools)
 - **Fixed beats** (major events that always occur in this phase):

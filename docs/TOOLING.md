@@ -109,18 +109,25 @@ necessarily every commit, but are reported continuously.
 For each pack and region:
 
 - destinations with no content in one or more phases,
+- destinations missing climate, culture, language, religion, architecture, economy, or
+  currency profiles,
+- routes without segments or waypoints; waypoints without encounters or knowledge,
 - events never eligible in any tested state,
 - scenes unreachable from any event, activity, or route,
 - dialogue nodes with no inbound path,
 - characters never placed by any itinerary,
+- characters missing position, allegiance, wants, fears, or reaction rules,
 - characters appearing once with no narrative function,
+- factions missing interests, territory, obligations, or phase states,
 - major arcs with no reachable resolution,
 - storylet pools with fewer than N entries,
+- observances without a calendar; works without variants or knowledge paths,
 - islands in the route graph,
 - languages with no learning path,
 - goods with no market,
 - journal/codex entries never granted,
-- historical entities without provenance.
+- historical entities without provenance,
+- shared profiles copied into a local entity instead of referenced.
 
 Coverage is not "100% or fail". It is a map of where the world is thin.
 

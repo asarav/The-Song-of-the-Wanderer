@@ -45,6 +45,39 @@ Rules:
 - Local events and storylets may be selected randomly from eligible pools; they may not
   change regional phase or world state directly.
 
+### 2.1 Day context
+
+The date is a key, not a mood. The meaningful object is a derived `DayContext` for the
+current region:
+
+```ts
+type DayContext = {
+  day: Day
+  date: { year: number; month: string; dayOfMonth: number; season: SeasonId }
+  regionPhases: Record<RegionId, RegionPhaseId>
+  climate: ClimatePhaseId[]
+  weather: WeatherView                  // deterministic presentation, not history
+  observances: ObservanceId[]           // festivals, fasts, market days
+  astronomical: AstronomicalEventId[]   // authored, regionally visible
+  activeEvents: EventId[]
+  modifiers: { market: PriceModifier[]; routes: RouteState[]; encounters: EncounterTag[] }
+  arrivals: { rumor: RumorId; destination: DestinationId }[]
+}
+```
+
+Rules:
+
+- `DayContext` is derived from calendar, phases, active events, and player knowledge. It
+  is never saved.
+- Climate change is an authored phase or regional process, not a simulation. Weather is
+  deterministic local colour and may not rewrite history.
+- Astronomical and religious events record what people observe and claim. They do not
+  assert metaphysical facts. A ritual can be a fact; a god's appearance is an
+  interpretation.
+- Observances are local. There is no single global festival calendar.
+
+Entity shapes and the full field list are in `DATA_MODEL.md` §7.
+
 ## 3. Event taxonomy
 
 All event kinds share a common envelope:
@@ -54,17 +87,29 @@ type EventDef = {
   id: EventId
   kind: 'world' | 'regional' | 'local' | 'character' | 'storylet'
   title: string
+  description?: string
   dateRange?: { from: DayString; to?: DayString }   // eligible window
-  scope: { regions?: RegionId[]; destinations?: DestinationId[]; routes?: RouteId[] }
+  scope: {
+    regions?: RegionId[]
+    destinations?: DestinationId[]
+    routes?: RouteId[]
+    waypoints?: WaypointId[]
+    groups?: MobileGroupId[]
+  }
   conditions: Condition
   priority: number
   once?: boolean
   cooldownDays?: number
   major: boolean
+  scene?: SceneId
+  cast?: CharacterId[]
   effects: Effect[]
   propagation?: Propagation[]
   knowledge?: KnowledgeEffect[]
+  journal?: JournalId | null
   followUps?: { event: EventId; inDays?: number; conditions?: Condition }[]
+  art?: AssetId
+  audio?: AssetId
   provenance: Provenance
 }
 ```

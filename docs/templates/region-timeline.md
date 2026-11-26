@@ -18,6 +18,14 @@ cast data. If this file and the content disagree, fix one in the same commit.
 No gaps, no overlaps. A destination that does not exist in a phase has no activities,
 market, routes, or cast there.
 
+## 1.5 Day context plan
+
+- Climate phases and slow environmental change:
+- Seasons, agricultural cycle, sailing season:
+- Observances, festivals, market days:
+- Astronomical events and how they are reported:
+- Religious claims and interpretations:
+
 ## 2. World-event hooks
 
 | World event | Enters region | Local consequence | Rumour delay | Notes |

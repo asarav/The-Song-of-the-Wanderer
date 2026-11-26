@@ -125,7 +125,7 @@ Content packs (src/content/packs/<region>)
 Shipped tooling (tools/) and dev studio (src/studio)
 ```
 
-Three load-bearing distinctions:
+Four load-bearing distinctions:
 
 1. **Truth vs knowledge.** The world has objective state; the player has partial,
    possibly wrong knowledge. The journal, map, character index, and dialogue all read
@@ -134,6 +134,9 @@ Three load-bearing distinctions:
    storylets fill the quiet moments. None of them are scripts. (M5.)
 3. **Authored vs derived.** Content is authored; consequences are derived by propagation
    and effects. Nothing is generated live. (ADR-0002.)
+4. **Definition, state, view, knowledge.** Every entity has an authored definition, minimal
+   saved state, pure derived views, and a knowledge projection. Shared data is referenced,
+   not copied; derived values are never saved. (`DATA_MODEL.md`, ADR-0005.)
 
 Full detail: `ARCHITECTURE.md`, `WORLD_MODEL.md`, `NARRATIVE_SYSTEMS.md`,
 `SCALING.md`, `TOOLING.md`.
@@ -246,6 +249,7 @@ and characters are authored. We simulate *consequences*, not history.
 |---|---|
 | `STATUS.md` | Where are we right now? |
 | `ARCHITECTURE.md` | How is the code shaped? |
+| `DATA_MODEL.md` | What is the shape of every entity and where does its data live? |
 | `WORLD_MODEL.md` | How does time, history, and propagation work? |
 | `NARRATIVE_SYSTEMS.md` | How do characters, arcs, lineages, and storylets work? |
 | `SCALING.md` | How do modules, content packs, saves, and performance scale? |
