@@ -76,6 +76,12 @@ for (const collection of collections) {
 
   const canonicalItems = childDirs(collection.canonical)
 
+  // An empty canonical collection has nothing to mirror. Do not require every
+  // harness directory to exist until the project actually has agents.
+  if (canonicalItems.length === 0) {
+    continue
+  }
+
   for (const target of collection.targets) {
     if (check) {
       if (!fs.existsSync(target)) {
