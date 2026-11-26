@@ -64,4 +64,8 @@ Format:
 - Updated templates, skills, `src/content/README.md`, and M0–M4 milestones to use the
   expanded entity model.
 - Updated the content schema cheat sheet and event shape to the canonical model.
+- Added `ASSETS.md` defining asset IDs, manifest rules, exploratory generation workflow,
+  prompt rules, and promotion criteria.
+- Attempted four exploratory image generations; all failed with invalid credentials, so no
+  exploratory images are committed.
 - Verification: `pnpm check` green; documentation links checked.

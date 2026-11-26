@@ -250,6 +250,7 @@ and characters are authored. We simulate *consequences*, not history.
 | `STATUS.md` | Where are we right now? |
 | `ARCHITECTURE.md` | How is the code shaped? |
 | `DATA_MODEL.md` | What is the shape of every entity and where does its data live? |
+| `ASSETS.md` | How are visual assets referenced, generated, reviewed, and promoted? |
 | `WORLD_MODEL.md` | How does time, history, and propagation work? |
 | `NARRATIVE_SYSTEMS.md` | How do characters, arcs, lineages, and storylets work? |
 | `SCALING.md` | How do modules, content packs, saves, and performance scale? |

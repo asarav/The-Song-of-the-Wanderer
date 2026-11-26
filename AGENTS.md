@@ -56,6 +56,7 @@ Do not read the whole specification. It is 2,000 lines; grep the section you nee
    - systems/packs/saves → `docs/SCALING.md`
    - tools/QA → `docs/TOOLING.md`
    - content → `docs/CONTENT.md`; history → `docs/HISTORY.md`
+   - assets/visuals → `docs/ASSETS.md`
 4. Claim exactly one task by writing it into `STATUS.md` under *Active task*.
 
 **Work**
@@ -82,7 +83,7 @@ A new agent needs one instruction: *"Read `AGENTS.md` and continue from
 ## Layout
 
 ```
-docs/                 plan, status, architecture, data model, world/narrative/tooling rules
+docs/                 plan, status, architecture, data model, assets, world/narrative/tooling rules
 docs/design/          distilled design decisions (read these instead of the spec)
 docs/milestones/      one file per milestone with task IDs and acceptance criteria
 docs/templates/       dossier, region timeline, character, arc, event, route templates

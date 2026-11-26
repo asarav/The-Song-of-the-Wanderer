@@ -43,6 +43,8 @@ See `docs/milestones/M1-engine-spine.md`.
   and tooling documented; new skills added (`sotw-world`, `sotw-character`, `sotw-qa`).
 - **Data model** — `DATA_MODEL.md` added; milestones, tooling, content rules, and skills
   aligned with the four representations and the expanded entity catalogue.
+- **Assets** — `ASSETS.md` added; exploratory generation workflow documented. Four
+  attempted concept images failed due to invalid credentials; no images committed.
 
 ## Blockers
 

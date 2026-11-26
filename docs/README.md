@@ -10,6 +10,7 @@ opened the repository.
 | `PLAN.md` | Roadmap M0–M19, waves, gates, risks | Starting or re-planning |
 | `ARCHITECTURE.md` | Layers, command/event flow, state model, saves, modules | Touching `src/engine` or `src/store` |
 | `DATA_MODEL.md` | Canonical entity shapes: player, places, routes, time, characters, arcs, factions, culture, knowledge | Designing or extending any entity, save field, or content type |
+| `ASSETS.md` | Asset IDs, manifest, exploratory generation workflow, visual review and promotion | Adding or reviewing any visual asset |
 | `WORLD_MODEL.md` | Eras, phases, world/local events, propagation, truth vs knowledge | Timeline, events, rumours, destination states |
 | `NARRATIVE_SYSTEMS.md` | Characters, arcs, lineages, recurrence, storylets, journal | Any character, arc, or scene |
 | `SCALING.md` | Modules, content packs, save partitioning, performance, testing tiers | Adding a system, pack, or dependency |
