@@ -4,6 +4,10 @@
 before they appear in game text. Sources and confidence ratings belong in dossiers, not
 here.
 
+This is the human-readable spine. The data model for eras, regional phases, events, and
+propagation is `WORLD_MODEL.md`. Each region milestone authors its own phase table; this
+document records the shared historical anchors those tables must agree with.
+
 The game's spine is not a single global event. The "Late Bronze Age collapse" is a set
 of regionally varied transformations spanning roughly 1200–1100 BCE, with very different
 local timings (spec §3.1). The timeline exists to schedule authored consequences, not to

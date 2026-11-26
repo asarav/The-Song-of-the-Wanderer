@@ -21,6 +21,12 @@ Renaming an ID requires a save migration if it appears in existing saves.
 | Faction | `faction.` | `faction.ugarit.palace` |
 | Language | `lang.` | `lang.akkadian` |
 | Arc | `arc.` | `arc.slice.refugee-family` |
+| Family | `family.` | `family.ugarit.amnit` |
+| Phase | `phase.` | `phase.levant.height` |
+| Rumor | `rumor.` | `rumor.levant.grain` |
+| Language | `lang.` | `lang.akkadian` |
+| Faction | `faction.` | `faction.ugarit.palace` |
+| Culture | `culture.` | `culture.levant.coastal` |
 | Flag | dotted path | `helped.refugees.ugarit` |
 
 Character IDs include their home destination: `char.cyprus.kinyras`. A character who
@@ -30,21 +36,38 @@ The file name must match the final segment: `destinations/ugarit.json` → `dest
 
 ## 2. Files and folders
 
+From M5, content is organised in packs (`src/content/packs/<name>/`), each with a
+manifest. The slice may start with a single pack. Shared data lives in `pack.core`.
+
 ```
-src/content/
+src/content/packs/<pack>/
+  manifest.json
   regions/*.json
   destinations/*.json
   routes/*.json
   goods/*.json
   characters/*.json
+  families/*.json
+  arcs/*.json
   events/*.json
+  storylets/*.json
   dialogues/*.json
+  journal/*.json
   codex/*.json
+  languages/*.json
+  factions/*.json
+  cultures/*.json
+  phases/*.json
+  rumors/*.json
 ```
 
 One entity per file. Arrays are tolerated for bootstrap data but avoid them for anything
 referenced elsewhere. JSON only — no comments, no trailing commas. Prose lives in
 `text` fields, not in sidecar files.
+
+Pack manifests declare `id`, `contentVersion`, `requires`, and the entity lists. The pack
+dependency graph is acyclic. Cross-pack references are validated at build time. Details:
+`SCALING.md` §4.
 
 ## 3. Provenance block
 
@@ -72,8 +95,22 @@ confidence values from M1 onward and warns when a `destinations`, `routes`, `goo
 - Do not explain the protagonist's nature. Ever. Ambiguity is a design requirement.
 
 **Prose budget per destination (slice):** ~1,200 words of scene text, ~400 words of
-codex, and no more than 12 named characters. Expansion regions may adjust the budget in
-their milestone file, but never by accident.
+codex, and no more than 12 named characters. Expansion regions follow the budget in
+`milestones/M9-M19-production-waves.md`.
+
+### Knowledge, not truth
+
+If the player should learn something, author the path: who tells them, when, in what
+words, and how it might be distorted. A fact existing in world state is not the same as
+the protagonist knowing it. Journal, map, character index, and codex read knowledge only
+(ADR-0004).
+
+### World content
+
+Phases, world/regional/local events, propagation, rumours, destination states, and route
+states follow `WORLD_MODEL.md`; characters, itineraries, arcs, lineages, recognition, and
+storylets follow `NARRATIVE_SYSTEMS.md`. Do not invent a second way to change the world
+inside a destination file.
 
 ## 5. Events
 

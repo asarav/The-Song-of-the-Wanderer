@@ -19,13 +19,16 @@ rules can be exercised entirely from scripted scenarios.
 ### M1-T01 — GameState and schemas
 
 - [ ] `src/engine/state/schema.ts` defines `GameState` with Zod, derived TS types.
+- [ ] Use the partitioned shape in `ARCHITECTURE.md` §3; the slice implements the subset
+      it needs (`meta`, `calendar`, `player`, `knowledge`, `narrative`, `rng`).
 - [ ] Every persisted field is JSON-serializable (no `Map`, `Set`, `Date`, class).
 - [ ] `createInitialState(input: NewGameInput)` returns a valid state.
 - [ ] `validateState` rejects unknown top-level keys and reports a readable path.
 - [ ] Unit tests: minimal valid state, invalid state, initial state invariants.
 
 **Acceptance:** `createInitialState` output round-trips through `JSON.stringify`/
-`JSON.parse` and re-validates.
+`JSON.parse` and re-validates. Do not add world phases, facts, or propagation yet; M5
+extends the schema with a save migration.
 
 ### M1-T02 — Calendar
 
@@ -88,6 +91,7 @@ CLI with the same message.
 ### M1-T07 — Save, load, migrations
 
 - [ ] `serialize` / `deserialize` with `saveVersion`, `engineVersion`, `savedAt`.
+- [ ] Start at save version 1; M5 introduces the partitioned v2 state with a migration.
 - [ ] Migration chain with an example migration from a fixture v0 save.
 - [ ] Corrupt saves produce a typed error, not a crash.
 - [ ] Tests: round-trip equality, migration fixture, corrupt input.

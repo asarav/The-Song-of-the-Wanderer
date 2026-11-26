@@ -50,7 +50,8 @@ For each question from spec §22.1, write a paragraph of evidence and a verdict
 
 - [ ] `docs/playtests/findings.md` written with evidence and recommendations.
 - [ ] `STATUS.md` and `PLAN.md` updated with the decision: expand, revise, or stop.
-- [ ] If expanding, author M5 with region priority and dossier schedule.
+- [ ] If expanding, confirm M5 scope; the first regional priority and dossier schedule
+      are authored at the start of M9.
 - [ ] If revising, define a short M4b with the top three blockers.
 
 ## Demo script

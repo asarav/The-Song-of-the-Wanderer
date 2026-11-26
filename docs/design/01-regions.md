@@ -20,6 +20,11 @@ gated on a completed dossier set and a milestone file.
 
 Stage numbers follow spec §22.2. The slice is Stage 1 and only covers C → B.
 
+Each region milestone (M9–M14) delivers its **full chronology**, not a single snapshot:
+a phase table from its opening state to its end state, with events, route changes, cast
+arcs, and phase-specific destination content. The model is in `WORLD_MODEL.md`; the
+budget and exit criteria are in `milestones/M9-M19-production-waves.md`.
+
 ## 2. Slice geography
 
 **Ugarit (C)** — the opening destination. A port city with a palace, temples, scribal

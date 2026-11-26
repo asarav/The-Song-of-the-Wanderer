@@ -10,10 +10,12 @@ and relationship systems. No 3D, no open-world combat, no live AI-generated stor
 
 ## Status
 
-**M0 complete.** The repository now has its documentation system, agent skills, toolchain,
-and a greybox app shell. There is no game yet. M1 builds the deterministic engine spine.
+**M0 complete. The full production plan now covers M0–M19.** The repository has its
+documentation system, agent skills, toolchain, and a greybox app shell. There is no game
+yet. M1 builds the deterministic engine spine; M5–M8 build the scale layer (world
+timeline, character arcs, society/economy, tooling) before regional expansion begins.
 
-The full roadmap is in [`docs/PLAN.md`](docs/PLAN.md); the live state is in
+The roadmap is in [`docs/PLAN.md`](docs/PLAN.md); the live state is in
 [`docs/STATUS.md`](docs/STATUS.md).
 
 ## Quick start

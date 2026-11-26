@@ -21,15 +21,19 @@ Do not read the whole specification. It is 2,000 lines; grep the section you nee
    Zustand, the DOM, `Date.now()`, or `Math.random()`. It exposes
    `reduce(state, command) → { state, events }`. All randomness comes from seeded,
    serializable streams. Every save must replay identically.
-4. **The slice comes before the world.** Build only what the Ugarit → Cyprus slice
-   needs. Spec §21 is a hard gate: a new mechanic must name the pillar it serves, or it
-   is cut.
-5. **Historical claims carry provenance.** Anything historically significant is tagged
+4. **Truth is not knowledge.** Player-facing views (journal, map, index, codex, dialogue)
+   read `knowledge`, never world truth. Rumours may be wrong. Characters may believe
+   false things. (ADR-0004.)
+5. **Store deltas, derive the rest.** Untouched regions derive from the timeline. Never
+   persist a derived value. Content lives in packs. (ADR-0005.)
+6. **The slice comes before the world.** Build only what the active milestone needs.
+   Spec §21 is a hard gate: a new mechanic must name the pillar it serves, or it is cut.
+7. **Historical claims carry provenance.** Anything historically significant is tagged
    `documented | strongly-supported | plausible | fictional | unresolved` with sources.
-   The content linter enforces this from M1 onward.
-6. **Docs and code ship together.** A task is done only when its milestone checkboxes,
+   The linter enforces this from M1 onward.
+8. **Docs and code ship together.** A task is done only when its milestone checkboxes,
    `docs/STATUS.md`, and `docs/WORKLOG.md` are updated and `pnpm check` passes.
-7. **Never invent canon silently.** Names, dates, place details, and character facts
+9. **Never invent canon silently.** Names, dates, place details, and character facts
    belong in `docs/design/` before they appear in content.
 
 ---
@@ -39,8 +43,14 @@ Do not read the whole specification. It is 2,000 lines; grep the section you nee
 **Start**
 
 1. Read `docs/STATUS.md` (≤150 lines: phase, active task, next tasks, blockers).
-2. Open the active milestone file, e.g. `docs/milestones/M1-engine-spine.md`.
-3. Read only the architecture/content/history docs that task touches.
+2. Open the active milestone file, e.g. `docs/milestones/M5-world-timeline.md`.
+3. Read only the docs that task touches:
+   - engine → `docs/ARCHITECTURE.md`
+   - time/events/rumours → `docs/WORLD_MODEL.md`
+   - characters/arcs → `docs/NARRATIVE_SYSTEMS.md`
+   - systems/packs/saves → `docs/SCALING.md`
+   - tools/QA → `docs/TOOLING.md`
+   - content → `docs/CONTENT.md`; history → `docs/HISTORY.md`
 4. Claim exactly one task by writing it into `STATUS.md` under *Active task*.
 
 **Work**
@@ -67,15 +77,16 @@ A new agent needs one instruction: *"Read `AGENTS.md` and continue from
 ## Layout
 
 ```
-docs/            plan, live status, architecture, content and history rules
-docs/design/     distilled design decisions (read these instead of the spec)
-docs/milestones/ one file per milestone with task IDs and acceptance criteria
-docs/templates/  dossier, character, event, route templates
-src/engine/      pure deterministic simulation (no UI)
-src/content/     authored JSON content
-src/ui/          React screens (greybox until M4)
-src/store/       Zustand adapters that dispatch commands into the engine
-tools/           content linter, simulation harness, save inspector
+docs/                 plan, live status, architecture, world/narrative/tooling rules
+docs/design/          distilled design decisions (read these instead of the spec)
+docs/milestones/      one file per milestone with task IDs and acceptance criteria
+docs/templates/       dossier, region timeline, character, arc, event, route templates
+src/engine/           pure deterministic simulation (no UI)
+src/content/          authored JSON packs
+src/ui/               React screens (greybox until M4)
+src/store/            Zustand adapters that dispatch commands into the engine
+src/studio/           dev inspector (from M8)
+tools/                linters, simulators, generators, save tools
 ```
 
 ---
@@ -89,14 +100,21 @@ pnpm test          # vitest
 pnpm content:lint  # validate authored content
 ```
 
+From M1: `pnpm simulate`, `pnpm save:inspect`, `pnpm save:migrate`.
+From M8: `pnpm studio`, `pnpm content:coverage`, `pnpm content:continuity`,
+`pnpm simulate:long`, `pnpm simulate:personas`, `pnpm new:*`.
+Full catalogue: `docs/TOOLING.md`.
+
 ---
 
 ## Definition of done
 
 - [ ] Acceptance criteria in the milestone file are met.
-- [ ] `pnpm check` is green.
+- [ ] `pnpm check` is green; new checks are part of the gate.
 - [ ] New engine behaviour has a unit or scenario test.
 - [ ] New historical content has provenance and, where needed, a dossier entry.
+- [ ] Player-facing views read knowledge, not truth.
+- [ ] New content is in a pack with a manifest and references validated.
 - [ ] `STATUS.md` and `WORKLOG.md` are updated.
 - [ ] No new dependency without a one-line justification in `STATUS.md` or an ADR.
 
@@ -109,9 +127,10 @@ pnpm content:lint  # validate authored content
 - Keep `STATUS.md` short. It is a cache, not a history. History goes in `WORKLOG.md`.
 - Do not restate the plan in conversation; link to `docs/PLAN.md` and milestone files.
 - When a task needs more than ~1,500 lines of reading, split the task.
+- At M8+, use the studio to inspect state and graphs instead of tracing code by hand.
 
 ## Escalation
 
 Stop and ask the user when a change would: alter the protagonist's mystery rules,
-commit to a historical claim that lacks a source, add a new gameplay pillar, or
-invalidate existing saves without a migration.
+commit to a historical claim that lacks a source, add a new gameplay pillar, change the
+save format without a migration, or invalidate a region's authored chronology.

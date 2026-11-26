@@ -27,3 +27,20 @@ Format:
 - Verification: `pnpm check` green (typecheck, lint, 2 tests, content lint).
 - Notes: TypeScript pinned to 5.9 because typescript-eslint does not yet support TS 7.
   esbuild postinstall approved via `pnpm.onlyBuiltDependencies`.
+
+## 2026-11-25 — Planning — Expand to full production plan (M5–M19)
+
+- Rewrote `PLAN.md` with five waves and M0–M19, six quality gates, and a scale-risk table.
+- Added `WORLD_MODEL.md` (eras, phases, event taxonomy, propagation, truth vs knowledge,
+  rumour latency, delta saves) and `NARRATIVE_SYSTEMS.md` (characters, itineraries, arcs,
+  lineages, recognition, storylets, continuity).
+- Added `SCALING.md` (module map, content packs, state partitioning, performance budgets,
+  testing tiers, workspace-split triggers) and `TOOLING.md` (tool catalogue, studio,
+  coverage, continuity, long-run simulation, generators).
+- Added ADR-0004 (truth vs knowledge) and ADR-0005 (packs, derived state, delta saves).
+- Added milestone files M5–M8 and `M9-M19-production-waves.md`.
+- Added skills `sotw-world`, `sotw-character`, `sotw-qa`; updated `AGENTS.md`,
+  `docs/README.md`, and architecture docs.
+- Added authoring templates for region timelines and character arcs, and extended the
+  content skill's schema reference with events, propagation, facts, and knowledge.
+- Verification: `pnpm check` green; documentation links reviewed manually.

@@ -1,6 +1,7 @@
 # Development plan
 
 **Status:** living document · **Owner:** whoever holds `docs/STATUS.md` · **Updated:** M0
+**Horizon:** vertical slice → full multi-region, multi-century game
 
 ## 1. What we are building
 
@@ -9,158 +10,248 @@ Bronze Age who moves between cultures, trades goods, learns languages, builds
 relationships, and witnesses — and gently alters — the lives caught up in the collapse
 of the old networks. The protagonist does not age normally; the game never explains why.
 
-The full specification is `The Song of the Wanderer Spec.md`. This plan does not restate
-it. It defines **what we build, in what order, and how we know it works**.
+The specification is `The Song of the Wanderer Spec.md`. This plan defines **what we
+build, in what order, how the systems scale, and how we know each stage works**.
 
 ## 2. Strategy
 
-Prove the loop on one small journey before building a world.
+Four movements, each with a hard gate:
 
-The vertical slice is **Ugarit → Cyprus, c. 1230 BCE**. It contains one complete pass
-through every core system: arrival, market, dialogue, relationship, language, route
-preparation, travel encounters, a recurring character, a refugee thread, a mystery beat,
-journal, save/load, and visible time passing.
+1. **Prove the loop** on one small journey (M0–M4). Ugarit → Cyprus.
+2. **Build for scale** before adding regions (M5–M8): world time, event propagation,
+   character arcs, lineages, knowledge, and the authoring/QA tooling that keeps a large
+   world coherent.
+3. **Fill the world** region by region, each with its full chronology authored from the
+   start (M9–M14).
+4. **Break it, rebuild it, end it** (M15–M17), then production (M18–M19).
 
-If the slice is not enjoyable, no amount of regional content will save the game. M4 is a
-genuine go/no-go gate.
+The slice is not a miniature of the final architecture. It is a vertical cut through it.
+M5–M8 generalise the slice's systems without rewriting its content: every new engine
+feature must first be proven by re-expressing existing slice content through it.
 
 ## 3. Milestone board
 
+### Wave 0 — Prove the loop (M0–M4)
+
 | ID | Milestone | Outcome | Status |
 |---|---|---|---|
-| M0 | Bootstrap | Docs, agent skills, toolchain, app shell | **Done** |
-| M1 | Engine spine | Deterministic state, time, RNG, DSL, content registry, saves, scenario harness | Next |
-| M2 | Slice systems + greybox UI | Market, inventory, routes, travel, encounters, dialogue, journal, language, relationships | Planned |
+| M0 | Bootstrap | Docs, skills, toolchain, shell | **Done** |
+| M1 | Engine spine | Deterministic state, time, RNG, DSL, registry, saves, scenarios | Next |
+| M2 | Slice systems + greybox UI | Market, travel, dialogue, journal, language, relationships | Planned |
 | M3 | Slice content | Ugarit and Cyprus authored end to end | Planned |
-| M4 | Playtest and evaluation | Evidence for the spec's seven questions; go/no-go | Planned |
-| M5 | Stage 2 — core experience | Travel/encounter variety, arcs, faction depth, journal/map polish | Planned |
-| M6+ | Stage 3–6 | Regional expansion (Egypt, Nubia, Red Sea, Mesopotamia, Iran, South Asia, China), transformation, endgame, polish | Planned |
+| M4 | Playtest and evaluation | Evidence for the seven slice questions; go/no-go | Planned |
 
-Each milestone has a file in `docs/milestones/` with task IDs, acceptance criteria, a
-demo script, and explicit non-goals. Work is claimed one task at a time.
+### Wave 1 — Build for scale (M5–M8)
 
-## 4. Milestone summaries
+| ID | Milestone | Outcome | Status |
+|---|---|---|---|
+| M5 | World model and timeline | Eras, regional phases, world/regional/local events, propagation, truth vs knowledge | Planned |
+| M6 | Characters, arcs, lineages | Lives that continue off-screen; recurring cast; generations | Planned |
+| M7 | Society, culture, economy | Factions, obligations, languages, customs, trade networks at scale | Planned |
+| M8 | Authoring and QA utilities | Content studio, coverage, continuity, long-run simulation, prose/locale tools | Planned |
 
-### M0 — Bootstrap
+### Wave 2 — Fill the world (M9–M14)
 
-Toolchain (Vite, React, TypeScript strict, Vitest, ESLint with an engine-purity rule),
-folder boundaries, content linter scaffold, CI, this documentation system, four agent
-skills, and a greybox app shell. No game systems.
+| ID | Milestone | Outcome | Status |
+|---|---|---|---|
+| M9 | Act I — Eastern Mediterranean | Aegean, Anatolia, inland Levant, deeper Cyprus; the connected world | Planned |
+| M10 | Egypt and the Nile | Multiple Egyptian destinations; court, temple, army, frontier | Planned |
+| M11 | Nubia, Red Sea, Punt | Southern expansion; river and maritime networks; Punt's uncertainty | Planned |
+| M12 | Mesopotamia and Iran | Urban commerce, temple economies, caravan corridors | Planned |
+| M13 | South Asia | Post-urban Indus worlds; regional polities; early Vedic traditions | Planned |
+| M14 | China | Late Shang Anyang and the transition toward Zhou | Planned |
 
-### M1 — Engine spine
+Each region milestone delivers its **whole chronology** — phases, events, cast arcs,
+route changes, phase-specific destination content — not just its opening state.
 
-The load-bearing layer. `GameState` and its Zod schemas; a day-based calendar; named,
-serializable RNG streams; the condition/effect DSL; a content registry with referential
-integrity; a command dispatcher returning domain events; versioned save/load with
-migrations; a headless scenario runner. All of it testable without a browser.
+### Wave 3 — Transformation and endings (M15–M17)
 
-Exit criterion: a scripted multi-step scenario produces a deterministic final state, and
-a save round-trip is byte-identical at the state level.
+| ID | Milestone | Outcome | Status |
+|---|---|---|---|
+| M15 | The Breaking (Acts II–III) | Authored collapse waves, route loss, migrations, character fates, record preservation | Planned |
+| M16 | New Roads and Long Memory (Acts IV–V) | Rebuilt networks, generations, descendants, revisits across decades | Planned |
+| M17 | Endgame and post-ending | Combined endings, regional variations, continued travel | Planned |
 
-### M2 — Slice systems + greybox UI
+### Wave 4 — Production (M18–M19)
 
-Inventory and capacity, transport, market pricing and transactions, route graph and
-travel preparation, journey resolution with eligible encounters, the dialogue runner,
-journal and codex plumbing, language XP and tiers, character and faction relationships,
-delayed effects, and the Zustand adapter. Screens are greybox but functional.
+| ID | Milestone | Outcome | Status |
+|---|---|---|---|
+| M18 | Presentation, accessibility, localisation | Art/audio pipeline, UI polish, access options, translation readiness | Planned |
+| M19 | Release engineering | Tauri build, Steam integration, save compatibility, QA, store materials | Planned |
 
-### M3 — Slice content
+Detailed files exist for M0–M8. M9–M19 are specified in
+`docs/milestones/M9-M19-production-waves.md` and split into individual files at the
+start of each wave, so late content is planned with the knowledge gained earlier.
 
-Two destinations, a small cast with one recurring traveller, a language example, a
-faction example, a refugee micro-arc with a delayed consequence, one recognition/
-mystery encounter, and the journal/codex entries that make it legible. Provenance on
-every historical element; dossiers for both destinations.
+## 4. What changes after the slice
 
-### M4 — Playtest and evaluation
+The slice can hold its world in its head. The full game cannot. These are the specific
+problems Wave 1 solves, and they are the reason M5–M8 exist.
 
-Three recorded playthroughs with different priorities (trader, curious traveller,
-helper). Written findings against the spec's seven questions in §22.1. Balance and
-clarity pass. Decision: expand (M5), revise, or stop.
-
-### M5+ — Production
-
-Follow spec §22.2 Stages 2–6. Expand region by region: Egypt and the Nile, Nubia and the
-Middle Nile, the Red Sea and Punt, Mesopotamia, the Iranian plateau, South Asia, and the
-Late Shang world. Each region is gated on a completed dossier set, not on a calendar.
+| Problem | Where solved |
+|---|---|
+| The world must change over 300+ years without one giant script | `WORLD_MODEL.md` §2–4, M5 |
+| Distant events must reach the player as rumours, not cutscenes | `WORLD_MODEL.md` §5, M5 |
+| The player must be able to believe false things | `WORLD_MODEL.md` §5, ADR-0004 |
+| Characters must age, move, die, and have descendants | `NARRATIVE_SYSTEMS.md` §2–4, M6 |
+| A character arc must advance across decades and regions | `NARRATIVE_SYSTEMS.md` §3, M6 |
+| Local events must feel caused by larger ones | `WORLD_MODEL.md` §6, M5 |
+| Every region needs its own institutions, language, and customs | `SCALING.md` §3, M7 |
+| Trade must react to politics without an economic simulation | `SCALING.md` §4, M7 |
+| Thousands of entities must stay consistent | `TOOLING.md` §2–5, M8 |
+| Saves must survive years of content patches | `SCALING.md` §6, ADR-0005 |
+| Agents must author at volume without losing the thread | `TOOLING.md`, skills, status protocol |
 
 ## 5. Architecture in one page
 
 ```
 React screens (src/ui)
-      │  read state, dispatch intents
-Zustand store (src/store)
-      │  dispatch(command)
+      │ intents
+Zustand adapters (src/store)
+      │ dispatch(command)
 Pure engine (src/engine)
-      │  reduce(state, command) -> { state, domainEvents }
-Content registry (src/content, Zod-validated JSON)
+      ├─ kernel      state, commands, events, reduce
+      ├─ time        calendar, eras, phases, scheduling
+      ├─ dsl         conditions, effects, validation
+      ├─ world       regions, destinations, routes, propagation, knowledge
+      ├─ narrative   storylets, scenes, dialogue, arcs, director
+      ├─ characters  lifecycle, schedules, recurrence, lineages, recognition
+      ├─ society     factions, obligations, conflicts, reputation
+      ├─ culture     languages, scripts, customs, names, interpreters
+      ├─ economy     goods, markets, contracts, transport
+      ├─ journal     entries, index, codex, map knowledge
+      └─ save        serialisation, migrations, integrity
+Content packs (src/content/packs/<region>)
+Shipped tooling (tools/) and dev studio (src/studio)
 ```
 
-- **Commands** are the only way state changes: `travel`, `buy`, `sell`, `choose`,
-  `advanceTime`, `resolveEncounter`, `save`, `load`.
-- **Domain events** are outputs: `Arrived`, `GoodsPurchased`, `LanguageImproved`,
-  `RelationshipChanged`, `JournalEntryAdded`, `EventScheduled`. The UI and journal
-  react to them; they never mutate state.
-- **Conditions and effects** are serializable JSON with a closed vocabulary. If a scene
-  needs something the DSL cannot express, the DSL is extended deliberately, with tests
-  and an ADR — not with a content-side script.
-- **Determinism**: no wall clock, no `Math.random`, no DOM. RNG streams are named and
-  their state is saved.
+Three load-bearing distinctions:
 
-Full detail: `ARCHITECTURE.md`.
+1. **Truth vs knowledge.** The world has objective state; the player has partial,
+   possibly wrong knowledge. The journal, map, character index, and dialogue all read
+   knowledge, never truth. (ADR-0004.)
+2. **Timeline vs events.** Eras and phases bound what is possible; events change state;
+   storylets fill the quiet moments. None of them are scripts. (M5.)
+3. **Authored vs derived.** Content is authored; consequences are derived by propagation
+   and effects. Nothing is generated live. (ADR-0002.)
 
-## 6. Content pipeline
+Full detail: `ARCHITECTURE.md`, `WORLD_MODEL.md`, `NARRATIVE_SYSTEMS.md`,
+`SCALING.md`, `TOOLING.md`.
 
-1. **Design note** — what this place/person/event is for, in `docs/design/`.
-2. **Dossier** — the ten sections from spec §25, evidence-tagged, in
-   `docs/design/dossiers/`.
-3. **Data** — JSON entities, IDs namespaced, provenance required.
-4. **Lint** — schema, references, provenance, unreachable dialogue.
-5. **Scenario test** — at least one scripted path through the new content.
-6. **Review** — historical accuracy gate for anything not tagged `fictional`.
+## 6. Content pipeline at scale
 
-Rules: `CONTENT.md` and `HISTORY.md`.
+1. **Wave brief** — which regions and acts this wave covers, and why now.
+2. **Region dossier set** — ten sections per destination, evidence-tagged (spec §25).
+3. **Timeline** — era/phase table for the region, with world-event hooks.
+4. **Cast and arcs** — major, recurring, local, ambient; each major character has an arc
+   with at least one possible resolution.
+5. **Destination content** — activities, markets, dialogue, local events per phase.
+6. **Route content** — modes, requirements, encounter pools, seasonal/phase changes.
+7. **Storylets** — ambient pools that make travel and waiting feel inhabited.
+8. **Knowledge pass** — what can the player learn here, from whom, in what form, and how
+   does it distort?
+9. **Validation** — schema, references, provenance, continuity, reachability, long-run
+   simulation.
+10. **Playtest** — persona runs plus human sessions; findings feed the next wave.
 
-## 7. Scope gates
+Rules: `CONTENT.md`, `HISTORY.md`, `WORLD_MODEL.md`, `NARRATIVE_SYSTEMS.md`.
 
-Every proposed feature must pass spec §21 and answer all of these:
+## 7. Gates
 
-1. Which design pillar does it serve?
-2. What decision does the player make with it?
-3. Which slice scene or milestone task needs it now?
-4. What do we cut to pay for it?
+### Gate A — slice (end of M4)
 
-If any answer is missing, the feature is deferred. Explicitly out of scope: strategy,
-city management, economic simulation, open-world movement, mandatory combat, survival
-meters, crafting trees, generic god-favour meters, live generated story content.
+The seven questions in spec §22.1 have evidence. If the loop is not enjoyable, revise
+before Wave 1. Do not start regional expansion.
 
-## 8. Risks
+### Gate B — scale (end of M8)
+
+- A 200-year headless run passes invariants across ten seeds.
+- The slice is fully re-expressed through phases, arcs, and the knowledge model.
+- The studio can jump to any date and inspect any region's state.
+- A new synthetic region can be added with content only, no engine changes.
+
+### Gate C — region (end of each M9–M14)
+
+- Dossiers complete; provenance clean.
+- Every destination has content for every phase it exists in.
+- Every major character has an arc with at least one resolution.
+- Continuity and coverage reports clean.
+- A persona playthrough reaches the region and returns.
+
+### Gate D — transformation (end of M15–M16)
+
+- The collapse is experienced differently in at least three regions.
+- No single cause is presented as definitive.
+- Every recurring character has a fate path, including disappearance and death.
+- Migration chains are traceable from origin to a later appearance.
+- A 100-year time jump is legible: journal, character index, and map all explain it.
+
+### Gate E — ending (end of M17)
+
+- At least six ending families reachable by different play patterns.
+- No ending confirms or denies the protagonist's divinity.
+- Post-ending travel reflects the ending.
+
+### Gate F — release (end of M19)
+
+- Saves migrate across every milestone in the public build.
+- Accessibility baseline met.
+- Localisation extraction clean; no hard-coded player text.
+- Performance budgets met on target hardware.
+
+## 8. Scope discipline
+
+Every feature must pass spec §21 and answer:
+
+1. Which pillar does it serve?
+2. What decision does the player make?
+3. Which milestone task needs it now?
+4. What is cut to pay for it?
+
+Explicitly out of scope at every stage: grand strategy, city or population management,
+full economic simulation, physics travel, walkable cities, action combat, survival
+meters, crafting trees, procedural civilisations, a universal pantheon, mandatory combat,
+class systems, grinding, live generated story.
+
+The scale layer is not an exception. World events are authored, propagation is authored,
+and characters are authored. We simulate *consequences*, not history.
+
+## 9. Risks
 
 | Risk | Likelihood | Mitigation |
 |---|---|---|
-| Scope expands faster than content | High | Slice gate, §21 gate, one region at a time |
-| Engine over-engineering | Medium | Closed DSL, no ECS, one-day rule per mechanic |
-| Historical drift or false certainty | Medium | Dossier-first, provenance lint, `HISTORY.md` review gate |
-| Context loss between agents | High | `STATUS.md` discipline, milestone-scoped tasks, task-ID commits, ADRs |
-| Save breakage during churn | Medium | Versioned saves and migrations from M1 |
-| Art/audio blocks development | Medium | Asset IDs with labelled placeholders; no build depends on art |
-| Writing volume overwhelms systems | High | Prose budgets per destination; authoring templates; reusable scene patterns |
-| Tone drifts to grimdark or generic fantasy | Medium | Tone notes in `docs/design/03-acts.md`; review every destination intro |
+| Scale systems become a simulator | High | Authored events only; propagation vocabulary closed; Gate B demo |
+| Content volume outruns quality | High | Dossiers, prose budgets, coverage reports, one region per milestone |
+| Continuity breaks across centuries | High | Facts ledger, continuity linter, long-run simulation, golden saves |
+| Saves break with every content patch | High | Versioned saves, migrations, golden save corpus (ADR-0005) |
+| Agent context loss at scale | High | STATUS, milestone files, skills, ADRs, small tasks |
+| Region content feels interchangeable | Medium | Culture profiles per destination, not per civilisation; sensory bibles |
+| Collapse becomes one cutscene | Medium | Regional phases, local consequences, rumour latency, no single cause |
+| Endings feel like a menu | Medium | State-composed endings, regional variation, thematic families |
+| Tooling consumes the project | Medium | Tools are milestone deliverables with acceptance tests, not side quests |
+| Art/audio blocks progress | Medium | Asset IDs and placeholders; no build depends on assets |
+| Localisation retrofit | Medium | String extraction from M2; no hard-coded text; placeholder checks |
 
-## 9. Release path
+## 10. Release path
 
-- **Now:** browser build via Vite. Fast iteration, easy automated testing.
-- **Slice proven:** wrap in Tauri for a desktop build (small binary, Steam-friendly).
-  This is a packaging change, not an engine change.
-- **Escape hatch:** if the game later needs heavy 2D animation or a scene editor, Godot
-  is the fallback. The data model and content are engine-agnostic by design, so a port
-  is costly but not a rewrite of the world.
+- **Now:** browser build via Vite.
+- **After Gate A:** Tauri desktop wrapper; packaging only.
+- **After Gate F:** Steam build, save-compatibility pass, store materials.
+- **Escape hatch:** Godot remains possible because content and state are engine-agnostic;
+  a port is expensive but not a rewrite of the world.
 
-## 10. Document map
+## 11. Document map
 
-- `STATUS.md` — where we are right now.
-- `ARCHITECTURE.md` — how the code is shaped.
-- `CONTENT.md` — how to author content.
-- `HISTORY.md` — how to research and tag history.
-- `design/` — distilled world truth.
-- `milestones/` — what to do next and how to know it is done.
-- `DECISIONS/` — why we chose what we chose.
+| Doc | Question it answers |
+|---|---|
+| `STATUS.md` | Where are we right now? |
+| `ARCHITECTURE.md` | How is the code shaped? |
+| `WORLD_MODEL.md` | How does time, history, and propagation work? |
+| `NARRATIVE_SYSTEMS.md` | How do characters, arcs, lineages, and storylets work? |
+| `SCALING.md` | How do modules, content packs, saves, and performance scale? |
+| `TOOLING.md` | What utilities exist and when are they built? |
+| `CONTENT.md` | How do I author content? |
+| `HISTORY.md` | How do I research and tag history? |
+| `design/` | What is true about this world and this protagonist? |
+| `milestones/` | What do I do next, and how do I know it is done? |
+| `DECISIONS/` | Why did we choose this? |

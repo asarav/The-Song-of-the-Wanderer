@@ -35,8 +35,12 @@ file's non-goals or in `STATUS.md`.
   practical.
 - Content: JSON only, DSL only, no logic. Run `pnpm content:lint` often.
 - UI: dispatch commands; never mutate state; keep rules out of components.
+- Player-facing views read knowledge, never world truth (ADR-0004).
+- Untouched regions derive from the timeline; never persist a derived value (ADR-0005).
 - Do not add a dependency without a one-line justification in `STATUS.md` or an ADR.
 - Do not refactor unrelated code in the same commit.
+- If the task spans tiers (world event, character arc, UI), use `sotw-world`,
+  `sotw-character`, or `sotw-qa` for the specific workflow.
 
 ## 4. Verify
 
@@ -50,6 +54,8 @@ Expected additionally, depending on the task:
 - New content has a scenario that reaches it.
 - Save-affecting changes include a migration and a round-trip test.
 - UI changes are reachable with the keyboard and readable at default text size.
+- From M8: `pnpm content:coverage` and `pnpm content:continuity` are clean, and any
+  world/character/economy change gets a short `pnpm simulate:long` run.
 
 ## 5. Update documentation in the same commit
 
@@ -75,6 +81,7 @@ Stop and ask when a change would:
 - assert a historical claim without a source,
 - add a new gameplay pillar outside the spec,
 - invalidate existing saves without a migration,
+- let a player-facing view read world truth instead of knowledge,
 - require more than one session to land safely.
 
 ## Anti-patterns

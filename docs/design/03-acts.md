@@ -28,6 +28,22 @@ The slice is the Prologue plus the first step of Act I. It must establish:
 The slice ends on return to Ugarit (or arrival back in Cyprus), with the loop closed and
 a reason to continue: a letter, a rumour, a name, a person who needs help.
 
+## 2b. Milestone mapping
+
+| Act | Built in |
+|---|---|
+| Prologue | M1–M4 (slice) |
+| Act I | M9 (eastern Mediterranean), extended by M10–M14 |
+| Act II | M15 build-up, across all authored regions |
+| Act III | M15 breaking waves |
+| Act IV | M16 new networks and communities |
+| Act V | M16 long memory and descendants |
+| Endgame | M17 |
+
+Each region milestone authors its own phases from opening state through its end state, so
+Acts II–V are not retrofitted: the data is there from M9 onward. M15 schedules the
+breaking waves across regions; it does not invent the world.
+
 ## 3. Pacing rules
 
 - Not every journey is a crisis. Aim for roughly one authored complication per 2–3

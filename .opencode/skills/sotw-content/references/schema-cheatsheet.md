@@ -7,14 +7,38 @@ code disagree, the code wins; update this file.
 
 | Folder | Prefix | Key fields |
 |---|---|---|
-| `regions/` | `region.` | `id`, `name`, `description`, `destinations[]`, `provenance` |
-| `destinations/` | `dest.` | `id`, `region`, `name`, `intro`, `activities[]`, `characters[]`, `goods[]`, `routes[]`, `phases[]`, `provenance` |
-| `routes/` | `route.` | `id`, `from`, `to`, `modes[]`, `encounterPools[]`, `requirements`, `provenance` |
-| `goods/` | `good.` | `id`, `name`, `category`, `weight`, `baseValue`, `tags[]`, `provenance` |
-| `characters/` | `char.` | `id`, `home`, `name`, `role`, `languages[]`, `brief` (dossier ref), `schedule[]`, `provenance` |
+| `regions/` | `region.` | `id`, `name`, `description`, `destinations[]`, `phases[]`, `provenance` |
+| `destinations/` | `dest.` | `id`, `region`, `name`, `phaseStates[]`, `characters[]`, `routes[]`, `provenance` |
+| `routes/` | `route.` | `id`, `from`, `to`, `modes[]`, `encounterPools[]`, `requirements`, `phases[]`, `provenance` |
+| `goods/` | `good.` | `id`, `name`, `category`, `weight`, `baseValue`, `tags[]`, `substitutes[]`, `provenance` |
+| `characters/` | `char.` | `id`, `home`, `name`, `tier`, `roles[]`, `languages[]`, `itinerary[]`, `arcs[]`, `provenance` |
+| `families/` | `family.` | `id`, `name`, `home`, `generations[]`, `inheritance[]` |
+| `arcs/` | `arc.` | `id`, `owner`, `premise`, `beats[]`, `resolutionStates[]`, `failureStates[]`, `successor?` |
 | `events/` | `evt.` | see event shape below |
 | `dialogues/` | `dlg.` | `id`, `speaker`, `start`, `nodes`, `provenance` |
+| `storylets/` | `evt.` | `pool`, `conditions`, `weight`, `cooldownDays`, `tags[]`, `scene` |
+| `journal/` | `journal.` | `id`, `title`, `body`, `voice`, `knowledgeRefs[]` |
 | `codex/` | `codex.` | `id`, `title`, `body`, `sources[]`, `provenance` |
+| `languages/` | `lang.` | `id`, `family`, `script`, `related[]`, `tradeRole?`, `tiers` |
+| `factions/` | `faction.` | `id`, `type`, `interests[]`, `parent?`, `phaseStates[]` |
+| `cultures/` | `culture.` | `id`, `naming`, `address`, `hospitality`, `taboos[]`, `festivals[]` |
+| `phases/` | `phase.` | `id`, `region`, `from`, `to`, `description`, `destinations[]` |
+| `rumors/` | `rumor.` | `id`, `about`, `variants[]`, `baseDelayDays`, `hops[]` |
+
+## Pack manifest
+
+```json
+{
+  "id": "pack.levant",
+  "contentVersion": 1,
+  "requires": ["pack.core"],
+  "entities": {
+    "destinations": ["ugarit"],
+    "characters": ["amnit"],
+    "events": ["grain-crisis-local"]
+  }
+}
+```
 
 ## Provenance
 
@@ -118,6 +142,44 @@ Tiers: `unfamiliar`, `basic`, `conversational`, `fluent`, `deep`.
   }
 }
 ```
+
+## Propagation (world events)
+
+```jsonc
+{ "to": "regionPhase", "region": "region.levant", "phase": "phase.levant.threat" }
+{ "to": "destinationState", "destination": "dest.ugarit", "state": "tense" }
+{ "to": "routeState", "route": "route.ugarit-cyprus", "state": "risky" }
+{ "to": "faction", "faction": "faction.ugarit.palace", "field": "trust", "delta": -1 }
+{ "to": "factionControl", "destination": "dest.ugarit", "faction": null }
+{ "to": "characterStatus", "character": "char.ugarit.amnit", "status": "displaced" }
+{ "to": "characterMove", "character": "char.ugarit.amnit", "to": "dest.cyprus", "afterDays": 30 }
+{ "to": "characterArc", "character": "char.ugarit.amnit", "arc": "arc.ugarit.amnit.grain", "beat": "decide" }
+{ "to": "market", "destination": "dest.ugarit", "good": "good.grain", "priceMultiplier": 1.25, "availabilityDelta": -2 }
+{ "to": "migration", "group": "migration.ugarit.amnit-household", "from": "dest.ugarit", "to": "dest.cyprus", "afterDays": 90 }
+{ "to": "schedule", "event": "evt.levant.aftermath", "inDays": 365 }
+{ "to": "rumor", "template": "rumor.levant.grain", "regions": ["region.levant"], "reliability": 0.6 }
+{ "to": "journal", "entry": "journal.slice.recognition", "audience": "player" }
+```
+
+Rules: downward only, array order, `afterDays` schedules rather than applies, clamping is
+recorded, never inferred.
+
+## Facts and knowledge
+
+```jsonc
+// fact (world truth)
+{ "id": "fact.amnit.location", "subject": "char.ugarit.amnit",
+  "predicate": "locatedAt", "value": "dest.cyprus",
+  "validFrom": "1230-10-01", "source": "evt.ugarit.migration" }
+
+// knowledge entry (player)
+{ "fact": "fact.amnit.location", "learnedAt": "1230-11-12",
+  "source": "told", "reliability": 0.8, "belief": "believed",
+  "detail": "A sailor said the family reached Cyprus before the storms." }
+```
+
+Player-facing views read knowledge. Never write a fact into a journal entry unless the
+player learned it.
 
 ## Naming and text
 

@@ -17,12 +17,18 @@ Read `docs/CONTENT.md` first. It is the full ruleset; this skill is the working 
    `src/engine/state/schema.ts` and `src/engine/content/schema.ts`; until then use
    `references/schema-cheatsheet.md`.
 5. Check `docs/design/02-protagonist.md` for tone and mystery limits.
+6. From M5, content lives in packs (`src/content/packs/<name>/`) with a manifest. Do not
+   add a region file outside its pack.
+7. If the content changes history, phases, or propagation, read `WORLD_MODEL.md` and use
+   `sotw-world`. If it creates a character, arc, or lineage, use `sotw-character`.
 
 ## Writing rules
 
 - **IDs:** `dest.ugarit`, `char.ugarit.amnit`, `evt.slice.recognition`,
   `dlg.ugarit.amnit.first-meeting`, `route.ugarit-cyprus`, `good.copper`,
-  `journal.slice.first-crossing`, `codex.ugarit`. File name must match the final segment.
+  `journal.slice.first-crossing`, `codex.ugarit`, `arc.ugarit.amnit.grain`,
+  `family.ugarit.amnit`, `phase.levant.height`, `rumor.levant.grain`.
+  File name must match the final segment.
 - **Provenance:** every historical entity gets `confidence` + `sources` + `notes`. Use
   `fictional` for invented people and scenes, even in real places.
 - **No logic in content.** Conditions and effects only. If the DSL cannot express it,
@@ -36,6 +42,9 @@ Read `docs/CONTENT.md` first. It is the full ruleset; this skill is the working 
 - **Prose:** concrete, sensory, limited to what the protagonist knows. No modern idiom,
   no faux-archaic thee/thou, no lecturing narrator.
 - **Budget:** ~1,200 words of scene text per slice destination, 12 named characters max.
+  Full regions use the budget in `M9-M19-production-waves.md`.
+- **Knowledge, not truth:** if the player should learn something, author a knowledge path.
+  A fact existing in the world is not the same as the player knowing it.
 
 ## Dialogue graphs
 
@@ -55,6 +64,21 @@ pnpm check
 
 Fix lint errors by correcting data, never by weakening the schema. If the schema is
 genuinely wrong, change it with a test and note it in the milestone file.
+
+## World, character, and pack content
+
+From M5 onward, content includes entities that change over time. Use the dedicated skill
+for each:
+
+- **Phases, world events, local events, propagation, rumours, route states** —
+  `sotw-world`. Follow the chain: world event → regional condition → local pressure →
+  character decision → delayed consequence.
+- **Characters, itineraries, arcs, lineages, recognition, storylets** — `sotw-character`.
+  Every appearance needs an itinerary reason and a feasible route.
+- **Packs** — one manifest per region; `pack.core` holds shared calendars, goods,
+  languages, name banks. No region file outside a pack once packs exist.
+
+Do not create a phase or arc inline in a destination file. Cross-reference by ID.
 
 ## Common mistakes
 

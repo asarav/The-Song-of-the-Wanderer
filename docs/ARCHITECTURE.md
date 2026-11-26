@@ -1,35 +1,37 @@
 # Architecture
 
-Read this before touching `src/engine`, `src/store`, or the save format.
+Read this before touching `src/engine`, `src/store`, or the save format. For the world
+model see `WORLD_MODEL.md`; for characters and arcs see `NARRATIVE_SYSTEMS.md`; for scale
+and packs see `SCALING.md`; for tools see `TOOLING.md`.
 
 ## 1. Shape of the program
 
 ```
 ┌───────────────────────────────┐
-│ React screens (src/ui)        │  render state, emit intents
+│ React screens (src/ui)        │  render read models, emit intents
 └──────────────┬────────────────┘
                │ dispatch(command)
 ┌──────────────▼────────────────┐
-│ Zustand store (src/store)     │  holds GameState, exposes selectors
+│ Zustand adapters (src/store)  │  holds GameState, exposes selectors
 └──────────────┬────────────────┘
-               │ reduce(state, command)
+               │ reduce(state, command, content)
 ┌──────────────▼────────────────┐
 │ Pure engine (src/engine)      │  no React, no DOM, no wall clock
 └──────────────┬────────────────┘
-               │ validated content
+               │ validated packs
 ┌──────────────▼────────────────┐
-│ Content registry (src/content)│  JSON + Zod schemas
+│ Content packs (src/content)   │  JSON + Zod schemas + manifests
 └───────────────────────────────┘
 ```
 
 Rules:
 
 - UI never mutates `GameState`. It dispatches commands.
-- The store never contains rules. It is an adapter plus selectors.
-- The engine never imports from `src/ui`, `src/store`, `react`, `zustand`, or the DOM.
-  ESLint enforces this for `src/engine/**`.
-- Content modules are data. They are imported through the registry, which validates
-  them at load time (and in tests).
+- The store contains no rules. It is an adapter plus memoised selectors.
+- `src/engine` never imports React, Zustand, UI, the store, the DOM, `Math.random`, or the
+  wall clock. ESLint enforces this.
+- Content is data. If a scene needs behaviour the DSL cannot express, the DSL is extended
+  deliberately with tests and an ADR — never with a content-side script.
 
 ## 2. Command → event pipeline
 
@@ -43,63 +45,68 @@ type CommandResult = {
 function reduce(state: GameState, command: Command, content: ContentIndex): CommandResult
 ```
 
-- `reduce` is synchronous and side-effect free. Given the same state, command, and
-  content, it returns the same result.
-- Domain events describe what happened. They are the only input to journal writing,
-  UI notifications, and analytics-style test assertions.
-- A rejected command returns the original state, no events, and a reason. Never throw
-  for expected failure (no money, route closed, wrong location).
+- Synchronous, side-effect free, deterministic.
+- Domain events describe what happened and are the only input to journal updates, UI
+  notifications, and test assertions.
+- Expected failure returns the original state, no events, and a reason. Do not throw.
 
-Initial command set (M1–M2):
+Command set grows by milestone. Core commands: `advanceTime`, `travel`, `resolveScene`,
+`resolveEncounter`, `buy`, `sell`, `talkTo`, `rest`, `chooseArcBeat`, `save`, `load`.
 
-| Command | Purpose |
-|---|---|
-| `advanceTime` | Move the calendar, run scheduled effects and triggers |
-| `travel` | Begin a journey on a route with a chosen mode |
-| `resolveEncounter` | Choose an option in the active travel/dialogue scene |
-| `buy` / `sell` | Market transactions |
-| `talkTo` | Open a dialogue graph for a character at the current location |
-| `rest` | Spend time and money to recover and advance the calendar |
-| `save` / `load` | Serialize/deserialize; handled by the store, not the reducer |
+## 3. State model
 
-## 3. State sketch
-
-The authoritative shape lives in `src/engine/state/schema.ts` from M1-T01. This is the
-design intent, not the final field list.
+The slice stores the subset it needs. The full model is partitioned by rate of change and
+ownership (ADR-0005):
 
 ```ts
 GameState = {
-  version: number
-  seed: string
-  calendar: { day: number }                 // day 0 = 1230-01-01 (provisional)
-  location: DestinationId
-  travel: null | { route: RouteId; mode: TravelModeId; daysRemaining: number; ... }
-  player: { name: string; presentation: Presentation; background: BackgroundId[] }
-  money: number
-  inventory: { good: GoodId; quantity: number }[]
-  capacity: number
-  transport: TransportId
-  languages: Record<LanguageId, { xp: number; tier: LanguageTier }>
-  knowledge: { destinations: DestinationId[]; routes: RouteId[]; rumors: RumourId[] }
-  characters: Record<CharacterId, CharacterState>
-  factions: Record<FactionId, FactionState>
-  arcs: Record<ArcId, ArcState>
-  migrations: MigrationRecord[]
-  scheduled: ScheduledEvent[]                // { eventId, dueDay, context }
-  completed: EventId[]
-  pending: PendingScene | null               // dialogue or encounter in progress
-  journal: JournalEntry[]
-  flags: Record<string, boolean | number | string>
-  rng: Record<RngStream, number>             // serialized stream state
+  meta: { saveVersion; engineVersion; contentVersions; seed }
+  calendar: { day: number }                    // day 0 = 1230-01-01 (provisional)
+  world: {
+    era: EraId
+    regionPhases: Record<RegionId, PhaseId>
+    destinationDeltas: Record<DestinationId, DestinationDelta>
+    routeStates: Record<RouteId, RouteState>
+    facts: Fact[]
+    scheduled: ScheduledEvent[]
+    migrations: MigrationRecord[]
+  }
+  player: {
+    location: DestinationId
+    money: number
+    inventory: CargoEntry[]
+    capacity: number
+    transport: TransportId
+    languages: Record<LanguageId, { xp: number; tier: LanguageTier }>
+    flags: Record<string, boolean | number | string>
+    presentation: Presentation
+    background: BackgroundId[]
+  }
+  knowledge: {
+    entries: KnowledgeEntry[]                  // facts learned, sources, beliefs
+    knownRoutes: RouteId[]
+    knownDestinations: DestinationId[]
+    characterIndex: Record<CharacterId, KnownCharacterEntry>
+  }
+  narrative: {
+    arcStates: Record<ArcId, ArcState>
+    characterStates: Record<CharacterId, CharacterState>
+    relationships: Record<CharacterId, Relationship>
+    factions: Record<FactionId, FactionState>
+    pending: PendingScene | null
+    storyletCooldowns: Record<EventId, Day>
+  }
+  rng: Record<RngStream, number>
 }
 ```
 
 Invariants:
 
-- Every ID in state refers to a validated content entity.
+- Every ID resolves to validated content.
 - `calendar.day` only moves forward.
-- `pending` is either `null` or a fully-described scene; no half-open dialogue.
-- Unknown flags are allowed (content evolves) but are namespaced.
+- `pending` is `null` or a fully described scene; no half-open dialogue.
+- Derived values (destination display state, prices, presence) are never stored.
+- Player-facing read models read `knowledge`, never `world.facts`.
 
 ## 4. Conditions and effects
 
@@ -130,84 +137,111 @@ Implementation notes:
 - `evaluate(condition, state, content) → boolean`
 - `apply(effects[], state, content) → { state, events }`
 - Every atom and effect has a Zod schema and a unit test.
-- Unknown keys fail validation. There is no `eval`, no script escape hatch.
-- Order of effects is deterministic: array order, depth-first.
-- Effects that cannot apply (e.g. remove more goods than carried) clamp and emit a
-  `EffectClamped` domain event rather than throwing.
+- Unknown keys fail validation. No `eval`, no script escape hatch.
+- Effects apply in array order, depth-first, deterministically.
+- Clamping emits a domain event rather than throwing.
+- Propagation from world events is a separate, closed vocabulary (`WORLD_MODEL.md` §4).
 
 ## 5. Determinism and time
 
-- No `Date.now()`, `new Date()`, `Math.random()`, or locale-dependent formatting inside
-  the engine.
-- The calendar is day-count based. Formatting to "Month, Year BCE" happens at the UI
-  boundary using a pure formatter.
-- RNG streams: `market`, `encounters`, `travel`, `flavour`, `tests`. Each stream is a
-  small integer state (xorshift/splitmix-style) stored in `state.rng`. Adding an
-  encounter to the pool must not perturb market rolls — hence separate streams.
-- Scheduled events are keyed by due day and resolved in stable ID order.
+- No `Date.now()`, `new Date()`, `Math.random()`, or locale-dependent formatting inside the
+  engine.
+- Day-count calendar. Formatting to "Month, Year BCE" happens at the UI boundary.
+- RNG streams: `market`, `encounters`, `travel`, `flavour`, `narrative`, `tests`. Each is a
+  small integer state stored in `state.rng`.
+- Separate streams mean adding a market item cannot change which encounter you meet.
+- Scheduled events resolve by due day, then stable ID order.
+- Every command is replayable from a save plus a command log.
 
-## 6. Save format
+## 6. Saves
 
 ```ts
 type SaveFile = {
   saveVersion: number
-  savedAt: string            // informational only, never read by the engine
   engineVersion: string
+  contentVersions: Record<PackId, number>
+  savedAt: string              // informational only
   state: GameState
 }
 ```
 
-- Pure serialization: `serialize(state) → string`, `deserialize(json) → GameState`.
-- Migrations: `migrations: Array<{ from: number; migrate(state: any): any }>` applied
-  in order until `saveVersion` matches.
-- Tests: round-trip equality, migration chain from every historical fixture, and
-  rejection of corrupt saves with a readable error.
-- Save slots and autosave policy are a UI concern (M2).
+- `serialize` / `deserialize` are pure.
+- Migrations are ordered, pure, and tested against a golden corpus.
+- Corrupt saves produce a typed error and a readable message.
+- Derived values are not stored; tests assert this.
+- Autosave and slots are UI concerns; the save module owns format and integrity.
 
-## 7. Content registry
+## 7. Content registry and packs
 
-- Loads JSON modules from `src/content/**` at build time (Vite `import.meta.glob` or
-  explicit index files — decide in M1-T05 with a benchmark, not by preference).
-- Validates each entity with Zod, then checks references: every character's home
-  destination exists; every route endpoint exists; every dialogue node's `next`
-  resolves; every scheduled event exists.
-- Builds indexes by ID and by location for O(1) lookup during travel resolution.
-- Errors are fatal in development and tests; the content linter mirrors them in CI.
+- Packs live under `src/content/packs/<name>/` with a manifest.
+- `pack.core` holds shared calendars, goods taxonomy, languages, name banks.
+- The registry validates schemas, IDs, references, provenance, and the acyclic pack graph.
+- It builds indexes by ID, location, region, phase, and tag for O(1) selection.
+- The game loads packs lazily per region; tests and the studio load everything.
+- The content linter and runtime use the same schemas and validators.
 
-## 8. Travel and encounter resolution
+Details: `SCALING.md` §4.
 
-Conceptual flow (M2-T03/T04):
+## 8. Read models
 
-1. Player selects a route and mode in travel preparation.
+The UI never reads world truth directly. It reads derived, player-facing views:
+
+| Read model | Built from | Must not reveal |
+|---|---|---|
+| Journal | knowledge entries + journal content | facts the protagonist never learned |
+| Character index | knowledge + character defs | current status if unknown |
+| Map | known destinations/routes + rumour state | closed routes the player has not heard about |
+| Codex | phase-appropriate authored entries | deliberate ambiguity resolutions |
+| Market | derived destination state + player knowledge | hidden modifiers without an in-world reason |
+
+A "no truth leak" test suite is mandatory from M5.
+
+## 9. Travel and encounter resolution
+
+1. Player selects route and mode in travel preparation.
 2. `travel` validates requirements (knowledge, pass, language, guide, season, capacity).
-3. Time advances by the route's base duration, modified by mode and events.
-4. Encounter slots are generated deterministically from the route, date, and state.
-5. For each slot, the engine selects from eligible authored encounters by priority and
-   weight; travel events with `major: true` bypass randomness.
-6. A scene is presented; choices apply conditions/effects; unresolved scenes pause
-   travel.
-7. On arrival, destination state is recomputed from the timeline and player history.
+3. Time advances by base duration modified by mode and events.
+4. Encounter slots are generated deterministically from route, date, and state.
+5. Eligible authored events are selected by priority and seeded weight; `major` events
+   bypass randomness.
+6. A scene is presented; choices apply conditions/effects; unresolved scenes pause travel.
+7. On arrival, destination state is derived from phase + delta + local events.
 
-## 9. Testing strategy
+## 10. Module map
+
+Engine submodules and dependency direction are defined in `SCALING.md` §3. Summary:
+
+```
+kernel ← time ← world ← narrative
+              ↖ characters ↗
+kernel ← dsl ← everything
+save  ← kernel (+ migrations)
+ui → store → engine (never reverse)
+```
+
+Each submodule exports a narrow surface. Cross-cutting work goes through kernel types.
+
+## 11. Testing strategy
 
 | Layer | Test type |
 |---|---|
-| DSL atoms and effects | Table-driven unit tests |
-| Calendar and RNG | Unit tests with fixed expected values |
-| Save/load | Round-trip and migration fixtures |
-| Content | Schema + referential integrity lint (CI) |
-| Scenes | Scenario scripts in `src/engine/scenarios/*.json` run headlessly |
-| Balance | Monte Carlo market runs over N seeds (diagnostic, not a gate) |
-| UI | Smoke render tests from M2; no snapshot sprawl |
+| DSL atoms/effects | Table-driven unit tests |
+| Calendar/RNG | Fixed-value unit tests |
+| Save/load | Round-trip, migration corpus, fuzz |
+| Content | Schema, references, provenance, continuity, coverage |
+| Scenes | Scenario scripts, one per major path |
+| World | Long-run invariants over 200 years × seeds |
+| Balance | Persona runs and Monte Carlo diagnostics |
+| UI | Smoke renders and accessibility checks |
 
-The scenario runner is the main regression tool. A scenario is a list of commands plus
-expected assertions on state and emitted events. Every slice scene gets at least one.
+The scenario runner and long-run simulator are the main regression tools. Details:
+`TOOLING.md`.
 
-## 10. Performance and packaging
+## 12. Performance and packaging
 
-- Target: state snapshots under 1 MB, save/load under 50 ms, content load under 200 ms
-  for the slice.
-- No virtualisation or worker threads until measured need.
-- Packaging: browser build now; Tauri wrapper when the slice is proven (ADR-0001).
-- All persistence goes through the save module, so moving from `localStorage` to Tauri
-  filesystem storage is a single adapter swap.
+- Budgets in `SCALING.md` §7. Breaching one is a bug, not a polish task.
+- State snapshots under 8 MB for the full game; save/load under 100 ms.
+- Pack load under 300 ms; initial game bundle under 2 MB gzipped with lazy packs.
+- Packaging: browser now, Tauri after Gate A. Persistence goes through the save module so
+  storage adapters can change.
+- Godot remains an escape hatch; content and state are engine-agnostic.
