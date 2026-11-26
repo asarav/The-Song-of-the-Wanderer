@@ -54,6 +54,8 @@ Read `docs/CONTENT.md` first. It is the full ruleset; this skill is the working 
   without a note and a source.
 - **Prose:** concrete, sensory, limited to what the protagonist knows. No modern idiom,
   no faux-archaic thee/thou, no lecturing narrator.
+- **Visuals:** if an asset is added, use the unified style anchors in `docs/ASSETS.md`.
+  Do not mix rendering styles, realism levels, or period treatments.
 - **Budget:** ~1,200 words of scene text per slice destination, 12 named characters max.
   Full regions use the budget in `M9-M19-production-waves.md`.
 - **Knowledge, not truth:** if the player should learn something, author a knowledge path.

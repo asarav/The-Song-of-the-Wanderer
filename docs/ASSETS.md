@@ -14,7 +14,52 @@ promoted. It complements `TOOLING.md` §10 and `DATA_MODEL.md`.
   production.
 - `pnpm assets:check` validates IDs and fallback coverage once the tool exists (M8).
 
-## 2. On-demand exploratory generation
+## 2. Art direction: one unified visual language
+
+All images, exploratory or final, must belong to one visual language. A mixed set of
+realistic, cartoonish, 3D-rendered, or anime-styled images is not acceptable, even if
+individual images are attractive.
+
+### 2.1 Base style
+
+The default style is a **historically grounded illustration**:
+
+- warm, local Mediterranean / regional light
+- textured brushwork or restrained digital painting
+- period materials and forms
+- readable at small sizes
+- no text, no modern UI, no anachronistic tools
+- no fantasy glow, cinematic lens effects, or game-art exaggeration
+
+Region, phase, and culture may change palette, architecture, clothing, materials, and
+motifs. They must not change the rendering style, camera language, or level of realism.
+
+### 2.2 Style anchors
+
+Every prompt should begin from the same anchors, then add only subject-specific detail:
+
+> Late Bronze Age historical illustration, c. 1230 BCE, textured brushwork, warm local
+> light, period materials, grounded human proportions, no text, no modern elements, no
+> anachronisms.
+
+Do not substitute "photorealistic", "cartoon", "anime", "3D render", "concept art
+splash", or "cinematic" unless an ADR changes the art direction.
+
+### 2.3 Consistency checks
+
+- Compare every new image against the approved exemplars before promotion.
+- Reject images that change rendering style, even if they are individually strong.
+- Phase variants change what is shown, not how it is drawn.
+- Character portraits use the same style as location art.
+- Maps and route art use the same material and light language as scenes.
+- Art bibles in M18 must define the unified style before regional commissioning.
+
+### 2.4 Escalation
+
+Changing the base rendering style requires an ADR and an update to this document, the M18
+milestone, and the asset manifest. Do not drift the style informally.
+
+## 3. On-demand exploratory generation
 
 Exploratory images can be generated on demand during design work. They are **not canon**
 until they pass historical review and are wired through the manifest.
@@ -38,6 +83,7 @@ until they pass historical review and are wired through the manifest.
 
 ### Prompt rules
 
+- Start every prompt with the approved style anchors in §2.2.
 - State the period and place: "Late Bronze Age, c. 1230 BCE, Levantine coast."
 - Use materials and forms attested or plausible for that place: stone, mud brick, linen,
   wool, copper, bronze, clay, wood.
@@ -48,6 +94,7 @@ until they pass historical review and are wired through the manifest.
 - Preserve deliberate uncertainty. Do not generate a definitive image for an unresolved
   question such as Punt's location or the protagonist's nature.
 - Religious imagery should show practice and material culture, not a metaphysical claim.
+- Do not change the rendering style by region, phase, or subject.
 
 ### Naming
 
@@ -71,7 +118,7 @@ Each exploratory file is one of:
 - `promoted` — wired into the manifest and content
 - `rejected` — kept for reference, not used
 
-## 3. What this is not
+## 4. What this is not
 
 - It is not a committed build dependency. No build or test depends on an exploratory
   image.
@@ -80,7 +127,7 @@ Each exploratory file is one of:
 - It does not generate final game art automatically. The agent generates on demand; the
   project still owns review, manifest wiring, and fallback coverage.
 
-## 4. Production pipeline (M18)
+## 5. Production pipeline (M18)
 
 The eventual pipeline is defined in `milestones/M9-M19-production-waves.md`:
 

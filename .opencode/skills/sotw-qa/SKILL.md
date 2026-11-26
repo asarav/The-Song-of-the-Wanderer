@@ -107,6 +107,7 @@ Use the studio instead of adding temporary `console.log` calls to the engine.
 - A save edited to avoid a migration.
 - A local entity copied a shared profile instead of referencing it.
 - A prose rule changed to allow an anachronism because a line was good.
+- An asset promoted without review for style drift or caricature.
 
 ## Reporting
 

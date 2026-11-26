@@ -66,6 +66,8 @@ Format:
 - Updated the content schema cheat sheet and event shape to the canonical model.
 - Added `ASSETS.md` defining asset IDs, manifest rules, exploratory generation workflow,
   prompt rules, and promotion criteria.
+- Added a unified art-direction requirement: one visual language across all assets, with
+  style anchors, consistency checks, and escalation rules.
 - Attempted four exploratory image generations; all failed with invalid credentials, so no
   exploratory images are committed.
 - Verification: `pnpm check` green; documentation links checked.

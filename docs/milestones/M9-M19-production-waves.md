@@ -300,11 +300,15 @@ deliberately unresolved outcome recorded.
 
 **Art:**
 
-- Art bible per region: architecture, clothing, materials, landscape, pigments.
+- One unified art direction across all regions, phases, portraits, maps, and events. No
+  mixed rendering styles, realism levels, or animation registers.
+- Art bible per region: architecture, clothing, materials, landscape, pigments, and the
+  shared style anchors from `docs/ASSETS.md`.
 - Location illustrations with phase variants where the place changes.
 - Character portraits with age, status, and travel variants.
 - Map and route art; event illustrations; UI motifs from period materials.
-- Commissioning briefs, asset IDs, placeholder system, review for caricature.
+- Commissioning briefs, asset IDs, placeholder system, review for caricature and style
+  drift.
 
 **Music and audio:**
 

@@ -6,7 +6,7 @@
 ## Non-goals
 
 - New destinations or systems.
-- Art production beyond one test illustration.
+- Art production beyond one test illustration that validates the unified style.
 - Store page, marketing, or release build.
 
 ## Tasks
