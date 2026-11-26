@@ -70,6 +70,9 @@ Format:
   style anchors, consistency checks, and escalation rules.
 - Documented public-domain and open-access reference sources, license rules, and a
   reference-asset manifest shape for development agility.
+- Added audio asset rules: unified audio direction, open-access audio sources, Peter
+  Pringle and modern reconstruction caution, ancient music source uncertainty, and
+  audio manifest fields.
 - Attempted four exploratory image generations; all failed with invalid credentials, so no
   exploratory images are committed.
 - Verification: `pnpm check` green; documentation links checked.

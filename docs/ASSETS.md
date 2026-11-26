@@ -187,7 +187,96 @@ Reference assets should carry:
 Use public-domain references to move faster in design and review. Do not let them bypass
 the unified art direction, provenance, or license checks.
 
-## 6. Production pipeline (M18)
+## 6. Audio assets and references
+
+Audio is handled like visual assets: content references `audio.*` IDs, and the manifest
+resolves them to files, sources, and fallbacks.
+
+### 6.1 Unified audio direction
+
+All shipped audio should belong to one sonic identity:
+
+- diegetic music, ambience, and sound effects rooted in the period and place
+- period-appropriate instruments, performance contexts, and vocal styles
+- no modern pop covers, trailer music, or anachronistic production unless an ADR
+  explicitly approves a stylized treatment
+- region and phase may change instrumentation, repertoire, language, and mood, but not
+  the underlying audio language
+
+### 6.2 Public domain and open-access audio
+
+Public-domain and open-access recordings can help with development agility, but they are
+not automatically shippable game audio.
+
+Useful sources to check:
+
+- museum and archive audio collections
+- ethnomusicology archives
+- Wikimedia Commons audio
+- Internet Archive and library collections
+- early sound recordings whose copyright has expired in the relevant jurisdiction
+
+### 6.3 Important caution: Peter Pringle and similar performers
+
+Peter Pringle's performances of ancient texts and reconstructions are modern copyrighted
+works. They are excellent references and inspiration, but they should be treated as
+**reference-only** unless a license or permission is obtained.
+
+The same distinction applies to other modern performers, ensembles, and reconstructions:
+
+- the ancient text, melody, or source may be old or public domain
+- the modern performance, arrangement, recording, and interpretation are usually
+  protected by copyright and related rights
+
+For development, these recordings can inform pronunciation, phrasing, instrumentation,
+and mood. They cannot be dropped into the game as shipped audio without rights review.
+
+### 6.4 Ancient music sources
+
+Ancient musical fragments and notation are valuable source material, but they are not
+complete songs:
+
+- Hurrian Hymn No. 6 from Ugarit is an ancient source with modern interpretations.
+- Cuneiform musical fragments require scholarly reconstruction and remain uncertain.
+- Instrument replicas and performance practice are modern scholarly choices.
+
+Use these as authored inspiration and, where appropriate, as codex or research material.
+Do not present a modern reconstruction as the certain sound of the past.
+
+### 6.5 License rules
+
+- **Public domain:** no permission or fee is required, but record source, performer,
+  recording date, and URL.
+- **CC0:** treat like public domain, but still record provenance.
+- **CC-BY / CC-BY-SA:** attribution is required. CC-BY-SA also requires compatible
+  sharing of adaptations. Do not use these in shipped game audio without license review.
+- **All rights reserved or unclear:** reference only. Do not commit or ship.
+
+### 6.6 Audio manifest fields
+
+Reference or shipped audio should carry:
+
+```jsonc
+{
+  "id": "audio.ugarit.hurrian-hymn-reference",
+  "kind": "reference | ambience | music | voice | sfx",
+  "source": "Performer, archive, or collection",
+  "url": "https://...",
+  "license": "public-domain | cc0 | cc-by | cc-by-sa | all-rights-reserved | unknown",
+  "performer": "Name or ensemble",
+  "recordingDate": "YYYY or range",
+  "use": "reference | placeholder | codex | shipped",
+  "reviewStatus": "draft | reviewed | approved-reference | licensed"
+}
+```
+
+### 6.7 Current limitation
+
+There is no audio generation tool in the repository. Audio is sourced, commissioned,
+referenced, or created externally. On-demand generation is not currently available; if it
+is added later, it must follow the same manifest, license, and unified-direction rules.
+
+## 7. Production pipeline (M18)
 
 The eventual pipeline is defined in `milestones/M9-M19-production-waves.md`:
 
