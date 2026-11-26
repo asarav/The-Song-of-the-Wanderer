@@ -39,6 +39,10 @@ Do not read the whole specification. It is 2,000 lines; grep the section you nee
     runtime state, a derived view, and a knowledge projection where the player can learn
     it. Shared data is referenced, not copied. The canonical entity shapes are in
     `docs/DATA_MODEL.md`; do not invent an ad hoc shape in a feature branch.
+11. **Skills and agents are cross-harness.** Canonical skills live in `.agents/skills/`
+    and canonical agents in `.agents/agents/`. Any skill or agent added for one harness
+    must be mirrored to the other harness directories with `pnpm skills:sync`, and
+    `pnpm skills:check` must pass. Do not create a harness-only skill or agent.
 
 ---
 
@@ -84,6 +88,8 @@ A new agent needs one instruction: *"Read `AGENTS.md` and continue from
 
 ```
 docs/                 plan, status, architecture, data model, assets, world/narrative/tooling rules
+.agents/              canonical cross-harness skills and agents
+.claude/, .cline/, ... mirrored harness skill/agent directories (synced)
 docs/design/          distilled design decisions (read these instead of the spec)
 docs/milestones/      one file per milestone with task IDs and acceptance criteria
 docs/templates/       dossier, region timeline, character, arc, event, route templates

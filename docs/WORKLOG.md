@@ -77,6 +77,10 @@ Format:
   fallback silence, and consistency requirements.
 - Added agent skills for assets/audio, save format, UI/read models, scenarios, and design
   decisions to cover the main development workflows.
+- Moved canonical skills to `.agents/skills/` and mirrored them to Claude Code, Cline,
+  Cursor, GitHub Copilot, Kilo, Freebuff/OpenCode-compatible, and Codex directories.
+- Added `tools/sync-skills.mjs`, `pnpm skills:sync`, and `pnpm skills:check` so skills
+  and agents can be kept available across harnesses.
 - Attempted four exploratory image generations; all failed with invalid credentials, so no
   exploratory images are committed.
 - Verification: `pnpm check` green; documentation links checked.

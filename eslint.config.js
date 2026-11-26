@@ -46,7 +46,7 @@ export default tseslint.config(
     },
   },
   {
-    files: ['tools/**/*.ts', '*.config.{js,ts}', 'eslint.config.js'],
+    files: ['tools/**/*.ts', 'tools/**/*.mjs', '*.config.{js,ts}', 'eslint.config.js'],
     languageOptions: {
       globals: {
         process: 'readonly',

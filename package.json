@@ -25,7 +25,10 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "content:lint": "tsx tools/content-lint.ts",
-    "check": "pnpm typecheck && pnpm lint && pnpm test && pnpm content:lint"
+    "skills:sync": "node tools/sync-skills.mjs",
+    "skills:check": "node tools/sync-skills.mjs --check",
+    "agents:sync": "node tools/sync-skills.mjs",
+    "check": "pnpm typecheck && pnpm lint && pnpm test && pnpm content:lint && pnpm skills:check"
   },
   "dependencies": {
     "react": "^19.3.1",
