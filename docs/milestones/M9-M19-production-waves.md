@@ -316,6 +316,8 @@ deliberately unresolved outcome recorded.
 - Diegetic music: courtyard songs, ritual chant, work songs, laments.
 - A recurring protagonist theme that travels and mutates with cultures.
 - Ambience for markets, harbours, workshops, rivers, weather, animals.
+- Ambient audio profiles by destination, route, waypoint, season, and phase, with
+  diegetic sound and fallback silence.
 - Voice policy: subtitles mandatory if voice is used; no claims of authentic melody.
 
 **UI/UX:**

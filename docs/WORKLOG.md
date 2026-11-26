@@ -73,6 +73,8 @@ Format:
 - Added audio asset rules: unified audio direction, open-access audio sources, Peter
   Pringle and modern reconstruction caution, ancient music source uncertainty, and
   audio manifest fields.
+- Added ambient audio and environment rules: diegetic layers, seasonal/phase conditions,
+  fallback silence, and consistency requirements.
 - Attempted four exploratory image generations; all failed with invalid credentials, so no
   exploratory images are committed.
 - Verification: `pnpm check` green; documentation links checked.

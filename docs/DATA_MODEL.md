@@ -187,6 +187,7 @@ type DestinationDef = {
     economy: EconomyProfileId
     currency: CurrencyId
     arts: CulturalWorkRef[]
+    ambience: AmbientAudioProfileId
   }
   localOverrides?: LocalOverride[]
   sites: SiteId[]
@@ -257,6 +258,7 @@ type RouteDef = {
   seasonality: SeasonRule[]
   hazards: HazardId[]
   encounterPools: EncounterPoolId[]
+  ambience: AmbientAudioProfileId
   phaseStates: RoutePhaseState[]
   provenance: Provenance
 }

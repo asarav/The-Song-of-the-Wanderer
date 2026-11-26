@@ -276,6 +276,44 @@ There is no audio generation tool in the repository. Audio is sourced, commissio
 referenced, or created externally. On-demand generation is not currently available; if it
 is added later, it must follow the same manifest, license, and unified-direction rules.
 
+### 6.8 Ambient audio and environments
+
+Ambient audio should make places feel inhabited without becoming a modern sound-design
+showcase.
+
+- **Location profiles:** each destination, route, waypoint, and camp can reference an
+  ambient audio profile.
+- **Layers:** base environment (wind, water, insects, birds, market murmur, harbour
+  creaks), activity layer, event layer, and occasional diegetic music.
+- **Conditions:** ambience changes with season, weather, phase, time of day, local delta
+  (festival, quarantine, siege, destruction), and knowledge where appropriate.
+- **Diegetic first:** music and song belong to people and places. Do not use a
+  non-diegetic score as a default mood layer.
+- **No modern clichés:** avoid cinematic drones, trailer impacts, fantasy choirs, and
+  anachronistic instruments unless an ADR explicitly approves a stylized treatment.
+- **Public-domain and open-access field recordings** may be useful, but they still need
+  license review, source recording, and manifest entries.
+- **Fallback:** silence or a neutral, minimal ambience is acceptable; missing audio must
+  not block play.
+- **Consistency:** all ambient audio should share the same recording quality, loudness,
+  and spatial treatment so that locations feel like one game.
+
+### 6.9 Ambient manifest fields
+
+```jsonc
+{
+  "id": "audio.ambient.ugarit.harbour",
+  "kind": "ambience",
+  "environment": "harbour | market | temple | road | camp | sea | river | desert",
+  "layers": ["wind", "water", "harbour-creaks", "market-murmur"],
+  "conditions": { "phase": "phase.levant.height", "delta": null },
+  "source": "Archive or recording",
+  "license": "public-domain | cc0 | cc-by | cc-by-sa | all-rights-reserved | unknown",
+  "use": "reference | placeholder | shipped",
+  "reviewStatus": "draft | reviewed | approved-reference | licensed"
+}
+```
+
 ## 7. Production pipeline (M18)
 
 The eventual pipeline is defined in `milestones/M9-M19-production-waves.md`:
