@@ -1,0 +1,12 @@
+{
+  "id": "climate.cyprus",
+  "pack": "pack.core",
+  "contentVersion": 1,
+  "name": "Cypriot coast",
+  "notes": "Drier than the Levantine coast, with hot summers and a long sailing season.",
+  "provenance": {
+    "confidence": "plausible",
+    "sources": ["Regional Mediterranean climate, general"],
+    "notes": "A climate band for scene-setting, not a palaeoclimate reconstruction."
+  }
+}

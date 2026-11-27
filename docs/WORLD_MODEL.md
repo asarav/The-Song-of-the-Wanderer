@@ -17,7 +17,7 @@ contract that M1–M4 must not contradict.
 4. **Truth and knowledge are separate.** The world knows what happened. The player knows
    what they heard, saw, inferred, or got wrong. These must never be conflated.
 5. **Distance matters.** News travels along connections and takes time. A collapse in
-   Anatolia is a rumour in Ugarit before it is a price change, and a price change before
+   Anatolia is a rumor in Ugarit before it is a price change, and a price change before
    it is a refugee at the gate.
 6. **No universal clockwork.** Different regions experience different phases at different
    dates. There is no global "year of the collapse".
@@ -30,7 +30,7 @@ contract that M1–M4 must not contradict.
 | 1 | Regional phase | years–decades | "Ugarit at its height", "Ugarit under threat", "Ugarit abandoned" | Region |
 | 2 | World event | days–years | Hittite grain crisis, Sea Peoples campaigns, Shang–Zhou war | World timeline |
 | 3 | Regional process | months–years | Drought in Anatolia, Assyrian contraction, PGW spread | Region |
-| 4 | Local event | days–months | Harbour tax riot, temple festival, workshop fire | Destination |
+| 4 | Local event | days–months | Harbor tax riot, temple festival, workshop fire | Destination |
 | 5 | Character beat | scene | A merchant decides to move his family | Arc |
 | 6 | Ambient storylet | moment | A sailor's story at the docks | Encounter pool |
 
@@ -70,7 +70,7 @@ Rules:
 - `DayContext` is derived from calendar, phases, active events, and player knowledge. It
   is never saved.
 - Climate change is an authored phase or regional process, not a simulation. Weather is
-  deterministic local colour and may not rewrite history.
+  deterministic local color and may not rewrite history.
 - Astronomical and religious events record what people observe and claim. They do not
   assert metaphysical facts. A ritual can be a fact; a god's appearance is an
   interpretation.
@@ -121,7 +121,7 @@ Meaning by kind:
 - **regional** — affects one region's destinations, markets, factions, or characters.
   May be scheduled by a world event or by its own conditions.
 - **local** — belongs to a destination or route. Small, concrete, often optional. This is
-  where "the harbour master is angry because the grain shipment is late" lives.
+  where "the harbor master is angry because the grain shipment is late" lives.
 - **character** — an arc beat. Owned by a character or family, not by a place.
 - **storylet** — ambient, pooled, repeatable with cooldowns, never major.
 
@@ -159,7 +159,7 @@ Rules:
 - Nothing propagates upward. A local fire does not change the regional phase unless an
   authored event says so.
 
-## 5. Truth, knowledge, and rumour
+## 5. Truth, knowledge, and rumor
 
 ### 5.1 Facts ledger
 
@@ -200,12 +200,12 @@ type KnowledgeEntry = {
 ```
 
 - Map knowledge, character index, journal, and dialogue conditions read knowledge.
-- A player may possess a `KnowledgeEntry` for a fact that is false (a rumour with a
+- A player may possess a `KnowledgeEntry` for a fact that is false (a rumor with a
   fabricated FactId variant, or a `detail` that contradicts the truth).
 - Learning the truth does not automatically delete a belief; an authored scene may
   replace it, and the journal records both.
 
-### 5.3 Rumour propagation
+### 5.3 Rumor propagation
 
 ```ts
 type RumorDef = {
@@ -220,8 +220,8 @@ type RumorDef = {
 - A world event with a `rumor` propagation schedules arrival at connected locations after
   `baseDelayDays + hops`.
 - Reliability decreases with hops, language distance, and source interest.
-- The UI presents rumour text as reported speech, never as narration.
-- A player acting on a false rumour must be able to discover the error without a reload.
+- The UI presents rumor text as reported speech, never as narration.
+- A player acting on a false rumor must be able to discover the error without a reload.
 
 This is what lets distant history feel like weather rather than cutscenes.
 
@@ -232,11 +232,11 @@ An authored propagation chain, using the slice's region:
 1. **World event** `evt.world.hittite-grain-crisis` (c. 1207 BCE) sets:
    - `region.anatolia` phase → `phase.anatolia.pressure`
    - market multipliers for grain in `dest.ugarit` (+25%, availability −2)
-   - a rumour scheduled at Ugarit in 12 days
+   - a rumor scheduled at Ugarit in 12 days
 2. **Regional process** `evt.region.levant.grain-anxiety` becomes eligible once the market
    multiplier exists. It sets a destination state `dest.ugarit.state = 'tense'`.
 3. **Local event** `evt.local.ugarit.harbour-dispute` becomes eligible in the `tense`
-   state: a harbour official is short with merchants and a shipment is impounded.
+   state: a harbor official is short with merchants and a shipment is impounded.
 4. **Character beat** `arc.ugarit.amnit.grain-decision` triggers for the merchant Amnit,
    whose contract is now unprofitable. The player can advise her, lend money, or do
    nothing.
@@ -317,7 +317,7 @@ Per region, write:
 7. **Character impact table** — which recurring characters are affected, how, and when.
 
 The timeline validator (M5) checks: phase gaps/overlaps, events outside a phase, events
-with no effect, follow-ups that never resolve, rumours with no reachable destination, and
+with no effect, follow-ups that never resolve, rumors with no reachable destination, and
 migrations with no origin or destination.
 
 ## 10. Save representation

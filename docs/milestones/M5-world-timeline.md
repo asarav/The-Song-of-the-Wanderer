@@ -1,6 +1,6 @@
 # M5 — World model and timeline
 
-**Status:** Planned · **Depends on:** M1–M4 · **Architecture:** `WORLD_MODEL.md`,
+**Status:** Blocked by Gate A (M4 human playtests) · **Depends on:** M1–M4 · **Architecture:** `WORLD_MODEL.md`,
 ADR-0004, ADR-0005
 **Goal:** the world can change across centuries through authored phases and events, with
 consequences propagating to places, people, prices, routes, and knowledge.
@@ -43,7 +43,7 @@ changes the day context without changing world truth.
 - [ ] Facts are not exposed to the UI; only knowledge is.
 - [ ] Tests: validity windows, revisions, contradiction detection.
 
-### M5-T03 — Knowledge and rumour state
+### M5-T03 — Knowledge and rumor state
 
 - [ ] `KnowledgeEntry` (learnedAt, source, reliability, belief, detail).
 - [ ] Player knowledge read models: map knowledge, character index, journal eligibility.
@@ -71,7 +71,7 @@ changes the day context without changing world truth.
 
 - [ ] Scheduler keyed by due day, stable ID order.
 - [ ] Date-driven, condition-driven, and event-chained events.
-- [ ] Rumour delivery: base delay + authored hops; reliability decay.
+- [ ] Rumor delivery: base delay + authored hops; reliability decay.
 - [ ] No event fires twice unless explicitly repeatable.
 - [ ] Tests: ordering, lateness, cancellation, save mid-schedule.
 
@@ -89,11 +89,11 @@ changes the day context without changing world truth.
 - [ ] UI-facing explanation for every unavailable activity, route, or waypoint.
 - [ ] Tests: derivation composition, delta removal, route closure, waypoint state.
 
-### M5-T08 — Rumour system
+### M5-T08 — Rumor system
 
 - [ ] `RumorDef` with variants, distortion, reachable destinations.
 - [ ] Delivery through player knowledge; presented as reported speech.
-- [ ] Multiple competing rumours about the same event.
+- [ ] Multiple competing rumors about the same event.
 - [ ] Tests: latency, distortion, duplicate suppression, correction.
 
 ### M5-T09 — Save v2 and derivation guarantees
@@ -107,7 +107,7 @@ changes the day context without changing world truth.
 ### M5-T10 — Re-express the slice and prove scale
 
 - [ ] Port Ugarit/Cyprus to phase and event data with zero visible change.
-- [ ] Author one synthetic world event that propagates to a local event and a rumour.
+- [ ] Author one synthetic world event that propagates to a local event and a rumor.
 - [ ] Build a 50-year synthetic timeline with 3 regions and 10 events.
 - [ ] Long-run test asserts invariants and determinism.
 - [ ] Update `STATUS`, `WORKLOG`, `ARCHITECTURE`, and content docs.
@@ -115,8 +115,8 @@ changes the day context without changing world truth.
 ## Demo script
 
 Start the slice; it behaves exactly as in M3. Then jump the calendar to 1207 BCE in the
-test harness and watch a synthetic grain crisis raise prices, schedule a rumour, and make
-a harbour event eligible — all from data. Save, reload, and repeat identically.
+test harness and watch a synthetic grain crisis raise prices, schedule a rumor, and make
+a harbor event eligible — all from data. Save, reload, and repeat identically.
 
 ## Exit criteria
 

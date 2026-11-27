@@ -1,0 +1,13 @@
+{
+  "id": "codex.alashiya",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "title": "Alashiya",
+  "category": "place",
+  "text": "A name that appears in the letters of kings: a source of copper, a kingdom worth writing to. Whether Alashiya is Cyprus, part of Cyprus, or somewhere else has been argued for a century.\n\nThe people of the island do not call it Alashiya. That is what other people's scribes call it.",
+  "provenance": {
+    "confidence": "strongly-supported",
+    "sources": ["Amarna letters referring to Alashiya, general"],
+    "notes": "The name and its copper are attested; the identification with Cyprus is the standard reading, not a certainty."
+  }
+}

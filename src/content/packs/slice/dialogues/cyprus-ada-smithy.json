@@ -1,0 +1,118 @@
+{
+  "id": "dlg.cyprus.ada.smithy",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "speaker": "char.cyprus.ada",
+  "start": "light",
+  "entries": [
+    { "when": { "flag": "ada.tin" }, "node": "again-tin" },
+    { "when": { "flag": "ada.asked-word" }, "node": "again-word" },
+    { "when": { "flag": "ada.work" }, "node": "again-work" }
+  ],
+  "nodes": {
+    "light": {
+      "text": "You are standing in the light.\n\nShe does not stop working. The hammer comes down, the piece turns, the hammer comes down. A girl of about nine — her daughter — is sorting charcoal by size and watching you instead.",
+      "choices": [
+        {
+          "text": "I have tin.",
+          "conditions": { "itemAtLeast": { "item": "good.tin", "quantity": 1 } },
+          "unavailableNote": "You have no tin, and she does not buy the idea of tin.",
+          "effects": [
+            { "flag": "ada.tin" },
+            { "items": { "item": "good.tin", "quantity": -1 } },
+            { "money": 16 },
+            { "relationship": { "character": "char.cyprus.ada", "dimension": "trust", "delta": 1 } }
+          ],
+          "next": "tin"
+        },
+        {
+          "text": "What are you making?",
+          "effects": [{ "flag": "ada.work" }],
+          "next": "work"
+        },
+        { "text": "I will come back.", "next": null }
+      ]
+    },
+    "again-tin": {
+      "text": "She remembers the weight before she remembers your face.\n\n\"More tin? Put it on the scale. Do not tell me it is good; the scale decides.\"",
+      "choices": [
+        {
+          "text": "I have tin.",
+          "conditions": { "itemAtLeast": { "item": "good.tin", "quantity": 1 } },
+          "unavailableNote": "You have no tin, and she does not buy the idea of tin.",
+          "effects": [
+            { "items": { "item": "good.tin", "quantity": -1 } },
+            { "money": 16 },
+            { "relationship": { "character": "char.cyprus.ada", "dimension": "trust", "delta": 1 } }
+          ],
+          "next": "tin"
+        },
+        {
+          "text": "What are you making now?",
+          "effects": [{ "flag": "ada.work" }],
+          "next": "work"
+        },
+        { "text": "Not today.", "next": null }
+      ]
+    },
+    "again-word": {
+      "text": "\"You will not need it,\" she says, before you ask. \"Nobody buys a tripod twice.\"\n\nShe is already reaching for the next piece.",
+      "choices": [
+        {
+          "text": "What are you making now?",
+          "effects": [{ "flag": "ada.work" }],
+          "next": "work"
+        },
+        { "text": "Leave her to it.", "next": null }
+      ]
+    },
+    "again-work": {
+      "text": "The tripod is finished and gone to a man who will never use it. She is starting something with a narrower neck, and the girl is holding the light without being told.",
+      "choices": [
+        {
+          "text": "Ask what the islanders call this one.",
+          "conditions": { "not": { "flag": "ada.asked-word" } },
+          "unavailableNote": "She has already told you, and you have already forgotten.",
+          "effects": [{ "languageXp": { "language": "lang.cypriot", "amount": 5 } }],
+          "next": "word"
+        },
+        {
+          "text": "Watch her finish it.",
+          "effects": [{ "languageXp": { "language": "lang.cypriot", "amount": 3 } }],
+          "next": null
+        }
+      ]
+    },
+    "tin": {
+      "text": "She weighs it in her hand, then on the scale, then in her hand again. \"Good tin. Not the gray stuff.\" The silver comes out of a jar and not from under the floor, which is a courtesy.",
+      "choices": [{ "text": "Take the silver.", "next": null }]
+    },
+    "work": {
+      "text": "\"A tripod for a man who will never use it. He wants it to look like the one his father had.\" She turns the piece. \"The island word for this is not a word I can write. So I make it and he calls it what he likes.\"",
+      "choices": [
+        {
+          "text": "Ask what the islanders call it.",
+          "effects": [
+            { "flag": "ada.asked-word" },
+            { "languageXp": { "language": "lang.cypriot", "amount": 5 } }
+          ],
+          "next": "word"
+        },
+        {
+          "text": "Watch her finish it.",
+          "effects": [{ "languageXp": { "language": "lang.cypriot", "amount": 3 } }],
+          "next": null
+        }
+      ]
+    },
+    "word": {
+      "text": "She says it twice, slowly, and then laughs at your face. \"You will not need it. Nobody buys a tripod twice.\"",
+      "choices": [{ "text": "Try to remember it anyway.", "next": null }]
+    }
+  },
+  "provenance": {
+    "confidence": "fictional",
+    "sources": ["Late Cypriot bronze working, general"],
+    "notes": "Ada and the workshop are invented; copper and tin working on the island is attested."
+  }
+}

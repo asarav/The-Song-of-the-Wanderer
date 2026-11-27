@@ -16,14 +16,15 @@ acceptance tests, not side projects.
    on demand.
 5. **Explain the failure.** Every error names the file, the ID, and the rule broken.
 
-## 2. Tool catalogue
+## 2. Tool catalog
 
 | Command | Purpose | Milestone | Status |
 |---|---|---|---|
-| `pnpm content:lint` | Schema, IDs, provenance, references | M0 (shallow) → M1 (full) | Scaffold |
+| `pnpm content:lint` | Schema, IDs, provenance, references, script readings, player-facing copy | M0 (shallow) → M1 (full) | Scaffold |
 | `pnpm content:build` | Validate all packs, generate indexes and TS types | M1, extended M5 | Planned |
 | `pnpm typecheck` / `lint` / `test` | Code health | M0 | **Done** |
 | `pnpm simulate -- --scenario <id>` | Run a headless scenario | M1 | Planned |
+| `pnpm playtest:build` | Replay checkpoint scenarios into browser-loadable saves (`playtest.html`) | M4 | **Done** |
 | `pnpm save:inspect <file>` | Human-readable state dump | M1 | Planned |
 | `pnpm save:diff <a> <b>` | Diff two saves by entity | M8 | Planned |
 | `pnpm save:migrate <file> --to <v>` | Apply migrations to a save | M1, extended | Planned |
@@ -37,8 +38,10 @@ acceptance tests, not side projects.
 | `pnpm balance` | Monte Carlo markets, travel durations, language pacing | M8 | Planned |
 | `pnpm new:pack` / `new:destination` / `new:character` / `new:arc` / `new:event` | Scaffold from templates | M8 | Planned |
 | `pnpm prose:lint` | Anachronisms, banned terms, repetition, readability | M8 | Planned |
-| `pnpm locale:extract` / `locale:check` | String catalogue and placeholder validation | M8 | Planned |
+| `pnpm locale:extract` / `locale:check` | String catalog and placeholder validation | M8 | Planned |
 | `pnpm assets:check` | Missing asset IDs, fallback coverage | M8 | Planned |
+| `pnpm audio:build` | Download/cache CC0 beds, generate original cues, normalize, write the audio manifest | M4 exploratory / M18 final | **Done (exploratory)** |
+| `pnpm audio:check` | Audio IDs, files, loop flags, licenses, source records | M4 exploratory | **Done** |
 | `pnpm perf:budget` | Load, save, memory, pack size | M8 | Planned |
 | `pnpm studio` | Development inspector and graph viewer | M8 | Planned |
 
@@ -143,18 +146,25 @@ A scenario is a JSON file:
   "seed": "slice-001",
   "start": { "date": "1230-04-01", "location": "dest.ugarit", "money": 120 },
   "commands": [
-    { "type": "buy", "good": "good.grain", "quantity": 4 },
-    { "type": "travel", "route": "route.ugarit-cyprus", "mode": "coastal" },
-    { "type": "resolveEncounter", "choice": "help" }
+    { "type": "buy", "item": "good.grain", "quantity": 4 },
+    { "type": "travel", "route": "route.ugarit-cyprus", "mode": "mode.open" },
+    { "type": "resolveEncounter", "choice": 0 }
   ],
   "assert": [
     { "path": "player.location", "equals": "dest.cyprus" },
-    { "path": "characters.char.ugarit.amnit.status", "equals": "alive" }
+    { "path": "narrative.relationships.char.ugarit.amnit.trust", "equals": 2 }
   ]
 }
 ```
 
+Paths are read against the state with dotted segments. A key may itself contain dots
+(`narrative.relationships` is keyed by character id), so the resolver matches the longest
+key at each step instead of splitting blindly. Choices are **indices**, not labels: the
+engine never matches on display text.
+
 The runner prints a trace on failure and supports snapshot assertions on state and events.
+`pnpm simulate -- slice-crossing` runs `src/engine/scenarios/slice-crossing.json` against
+the authored content.
 
 ### 6.2 Long-run simulation
 
@@ -183,8 +193,8 @@ Invariants:
 
 Three simple policies exercise content:
 
-- **Trader** — maximises profit, minimises risk, ignores mystery.
-- **Curious** — explores, talks, learns languages, follows rumours.
+- **Trader** — maximizes profit, minimizes risk, ignores mystery.
+- **Curious** — explores, talks, learns languages, follows rumors.
 - **Helper** — accepts costs to help characters and refugees.
 
 Reports: destinations visited, scenes seen, arcs advanced, languages reached, money curve,
@@ -204,7 +214,7 @@ Monte Carlo over seeds:
 ## 7. Authoring generators
 
 `pnpm new:*` creates files from templates with valid IDs, provenance stubs, and TODO
-markers that the linter recognises:
+markers that the linter recognizes:
 
 - `new:pack` — manifest, folders, README.
 - `new:destination` — entity, dossier stub, scenario stub, route placeholders.
@@ -247,9 +257,13 @@ Generators never invent canon. Every generated prose field is `TODO:` and fails 
 ## 10. Asset manifest
 
 Content references `art.*` and `audio.*` IDs. The manifest maps IDs to files and fallback
-descriptors. Missing assets render a labelled placeholder in dev and a neutral fallback in
+descriptors. Missing assets render a labeled placeholder in dev and a neutral fallback in
 production. `assets:check` fails if a shipped scene references an unknown asset without a
 fallback.
+
+The exploratory audio manifest is `assets/audio/manifest.json`, with `audio:check` as its
+offline gate. `audio:build` is the authoring path and needs ffmpeg and network access; a
+playthrough needs neither.
 
 ## 11. CI tiers
 

@@ -1,0 +1,22 @@
+{
+  "id": "evt.cyprus.amnit-arrives",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "kind": "local",
+  "title": "A familiar face on the island",
+  "scope": { "destinations": ["dest.cyprus"] },
+  "conditions": { "hasJournalEntry": "journal.slice.amnit-met" },
+  "priority": 50,
+  "major": false,
+  "once": true,
+  "scene": "dlg.cyprus.amnit",
+  "effects": [
+    { "moveCharacter": { "character": "char.ugarit.amnit", "to": "dest.cyprus" } },
+    { "relationship": { "character": "char.ugarit.amnit", "dimension": "trust", "delta": 1 } }
+  ],
+  "provenance": {
+    "confidence": "fictional",
+    "sources": [],
+    "notes": "The recurring character's second appearance: Amnit crosses on her own business and is already working when the player arrives."
+  }
+}

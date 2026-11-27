@@ -1,6 +1,6 @@
 # Content
 
-Authored game content lives here as JSON, organised into packs. The slice uses a small
+Authored game content lives here as JSON, organized into packs. The slice uses a small
 set of folders; from M5 onward, content grows into region packs with manifests.
 
 ```

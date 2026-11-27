@@ -63,7 +63,7 @@ stored.
 - Create a golden save at the end of every milestone.
 - Store fixtures under `src/engine/save/__fixtures__/`.
 - CI loads every golden save through the full migration chain on every merge.
-- A golden save is a regression artefact, not a save slot.
+- A golden save is a regression artifact, not a save slot.
 
 ## Fuzzing
 

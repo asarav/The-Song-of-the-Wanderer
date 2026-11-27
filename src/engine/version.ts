@@ -7,7 +7,4 @@
  */
 export const ENGINE_VERSION = '0.1.0'
 
-export const SAVE_FORMAT_VERSION = 1
-
-/** Milliseconds per in-game day used by the calendar. Purely arithmetic. */
-export const MS_PER_GAME_DAY = 86_400_000
+export const SAVE_FORMAT_VERSION = 5

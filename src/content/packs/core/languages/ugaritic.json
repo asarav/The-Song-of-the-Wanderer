@@ -1,0 +1,14 @@
+{
+  "id": "lang.ugaritic",
+  "pack": "pack.core",
+  "contentVersion": 1,
+  "name": "Ugaritic",
+  "family": "Semitic",
+  "script": "alphabetic cuneiform",
+  "notes": "The local tongue of Ugarit, written in an alphabetic cuneiform script. Spoken in households and workshops; Akkadian carries the palace's business.",
+  "provenance": {
+    "confidence": "documented",
+    "sources": ["Ugaritic alphabetic tablets, general"],
+    "notes": "Attested script and language; everyday speech registers are inferred."
+  }
+}

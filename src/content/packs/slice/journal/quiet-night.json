@@ -1,0 +1,8 @@
+{
+  "id": "journal.slice.quiet-night",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "title": "A night at anchor",
+  "text": "The boat lay in the lee of a headland and everyone slept but me. The water made the sound water makes against wood. I could see one light on the shore and no way of telling whose it was.",
+  "provenance": { "confidence": "fictional", "sources": [], "notes": "A travel vignette." }
+}

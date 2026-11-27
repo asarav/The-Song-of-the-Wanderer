@@ -1,0 +1,19 @@
+{
+  "id": "aff.fever",
+  "pack": "pack.core",
+  "contentVersion": 1,
+  "name": "Fever",
+  "kind": "fever",
+  "severity": "grave",
+  "description": "A heat behind the eyes that comes and goes. You are not certain which of your thoughts are yours.",
+  "treatments": ["rest", "healer"],
+  "remedyNote": "Rest may break it; a healer is safer.",
+  "onset": "By evening your face is hot and your hands are cold.",
+  "daily": "The fever comes and goes; the day is spent in small, careful errands.",
+  "recovery": "The heat behind your eyes is gone, and the world is merely itself again.",
+  "provenance": {
+    "confidence": "plausible",
+    "sources": [],
+    "notes": "A period-plausible travel fever, not a specific disease claim."
+  }
+}

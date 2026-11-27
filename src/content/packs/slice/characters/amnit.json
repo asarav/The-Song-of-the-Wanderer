@@ -1,0 +1,24 @@
+{
+  "id": "char.ugarit.amnit",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "name": "Amnit",
+  "pronunciation": "AM-nit",
+  "art": "art.ugarit.amnit",
+  "culture": "culture.levant.coastal",
+  "languages": ["lang.ugaritic", "lang.akkadian"],
+  "home": "dest.ugarit",
+  "tier": "recurring",
+  "roles": ["merchant", "household head"],
+  "dialogue": "dlg.ugarit.amnit.meeting",
+  "dialogueByDestination": { "dest.cyprus": "dlg.cyprus.amnit" },
+  "wants": ["a contract that survives the winter", "her household's name kept clean"],
+  "fears": ["a palace requisition", "being thought a bad creditor"],
+  "contradiction": "She distrusts officials and needs their permission.",
+  "presence": ["dest.ugarit", "dest.cyprus"],
+  "provenance": {
+    "confidence": "fictional",
+    "sources": [],
+    "notes": "Invented merchant in a documented city. Her trade in grain and oil is plausible for the period."
+  }
+}

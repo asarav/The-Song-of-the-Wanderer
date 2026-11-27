@@ -1,0 +1,22 @@
+{
+  "id": "char.ugarit.belet",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "name": "Belet",
+  "art": "art.ugarit.belet",
+  "culture": "culture.levant.coastal",
+  "languages": ["lang.ugaritic", "lang.akkadian"],
+  "home": "dest.ugarit",
+  "tier": "major",
+  "roles": ["temple singer", "ritual specialist"],
+  "dialogue": "dlg.ugarit.belet.temple",
+  "wants": ["the feast to be sung properly", "to know why a name will not leave her alone"],
+  "fears": ["being right about something she cannot prove"],
+  "contradiction": "She trusts her craft and distrusts her own conclusions.",
+  "presence": ["dest.ugarit"],
+  "provenance": {
+    "confidence": "fictional",
+    "sources": [],
+    "notes": "An invented temple singer. Cult personnel and liturgical performance are attested at Ugarit."
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "id": "evt.travel.refugees",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "kind": "storylet",
+  "title": "A boat with too many people in it",
+  "description": "A fishing hull, low in the water, carrying a household and what it could lift.",
+  "scope": { "routes": ["route.ugarit-cyprus"] },
+  "conditions": { "not": { "flag": "refugee.thread.closed" } },
+  "priority": 30,
+  "major": false,
+  "scene": "dlg.travel.refugees",
+  "effects": [
+    { "knowledge": { "fact": "refugees.moving-to-ugarit", "source": "witnessed", "reliability": 0.9 } }
+  ],
+  "provenance": {
+    "confidence": "plausible",
+    "sources": ["Local displacement in the Late Bronze Age Levant, general"],
+    "notes": "Movement of households for harvest failure or insecurity is plausible in this period and is not presented as the later collapse."
+  }
+}

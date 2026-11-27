@@ -1,0 +1,22 @@
+{
+  "id": "char.cyprus.ada",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "name": "Ada",
+  "art": "art.cyprus.ada",
+  "culture": "culture.cyprus.harbour",
+  "languages": ["lang.cypriot", "lang.akkadian"],
+  "home": "dest.cyprus",
+  "tier": "recurring",
+  "roles": ["smith", "workshop owner"],
+  "dialogue": "dlg.cyprus.ada.smithy",
+  "wants": ["tin enough to finish the season's work", "her daughter to learn the trade properly"],
+  "fears": ["a workshop without metal"],
+  "contradiction": "She is proud of work she considers invisible.",
+  "presence": ["dest.cyprus"],
+  "provenance": {
+    "confidence": "fictional",
+    "sources": [],
+    "notes": "An invented smith. Copper and bronze working on Cyprus is attested. A woman running a bronze workshop is unusual in the surviving evidence but not excluded; she is written as a plausible local case, and the art and dialogue agree that the smith is Ada, with her daughter sorting charcoal."
+  }
+}

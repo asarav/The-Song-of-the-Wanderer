@@ -1,0 +1,19 @@
+{
+  "id": "evt.travel.rescue-caravan",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "kind": "storylet",
+  "title": "A salt caravan",
+  "description": "Bells on the shingle, and a line of loaded donkeys coming down to the water.",
+  "scope": { "routes": ["route.ugarit-cyprus"] },
+  "conditions": { "all": [] },
+  "priority": 20,
+  "major": false,
+  "scene": "dlg.travel.rescue-caravan",
+  "effects": [],
+  "provenance": {
+    "confidence": "plausible",
+    "sources": [],
+    "notes": "A chance encounter with a trade caravan at a coastal landing; no specific caravan is claimed."
+  }
+}

@@ -7,8 +7,8 @@ Source: spec §6, §17. This is the narrative frame the slice must fit into, not
 | Act | Promise | Content focus | Slice? |
 |---|---|---|---|
 | Prologue — The Merchant | Learn the loop; one unexplained moment | Ugarit, market, first cast, first recognition | **Yes** |
-| Act I — The Connected World | The world works; reputation and language open doors | Eastern Mediterranean trade, factions, rumours of distance | Partial |
-| Act II — Rumours and Fractures | The world is straining | Shortages, displaced people, risky routes, choices with costs | No |
+| Act I — The Connected World | The world works; reputation and language open doors | Eastern Mediterranean trade, factions, rumors of distance | Partial |
+| Act II — Rumors and Fractures | The world is straining | Shortages, displaced people, risky routes, choices with costs | No |
 | Act III — The Breaking of the Old Networks | Familiar places change or vanish | Destructions, rescues, record preservation, loss | No |
 | Act IV — New Roads | People rebuild; the map redraws | Refugee networks, new communities, South and East | No |
 | Act V — The Long Memory | The protagonist's continuity is undeniable | Descendants, inherited stories, old choices returning | No |
@@ -26,7 +26,7 @@ The slice is the Prologue plus the first step of Act I. It must establish:
 - One thing happened that the protagonist cannot explain.
 
 The slice ends on return to Ugarit (or arrival back in Cyprus), with the loop closed and
-a reason to continue: a letter, a rumour, a name, a person who needs help.
+a reason to continue: a letter, a rumor, a name, a person who needs help.
 
 ## 2b. Milestone mapping
 
@@ -62,7 +62,7 @@ Every act should contain scenes that produce at least four of:
 
 wonder · warmth · competence · tension · grief · hope · mystery · quiet observation.
 
-The Bronze Age Collapse is the backdrop, not the whole tone. Ordinary life, humour,
+The Bronze Age Collapse is the backdrop, not the whole tone. Ordinary life, humor,
 craft, food, music, and hospitality carry equal weight.
 
 ## 5. Endgame logic

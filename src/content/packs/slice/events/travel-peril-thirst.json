@@ -1,0 +1,19 @@
+{
+  "id": "evt.travel.peril-thirst",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "kind": "storylet",
+  "title": "The water runs out",
+  "description": "A cracked skin, a long afternoon, and a pool nobody will name.",
+  "scope": { "routes": ["route.ugarit-cyprus"] },
+  "conditions": { "all": [] },
+  "priority": 30,
+  "major": false,
+  "scene": "dlg.travel.peril-thirst",
+  "effects": [],
+  "provenance": {
+    "confidence": "plausible",
+    "sources": [],
+    "notes": "Water shortage on a sea crossing is plausible; the scene is invented."
+  }
+}

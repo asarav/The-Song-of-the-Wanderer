@@ -1,0 +1,17 @@
+{
+  "id": "codex.names",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "title": "The traveler's names",
+  "category": "people",
+  "text": "The Linear B tablets write a name as 𐀁𐀔𐀀 (e-ma-a₂, read Ermahas): the spelling is preserved, for example, on Pylos tablet Tn 316. Scholars read those signs as a form of a name that later Greek writes as Ἑρμῆς (Hermes) — a reading offered in this codex and never spoken by anyone here.\n\nIn the Akkadian-speaking world of Ugarit, the same traveler may be heard as 𒀭𒎏𒋚 (Ninshubur): a messenger's name out of older Sumerian and Akkadian texts, where it belongs to a servant of the lady of the evening.\n\nThese are separate local interpretations, not a translation table. The names are not offered as one name in three costumes, and no character in 1230 BCE asserts that the messenger of the tablets is the Hermes of later poetry. The question stays open, because the people who might answer it are not in the room.\n\nThe tablet spelling e-ma-a₂ is the name you answer to. The names other people give you are theirs to choose, not yours.",
+  "provenance": {
+    "confidence": "strongly-supported",
+    "sources": [
+      "Linear B tablets preserving e-ma-a₂ (PY Tn 316; KN D 411 preserves e-ma-a₂-o); the signs are 𐀁𐀔𐀀 (B038 e, B080 ma, B008 a)",
+      "Sumerian and Akkadian Ninshubur, written 𒀭𒎏𒋚 (AN + NIN + ŠUBUR)",
+      "Later Greek Ἑρμῆς (Hermes), general"
+    ],
+    "notes": "The spelling e-ma-a₂ is documented in the Linear B tablets (PY Tn 316 verso line 7; KN D 411 preserves the compound e-ma-a₂-o); the signs 𐀁𐀔𐀀 (B038 e, B080 ma, B008 a) are that spelling in the syllabary. The theonym Ninshubur is documented, its usual cuneiform is dNIN.ŠUBUR. The identification with later Hermes is strongly-supported, attributed here, and never asserted in dialogue. Each name appears in its own script with its reading in parentheses in this codex only; the name the player answers to stays the transliteration."
+  }
+}

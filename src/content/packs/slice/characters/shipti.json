@@ -1,0 +1,22 @@
+{
+  "id": "char.cyprus.shipti",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "name": "Shipti",
+  "art": "art.cyprus.shipti",
+  "culture": "culture.cyprus.harbour",
+  "languages": ["lang.akkadian", "lang.cypriot"],
+  "home": "dest.cyprus",
+  "tier": "local",
+  "roles": ["innkeeper"],
+  "dialogue": "dlg.cyprus.shipti.inn",
+  "wants": ["travelers who pay on time", "news from the mainland"],
+  "fears": ["a quiet season"],
+  "contradiction": "She pretends not to listen and remembers everything.",
+  "presence": ["dest.cyprus"],
+  "provenance": {
+    "confidence": "fictional",
+    "sources": [],
+    "notes": "An invented innkeeper; lodging for travelers is a plausible harbor institution."
+  }
+}

@@ -5,7 +5,7 @@
 
 ## Context
 
-The game depends on unreliable information. Rumours arrive before news; distant events are
+The game depends on unreliable information. Rumors arrive before news; distant events are
 distorted; characters believe false things; the protagonist may be remembered under
 contradictory names. If the interface reads objective state, every one of those effects
 collapses into an omniscient quest log.
@@ -30,7 +30,7 @@ and authored scenes that need omniscience (e.g. resolving a scheduled event).
 
 - False beliefs are first-class and can persist until corrected by an authored scene.
 - The journal can be wrong, incomplete, or biased, as the spec requires.
-- Rumours can be wrong without breaking the world.
+- Rumors can be wrong without breaking the world.
 - Dialogue can condition on what a character believes, not on what is true.
 - Complexity increases: every new fact needs a knowledge path if the player should learn
   it. Coverage tooling must report facts that are never learnable.

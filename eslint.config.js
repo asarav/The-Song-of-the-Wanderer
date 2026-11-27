@@ -1,6 +1,44 @@
 import js from '@eslint/js'
 import tseslint from 'typescript-eslint'
 
+/**
+ * Engine modules. Each one exposes only its `index.ts`; every other file is private.
+ * A module may import its own files (`./schema`), and must reach every other module
+ * through that module's public surface (`../state`, `@engine/state`).
+ */
+const ENGINE_MODULES = [
+  'content',
+  'culture',
+  'dsl',
+  'economy',
+  'journal',
+  'kernel',
+  'narrative',
+  'rng',
+  'save',
+  'state',
+  'testing',
+  'time',
+  'views',
+  'world',
+]
+
+/** One pair of forbidden forms per module: relative and alias. */
+const boundaryPatterns = ENGINE_MODULES.flatMap((module) => [
+  {
+    group: [`../${module}/*`],
+    message: `\`${module}\` is a sealed module: import from "../${module}" (its index.ts), not from a file inside it.`,
+  },
+  {
+    group: [`@engine/${module}/*`],
+    message: `\`${module}\` is a sealed module: import from "@engine/${module}" (its index.ts), not from a file inside it.`,
+  },
+  {
+    group: [`**/src/engine/${module}/*`],
+    message: `\`${module}\` is a sealed module: import through its index.ts.`,
+  },
+])
+
 export default tseslint.config(
   {
     ignores: ['dist/**', 'node_modules/**', 'coverage/**', 'pnpm-lock.yaml'],
@@ -22,6 +60,12 @@ export default tseslint.config(
               group: ['@ui/*', '@store/*', '../ui/*', '../../ui/*', '../store/*', '../../store/*'],
               message: 'src/engine must not depend on UI or the app store.',
             },
+            {
+              group: ['**/internal/*', '**/internal/**', '@engine/*/internal/*'],
+              message:
+                'A module exposes index.ts. Put shared types in kernel/ and keep internals private.',
+            },
+            ...boundaryPatterns,
           ],
         },
       ],
@@ -35,6 +79,18 @@ export default tseslint.config(
         'error',
         { object: 'Math', property: 'random', message: 'Use the seeded engine RNG.' },
         { object: 'Date', property: 'now', message: 'Use the engine calendar, never the wall clock.' },
+      ],
+    },
+  },
+  {
+    // The interface and the store may only see each engine module's public surface.
+    files: ['src/store/**/*.{ts,tsx}', 'src/ui/**/*.{ts,tsx}'],
+    rules: {
+      'no-restricted-imports': [
+        'error',
+        {
+          patterns: boundaryPatterns,
+        },
       ],
     },
   },
@@ -53,6 +109,7 @@ export default tseslint.config(
         console: 'readonly',
         Buffer: 'readonly',
         URL: 'readonly',
+        fetch: 'readonly',
       },
     },
   },

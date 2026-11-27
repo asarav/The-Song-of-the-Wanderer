@@ -1,0 +1,17 @@
+{
+  "id": "good.tin",
+  "pack": "pack.core",
+  "contentVersion": 1,
+  "name": "Tin",
+  "art": "art.good.tin",
+  "category": "metal",
+  "weight": 4,
+  "description": "Small heavy cakes from somewhere far east. Nobody at the harbor agrees where.",
+  "provenance": {
+    "confidence": "strongly-supported",
+    "sources": [
+      "Late Bronze Age tin trade, general"
+    ],
+    "notes": "Tin reached the eastern Mediterranean from distant sources; the routes are debated."
+  }
+}

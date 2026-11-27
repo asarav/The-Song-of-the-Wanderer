@@ -1,0 +1,10 @@
+{
+  "id": "pack.broken",
+  "contentVersion": 1,
+  "requires": [],
+  "entities": {
+    "destinations": ["dest.broken"],
+    "events": ["evt.broken"],
+    "dialogues": ["dlg.broken"]
+  }
+}

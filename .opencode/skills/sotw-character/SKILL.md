@@ -81,7 +81,7 @@ Every appearance must be explained by an itinerary entry:
 
 ## Storylets
 
-- Pools per context: arrival, market, harbour/road, temple, evening.
+- Pools per context: arrival, market, harbor/road, temple, evening.
 - Tags prevent three jokes or three laments in a row.
 - Cooldowns and once-only flags are mandatory.
 - Storylets never change phase, control, or major character status.

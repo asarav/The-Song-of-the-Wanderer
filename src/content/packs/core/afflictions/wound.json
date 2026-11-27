@@ -1,0 +1,19 @@
+{
+  "id": "aff.wound",
+  "pack": "pack.core",
+  "contentVersion": 1,
+  "name": "Open wound",
+  "kind": "wound",
+  "severity": "grave",
+  "description": "A cut that has not closed. It stiffens in the morning and makes every load heavier.",
+  "treatments": ["rest", "healer"],
+  "remedyNote": "Rest will close it slowly; a healer will close it sooner.",
+  "onset": "The cut begins to pull when you move, and the skin around it is hot.",
+  "daily": "The wound is no easier to carry than it was yesterday.",
+  "recovery": "The edges have closed cleanly enough; the ache is only a memory of the knife.",
+  "provenance": {
+    "confidence": "plausible",
+    "sources": [],
+    "notes": "A narrative consequence of a road accident, not a wound-location simulation."
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "id": "evt.cyprus.copper-offer",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "kind": "local",
+  "title": "Kinyras makes an offer",
+  "scope": { "destinations": ["dest.cyprus"] },
+  "conditions": { "itemAtLeast": { "item": "good.grain", "quantity": 1 } },
+  "effects": [],
+  "priority": 80,
+  "major": true,
+  "once": true,
+  "scene": "dlg.cyprus.copper-offer",
+  "provenance": {
+    "confidence": "plausible",
+    "sources": [],
+    "notes": "The slice's trade beat. Invented."
+  }
+}

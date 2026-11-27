@@ -1,0 +1,42 @@
+{
+  "id": "scenario.slice.cyprus-return",
+  "seed": "slice-cyprus-001",
+  "newGame": true,
+  "start": {
+    "date": "1230-04-10",
+    "location": "dest.cyprus",
+    "money": 100,
+    "capacity": 20,
+    "languages": { "lang.akkadian": { "xp": 25, "tier": "basic" } },
+    "knownRoutes": ["route.ugarit-cyprus"],
+    "knownDestinations": ["dest.ugarit", "dest.cyprus"],
+    "inventory": [{ "item": "good.grain", "quantity": 1 }]
+  },
+  "commands": [
+    { "type": "chooseDialogue", "choice": 0 },
+    { "type": "chooseDialogue", "choice": 0 },
+    { "type": "talkTo", "character": "char.cyprus.kinyras" },
+    { "type": "chooseDialogue", "choice": 0 },
+    { "type": "chooseDialogue", "choice": 0 },
+    { "type": "advanceTime", "days": 1 },
+    { "type": "chooseDialogue", "choice": 0 },
+    { "type": "chooseDialogue", "choice": 0 },
+    { "type": "advanceTime", "days": 2 },
+    { "type": "chooseDialogue", "choice": 0 },
+    { "type": "chooseDialogue", "choice": 0 }
+  ],
+  "assert": [
+    { "path": "knowledge.journalEntries", "contains": "journal.slice.copper-deal" },
+    { "path": "knowledge.journalEntries", "contains": "journal.slice.letter" },
+    { "path": "narrative.relationships.char.cyprus.kinyras.trust", "equals": 1 },
+    { "path": "player.flags.carries.palace-letter", "equals": true },
+    { "path": "player.deeds", "length": 1 },
+    { "path": "player.deeds.0.id", "equals": "deed.copper-agreed" },
+    { "path": "player.deeds.0.place", "equals": "dest.cyprus" },
+    { "path": "player.deeds.0.witnesses", "contains": "char.cyprus.kinyras" },
+    { "path": "knowledge.entries.0.fact", "equals": "kinyras.buys-at-yard-price" },
+    { "path": "knowledge.entries.0.source", "equals": "witnessed" },
+    { "path": "narrative.factions.faction.ugarit.merchants.trust", "equals": 1 },
+    { "path": "player.inventory", "length": 0 }
+  ]
+}

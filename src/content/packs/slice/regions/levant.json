@@ -1,0 +1,48 @@
+{
+  "id": "region.levant",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "name": "The Levantine coast",
+  "climate": "climate.levant-coast",
+  "cultures": ["culture.levant.coastal"],
+  "languages": ["lang.akkadian", "lang.ugaritic"],
+  "destinations": ["dest.ugarit"],
+  "routes": ["route.ugarit-cyprus"],
+  "mapPosition": { "x": 70, "y": 58 },
+  "mapRadius": 26,
+  "mapFeatures": [
+    {
+      "id": "feature.levant.ridge",
+      "kind": "mountains",
+      "points": [
+        { "x": 84, "y": 74 },
+        { "x": 87, "y": 58 },
+        { "x": 84, "y": 42 }
+      ]
+    },
+    {
+      "id": "feature.levant.river",
+      "kind": "river",
+      "points": [
+        { "x": 83, "y": 64 },
+        { "x": 75, "y": 66 },
+        { "x": 67, "y": 70 },
+        { "x": 59, "y": 72 }
+      ]
+    },
+    {
+      "id": "feature.levant.border",
+      "kind": "border",
+      "points": [
+        { "x": 91, "y": 44 },
+        { "x": 90, "y": 58 },
+        { "x": 91, "y": 72 }
+      ]
+    }
+  ],
+  "provenance": {
+    "confidence": "strongly-supported",
+    "sources": ["Late Bronze Age Levantine coastal polities, general"],
+    "notes": "A region for the slice: one harbor city and its sea road, not a political map."
+  }
+}

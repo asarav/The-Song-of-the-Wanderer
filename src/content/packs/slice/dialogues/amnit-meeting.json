@@ -1,0 +1,148 @@
+{
+  "id": "dlg.ugarit.amnit.meeting",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "speaker": "char.ugarit.amnit",
+  "start": "greet",
+  "entries": [
+    { "when": { "flag": "amnit.harbour" }, "node": "again-harbour" },
+    { "when": { "hasJournalEntry": "journal.slice.amnit-met" }, "node": "again" }
+  ],
+  "nodes": {
+    "greet": {
+      "text": "You have the look of someone who slept on a boat.",
+      "choices": [
+        {
+          "text": "Only the last three nights.",
+          "effects": [
+            { "flag": "amnit.met" },
+            { "relationship": { "character": "char.ugarit.amnit", "dimension": "trust", "delta": 1 } }
+          ],
+          "next": "laughs"
+        },
+        {
+          "text": "I slept on the mole. The tide was generous.",
+          "effects": [
+            { "flag": "amnit.met" },
+            { "relationship": { "character": "char.ugarit.amnit", "dimension": "affection", "delta": 1 } }
+          ],
+          "next": "laughs"
+        },
+        { "text": "(Say nothing.)", "next": null }
+      ]
+    },
+    "again": {
+      "text": "The jar has moved and the mat has not.\n\n\"You again. The light is still good, and I am still counting.\"",
+      "choices": [
+        {
+          "text": "I have copper to sell.",
+          "conditions": { "itemAtLeast": { "item": "good.copper", "quantity": 1 } },
+          "unavailableNote": "You have no copper to show her, and she does not trade promises.",
+          "effects": [
+            { "languageXp": { "language": "lang.ugaritic", "amount": 2 } },
+            { "journal": { "entry": "journal.slice.amnit-met" } }
+          ],
+          "next": "copper"
+        },
+        {
+          "text": "What is moving through the harbor?",
+          "effects": [
+            { "flag": "amnit.harbour" },
+            { "journal": { "entry": "journal.slice.rumour" } },
+            { "schedule": { "event": "evt.ugarit.market-rumour", "inDays": 1 } }
+          ],
+          "next": "harbour"
+        },
+        { "text": "Another time.", "next": null }
+      ]
+    },
+    "again-harbour": {
+      "text": "\"You have already had the harbor news.\" She turns a jar so the mark faces the wall. \"Ask me something I have not answered.\"",
+      "choices": [
+        {
+          "text": "Any word of Sibtu?",
+          "next": "sibtu"
+        },
+        {
+          "text": "I have copper to sell.",
+          "conditions": { "itemAtLeast": { "item": "good.copper", "quantity": 1 } },
+          "unavailableNote": "You have no copper to show her, and she does not trade promises.",
+          "effects": [
+            { "languageXp": { "language": "lang.ugaritic", "amount": 2 } },
+            { "journal": { "entry": "journal.slice.amnit-met" } }
+          ],
+          "next": "copper"
+        },
+        { "text": "Then I will not waste the light.", "next": null }
+      ]
+    },
+    "laughs": {
+      "text": "She moves a jar off a mat and does not invite you to sit, which is its own kind of invitation.",
+      "textByLanguage": {
+        "lang.akkadian": {
+          "basic": "Then sit where the light is. The good end of the table is for people who pay.",
+          "conversational": "Then you will want the good end of the table, where the light is and the wind is not.",
+          "fluent": "Then you will want the good end of the table. Sit before I change my mind about the light."
+        }
+      },
+      "choices": [
+        {
+          "text": "I have copper to sell.",
+          "conditions": { "itemAtLeast": { "item": "good.copper", "quantity": 1 } },
+          "unavailableNote": "You have no copper to show her, and she does not trade promises.",
+          "effects": [
+            { "languageXp": { "language": "lang.ugaritic", "amount": 2 } },
+            { "journal": { "entry": "journal.slice.amnit-met" } },
+            { "schedule": { "event": "evt.ugarit.market-rumour", "inDays": 1 } }
+          ],
+          "next": "copper"
+        },
+        {
+          "text": "What is moving through the harbor?",
+          "effects": [
+            { "flag": "amnit.harbour" },
+            { "journal": { "entry": "journal.slice.amnit-met" } },
+            { "journal": { "entry": "journal.slice.rumour" } },
+            { "schedule": { "event": "evt.ugarit.market-rumour", "inDays": 1 } }
+          ],
+          "next": "harbour"
+        },
+        { "text": "Another time.", "next": null }
+      ]
+    },
+    "copper": {
+      "text": "\"Copper goes to the island and comes back as copper, which is the only honest thing about it.\" She names a price that is not an offer and waits to see whether you argue.",
+      "choices": [
+        { "text": "That is a fair price.", "next": null },
+        {
+          "text": "It is not.",
+          "effects": [
+            { "relationship": { "character": "char.ugarit.amnit", "dimension": "respect", "delta": 1 } }
+          ],
+          "next": null
+        }
+      ]
+    },
+    "harbour": {
+      "text": "\"Grain is dear. The inland road is worse. Two households came down to the coast this month and my cousin has taken in one of them.\"\n\nShe says it the way people say a thing they have already decided not to be frightened of.",
+      "choices": [{ "text": "Ask which household.", "next": "sibtu" }]
+    },
+    "sibtu": {
+      "text": "\"A weaver called Sibtu. She is in the workshop quarter and she will not ask you for anything, which is how you will know she needs it.\"",
+      "choices": [
+        {
+          "text": "Remember the name.",
+          "effects": [
+            { "knowledge": { "fact": "sibtu.lives-in-workshop-quarter", "source": "told", "reliability": 0.9 } }
+          ],
+          "next": null
+        }
+      ]
+    }
+  },
+  "provenance": {
+    "confidence": "fictional",
+    "sources": [],
+    "notes": "Amnit is canon for the slice. Her speech is invented; the trade detail is plausible."
+  }
+}

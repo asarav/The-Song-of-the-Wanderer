@@ -1,6 +1,6 @@
 # M7 — Society, culture, and economy at scale
 
-**Status:** Planned · **Depends on:** M5–M6 · **Architecture:** `SCALING.md` §3
+**Status:** Blocked by Gate A and M5–M6 · **Depends on:** M5–M6 · **Architecture:** `SCALING.md` §3
 **Goal:** regions differ institutionally and culturally, and trade reacts to politics and
 history through authored rules — without an economic simulation.
 
@@ -17,7 +17,7 @@ history through authored rules — without an economic simulation.
 - [ ] `FactionDef`: type, ideology, interests, goals, resources, hierarchy, territory,
       members, symbols, rituals, parent faction, phase state.
 - [ ] Internal currents and sub-factions; no faction is a monolith.
-- [ ] Relationship fields: trust, favour, obligation, standing, suspicion.
+- [ ] Relationship fields: trust, favor, obligation, standing, suspicion.
 - [ ] Obligations between factions and between factions and characters.
 - [ ] Conflicts with authored goals; no automatic war resolution.
 - [ ] Tests: obligation creation/expiry, relationship changes, nested factions, currents.
@@ -28,7 +28,7 @@ history through authored rules — without an economic simulation.
 - [ ] Route permissions and checkpoints driven by faction control and letters.
 - [ ] Conflicting loyalties with authored suspicion effects.
 - [ ] Local reputation distinct from faction standing.
-- [ ] Tests: a favour opens one route and closes another; a letter changes a checkpoint.
+- [ ] Tests: a favor opens one route and closes another; a letter changes a checkpoint.
 
 ### M7-T03 — Culture, religion, and cultural works
 
@@ -88,12 +88,12 @@ history through authored rules — without an economic simulation.
 
 - [ ] Hospitality customs by culture; obligations incurred.
 - [ ] Paid lodging vs host household; quality and safety differences.
-- [ ] Local law and customs affecting behaviour, fines, disputes.
+- [ ] Local law and customs affecting behavior, fines, disputes.
 - [ ] Tests: accepting hospitality creates an obligation; law violation consequences.
 
 ### M7-T09 — Port the slice and prove generality
 
-- [ ] Re-express Ugarit's palace/harbour faction, Akkadian learning, and market on the
+- [ ] Re-express Ugarit's palace/harbor faction, Akkadian learning, and market on the
       general model.
 - [ ] Add a synthetic second region with a different culture, language family, and
       faction structure using content only.
@@ -109,8 +109,8 @@ history through authored rules — without an economic simulation.
 
 ## Demo script
 
-Play the slice with the general systems: language changes a negotiation, a palace favour
-opens a checkpoint, a merchant house contract conflicts with a harbour official, and a
+Play the slice with the general systems: language changes a negotiation, a palace favor
+opens a checkpoint, a merchant house contract conflicts with a harbor official, and a
 synthetic second region demonstrates a different culture and language without new code.
 
 ## Exit criteria

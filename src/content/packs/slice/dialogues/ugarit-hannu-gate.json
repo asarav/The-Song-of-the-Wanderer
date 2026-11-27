@@ -1,0 +1,100 @@
+{
+  "id": "dlg.ugarit.hannu.gate",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "speaker": "char.ugarit.hannu",
+  "start": "greet",
+  "entries": [
+    { "when": { "flag": "palace.letter.answered" }, "node": "after-answered" },
+    { "when": { "flag": "palace.letter.burned" }, "node": "after-burned" },
+    { "when": { "flag": "hannu.errand" }, "node": "again" }
+  ],
+  "nodes": {
+    "greet": {
+      "text": "The gate remembers faces better than names. Yours is familiar and I cannot place it, which is the worst of both.",
+      "choices": [
+        {
+          "text": "I need the palace's ear.",
+          "conditions": {
+            "relationship": {
+              "character": "char.ugarit.hannu",
+              "dimension": "trust",
+              "atLeast": 1
+            }
+          },
+          "unavailableNote": "Hannu does not know your face well enough to ask you for a favor.",
+          "effects": [
+            { "flag": "hannu.errand" },
+            { "schedule": { "event": "evt.ugarit.faction-request", "inDays": 1 } }
+          ],
+          "next": "errand"
+        },
+        {
+          "text": "I have a seal.",
+          "conditions": { "itemAtLeast": { "item": "good.palace-seal", "quantity": 1 } },
+          "unavailableNote": "You have no seal to show him, and he has already looked at your hands.",
+          "effects": [
+            { "flag": "hannu.errand" },
+            { "schedule": { "event": "evt.ugarit.faction-request", "inDays": 1 } }
+          ],
+          "next": "errand"
+        },
+        { "text": "Only passing.", "next": "passing" }
+      ]
+    },
+    "again": {
+      "text": "\"Second hour. You know where the shadow is.\" He turns the board a little so you cannot read it. \"Or have you come to tell me you have forgotten?\"",
+      "choices": [
+        {
+          "text": "I need the palace's ear.",
+          "conditions": {
+            "relationship": {
+              "character": "char.ugarit.hannu",
+              "dimension": "trust",
+              "atLeast": 1
+            }
+          },
+          "unavailableNote": "Hannu does not know your face well enough to ask you for a favor.",
+          "effects": [
+            { "schedule": { "event": "evt.ugarit.faction-request", "inDays": 1 } }
+          ],
+          "next": "errand"
+        },
+        { "text": "What does the palace want?", "next": "wants" },
+        { "text": "Only passing.", "next": "passing" }
+      ]
+    },
+    "after-answered": {
+      "text": "He does not mention the tablet.\n\n\"You went to the shadow and I was not there. You did as you were told, which is not the same as being trusted.\"",
+      "choices": [
+        { "text": "Ask whether the errand is finished.", "next": "finished" },
+        { "text": "Only passing.", "next": "passing" }
+      ]
+    },
+    "after-burned": {
+      "text": "He does not mention the tablet either. He looks at your hands, then at the gate, and writes nothing.\n\n\"You smell of smoke. The gate keeps its own accounts.\"",
+      "choices": [{ "text": "Leave him to his board.", "next": null }]
+    },
+    "wants": {
+      "text": "\"A man who can carry a thing from one gate to another without opening it.\"\n\nHe wets the stylus at last. \"That is all I will say at this gate.\"",
+      "choices": [{ "text": "Remember it.", "next": null }]
+    },
+    "finished": {
+      "text": "\"It was finished before you went.\"\n\nHe says it without apology, and goes back to the board.",
+      "choices": [{ "text": "Leave him to it.", "next": null }]
+    },
+    "errand": {
+      "text": "\"Not here.\" He does not look up. \"Come back at the second hour and stand where the wall is in shadow. If I am not there, I was never asked.\"",
+      "choices": [{ "text": "I will come.", "next": null }]
+    },
+    "passing": {
+      "text": "\"Everyone is passing. Some of them are passing through my ledger.\"",
+      "choices": [{ "text": "Leave him to it.", "next": null }]
+    }
+  },
+  "provenance": {
+    "confidence": "fictional",
+    "sources": [],
+    "notes": "Hannu's gate scene; invented."
+  }
+}

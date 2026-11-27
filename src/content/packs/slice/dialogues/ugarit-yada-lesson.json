@@ -1,0 +1,123 @@
+{
+  "id": "dlg.ugarit.yada.lesson",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "speaker": "char.ugarit.yada",
+  "start": "greet",
+  "entries": [
+    { "when": { "flag": "yada.paid-lesson" }, "node": "practised" },
+    { "when": { "flag": "yada.free-lesson" }, "node": "return" }
+  ],
+  "nodes": {
+    "greet": {
+      "text": "You write like a man copying a sign he does not love.\n\nHe turns the board around. The signs are wedges, and then not wedges: a small alphabet, thirty-odd shapes, each one a sound and not a word.",
+      "choices": [
+        {
+          "text": "Teach me the alphabet.",
+          "conditions": { "moneyAtLeast": 5 },
+          "unavailableNote": "A lesson costs five shekels. You have less than that.",
+          "effects": [
+            { "money": -5 },
+            { "flag": "yada.paid-lesson" },
+            { "languageXp": { "language": "lang.ugaritic", "amount": 15 } }
+          ],
+          "next": "lesson"
+        },
+        {
+          "text": "I have no silver for lessons.",
+          "conditions": {
+            "all": [
+              { "not": { "flag": "yada.free-lesson" } },
+              { "not": { "moneyAtLeast": 5 } }
+            ]
+          },
+          "unavailableNote": "You have the silver for a lesson, and he can see the weight of your purse.",
+          "next": "free"
+        },
+        {
+          "text": "Who taught you?",
+          "conditions": { "not": { "flag": "yada.asked-who" } },
+          "next": "who"
+        },
+        { "text": "Leave him to his board.", "next": null }
+      ]
+    },
+    "lesson": {
+      "text": "\"Twenty-nine signs. Four of them are the same sign being lazy.\" He makes you copy the first line until your hand hurts, then makes you copy it again.\n\nBy the end you can read your own name in a script that did not exist when your grandmother was born.",
+      "choices": [{ "text": "Thank him.", "next": null }]
+    },
+    "free": {
+      "text": "\"Then listen once, and remember it, because I will not repeat it for nothing.\"\n\nHe reads a line of a shipping list aloud, slowly, and makes you say it back. When you have it, he takes the board away and puts it face down, which is how a man closes a purse.",
+      "choices": [
+        {
+          "text": "Say it back.",
+          "effects": [
+            { "flag": "yada.free-lesson" },
+            { "languageXp": { "language": "lang.ugaritic", "amount": 4 } }
+          ],
+          "next": null
+        }
+      ]
+    },
+    "return": {
+      "text": "He knows your step now, and does not look up.\n\n\"The line I read you. Say it.\"\n\nYou say it. He grunts, which is neither praise nor complaint, and turns the board back around.",
+      "choices": [
+        {
+          "text": "Ask him to teach the rest of the signs.",
+          "conditions": { "moneyAtLeast": 5 },
+          "unavailableNote": "A lesson still costs five shekels. He has not become kinder.",
+          "effects": [
+            { "money": -5 },
+            { "flag": "yada.paid-lesson" },
+            { "languageXp": { "language": "lang.ugaritic", "amount": 15 } }
+          ],
+          "next": "lesson"
+        },
+        { "text": "Ask whether scribes hire copyists.", "next": "work" },
+        { "text": "Leave him to it.", "next": null }
+      ]
+    },
+    "practised": {
+      "text": "\"You again.\" He pushes the board across without being asked. \"Copy the line you know. Then copy it smaller. A tablet is expensive and your hand is not.\"",
+      "choices": [
+        {
+          "text": "Copy until the signs are small and even.",
+          "effects": [{ "languageXp": { "language": "lang.ugaritic", "amount": 3 } }],
+          "next": null
+        },
+        { "text": "Ask whether scribes hire copyists.", "next": "work" },
+        { "text": "Leave him to it.", "next": null }
+      ]
+    },
+    "who": {
+      "text": "\"A man from the north who was owed money and paid in lessons. He could write three scripts and speak none of them well.\"",
+      "choices": [
+        {
+          "text": "Ask nothing more.",
+          "effects": [
+            { "flag": "yada.asked-who" },
+            { "knowledge": { "fact": "yada.learned-from-a-northern-scribe", "source": "told", "reliability": 0.7 } }
+          ],
+          "next": null
+        }
+      ]
+    },
+    "work": {
+      "text": "\"The palace keeps copyists the way a temple keeps pigeons. They eat, they make a mess, and every so often one carries something worth reading.\"\n\nHe taps the board. \"A copyist who can read the alphabet and keep his mouth shut is worth more than one who can do neither.\"",
+      "choices": [
+        {
+          "text": "Remember what he said.",
+          "effects": [
+            { "knowledge": { "fact": "ugarit.scribes-hire-copyists", "source": "told", "reliability": 0.8 } }
+          ],
+          "next": null
+        }
+      ]
+    }
+  },
+  "provenance": {
+    "confidence": "plausible",
+    "sources": ["Ugaritic alphabetic cuneiform, general", "Scribal education in the Late Bronze Age, general"],
+    "notes": "The script and its roughly thirty signs are attested. The lesson, price, and scribe are invented."
+  }
+}

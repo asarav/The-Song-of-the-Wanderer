@@ -1,9 +1,11 @@
 node_modules/
 dist/
 coverage/
+.cache/
 *.local
 *.log
 .DS_Store
 .vite/
+public/playtests/
 .idea/
 .vscode/

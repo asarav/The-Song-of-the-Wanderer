@@ -1,0 +1,19 @@
+{
+  "id": "evt.travel.checkpoint",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "kind": "storylet",
+  "title": "A patrol boat",
+  "description": "A low hull with too many men in it comes alongside.",
+  "scope": { "routes": ["route.ugarit-cyprus"] },
+  "conditions": { "all": [] },
+  "priority": 25,
+  "major": false,
+  "scene": "dlg.travel.checkpoint",
+  "effects": [],
+  "provenance": {
+    "confidence": "plausible",
+    "sources": ["Late Bronze Age maritime policing, general"],
+    "notes": "Patrols and tolls are plausible; this encounter is invented."
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "id": "dlg.ugarit.mystery",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "speaker": "char.ugarit.belet",
+  "start": "recognize",
+  "nodes": {
+    "recognize": {
+      "text": "She is waiting in the doorway of the temple with her hands still.\n\n\"I have been singing the same line for three days. Ninshubur. And then you come in from the harbor with that face, and I stop being able to sing it.\"",
+      "choices": [
+        {
+          "text": "It is a name from the east. A messenger's name.",
+          "conditions": { "languageAtLeast": { "language": "lang.akkadian", "tier": "basic" } },
+          "unavailableNote": "You do not have the Akkadian to say it, and a guess would be worse.",
+          "effects": [
+            { "knowledge": { "fact": "ninshubur.a-messengers-name", "source": "told", "reliability": 0.7 } }
+          ],
+          "next": "east"
+        },
+        { "text": "I have never heard it.", "next": "never" },
+        { "text": "What do you want me to say?", "next": "want" }
+      ]
+    },
+    "east": {
+      "text": "\"A servant of the lady of the evening. A messenger.\" She says it slowly, testing it. \"That is what the trader said, and then he would not say more, and I have been singing it at strangers ever since.\"",
+      "choices": [{ "text": "Ask what she expects.", "next": "want" }]
+    },
+    "never": {
+      "text": "\"No. But the hymn knows you, and I would like to know how.\"\n\nShe does not say it as an accusation. That is somehow worse.",
+      "choices": [{ "text": "Say nothing.", "next": null }]
+    },
+    "want": {
+      "text": "\"I want to know whether the name is older than the man wearing it. If it is, it is a hymn. If it is not, it is a joke, and I have been made part of it.\"",
+      "choices": [
+        { "text": "I cannot answer that.", "next": "cannot" },
+        { "text": "Neither can I.", "next": null }
+      ]
+    },
+    "cannot": {
+      "text": "\"Then we are both waiting.\" She goes back inside. The singing starts again, four lines, and stops in the same place.",
+      "choices": [{ "text": "Leave.", "next": null }]
+    }
+  },
+  "provenance": {
+    "confidence": "fictional",
+    "sources": ["Ninshubur as a divine name in Sumerian and Akkadian sources, general"],
+    "notes": "The theonym is documented. The recognition scene is fiction: no line asserts an identity with the traveler or with any later figure."
+  }
+}

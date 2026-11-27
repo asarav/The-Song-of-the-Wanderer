@@ -1,0 +1,37 @@
+{
+  "id": "scenario.slice.day-and-save",
+  "seed": "slice-day-save-001",
+  "newGame": true,
+  "start": {
+    "date": "1230-04-01",
+    "location": "dest.ugarit",
+    "money": 120,
+    "capacity": 20,
+    "languages": { "lang.akkadian": { "xp": 25, "tier": "basic" } },
+    "knownRoutes": ["route.ugarit-cyprus"],
+    "knownDestinations": ["dest.ugarit"],
+    "inventory": [{ "item": "good.olive-oil", "quantity": 2 }]
+  },
+  "commands": [
+    { "type": "chooseDialogue", "choice": 0 },
+    { "type": "chooseDialogue", "choice": 0 },
+    { "type": "chooseDialogue", "choice": 0 },
+    { "type": "advanceTime", "days": 2 },
+    { "type": "buy", "item": "good.grain", "quantity": 2 },
+    { "kind": "save" },
+    { "type": "travel", "route": "route.ugarit-cyprus", "mode": "mode.coastal" }
+  ],
+  "assert": [
+    { "path": "player.location", "equals": "route.ugarit-cyprus" },
+    { "path": "narrative.journey.route", "equals": "route.ugarit-cyprus" },
+    { "path": "player.inventory", "length": 2 },
+    { "path": "player.inventory.0.item", "equals": "good.olive-oil" },
+    { "path": "player.inventory.1.item", "equals": "good.grain" },
+    { "path": "player.inventory.1.quantity", "equals": 1 },
+    { "step": 5, "path": "kind", "equals": "save" },
+    { "step": 5, "path": "accepted", "equals": true },
+    { "step": 6, "path": "eventTypes", "contains": "JourneyStarted" },
+    { "target": "events", "path": "types", "contains": "MoneyChanged" },
+    { "target": "events", "path": "types", "contains": "JourneyStarted" }
+  ]
+}

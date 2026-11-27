@@ -1,0 +1,36 @@
+{
+  "id": "dlg.travel.squall",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "start": "weather",
+  "nodes": {
+    "weather": {
+      "text": "The wind turns in the afternoon. It is not a storm, but the boat starts to work at the water instead of over it, and a water jar gets loose and is caught by a boy who has done this before.\n\nThe master shouts something that is half Akkadian and half weather.",
+      "choices": [
+        {
+          "text": "Take a bucket and bail.",
+          "effects": [
+            { "flag": "helped.bail" },
+            { "stamina": -1 },
+            { "languageXp": { "language": "lang.cypriot", "amount": 1 } }
+          ],
+          "next": "after"
+        },
+        {
+          "text": "Keep out of the crew's way.",
+          "effects": [{ "flag": "stayed.clear" }],
+          "next": "after"
+        }
+      ]
+    },
+    "after": {
+      "text": "By dark the wind has gone around and the sea is merely tired. Nobody thanks you, and nobody tells you to stop, and the boat goes on.",
+      "choices": [{ "text": "Sleep when it is your turn.", "next": null }]
+    }
+  },
+  "provenance": {
+    "confidence": "plausible",
+    "sources": [],
+    "notes": "A weather scene; invented."
+  }
+}

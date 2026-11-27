@@ -1,0 +1,17 @@
+{
+  "id": "good.grain",
+  "pack": "pack.core",
+  "contentVersion": 1,
+  "name": "Grain",
+  "art": "art.good.grain",
+  "category": "food",
+  "weight": 2,
+  "description": "Sacks of barley and emmer, weighed at the harbor scale.",
+  "provenance": {
+    "confidence": "documented",
+    "sources": [
+      "Late Bronze Age ration and shipment records, general"
+    ],
+    "notes": "Grain moved in bulk through Levantine ports; sack sizes are abstracted."
+  }
+}

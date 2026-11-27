@@ -1,0 +1,22 @@
+{
+  "id": "char.ugarit.sibtu",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "name": "Sibtu",
+  "art": "art.ugarit.sibtu",
+  "culture": "culture.levant.coastal",
+  "languages": ["lang.ugaritic"],
+  "home": "dest.ugarit",
+  "tier": "major",
+  "roles": ["weaver", "household head"],
+  "dialogue": "dlg.ugarit.sibtu.ask",
+  "wants": ["work for three more pairs of hands", "not to be a burden on her cousin"],
+  "fears": ["being sent back inland", "the children forgetting their father's house"],
+  "contradiction": "She asks for help and resents needing it.",
+  "presence": ["dest.ugarit", "dest.cyprus"],
+  "provenance": {
+    "confidence": "fictional",
+    "sources": [],
+    "notes": "An invented displaced household. Local displacement for harvest failure or insecurity is plausible and not attributed to the later collapse."
+  }
+}

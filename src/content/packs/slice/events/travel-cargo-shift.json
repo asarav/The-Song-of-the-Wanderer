@@ -1,0 +1,19 @@
+{
+  "id": "evt.travel.cargo-shift",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "kind": "storylet",
+  "title": "Cargo adrift",
+  "description": "A lashing works loose in the night and something is in the water.",
+  "scope": { "routes": ["route.ugarit-cyprus"] },
+  "conditions": { "all": [] },
+  "priority": 20,
+  "major": false,
+  "scene": "dlg.travel.cargo-shift",
+  "effects": [],
+  "provenance": {
+    "confidence": "plausible",
+    "sources": [],
+    "notes": "A cargo-handling vignette."
+  }
+}

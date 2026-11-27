@@ -10,7 +10,7 @@ map, a journal, and menus. There is no 3D, no real-time movement, no physics, an
 action combat. Content volume and correctness matter far more than rendering.
 
 The project will be developed largely by AI agents working in short, resumable sessions.
-That favours text-diffable assets, fast type-checked feedback, and headless tests.
+That favors text-diffable assets, fast type-checked feedback, and headless tests.
 
 ## Decision
 

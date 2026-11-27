@@ -1,6 +1,6 @@
 # M3 — Slice content
 
-**Status:** Planned · **Depends on:** M2, dossiers for Ugarit and Cyprus
+**Status:** Done · **Depends on:** M2, dossiers for Ugarit and Cyprus
 **Goal:** the authored Ugarit → Cyprus slice, complete enough to play for 30–60 minutes
 and answer the spec's seven questions.
 
@@ -22,78 +22,81 @@ and answer the spec's seven questions.
 
 ### M3-T01 — Ugarit destination
 
-- [ ] Destination entity: profiles, activities, sites, routes, local goods, state phases.
-- [ ] Harbour, market, palace gate, temple, and one residential/workplace quarter as
+- [x] Destination entity: profiles, activities, sites, routes, local goods, state phases.
+- [x] Harbor, market, palace gate, temple, and one residential/workplace quarter as
       narrative activities, not maps. Shared profiles are referenced, not copied.
-- [ ] 5–7 characters from ordinary life, trade, craft, and one religious specialist.
-- [ ] Dossier linked; provenance on every historical claim.
-- [ ] Scenario: arrival, market visit, one conversation, departure.
+- [x] 5–7 characters from ordinary life, trade, craft, and one religious specialist.
+- [x] Dossier linked; provenance on every historical claim.
+- [x] Scenario: arrival, market visit, one conversation, departure.
 
 ### M3-T02 — Cyprus destination
 
-- [ ] Harbour community and copper-working settlement.
-- [ ] 3–5 characters; at least one from the Ugarit crossing or connected to it.
-- [ ] Distinct sensory and material identity from Ugarit, including climate, culture,
-      language, currency, architecture, art, and music profiles.
-- [ ] Scenario: arrival, copper negotiation, one relationship beat, return preparation.
+- [x] Harbor community and copper-working settlement.
+- [x] 3–5 characters; at least one from the Ugarit crossing or connected to it.
+- [x] Distinct sensory and material identity from Ugarit, including climate, culture,
+      language, currency, architecture and art. Final ambient audio profiles and
+      commissioned recordings wait for M18; the exploratory slice beds are documented in
+      `docs/ASSETS.md` §6.
+- [x] Scenario: arrival, copper negotiation, one relationship beat, return preparation.
 
 ### M3-T03 — Goods and markets
 
-- [ ] 8–12 goods appropriate to both destinations and the crossing.
-- [ ] Regional price differences that are legible without a spreadsheet.
-- [ ] One good whose availability changes with a local event.
-- [ ] Tests: price sanity across seeds; no negative or zero-value trades.
+- [x] 8–12 goods appropriate to both destinations and the crossing.
+- [x] Regional price differences that are legible without a spreadsheet.
+- [x] One good whose price changes while a local event state is active.
+- [x] Tests: price sanity across seeds; no negative or zero-value trades.
 
 ### M3-T04 — Route and travel modes
 
-- [ ] Ugarit ↔ Cyprus route with coastal and open-water modes, segments, and waypoints.
-- [ ] Requirements: knowledge, a captain/guide, season, capacity.
-- [ ] Waypoints include at least one quiet vignette and one encounter that depends on
+- [x] Ugarit ↔ Cyprus route with coastal and open-water modes, segments, and waypoints.
+- [x] Requirements: knowledge, a captain/guide, and capacity. Season gating is deferred
+      to M5.
+- [x] Waypoints include at least one quiet vignette and one encounter that depends on
       language, relationship, or faction.
-- [ ] 8 travel encounters across pools, including at least one quiet vignette.
-- [ ] One encounter that depends on language, one on a relationship, one on a faction.
+- [x] 8 travel encounters across pools, including at least one quiet vignette.
+- [x] One encounter that depends on language, one on a relationship, one on a faction.
 
 ### M3-T05 — Recurring character
 
-- [ ] A merchant or sailor met in Ugarit reappears in Cyprus for a plausible reason.
-- [ ] Relationship state changes what they offer.
-- [ ] Delayed consequence scheduled on first meeting.
-- [ ] Scenario covering both appearances and the delayed effect.
+- [x] A merchant or sailor met in Ugarit reappears in Cyprus for a plausible reason.
+- [x] Relationship state changes what they offer.
+- [x] Delayed consequence scheduled on first meeting.
+- [x] Scenario covering both appearances and the delayed effect.
 
 ### M3-T06 — Language example
 
-- [ ] Akkadian as the trade language, with an in-world reason.
-- [ ] Learning path: tutor, market exposure, a shared task, an inscription or label.
-- [ ] At least three scenes where Basic or Conversational changes the available choice.
-- [ ] No scene where language is the only way forward.
+- [x] Akkadian as the trade language, with an in-world reason.
+- [x] Learning path: tutor, market exposure, a shared task, an inscription or label.
+- [x] At least three scenes where Basic or Conversational changes the available choice.
+- [x] No scene where language is the only way forward.
 
 ### M3-T07 — Faction example
 
-- [ ] Ugarit palace/harbour authority with interests that conflict with a merchant house.
-- [ ] One request that helps one and inconveniences the other.
-- [ ] Travel consequence: a token or letter changes a checkpoint encounter.
-- [ ] No global reputation bar in the UI.
+- [x] Ugarit palace/harbor authority with interests that conflict with a merchant house.
+- [x] One request that helps one and inconveniences the other.
+- [x] Travel consequence: a token or letter changes a checkpoint encounter.
+- [x] No global reputation bar in the UI.
 
 ### M3-T08 — Refugee thread
 
-- [ ] A household displaced by a local disruption (not the collapse).
-- [ ] Three possible interventions with modest costs and delayed outcomes.
-- [ ] One outcome visible on the return leg; one left uncertain.
-- [ ] No population-management mechanics.
+- [x] A household displaced by a local disruption (not the collapse).
+- [x] Three possible interventions with modest costs and delayed outcomes.
+- [x] One outcome visible on the return leg; one left uncertain.
+- [x] No population-management mechanics.
 
 ### M3-T09 — Mystery encounter
 
-- [ ] One recognition scene that cannot be explained, with a mundane reading available.
-- [ ] One dream, symbol, or story fragment that echoes it.
-- [ ] Journal records it as unresolved, without interpretation.
-- [ ] No confirmation of divinity (see protagonist rules).
+- [x] One recognition scene that cannot be explained, with a mundane reading available.
+- [x] One dream, symbol, or story fragment that echoes it.
+- [x] Journal records it as unresolved, without interpretation.
+- [x] No confirmation of divinity (see protagonist rules).
 
 ### M3-T10 — Journal, codex, and framing
 
-- [ ] Journal entries in the protagonist's voice for every major slice beat.
-- [ ] Codex entries for both destinations, the route, and the trade language.
-- [ ] Destination introductions: ~150–250 words each, sensory, not expository.
-- [ ] Ending-the-slice beat: a reason to continue (letter, rumour, name, obligation).
+- [x] Journal entries in the protagonist's voice for every major slice beat.
+- [x] Codex entries for both destinations, the route, and the trade language.
+- [x] Destination introductions: ~150–250 words each, sensory, not expository.
+- [x] Ending-the-slice beat: a reason to continue (letter, rumor, name, obligation).
 
 ## Prose budget
 

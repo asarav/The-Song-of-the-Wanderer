@@ -1,0 +1,15 @@
+{
+  "id": "good.sibtu-cloth",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "name": "Sibtu's cloth",
+  "art": "art.good.sibtu-cloth",
+  "category": "textile",
+  "weight": 1,
+  "description": "A bundle of wool cloth, folded twice and tied with cord. The weaver's mark is in the selvedge.",
+  "provenance": {
+    "confidence": "fictional",
+    "sources": [],
+    "notes": "Sibtu's bundle, carried to the yard on her behalf. Invented."
+  }
+}

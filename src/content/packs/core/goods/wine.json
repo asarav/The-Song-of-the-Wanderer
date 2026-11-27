@@ -1,0 +1,18 @@
+{
+  "id": "good.wine",
+  "pack": "pack.core",
+  "contentVersion": 1,
+  "name": "Wine",
+  "art": "art.good.wine",
+  "category": "food",
+  "weight": 3,
+  "perishable": true,
+  "description": "Amphorae packed in straw. The good stuff goes to courts; the rest goes to harbor taverns.",
+  "provenance": {
+    "confidence": "documented",
+    "sources": [
+      "Eastern Mediterranean amphora trade, general"
+    ],
+    "notes": "Wine trade is attested; quality tiers are a game abstraction."
+  }
+}

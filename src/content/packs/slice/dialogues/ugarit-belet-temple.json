@@ -1,0 +1,123 @@
+{
+  "id": "dlg.ugarit.belet.temple",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "speaker": "char.ugarit.belet",
+  "start": "greet",
+  "entries": [
+    { "when": { "hasJournalEntry": "journal.slice.mystery" }, "node": "after-mystery" },
+    { "when": { "flag": "belet.oil" }, "node": "again-oil" },
+    { "when": { "flag": "belet.hymn" }, "node": "again-hymn" }
+  ],
+  "nodes": {
+    "greet": {
+      "text": "You stand in the doorway like someone waiting to be recognized.",
+      "choices": [
+        {
+          "text": "What are you singing?",
+          "effects": [{ "flag": "belet.hymn" }],
+          "next": "hymn"
+        },
+        {
+          "text": "Do you need oil for the lamps?",
+          "conditions": { "itemAtLeast": { "item": "good.olive-oil", "quantity": 1 } },
+          "unavailableNote": "You have no oil on you, and the temple does not take a promise of oil.",
+          "effects": [
+            { "flag": "belet.oil" },
+            { "items": { "item": "good.olive-oil", "quantity": -1 } },
+            { "money": 6 },
+            { "languageXp": { "language": "lang.ugaritic", "amount": 2 } }
+          ],
+          "next": "oil"
+        },
+        { "text": "(Leave her to it.)", "next": null }
+      ]
+    },
+    "again-hymn": {
+      "text": "\"You again.\" She is folding a cloth that has already been folded. \"I have not found another verse, if that is what you came for.\"",
+      "choices": [
+        {
+          "text": "It is still only a name.",
+          "next": "only"
+        },
+        {
+          "text": "Do you need oil for the lamps?",
+          "conditions": { "itemAtLeast": { "item": "good.olive-oil", "quantity": 1 } },
+          "unavailableNote": "You have no oil on you, and the temple does not take a promise of oil.",
+          "effects": [
+            { "flag": "belet.oil" },
+            { "items": { "item": "good.olive-oil", "quantity": -1 } },
+            { "money": 6 },
+            { "languageXp": { "language": "lang.ugaritic", "amount": 2 } }
+          ],
+          "next": "oil"
+        },
+        { "text": "Leave her the silence.", "next": null }
+      ]
+    },
+    "again-oil": {
+      "text": "The jar is gone and the lamps are still burning. She looks at you the way a woman looks at a jar that has been filled twice.\n\n\"You are becoming reliable. I am not sure it suits a traveler.\"",
+      "choices": [
+        {
+          "text": "Do you need more oil?",
+          "conditions": { "itemAtLeast": { "item": "good.olive-oil", "quantity": 1 } },
+          "unavailableNote": "You have no oil on you, and the temple does not take a promise of oil.",
+          "effects": [
+            { "items": { "item": "good.olive-oil", "quantity": -1 } },
+            { "money": 6 },
+            { "languageXp": { "language": "lang.ugaritic", "amount": 2 } }
+          ],
+          "next": "oil"
+        },
+        {
+          "text": "What are you singing?",
+          "effects": [{ "flag": "belet.hymn" }],
+          "next": "hymn"
+        },
+        { "text": "(Leave her to it.)", "next": null }
+      ]
+    },
+    "after-mystery": {
+      "text": "She does not sing now. The doorway is the same and the stillness in it is not.\n\n\"You came back. Good. I have stopped singing it at strangers.\"",
+      "choices": [
+        { "text": "Ask what changed.", "next": "changed" },
+        { "text": "Leave her the silence.", "next": null }
+      ]
+    },
+    "changed": {
+      "text": "\"Nothing changed. I only stopped.\"\n\nShe says it as if stopping were a kind of work.",
+      "choices": [{ "text": "Nod.", "next": null }]
+    },
+    "hymn": {
+      "text": "\"A hymn to the lady of the evening. My grandmother's version, which is longer and worse than the palace's.\"\n\nShe sings four lines under her breath, then stops on the last one. \"There is a name in it that does not belong to this city. Ninshubur.\"",
+      "choices": [
+        {
+          "text": "Where did you hear it?",
+          "effects": [
+            { "schedule": { "event": "evt.ugarit.mystery", "inDays": 1 } },
+            { "languageXp": { "language": "lang.ugaritic", "amount": 3 } }
+          ],
+          "next": "heard"
+        },
+        { "text": "It is only a name.", "next": "only" }
+      ]
+    },
+    "heard": {
+      "text": "\"From a trader who came down from the north with a jar of bad wine and a good story. He said it the way you say a man's name, not a god's. Then he would not say it again.\"\n\nShe looks at the door, and then at you, and then at the door again.",
+      "choices": [{ "text": "Leave her the silence.", "next": null }]
+    },
+    "only": {
+      "text": "\"Names are not only names. If they were, I would be out of work.\"",
+      "choices": [{ "text": "Concede the point.", "next": null }]
+    },
+    "oil": {
+      "text": "She weighs the jar in her hands, sniffs it, and pays without haggling, which means it was worth more.",
+      "choices": [{ "text": "Take the silver.", "next": null }]
+    }
+  },
+  "provenance": {
+    "confidence": "fictional",
+    "sources": ["Ninshubur in Sumerian and Akkadian sources, general"],
+    "notes": "Belet is invented. The theonym is attested; the trader's story and the recognition are fiction and assert no identity."
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "id": "evt.cyprus.arrival-news",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "kind": "local",
+  "title": "News from the mainland",
+  "scope": { "destinations": ["dest.cyprus"] },
+  "conditions": { "hasJournalEntry": "journal.slice.sibtu-cloth-settled" },
+  "priority": 40,
+  "major": false,
+  "once": true,
+  "effects": [
+    { "faction": { "faction": "faction.ugarit.merchants", "dimension": "trust", "delta": 1 } },
+    { "journal": { "entry": "journal.slice.sibtu-news" } },
+    { "knowledge": { "fact": "sibtu.household-settled", "source": "told", "reliability": 0.8 } }
+  ],
+  "provenance": {
+    "confidence": "plausible",
+    "sources": [],
+    "notes": "A consequence of helping Sibtu, delivered by rumor rather than a scene."
+  }
+}

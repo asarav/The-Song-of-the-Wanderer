@@ -19,7 +19,7 @@ simulate causes.
 |---|---|---|
 | Prologue | c. 1230 BCE | Ugarit; learn the loop; first unexplained recognition |
 | Act I | c. 1230–1210 | Networks function; reputation and languages grow |
-| Act II | c. 1210–1195 | Rumours, shortages, displacement, risk |
+| Act II | c. 1210–1195 | Rumors, shortages, displacement, risk |
 | Act III | c. 1195–1150 | Regional collapses, route loss, rescue and loss |
 | Act IV | c. 1150–1050 | New arrangements; movement south and east; generations turn |
 | Act V | c. 1050–900 | Long memory; descendants; identity becomes undeniable |
@@ -80,7 +80,7 @@ They feed a derived `DayContext`; they are not a global mood. See `DATA_MODEL.md
 | c. 1900 | Mature Harappan urban system declines | documented | Long before the game opens |
 | c. 1900–1300 | Post-urban regionalisation | documented | The world the player enters |
 | c. 1500–1200 | Early Vedic composition (oral) | strongly-supported | Texts are not maps |
-| c. 1200–600 | Painted Grey Ware in parts of the north | documented | Material culture, not an ethnic label |
+| c. 1200–600 | Painted Gray Ware in parts of the north | documented | Material culture, not an ethnic label |
 | c. 600 | Second urbanisation | documented | Beyond the planned horizon |
 
 ### China
@@ -97,7 +97,7 @@ They feed a derived `DayContext`; they are not a global mood. See `DATA_MODEL.md
 - Major events are **authored and scheduled**, never simulated (spec §3.4).
 - Each event defines a date range, eligible locations, and local consequences. The same
   event can look different depending on where the player is and whom they know.
-- Rumours precede effects. Refugees follow. Ruins remain.
+- Rumors precede effects. Refugees follow. Ruins remain.
 - Regional storylines may run ahead of or behind the central Mediterranean arc.
 - No event should be dated more precisely in dialogue than the evidence allows.
 

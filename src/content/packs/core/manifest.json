@@ -1,0 +1,31 @@
+{
+  "id": "pack.core",
+  "contentVersion": 1,
+  "requires": [],
+  "entities": {
+    "climates": ["climate.levant-coast", "climate.cyprus"],
+    "cultures": ["culture.levant.coastal", "culture.cyprus.harbour"],
+    "languages": ["lang.akkadian", "lang.ugaritic", "lang.cypriot"],
+    "goods": [
+      "good.grain",
+      "good.olive-oil",
+      "good.wine",
+      "good.copper",
+      "good.tin",
+      "good.cedar",
+      "good.pottery",
+      "good.textile",
+      "good.silver",
+      "good.incense",
+      "good.palace-seal"
+    ],
+    "afflictions": [
+      "aff.thirst",
+      "aff.hunger",
+      "aff.wound",
+      "aff.fever",
+      "aff.poison",
+      "aff.curse"
+    ]
+  }
+}

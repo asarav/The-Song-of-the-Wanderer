@@ -7,7 +7,7 @@ toolchain and documentation system the rest of the project depends on.
 ## Non-goals
 
 - Any game system, state shape, or content.
-- Art, audio, or visual design beyond a readable greybox shell.
+- Art, audio, or visual design beyond a readable graybox shell.
 - Packaging or Steam integration.
 
 ## Tasks
@@ -44,9 +44,9 @@ toolchain and documentation system the rest of the project depends on.
       match, filename/ID match, confidence vocabulary when provenance is present.
 - [x] GitHub Actions workflow running `pnpm check`.
 
-### M0-T05 — Greybox shell and timeline skeleton
+### M0-T05 — Graybox shell and timeline skeleton
 
-- [x] App shell with title/roadmap toggle and warm greybox styling.
+- [x] App shell with title/roadmap toggle and warm graybox styling.
 - [x] Timeline skeleton with regional anchors and confidence notes.
 
 ## Verification

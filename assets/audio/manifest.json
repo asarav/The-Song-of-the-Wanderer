@@ -1,0 +1,620 @@
+{
+  "version": 1,
+  "updated": "2026-11-27",
+  "note": "Shipped exploratory audio. Field recordings are CC0; music and effects are original synthesis dedicated to CC0. This is atmosphere, not a reconstruction of a surviving melody.",
+  "assets": [
+    {
+      "id": "audio.ambient.sea",
+      "kind": "ambience",
+      "file": "sea.mp3",
+      "title": "Open water",
+      "loop": true,
+      "volume": 0.38,
+      "environment": "sea",
+      "layers": [
+        "waves",
+        "wind",
+        "ship-creak"
+      ],
+      "source": "Beach: Small Waves + Gulls on the Harbor + Sea creaks",
+      "performer": "Joseph SARDIN + Joseph SARDIN + Synthesized for the project",
+      "recordingDate": "n.d. / 2026",
+      "sources": [
+        {
+          "name": "Beach: Small Waves",
+          "url": "https://bigsoundbank.com/beach-small-waves-s0265.html",
+          "author": "Joseph SARDIN",
+          "performer": "Joseph SARDIN",
+          "recordingDate": "n.d.",
+          "license": "cc0",
+          "modification": "trimmed to 34s, filtered, looped and mixed"
+        },
+        {
+          "name": "Gulls on the Harbor",
+          "url": "https://bigsoundbank.com/gulls-on-the-harbor-s2573.html",
+          "author": "Joseph SARDIN",
+          "performer": "Joseph SARDIN",
+          "recordingDate": "n.d.",
+          "license": "cc0",
+          "modification": "trimmed to 34s, filtered, looped and mixed"
+        },
+        {
+          "name": "Sea creaks",
+          "url": null,
+          "author": "The Song of the Wanderer project",
+          "performer": "Synthesized for the project",
+          "recordingDate": "2026",
+          "license": "cc0",
+          "modification": "original procedural synthesis, generated for this project"
+        }
+      ],
+      "license": "cc0",
+      "use": "shipped",
+      "reviewStatus": "licensed",
+      "note": "Open water, not a storm; the creak is a wooden hull working, not a modern engine."
+    },
+    {
+      "id": "audio.ambient.ugarit.harbour",
+      "kind": "ambience",
+      "file": "ugarit-harbour.mp3",
+      "title": "Ugarit harbour",
+      "loop": true,
+      "volume": 0.4,
+      "environment": "harbour",
+      "layers": [
+        "gulls",
+        "water",
+        "quay-murmur"
+      ],
+      "source": "Gulls on the Harbor + Beach: Small Waves + Outdoor Market #1",
+      "performer": "Joseph SARDIN + Joseph SARDIN + Joseph SARDIN",
+      "recordingDate": "n.d.",
+      "sources": [
+        {
+          "name": "Gulls on the Harbor",
+          "url": "https://bigsoundbank.com/gulls-on-the-harbor-s2573.html",
+          "author": "Joseph SARDIN",
+          "performer": "Joseph SARDIN",
+          "recordingDate": "n.d.",
+          "license": "cc0",
+          "modification": "trimmed to 34s, filtered, looped and mixed"
+        },
+        {
+          "name": "Beach: Small Waves",
+          "url": "https://bigsoundbank.com/beach-small-waves-s0265.html",
+          "author": "Joseph SARDIN",
+          "performer": "Joseph SARDIN",
+          "recordingDate": "n.d.",
+          "license": "cc0",
+          "modification": "trimmed to 34s, filtered, looped and mixed"
+        },
+        {
+          "name": "Outdoor Market #1",
+          "url": "https://bigsoundbank.com/outdoor-market-1-s2728.html",
+          "author": "Joseph SARDIN",
+          "performer": "Joseph SARDIN",
+          "recordingDate": "n.d.",
+          "license": "cc0",
+          "modification": "trimmed to 34s, filtered, looped and mixed"
+        }
+      ],
+      "license": "cc0",
+      "use": "shipped",
+      "reviewStatus": "licensed",
+      "note": "Gulls, water at the mole, and a low quay murmur; no port machinery."
+    },
+    {
+      "id": "audio.ambient.ugarit.market",
+      "kind": "ambience",
+      "file": "ugarit-market.mp3",
+      "title": "Ugarit market",
+      "loop": true,
+      "volume": 0.34,
+      "environment": "market",
+      "layers": [
+        "crowd-murmur",
+        "footsteps",
+        "distant-harbour"
+      ],
+      "source": "Outdoor Market #1 + Gulls on the Harbor",
+      "performer": "Joseph SARDIN + Joseph SARDIN",
+      "recordingDate": "n.d.",
+      "sources": [
+        {
+          "name": "Outdoor Market #1",
+          "url": "https://bigsoundbank.com/outdoor-market-1-s2728.html",
+          "author": "Joseph SARDIN",
+          "performer": "Joseph SARDIN",
+          "recordingDate": "n.d.",
+          "license": "cc0",
+          "modification": "trimmed to 32s, filtered, looped and mixed"
+        },
+        {
+          "name": "Gulls on the Harbor",
+          "url": "https://bigsoundbank.com/gulls-on-the-harbor-s2573.html",
+          "author": "Joseph SARDIN",
+          "performer": "Joseph SARDIN",
+          "recordingDate": "n.d.",
+          "license": "cc0",
+          "modification": "trimmed to 32s, filtered, looped and mixed"
+        }
+      ],
+      "license": "cc0",
+      "use": "shipped",
+      "reviewStatus": "licensed",
+      "note": "A working market murmur with no intelligible modern speech."
+    },
+    {
+      "id": "audio.ambient.ugarit.temple",
+      "kind": "ambience",
+      "file": "ugarit-temple.mp3",
+      "title": "Ugarit temple",
+      "loop": true,
+      "volume": 0.28,
+      "environment": "temple",
+      "layers": [
+        "stone-room",
+        "wind",
+        "oil-lamp-hush"
+      ],
+      "source": "Beach: Small Waves + Temple drone",
+      "performer": "Joseph SARDIN + Synthesized for the project",
+      "recordingDate": "n.d. / 2026",
+      "sources": [
+        {
+          "name": "Beach: Small Waves",
+          "url": "https://bigsoundbank.com/beach-small-waves-s0265.html",
+          "author": "Joseph SARDIN",
+          "performer": "Joseph SARDIN",
+          "recordingDate": "n.d.",
+          "license": "cc0",
+          "modification": "trimmed to 36s, filtered, looped and mixed"
+        },
+        {
+          "name": "Temple drone",
+          "url": null,
+          "author": "The Song of the Wanderer project",
+          "performer": "Synthesized for the project",
+          "recordingDate": "2026",
+          "license": "cc0",
+          "modification": "original procedural synthesis, generated for this project"
+        }
+      ],
+      "license": "cc0",
+      "use": "shipped",
+      "reviewStatus": "licensed",
+      "note": "A cool stone room and a low, breathing hush; no bell, choir or modern reverb."
+    },
+    {
+      "id": "audio.ambient.ugarit.workshops",
+      "kind": "ambience",
+      "file": "ugarit-workshops.mp3",
+      "title": "Ugarit workshop quarter",
+      "loop": true,
+      "volume": 0.34,
+      "environment": "workshop",
+      "layers": [
+        "loom",
+        "kiln",
+        "voices"
+      ],
+      "source": "Outdoor Market #1 + Fireplace #1 + Loom bed",
+      "performer": "Joseph SARDIN + Joseph SARDIN + Synthesized for the project",
+      "recordingDate": "n.d. / 2026",
+      "sources": [
+        {
+          "name": "Outdoor Market #1",
+          "url": "https://bigsoundbank.com/outdoor-market-1-s2728.html",
+          "author": "Joseph SARDIN",
+          "performer": "Joseph SARDIN",
+          "recordingDate": "n.d.",
+          "license": "cc0",
+          "modification": "trimmed to 32s, filtered, looped and mixed"
+        },
+        {
+          "name": "Fireplace #1",
+          "url": "https://bigsoundbank.com/fireplace-1-s0030.html",
+          "author": "Joseph SARDIN",
+          "performer": "Joseph SARDIN",
+          "recordingDate": "n.d.",
+          "license": "cc0",
+          "modification": "trimmed to 32s, filtered, looped and mixed"
+        },
+        {
+          "name": "Loom bed",
+          "url": null,
+          "author": "The Song of the Wanderer project",
+          "performer": "Synthesized for the project",
+          "recordingDate": "2026",
+          "license": "cc0",
+          "modification": "original procedural synthesis, generated for this project"
+        }
+      ],
+      "license": "cc0",
+      "use": "shipped",
+      "reviewStatus": "licensed",
+      "note": "A warp-weighted loom beat, a kiln, and a low household murmur."
+    },
+    {
+      "id": "audio.ambient.ugarit.night",
+      "kind": "ambience",
+      "file": "ugarit-night.mp3",
+      "title": "Ugarit after dark",
+      "loop": true,
+      "volume": 0.32,
+      "environment": "night",
+      "layers": [
+        "water",
+        "crickets",
+        "distant-dogs"
+      ],
+      "source": "Beach: Small Waves + Field Cricket",
+      "performer": "Joseph SARDIN + Joseph SARDIN",
+      "recordingDate": "n.d.",
+      "sources": [
+        {
+          "name": "Beach: Small Waves",
+          "url": "https://bigsoundbank.com/beach-small-waves-s0265.html",
+          "author": "Joseph SARDIN",
+          "performer": "Joseph SARDIN",
+          "recordingDate": "n.d.",
+          "license": "cc0",
+          "modification": "trimmed to 34s, filtered, looped and mixed"
+        },
+        {
+          "name": "Field Cricket",
+          "url": "https://bigsoundbank.com/field-cricket-s1020.html",
+          "author": "Joseph SARDIN",
+          "performer": "Joseph SARDIN",
+          "recordingDate": "n.d.",
+          "license": "cc0",
+          "modification": "trimmed to 34s, filtered, looped and mixed"
+        }
+      ],
+      "license": "cc0",
+      "use": "shipped",
+      "reviewStatus": "licensed",
+      "note": "Water against hulls and dry-field crickets; the dogs are left to the written night."
+    },
+    {
+      "id": "audio.ambient.cyprus.yard",
+      "kind": "ambience",
+      "file": "cyprus-yard.mp3",
+      "title": "The copper yard",
+      "loop": true,
+      "volume": 0.35,
+      "environment": "harbour",
+      "layers": [
+        "gulls",
+        "water",
+        "yard-murmur"
+      ],
+      "source": "Gulls on the Harbor + Beach: Small Waves + Outdoor Market #1",
+      "performer": "Joseph SARDIN + Joseph SARDIN + Joseph SARDIN",
+      "recordingDate": "n.d.",
+      "sources": [
+        {
+          "name": "Gulls on the Harbor",
+          "url": "https://bigsoundbank.com/gulls-on-the-harbor-s2573.html",
+          "author": "Joseph SARDIN",
+          "performer": "Joseph SARDIN",
+          "recordingDate": "n.d.",
+          "license": "cc0",
+          "modification": "trimmed to 34s, filtered, looped and mixed"
+        },
+        {
+          "name": "Beach: Small Waves",
+          "url": "https://bigsoundbank.com/beach-small-waves-s0265.html",
+          "author": "Joseph SARDIN",
+          "performer": "Joseph SARDIN",
+          "recordingDate": "n.d.",
+          "license": "cc0",
+          "modification": "trimmed to 34s, filtered, looped and mixed"
+        },
+        {
+          "name": "Outdoor Market #1",
+          "url": "https://bigsoundbank.com/outdoor-market-1-s2728.html",
+          "author": "Joseph SARDIN",
+          "performer": "Joseph SARDIN",
+          "recordingDate": "n.d.",
+          "license": "cc0",
+          "modification": "trimmed to 34s, filtered, looped and mixed"
+        }
+      ],
+      "license": "cc0",
+      "use": "shipped",
+      "reviewStatus": "licensed",
+      "note": "A smaller, drier harbor: gulls and water, with a low yard of voices."
+    },
+    {
+      "id": "audio.ambient.cyprus.smithy",
+      "kind": "ambience",
+      "file": "cyprus-smithy.mp3",
+      "title": "The smithy",
+      "loop": true,
+      "volume": 0.36,
+      "environment": "workshop",
+      "layers": [
+        "anvil",
+        "forge",
+        "bellows"
+      ],
+      "source": "Anvil #1 + Fireplace #1",
+      "performer": "Joseph SARDIN + Joseph SARDIN",
+      "recordingDate": "n.d.",
+      "sources": [
+        {
+          "name": "Anvil #1",
+          "url": "https://bigsoundbank.com/anvil-1-s3589.html",
+          "author": "Joseph SARDIN",
+          "performer": "Joseph SARDIN",
+          "recordingDate": "n.d.",
+          "license": "cc0",
+          "modification": "trimmed to 32s, filtered, looped and mixed"
+        },
+        {
+          "name": "Fireplace #1",
+          "url": "https://bigsoundbank.com/fireplace-1-s0030.html",
+          "author": "Joseph SARDIN",
+          "performer": "Joseph SARDIN",
+          "recordingDate": "n.d.",
+          "license": "cc0",
+          "modification": "trimmed to 32s, filtered, looped and mixed"
+        }
+      ],
+      "license": "cc0",
+      "use": "shipped",
+      "reviewStatus": "licensed",
+      "note": "An anvil and a working forge; the anvil is a modern recording of a hammered metal surface, used as material, not as a claim about a Bronze Age workshop."
+    },
+    {
+      "id": "audio.ambient.cyprus.inn",
+      "kind": "ambience",
+      "file": "cyprus-inn.mp3",
+      "title": "The inn",
+      "loop": true,
+      "volume": 0.3,
+      "environment": "inn",
+      "layers": [
+        "hearth",
+        "low-voices"
+      ],
+      "source": "Fireplace #1 + Outdoor Market #1",
+      "performer": "Joseph SARDIN + Joseph SARDIN",
+      "recordingDate": "n.d.",
+      "sources": [
+        {
+          "name": "Fireplace #1",
+          "url": "https://bigsoundbank.com/fireplace-1-s0030.html",
+          "author": "Joseph SARDIN",
+          "performer": "Joseph SARDIN",
+          "recordingDate": "n.d.",
+          "license": "cc0",
+          "modification": "trimmed to 32s, filtered, looped and mixed"
+        },
+        {
+          "name": "Outdoor Market #1",
+          "url": "https://bigsoundbank.com/outdoor-market-1-s2728.html",
+          "author": "Joseph SARDIN",
+          "performer": "Joseph SARDIN",
+          "recordingDate": "n.d.",
+          "license": "cc0",
+          "modification": "trimmed to 32s, filtered, looped and mixed"
+        }
+      ],
+      "license": "cc0",
+      "use": "shipped",
+      "reviewStatus": "licensed",
+      "note": "A hearth and a low room of voices, deliberately without intelligible speech."
+    },
+    {
+      "id": "audio.ambient.cyprus.night",
+      "kind": "ambience",
+      "file": "cyprus-night.mp3",
+      "title": "The Cypriot night",
+      "loop": true,
+      "volume": 0.32,
+      "environment": "night",
+      "layers": [
+        "sea",
+        "frogs",
+        "cistern"
+      ],
+      "source": "Beach: Small Waves + Frogs #1",
+      "performer": "Joseph SARDIN + Joseph SARDIN",
+      "recordingDate": "n.d.",
+      "sources": [
+        {
+          "name": "Beach: Small Waves",
+          "url": "https://bigsoundbank.com/beach-small-waves-s0265.html",
+          "author": "Joseph SARDIN",
+          "performer": "Joseph SARDIN",
+          "recordingDate": "n.d.",
+          "license": "cc0",
+          "modification": "trimmed to 34s, filtered, looped and mixed"
+        },
+        {
+          "name": "Frogs #1",
+          "url": "https://bigsoundbank.com/frogs-1-s0997.html",
+          "author": "Joseph SARDIN",
+          "performer": "Joseph SARDIN",
+          "recordingDate": "n.d.",
+          "license": "cc0",
+          "modification": "trimmed to 34s, filtered, looped and mixed"
+        }
+      ],
+      "license": "cc0",
+      "use": "shipped",
+      "reviewStatus": "licensed",
+      "note": "The sea is louder than it should be, and frogs keep at the cistern."
+    },
+    {
+      "id": "audio.music.title",
+      "kind": "music",
+      "file": "music-title.mp3",
+      "title": "The traveler’s theme",
+      "loop": true,
+      "volume": 0.22,
+      "environment": null,
+      "layers": [],
+      "source": "The traveler’s theme",
+      "performer": "Synthesized for the project",
+      "recordingDate": "2026",
+      "sources": [
+        {
+          "name": "The traveler’s theme",
+          "url": null,
+          "author": "The Song of the Wanderer project",
+          "performer": "Synthesized for the project",
+          "recordingDate": "2026",
+          "license": "cc0",
+          "modification": "original procedural synthesis, generated for this project"
+        }
+      ],
+      "license": "cc0",
+      "use": "shipped",
+      "reviewStatus": "licensed",
+      "note": "An original modal sketch for plucked lyre-like strings and frame drum. It is not a surviving melody and makes no reconstruction claim."
+    },
+    {
+      "id": "audio.music.temple",
+      "kind": "music",
+      "file": "music-temple.mp3",
+      "title": "A hymn practiced",
+      "loop": true,
+      "volume": 0.26,
+      "environment": null,
+      "layers": [],
+      "source": "A hymn practiced",
+      "performer": "Synthesized for the project",
+      "recordingDate": "2026",
+      "sources": [
+        {
+          "name": "A hymn practiced",
+          "url": null,
+          "author": "The Song of the Wanderer project",
+          "performer": "Synthesized for the project",
+          "recordingDate": "2026",
+          "license": "cc0",
+          "modification": "original procedural synthesis, generated for this project"
+        }
+      ],
+      "license": "cc0",
+      "use": "shipped",
+      "reviewStatus": "licensed",
+      "note": "An original, wordless modal sketch: a singer’s craft without inventing a language or a known hymn."
+    },
+    {
+      "id": "audio.sfx.balance",
+      "kind": "sfx",
+      "file": "sfx-balance.mp3",
+      "title": "Weighed silver",
+      "loop": false,
+      "volume": 0.5,
+      "environment": null,
+      "layers": [],
+      "source": "Weighed silver",
+      "performer": "Synthesized for the project",
+      "recordingDate": "2026",
+      "sources": [
+        {
+          "name": "Weighed silver",
+          "url": null,
+          "author": "The Song of the Wanderer project",
+          "performer": "Synthesized for the project",
+          "recordingDate": "2026",
+          "license": "cc0",
+          "modification": "original procedural synthesis, generated for this project"
+        }
+      ],
+      "license": "cc0",
+      "use": "shipped",
+      "reviewStatus": "licensed",
+      "note": "Two small metal strikes for a completed trade. It is a game cue, not a coin."
+    },
+    {
+      "id": "audio.sfx.hammer",
+      "kind": "sfx",
+      "file": "sfx-hammer.mp3",
+      "title": "Hammer on bronze",
+      "loop": false,
+      "volume": 0.46,
+      "environment": null,
+      "layers": [],
+      "source": "Hammer on bronze",
+      "performer": "Synthesized for the project",
+      "recordingDate": "2026",
+      "sources": [
+        {
+          "name": "Hammer on bronze",
+          "url": null,
+          "author": "The Song of the Wanderer project",
+          "performer": "Synthesized for the project",
+          "recordingDate": "2026",
+          "license": "cc0",
+          "modification": "original procedural synthesis, generated for this project"
+        }
+      ],
+      "license": "cc0",
+      "use": "shipped",
+      "reviewStatus": "licensed",
+      "note": "A single hammered-metal strike for entering the smithy."
+    },
+    {
+      "id": "audio.sfx.oar",
+      "kind": "sfx",
+      "file": "sfx-oar.mp3",
+      "title": "Oar and water",
+      "loop": false,
+      "volume": 0.5,
+      "environment": null,
+      "layers": [],
+      "source": "Oar and water",
+      "performer": "Synthesized for the project",
+      "recordingDate": "2026",
+      "sources": [
+        {
+          "name": "Oar and water",
+          "url": null,
+          "author": "The Song of the Wanderer project",
+          "performer": "Synthesized for the project",
+          "recordingDate": "2026",
+          "license": "cc0",
+          "modification": "original procedural synthesis, generated for this project"
+        }
+      ],
+      "license": "cc0",
+      "use": "shipped",
+      "reviewStatus": "licensed",
+      "note": "Water and a wooden knock for taking passage."
+    },
+    {
+      "id": "audio.sfx.gate",
+      "kind": "sfx",
+      "file": "sfx-gate.mp3",
+      "title": "The gate",
+      "loop": false,
+      "volume": 0.5,
+      "environment": null,
+      "layers": [],
+      "source": "The gate",
+      "performer": "Synthesized for the project",
+      "recordingDate": "2026",
+      "sources": [
+        {
+          "name": "The gate",
+          "url": null,
+          "author": "The Song of the Wanderer project",
+          "performer": "Synthesized for the project",
+          "recordingDate": "2026",
+          "license": "cc0",
+          "modification": "original procedural synthesis, generated for this project"
+        }
+      ],
+      "license": "cc0",
+      "use": "shipped",
+      "reviewStatus": "licensed",
+      "note": "A wooden gate and its bar for stepping ashore into a new journey."
+    }
+  ]
+}

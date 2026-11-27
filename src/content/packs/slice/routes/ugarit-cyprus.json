@@ -1,0 +1,113 @@
+{
+  "id": "route.ugarit-cyprus",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "name": "The Cyprus crossing",
+  "kind": "sea",
+  "from": "dest.ugarit",
+  "to": "dest.cyprus",
+  "risk": "moderate",
+  "segments": [
+    {
+      "id": "leg.levant-coast",
+      "name": "The Levantine coast",
+      "kind": "coast",
+      "days": 2,
+      "notes": "Working north with the land in sight, past fishing beaches and the last warehouses."
+    },
+    {
+      "id": "leg.open-water",
+      "name": "Open water",
+      "kind": "open-water",
+      "days": 2,
+      "notes": "Away from the coast, where the crossing belongs to weather and the master's reading of it."
+    },
+    {
+      "id": "leg.cyprus-approach",
+      "name": "The Cypriot approach",
+      "kind": "approach",
+      "days": 1,
+      "notes": "The island rises as a low smudge, then a coast of pale rock and drawn-up boats."
+    }
+  ],
+  "waypoints": [
+    {
+      "id": "way.quiet-anchorage",
+      "name": "A quiet anchorage",
+      "kind": "calm",
+      "afterDays": 2,
+      "description": "A shallow bay where the boat waits out the dark and nobody is in a hurry.",
+      "event": "evt.travel.quiet-night"
+    },
+    {
+      "id": "way.harbour-check",
+      "name": "A harbor check",
+      "kind": "checkpoint",
+      "afterDays": 3,
+      "description": "A small harbor where a clerk takes an interest in cargo he did not load.",
+      "event": "evt.travel.checkpoint"
+    }
+  ],
+  "modes": [
+    {
+      "id": "mode.coastal",
+      "name": "Coastal",
+      "days": 5,
+      "baseCost": 8,
+      "capacity": 20,
+      "exertion": 2,
+      "provisions": 1,
+      "hazardModifier": 0,
+      "description": "Hug the shore, anchor at night. Slower, cheaper, and the captain knows where the water is shallow."
+    },
+    {
+      "id": "mode.open",
+      "name": "Open water",
+      "days": 3,
+      "baseCost": 14,
+      "capacity": 20,
+      "exertion": 3,
+      "provisions": 1,
+      "hazardModifier": 5,
+      "description": "Straight across. Fewer nights, more weather, and no land to run for."
+    }
+  ],
+  "requirements": {
+    "any": [
+      { "flag": "met.tiro" },
+      { "languageAtLeast": { "language": "lang.akkadian", "tier": "basic" } }
+    ]
+  },
+  "requirementsNote": "No master will take you without a word in Akkadian or a captain who knows your face.",
+  "exhaustionDialogue": "dlg.travel.exhaustion",
+  "closedWhen": { "flag": "route.ugarit-cyprus.closed" },
+  "closureNote": "The harbor is closed to departures.",
+  "encounters": [
+    { "event": "evt.travel.squall", "weight": 3 },
+    { "event": "evt.travel.fellow-sailor", "weight": 3 },
+    { "event": "evt.travel.wreckage", "weight": 1 },
+    { "event": "evt.travel.checkpoint", "weight": 2 },
+    { "event": "evt.travel.quiet-night", "weight": 3 },
+    { "event": "evt.travel.refugees", "weight": 1 },
+    { "event": "evt.travel.cargo-shift", "weight": 2 },
+    { "event": "evt.travel.harbour-talk", "weight": 2 },
+    { "event": "evt.travel.spring", "weight": 2 }
+  ],
+  "encountersPerJourney": { "min": 1, "max": 2 },
+  "hazard": {
+    "baseChance": 14,
+    "outcomes": [
+      { "event": "evt.travel.rescue-caravan", "weight": 2, "kind": "rescue" },
+      { "event": "evt.travel.rescue-patrol", "weight": 2, "kind": "rescue" },
+      { "event": "evt.travel.rescue-healer", "weight": 2, "kind": "rescue" },
+      { "event": "evt.travel.peril-thirst", "weight": 2, "kind": "setback" },
+      { "event": "evt.travel.peril-fever", "weight": 1, "kind": "setback" },
+      { "event": "evt.travel.peril-wreck", "weight": 1, "kind": "grave" }
+    ]
+  },
+  "provenance": {
+    "confidence": "strongly-supported",
+    "sources": ["Late Bronze Age eastern Mediterranean maritime exchange, general"],
+    "notes": "A sea crossing between the Levantine coast and Cyprus is plausible and well attested in general terms. The specific route, timings, and fares are game abstraction."
+  }
+}

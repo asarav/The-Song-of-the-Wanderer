@@ -1,0 +1,19 @@
+{
+  "id": "evt.cyprus.return-letter",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "kind": "local",
+  "title": "A letter for the mainland",
+  "scope": { "destinations": ["dest.cyprus"] },
+  "conditions": { "all": [] },
+  "priority": 60,
+  "major": true,
+  "once": true,
+  "scene": "dlg.cyprus.return-letter",
+  "effects": [{ "journal": { "entry": "journal.slice.letter" } }],
+  "provenance": {
+    "confidence": "plausible",
+    "sources": [],
+    "notes": "The slice's closing hook toward the next milestone. Invented."
+  }
+}

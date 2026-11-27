@@ -14,7 +14,7 @@ The vertical slice can ignore this. Wave 1 cannot.
 
 ## Decision
 
-1. **Content is organised in packs** with manifests, a shared `pack.core`, an acyclic
+1. **Content is organized in packs** with manifests, a shared `pack.core`, an acyclic
    dependency graph, and lazy loading per region.
 2. **Only deltas are persisted.** Untouched regions derive their state from the authored
    timeline plus any stored overrides.

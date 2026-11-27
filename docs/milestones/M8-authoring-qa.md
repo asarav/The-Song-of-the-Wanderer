@@ -1,6 +1,6 @@
 # M8 — Authoring and QA utilities
 
-**Status:** Planned · **Depends on:** M5–M7 · **Architecture:** `TOOLING.md`
+**Status:** Blocked by Gate A and M5–M7 · **Depends on:** M5–M7 · **Architecture:** `TOOLING.md`
 **Goal:** the project can grow to thousands of entities without losing continuity, and an
 agent can inspect any state or date without reading the whole world.
 
@@ -111,7 +111,7 @@ This milestone is the Gate B deliverable. Do not start regional expansion withou
 - [ ] Tier 1/2/3 jobs implemented.
 - [ ] Golden save corpus from every milestone.
 - [ ] Migration matrix loaded on every merge.
-- [ ] Nightly report posted as an artefact.
+- [ ] Nightly report posted as an artifact.
 
 ### M8-T12 — Gate B review
 

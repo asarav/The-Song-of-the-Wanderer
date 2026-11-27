@@ -1,0 +1,19 @@
+{
+  "id": "aff.thirst",
+  "pack": "pack.core",
+  "contentVersion": 1,
+  "name": "Dry throat",
+  "kind": "thirst",
+  "severity": "light",
+  "description": "Your mouth is dry, your head is light, and the next water is a thing you keep thinking about.",
+  "treatments": ["town", "rest", "water"],
+  "remedyNote": "A day in a port, a rest, or a filled waterskin will clear it.",
+  "onset": "By midday your tongue is thick, and every passing waterskin is a decision.",
+  "daily": "Your mouth is dry from waking; the day does not improve it.",
+  "recovery": "The first clean water goes down like a held breath let out.",
+  "provenance": {
+    "confidence": "plausible",
+    "sources": [],
+    "notes": "A travel condition, not a medical claim. It is deliberately discrete, not a thirst meter."
+  }
+}

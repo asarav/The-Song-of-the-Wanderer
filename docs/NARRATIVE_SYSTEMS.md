@@ -89,11 +89,11 @@ used once and never again, and characters used so often they become a tour guide
 
 A character's social data is not one role string:
 
-- **Position** — household head, temple scribe, harbour official, guest, exile. It can
+- **Position** — household head, temple scribe, harbor official, guest, exile. It can
   change by phase or event.
 - **Fame** — keyed by region, faction, and social stratum. A person can be famous in one
   city, unknown in the next, and notorious to one institution.
-- **Allegiance** — a set of ties and obligations, not a team colour. Loyalty to a
+- **Allegiance** — a set of ties and obligations, not a team color. Loyalty to a
   household, a debt to a temple, fear of a court, and affection for the player can coexist.
 - **Worldview** — values, prejudices, taboos, and what they think is wrong with the world.
   It conditions dialogue and reactions.
@@ -191,7 +191,7 @@ type ArcState = {
 ```
 
 The definition says what can happen next; the state says where the arc is, who owns it, and
-whether it has stalled. A beat can resolve off-screen and arrive later as a letter, rumour,
+whether it has stalled. A beat can resolve off-screen and arrive later as a letter, rumor,
 changed status, or inherited obligation.
 
 ### 4.2 Director
@@ -208,7 +208,7 @@ The arc director runs on time advance, arrival, and after major events:
    coverage report — never leave it silently open.
 
 Arcs do not require the player. A beat may resolve off-screen and be reported later
-through a letter, a rumour, or a changed character state. The player learns what happened
+through a letter, a rumor, or a changed character state. The player learns what happened
 through the knowledge model.
 
 ### 4.3 Branching
@@ -266,7 +266,7 @@ Generation rules:
 - Descendants are authored, not generated, for anything that appears on screen.
 - On a long time jump, the engine advances family generations and applies inheritance;
   authored descendants become eligible.
-- A descendant may recognise the protagonist through a story, object, or family account —
+- A descendant may recognize the protagonist through a story, object, or family account —
   never through unexplained recognition.
 - Intermarriage, adoption, and household membership are authored; no procedural family
   trees.
@@ -340,10 +340,10 @@ type StoryletDef = {
 Rules:
 
 - Storylets never change regional phase, faction control, or major character status.
-- They may add local colour, a small relationship change, a rumour, a recipe, a song, a
-  story, or a minor favour.
+- They may add local color, a small relationship change, a rumor, a recipe, a song, a
+  story, or a minor favor.
 - Pools are tagged so the director can avoid repeating the same tone three times in a row.
-- Each destination should have pools for arrival, market, harbour/road, temple, and
+- Each destination should have pools for arrival, market, harbor/road, temple, and
   evening. Quiet vignettes are first-class storylets, not filler.
 - A storylet may plant a seed for a later arc, but the payoff is a separate authored
   event.
@@ -358,7 +358,7 @@ Keep dimensions small and legible:
 | affection | Do they like you? | narrative bands |
 | obligation | What do they owe or expect? | explicit promises |
 | fear | Are they afraid of you? | narrative bands |
-| respect | Do they value your judgement? | narrative bands |
+| respect | Do they value your judgment? | narrative bands |
 
 Rules:
 
@@ -388,7 +388,7 @@ type CharacterMemory = {
 Use it for:
 
 - dialogue conditions ("she has heard you helped the refugees"),
-- rumours (a character repeats what they believe, not the truth),
+- rumors (a character repeats what they believe, not the truth),
 - recognition and suspicion,
 - faction reactions through their members.
 
@@ -400,8 +400,8 @@ and use regional defaults for the rest.
 - **Journal** — the protagonist's voice; may be incomplete, uncertain, or wrong. Entries
   are authored or generated from consequences, never auto-summarised from state.
 - **Character index** — derived from player knowledge: last seen, known relationships,
-  shared events, current status if known, rumours. Never reveals unlearned facts.
-- **Map** — known, rumoured, and inaccessible destinations; route status only as known.
+  shared events, current status if known, rumors. Never reveals unlearned facts.
+- **Map** — known, rumored, and inaccessible destinations; route status only as known.
 - **Codex** — optional context, short, phase-appropriate; never resolves deliberate
   ambiguity.
 
@@ -440,7 +440,7 @@ A recurring merchant in the slice, extended across the full game.
 | Act I (1220s) | Profits from coastal trade; introduces the player to a Cypriot copper buyer. Arc beat: whether to take a risky open-water contract. |
 | Act II (1205) | Grain prices rise; a palace requisition ruins a contract. Player can lend money, find a new buyer, or advise her to leave. |
 | Act III (1190s) | If helped: family flees to Cyprus with goods and a letter of introduction. If not: household splits; son stays, daughter leaves with nothing. |
-| Act IV (1130) | If helped: her granddaughter runs a workshop in Cyprus and knows the player's local name from a family story. If not: a descendant is a harbour labourer who resents the name. |
+| Act IV (1130) | If helped: her granddaughter runs a workshop in Cyprus and knows the player's local name from a family story. If not: a descendant is a harbor laborer who resents the name. |
 | Act V (1040) | A family account of "the one who came before the ships stopped" appears in a Cypriot song. The player may correct or preserve it. |
 
 This is the shape every major arc should take: a personal stake, a decision, a delayed

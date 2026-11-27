@@ -1,0 +1,19 @@
+{
+  "id": "evt.travel.harbour-talk",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "kind": "storylet",
+  "title": "Talk in the bow",
+  "description": "The crew talks over your head in a language that is almost familiar.",
+  "scope": { "routes": ["route.ugarit-cyprus"] },
+  "conditions": { "all": [] },
+  "priority": 10,
+  "major": false,
+  "scene": "dlg.travel.harbour-talk",
+  "effects": [{ "languageXp": { "language": "lang.cypriot", "amount": 2 } }],
+  "provenance": {
+    "confidence": "plausible",
+    "sources": [],
+    "notes": "Exposure to an unlearnable tongue: the player gains familiarity, not fluency."
+  }
+}

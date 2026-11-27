@@ -1,0 +1,40 @@
+{
+  "id": "dlg.travel.wreckage",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "start": "sight",
+  "nodes": {
+    "sight": {
+      "text": "A hatch cover, a broken oar, and a coil of good rope, all keeping company with nothing.\n\nThe master looks at it for a while and then looks away, which is what people do at sea when there is nothing to be done.",
+      "choices": [
+        {
+          "text": "Take the rope.",
+          "effects": [
+            { "money": 4 },
+            { "flag": "took.wreck-rope" }
+          ],
+          "next": "rope"
+        },
+        {
+          "text": "Mark it and say a word for whoever it was.",
+          "effects": [{ "flag": "marked.wreckage" }],
+          "next": "marked"
+        },
+        { "text": "Say nothing.", "next": null }
+      ]
+    },
+    "rope": {
+      "text": "It is good rope, and the master buys it off you for four shekels before it goes into the boat's locker. Nobody objects, and you do not feel as good about it as you expected.",
+      "choices": [{ "text": "Leave it at that.", "next": null }]
+    },
+    "marked": {
+      "text": "The master nods once. \"We will say the harbor prayer when we land. It is not for them, it is for us, but it is what there is.\"",
+      "choices": [{ "text": "Nod.", "next": null }]
+    }
+  },
+  "provenance": {
+    "confidence": "plausible",
+    "sources": [],
+    "notes": "A maritime vignette; invented."
+  }
+}

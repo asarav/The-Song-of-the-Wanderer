@@ -62,7 +62,7 @@ If the owner can die or disappear, who carries the stakes forward?
 ## Off-screen path
 
 What happens if the player never meets this character? Describe the default resolution and
-how the player might learn of it later (rumour, letter, changed state).
+how the player might learn of it later (rumor, letter, changed state).
 
 ## Knowledge plan
 

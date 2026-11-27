@@ -1,0 +1,40 @@
+{
+  "id": "scenario.slice.sibtu-kept",
+  "seed": "slice-sibtu-kept-001",
+  "newGame": true,
+  "start": {
+    "date": "1230-04-01",
+    "location": "dest.ugarit",
+    "money": 120,
+    "capacity": 20,
+    "languages": { "lang.akkadian": { "xp": 25, "tier": "basic" } },
+    "knownRoutes": ["route.ugarit-cyprus"],
+    "knownDestinations": ["dest.ugarit"],
+    "inventory": [{ "item": "good.olive-oil", "quantity": 2 }]
+  },
+  "commands": [
+    { "type": "chooseDialogue", "choice": 0 },
+    { "type": "chooseDialogue", "choice": 0 },
+    { "type": "chooseDialogue", "choice": 0 },
+    { "type": "talkTo", "character": "char.ugarit.sibtu" },
+    { "type": "chooseDialogue", "choice": 0 },
+    { "type": "chooseDialogue", "choice": 0 },
+    { "type": "chooseDialogue", "choice": 0 },
+    { "type": "advanceTime", "days": 1 },
+    { "type": "chooseDialogue", "choice": 0 },
+    { "type": "chooseDialogue", "choice": 0 },
+    { "type": "sell", "item": "good.sibtu-cloth", "quantity": 1 },
+    { "type": "talkTo", "character": "char.ugarit.sibtu" },
+    { "type": "chooseDialogue", "choice": 1 },
+    { "type": "chooseDialogue", "choice": 0 }
+  ],
+  "assert": [
+    { "path": "knowledge.journalEntries", "contains": "journal.slice.refugee-helped" },
+    { "path": "knowledge.journalEntries", "contains": "journal.slice.sibtu-cloth-kept" },
+    { "path": "player.flags.sibtu.cloth-settled", "equals": true },
+    { "path": "narrative.relationships.char.ugarit.sibtu.trust", "equals": -1 },
+    { "path": "player.money", "equals": 122 },
+    { "path": "player.inventory", "length": 1 },
+    { "path": "narrative.pending", "equals": null }
+  ]
+}

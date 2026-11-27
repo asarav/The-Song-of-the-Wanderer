@@ -1,6 +1,6 @@
 ---
 name: SotW Scenarios and Regression Tests
-description: Author and run headless scenario tests for The Song of the Wanderer — JSON scenarios, assertions, seeds, deterministic replay, and coverage of major paths. Use when adding engine behaviour, content, or fixing a bug.
+description: Author and run headless scenario tests for The Song of the Wanderer — JSON scenarios, assertions, seeds, deterministic replay, and coverage of major paths. Use when adding engine behavior, content, or fixing a bug.
 ---
 
 # Scenarios and regression tests

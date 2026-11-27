@@ -1,0 +1,64 @@
+{
+  "meta": {
+    "saveVersion": 5,
+    "engineVersion": "0.1.0",
+    "contentVersions": {},
+    "seed": "v0-golden",
+    "difficulty": "wanderer",
+    "eventSequence": 0
+  },
+  "calendar": {
+    "day": 45
+  },
+  "world": {
+    "destinationStates": {},
+    "routeStates": {},
+    "migrations": [],
+    "scheduled": []
+  },
+  "player": {
+    "identity": {
+      "selfName": "e-ma-a₂",
+      "presentation": "weathered",
+      "background": [],
+      "localNames": {}
+    },
+    "location": "dest.cyprus",
+    "money": 63,
+    "inventory": [],
+    "capacity": 20,
+    "stamina": 8,
+    "afflictions": [],
+    "transport": "transport.on-foot",
+    "languages": {},
+    "deeds": [],
+    "reputation": {},
+    "obligations": [],
+    "flags": {}
+  },
+  "knowledge": {
+    "entries": [],
+    "knownRoutes": [],
+    "knownDestinations": [],
+    "characterIndex": {},
+    "journalEntries": []
+  },
+  "narrative": {
+    "arcStates": {},
+    "characterStates": {},
+    "relationships": {},
+    "factions": {},
+    "pending": null,
+    "journey": null,
+    "storyletCooldowns": {}
+  },
+  "rng": {
+    "market": 331463759,
+    "encounters": 2375612953,
+    "travel": 826499135,
+    "hazard": 2010909875,
+    "flavour": 969993724,
+    "narrative": 2843158623,
+    "tests": 216692708
+  }
+}

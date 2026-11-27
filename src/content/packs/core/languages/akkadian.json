@@ -1,0 +1,15 @@
+{
+  "id": "lang.akkadian",
+  "pack": "pack.core",
+  "contentVersion": 1,
+  "name": "Akkadian",
+  "family": "Semitic",
+  "script": "cuneiform",
+  "trade": true,
+  "notes": "The language of diplomatic and commercial correspondence across the eastern Mediterranean. Merchants meet it before they meet each other's gods.",
+  "provenance": {
+    "confidence": "documented",
+    "sources": ["Amarna and Ugaritic correspondence, general"],
+    "notes": "Akkadian's use as a diplomatic lingua franca in this period is well attested."
+  }
+}

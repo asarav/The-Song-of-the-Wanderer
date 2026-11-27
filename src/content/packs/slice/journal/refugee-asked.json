@@ -1,0 +1,8 @@
+{
+  "id": "journal.slice.refugee-asked",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "title": "Sibtu's household",
+  "text": "Sibtu weaves and has three more pairs of hands than she has work for. She came in from inland with her sister's children and a cousin's roof over her. She will ask me for something. She has not asked yet.",
+  "provenance": { "confidence": "fictional", "sources": [], "notes": "The refugee thread's setup." }
+}

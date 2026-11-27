@@ -16,8 +16,8 @@ Every entity is modeled in up to four forms:
 |---|---|---|---|---|
 | **Definition** | content pack | no | no | A city's climate profile, a character's wants |
 | **State** | `GameState` | yes | yes | The city is occupied; the character is in Cyprus |
-| **View** | derived at read time | no | **never** | Current prices, available activities, who is present |
-| **Knowledge** | player / character memory | yes | yes | The player was told the city fell; a character believes a rumour |
+| **View** | derived at read time | no | **never** | Current prices, available actions, who is present |
+| **Knowledge** | player / character memory | yes | yes | The player was told the city fell; a character believes a rumor |
 
 Not every entity has all four. A culture has no runtime state. The player has no authored
 definition beyond background and presentation. But no entity may blur the four: a
@@ -57,12 +57,13 @@ Rules:
 | Domain | Authored definitions | Saved state | Derived views |
 |---|---|---|---|
 | Player | background, presentation, starting contacts | identity, location, resources, languages, deeds, reputation, knowledge | journal, map, index, status |
+| Affliction | kind, severity, prose, treatment tags | `{id, sinceDay, source?}` | Status conditions, remedy note |
 | World time | eras, phases, calendars, climate phases, observances | current day, region phases, scheduled events | `DayContext`, season, festival status |
 | Region | geography, ecology, cultures, languages, polities, resources | phase, deltas, control | regional summary, travel conditions |
-| Destination | city/port/village/shrine/camp profile, sites, cast, market, routes | phase, local delta, control, damage | current market, activities, cast, descriptions |
+| Destination | city/port/village/shrine/camp profile, places, cast, market, routes | phase, local delta, control, damage | current market, places, cast, descriptions |
 | Route | corridor, segments, waypoints, modes, hazards, encounter pools | route state, closures, known conditions | available modes, duration, risk, encounters |
 | Waypoint | wonder, battlefield, shrine, ford, pass, camp, ruin, calm place | condition, control, known state | encounter and knowledge options |
-| Mobile group | bandits, pirates, foragers, pastoralists, pilgrims, hermits | position, strength, mood, obligations | encounter behaviour, rumours |
+| Mobile group | bandits, pirates, foragers, pastoralists, pilgrims, hermits | position, strength, mood, obligations | encounter behavior, rumors |
 | Character | identity, culture, languages, position, allegiances, wants, fears, worldview, itinerary, arcs | status, location, age, fame, position, relationships, memory, arc states | present cast, dialogue eligibility, index |
 | Family | name, home, generations, inheritance | active generation, inherited debts/objects/stories | descendant eligibility |
 | Arc | premise, stakes, beats, branches, resolutions, failure, successor | current beat, flags, last advanced, stranded | available beats, arc summary |
@@ -73,11 +74,11 @@ Rules:
 | Cultural work | song, poem, inscription, myth, motif, design, performance | variants and knowledge | what the player can hear, read, or repeat |
 | Climate / ecology | climate bands, seasons, flora, fauna, hazards, resources | authored climate phase | weather flavour, availability, travel effects |
 | Economy | goods, currency/units, production/consumption profiles, contracts, transport | market state, contracts, cargo | prices, availability, terms |
-| Object | token, seal, letter, relic, tool, trade good | holder, location, condition, knowledge | what the player can show, use, or recognise |
-| Event | world/regional/local/character/storylet envelope | scheduled, fired, cancelled | eligibility, propagation trace |
+| Object | token, seal, letter, relic, tool, trade good | holder, location, condition, knowledge | what the player can show, use, or recognize |
+| Event | world/regional/local/character/storylet envelope | scheduled, fired, canceled | eligibility, propagation trace |
 | Fact | none; facts are asserted by events | objective assertions with validity windows | current truth for simulation |
-| Knowledge | none; learned at runtime | player entries, rumours, character beliefs | journal, map, index, dialogue conditions |
-| Meta | engine and pack versions | seed, RNG streams, save version, command log | diagnostics |
+| Knowledge | none; learned at runtime | player entries, rumors, character beliefs | journal, map, index, dialogue conditions |
+| Meta | engine and pack versions | seed, difficulty, RNG streams, save version, command log | diagnostics, chosen road |
 
 ## 4. Player
 
@@ -96,12 +97,27 @@ type PlayerState = {
   money: number
   inventory: CargoEntry[]
   capacity: number
+  stamina: number                     // 0..8; one light-survival reserve
+  afflictions: AfflictionState[]      // lasting authored conditions, not meters
   transport: TransportId
   languages: Record<LanguageId, { xp: number; tier: LanguageTier }>
   deeds: DeedRecord[]
   reputation: Record<ReputationKey, ReputationBand>
   obligations: ObligationId[]
   flags: Record<string, boolean | number | string>   // small local state only
+}
+
+type CargoEntry = {
+  item: GoodId
+  quantity: number
+  protected?: boolean
+  costBasis?: number | null  // total silver paid; omitted = zero, null = pre-v2 unknown
+}
+
+type AfflictionState = {
+  id: AfflictionId                  // aff.thirst, aff.wound, aff.fever, ...
+  sinceDay: Day
+  source?: string                   // the scene or road that caused it
 }
 ```
 
@@ -138,7 +154,32 @@ reputation number.
 The journal, map, character index, codex, and dialogue eligibility are views over
 knowledge. They never read the fact ledger directly.
 
-## 5. Places: regions, destinations, sites
+### 4.4 Afflictions
+
+An affliction is a **discrete authored condition**, not a survival meter. It has a kind
+(`thirst`, `hunger`, `wound`, `fever`, `poison`, `curse`), a severity (`light` or
+`grave`), and one or more **treatment tags** (`town`, `rest`, `water`, `food`, `healer`,
+`antidote`, `shrine`). The state stores only `{id, sinceDay, source?}`; the definition
+lives in the core pack and the text is read from content.
+
+A run also stores its chosen pressure in `meta.difficulty` (`gentle`, `wanderer` or
+`perilous`). It changes the opening purse and reserve and contributes one signed road-risk
+factor; it does not change the treatment model or fork the hazard rules. See ADR-0016.
+
+Scenes apply a treatment tag; they never remove an affliction directly. This keeps the
+remedy path in content and lets a later quest add a new tag or a new cure without changing
+the save shape. A town day supplies `town`, Rest supplies `rest` and `town`, and an
+authored healer scene supplies `healer`. A grave condition can therefore outlive a rest if
+its only cure is a healer, antidote or shrine. The Status screen lists active conditions
+and their authored remedy note.
+
+Definitions also carry optional `onset`, `daily` and `recovery` prose. A derived day report
+compares the conditions before and after a calendar move and uses those lines to say what
+arrived, what is still present and what lifted. The report is never saved and does not add
+a condition timer; "worse" means a new condition arrived, not that an untreated one lost
+severity. See `design/afflictions-and-road-hazards.md` for the daily-report rules.
+
+## 5. Places: regions, destinations, and the places within them
 
 ### 5.1 Region
 
@@ -156,12 +197,30 @@ type RegionDef = {
   destinations: DestinationId[]
   routes: RouteId[]
   phases: RegionPhaseId[]
+  /** Schematic 0–100 center and radius for the world sketch. Presentation, not geography. */
+  mapPosition?: { x: number; y: number }
+  mapRadius?: number
+  /** Schematic ridges, rivers and border lines for the regional and world sketches. */
+  mapFeatures?: MapFeatureDef[]
   provenance: Provenance
 }
 ```
 
 Regions own phase tables and world-event hooks. They do not own the definition of a
 culture or language; they reference shared entities.
+
+`mapFeatures` are schematic polylines — a ridge (`mountains`), a `river`, or a `border`
+line. They are unnamed presentation data: the shape of a sketch, not a geographical or
+political claim, and the world sketch draws them only for a region that is not fogged.
+
+```ts
+type MapFeatureDef = {
+  id: string
+  kind: 'river' | 'mountains' | 'border'
+  /** Two or more schematic points, 0–100 on each axis. */
+  points: { x: number; y: number }[]
+}
+```
 
 ### 5.2 Destination
 
@@ -190,12 +249,16 @@ type DestinationDef = {
     ambience: AmbientAudioProfileId
   }
   localOverrides?: LocalOverride[]
-  sites: SiteId[]
+  /** Schematic 0–100 position for the map sketch. Presentation data, not geography. */
+  mapPosition?: { x: number; y: number }
   institutions: FactionId[]
   cast: CharacterId[]
-  activities: ActivityId[]
+  /** The market, the harbor, the gate: places within this destination. */
+  places: PlaceId[]
   market: MarketProfileId
   routes: RouteId[]
+  /** The place after dark: presentation, plus an authored encounter pool. */
+  night?: { art?: AssetId; text: string; events: EncounterEntry[] }
   eventPools: EventPoolId[]
   phaseStates: DestinationPhaseState[]
   assets?: { art?: AssetId[]; audio?: AssetId[] }
@@ -207,15 +270,65 @@ The profile list is how a city carries climate, culture, language, currency, arc
 art, religion, literature, and music without duplicating them. A local override is for a
 real difference, not a copy.
 
+A place is the unit of arrival and presence: its own hero picture, description, people,
+and actions. The destination owns the cast; a place's `cast` is an authored subset of it.
+A character present at the destination but assigned to no place appears under **Elsewhere
+in the port**, so nobody vanishes. This is content-only at first: destination presence is
+runtime state, place assignment is authored, and no save field changes.
+
+```ts
+type PlaceDef = {
+  id: PlaceId
+  name: string
+  kind: 'market' | 'harbour' | 'palace' | 'temple' | 'quarter' | 'workshop' | 'archive'
+  description: string
+  art?: AssetId
+  /** Authored subset of the destination's cast. One place per character. */
+  cast?: CharacterId[]
+  /** Verbs this place actually affords. Empty means no buttons, not a placeholder. */
+  actions?: ('trade' | 'passage')[]
+  /** Schematic 0–100 position on the local sketch. Presentation only. */
+  mapPosition?: { x: number; y: number }
+}
+```
+
+A place is a noun: the market, the harbor. An **action** is a verb it affords: trade at the
+market, arrange passage at the harbor. A place with no implemented action shows none.
+Place assignment and action lists are validated against the destination; they are not
+saved and do not make presence dynamic.
+
+The `night` band is content, not state: it supplies the picture and passage shown when a
+day ends, and a weighted pool from which at most one minor event may be drawn. The night
+is never persisted; a save opened in the morning opens in daylight, and a night event's
+consequences are ordinary effects, journal entries and scheduled follow-ups.
+
+A destination's `places` may each carry a `mapPosition` for the local sketch. They are
+presentation data like the destination's own position: a schematic placement, not a
+survey. A place without one is placed on a fallback ring.
+
+**Map views.** `deriveLocalMap`, `deriveRegionalMap` and `deriveWorldMap` are pure read
+models over knowledge. The local sketch needs only the current destination. The regional
+sketch shows known places in the region the player is in (or traveling from) and only
+crossings that stay inside it. The world sketch shows every known place and crossing, and
+every authored region shape: an unvisited region is drawn as fog and its name is omitted
+until a destination in it is known. Fog is derived, never authored or saved, and it cannot
+reveal a place the protagonist has not heard of. Terrain and border lines come from the
+same authored `mapFeatures` and follow the same rule: only regions the protagonist knows
+show them. The local sketch draws a footprint for each place in the quarter.
+
 ### 5.3 Phase states and deltas
 
 ```ts
 type DestinationPhaseState = {
   phase: RegionPhaseId
   intro: TextRef
-  sites: SiteId[]
-  activities: ActivityId[]
-  cast: { character: CharacterId; presence: 'resident' | 'visitor' | 'absent' }[]
+  places: PlaceId[]
+  /** A future dynamic model may move a person between places; the slice is authored. */
+  cast: {
+    character: CharacterId
+    presence: 'resident' | 'visitor' | 'absent'
+    place?: PlaceId
+  }[]
   market: { available: GoodId[]; modifiers: PriceModifier[] }
   routes: RouteId[]
   eventPools: EventPoolId[]
@@ -254,6 +367,7 @@ type RouteDef = {
   segments: RouteSegment[]
   waypoints: WaypointId[]
   modes: TravelMode[]
+  // Each mode may declare exertion and provisions; see §6.4.
   requirements: RouteRequirement[]
   seasonality: SeasonRule[]
   hazards: HazardId[]
@@ -297,7 +411,7 @@ type MobileGroupDef = {
 }
 ```
 
-Bandits and pirates prey on travellers. Foragers and pastoralists are communities with
+Bandits and pirates prey on travelers. Foragers and pastoralists are communities with
 their own territories and rights; they are not generic hazards. A group may be linked to a
 faction, but it is not automatically a faction.
 
@@ -320,6 +434,35 @@ Calm, meditation, philosophising, songs, and small kindnesses are first-class st
 not filler between fights. They are authored and optional, and they do not become a
 survival meter.
 
+### 6.4 What a passage asks
+
+```ts
+type TravelMode = {
+  id: TravelModeId
+  name: string
+  days: number
+  baseCost: number
+  capacity: number
+  description: string
+  exertion?: number       // reserve spent at departure; default max(1, ceil(days / 2))
+  provisions?: number     // measures of good.grain removed at departure
+  hazardModifier?: number // added to the route's derived hazard chance
+}
+```
+
+Exertion and provisions are saved only through the journey that already records its mode;
+the player's reserve is persisted, the passage's price is authored. A route may name an
+`exhaustionDialogue` for the return when reserve reaches zero on the road. See ADR-0014.
+
+A route may also author a `hazard`: a base percent chance and a weighted list of scene
+events. The chance is **derived**, never stored: route risk, mode, destination language,
+known destinations, local trust, active afflictions, low reserve, route state, and local
+pressures (`war`, `famine`, `disease`, `unrest`) move it, as does the chosen road's signed
+shift. The roll uses its own `hazard` RNG stream and adds at most one authored scene to the
+journey. The outcome table is
+content, so a rescue by a caravan, a patrol, a healer, a setback or a wreck can be added
+without a new rule. See ADR-0015.
+
 ## 7. Time: calendar, climate, observance, and events
 
 ### 7.1 Layers
@@ -334,7 +477,7 @@ survival meter.
 | Event | yes, scheduled or conditional | Grain crisis, festival, eclipse report |
 | Weather | deterministic flavour | A hot wind, a sudden squall |
 
-Climate change is authored, not simulated. Weather is local colour derived from climate
+Climate change is authored, not simulated. Weather is local color derived from climate
 and seed; it does not rewrite history. Major environmental change belongs in a phase or a
 world event.
 
@@ -426,11 +569,11 @@ type CharacterState = {
 
 ### 8.3 Position, fame, and allegiance
 
-- **Position** is social and institutional: household head, temple scribe, harbour
+- **Position** is social and institutional: household head, temple scribe, harbor
   official, guest, exile. It can change by phase or event.
 - **Fame** is not one number. A person may be famous in a city, unknown in a village, and
   notorious in one faction. `FameKey` combines region, faction, and stratum.
-- **Allegiance** is a set of ties and obligations, not a team colour. A character can be
+- **Allegiance** is a set of ties and obligations, not a team color. A character can be
   loyal to a household, owe a temple, fear a court, and still help the player.
 - **Worldview** is authored: values, prejudices, taboos, and what they think is wrong with
   the world. It conditions dialogue and reactions.
@@ -490,7 +633,7 @@ type ArcState = {
 
 The state says where the arc is, who owns it, and whether it has stalled. The definition
 says what can happen next and how it can end. A beat can resolve off-screen and be
-delivered later as a letter, rumour, changed status, or inherited obligation.
+delivered later as a letter, rumor, changed status, or inherited obligation.
 
 ## 10. Factions and institutions
 
@@ -594,7 +737,8 @@ false story about the protagonist. It can be learned, misquoted, translated, or 
 - **Goods** have categories, substitutes, weight, fragility, perishability, and tags.
 - **Currency** is a convenience term for units of account and exchange. Do not assume
   coinage; use weighed metal, barter units, or palace accounting where the period and place
-  require it.
+  require it. The player reads **shekels** for money and **minas** for cargo; the stored
+  numbers stay abstract integers, and `src/ui/units.ts` is the only place they are named.
 - **Markets** are authored bands plus phase, faction, and event modifiers. No full economic
   simulation.
 - **Contracts** are promises with deadlines, parties, and failure states.
@@ -602,7 +746,7 @@ false story about the protagonist. It can be learned, misquoted, translated, or 
 - **Objects** have a holder, a location, a condition, and a knowledge path. A seal, letter,
   token, or relic must not be in two places at once.
 
-## 13. Knowledge, rumour, and deeds
+## 13. Knowledge, rumor, and deeds
 
 Three stores, never conflated:
 
@@ -611,7 +755,7 @@ Three stores, never conflated:
    and what they believe.
 3. **Character memory** — coarse beliefs for characters who matter.
 
-A rumour is a knowledge delivery with delay, distortion, and a source. It is presented as
+A rumor is a knowledge delivery with delay, distortion, and a source. It is presented as
 reported speech, never as narration. A correction is an authored event or scene, not an
 automatic overwrite.
 
@@ -623,7 +767,7 @@ it, and what it changed. The journal, index, map, and dialogue read the knowledg
 | Data | Definition | Saved state | Derived | Notes |
 |---|---|---|---|---|
 | Region | yes | phase, control, deltas | summary, conditions | phases are authored |
-| Destination | yes | phase, delta, control, damage | current market, cast, activities | display state never saved |
+| Destination | yes | phase, delta, control, damage | current market, cast, places | display state never saved |
 | Route | yes | state, closures, known conditions | duration, risk, modes | route state is authored by events |
 | Character | yes | status, location, fame, position, memory | presence, dialogue eligibility | itinerary is definition |
 | Arc | yes | current beat, flags, stranded | available beats | off-screen resolution allowed |
@@ -631,12 +775,12 @@ it, and what it changed. The journal, index, map, and dialogue read the knowledg
 | Culture / language / religion | yes | local phase only | address, comprehension, observance | shared, referenced |
 | Player | background only | identity, resources, deeds, reputation, knowledge | journal, map, index | no `isDivine` |
 | Fact | no | asserted facts | truth queries | source event required |
-| Knowledge | no | entries, rumours, beliefs | read models | never leaks truth |
+| Knowledge | no | entries, rumors, beliefs | read models | never leaks truth |
 
 Rules:
 
 - Untouched regions derive from the timeline. Only deltas are saved.
-- A derived value in a save is a bug, not an optimisation.
+- A derived value in a save is a bug, not an optimization.
 - A state change has a source event or an authored initial condition.
 - Content versions are recorded for diagnosis; save versions are migrated.
 - Saves are small because the world is authored, not simulated.
@@ -670,14 +814,14 @@ Rules:
 | City as a bag of strings | Cannot validate, translate, or evolve | Composition of referenced profiles |
 | Route as a bare edge | The journey has no places or life | Corridor with waypoints and pools |
 | One global fame score | Nobody is famous everywhere | Fame keyed by region/faction/stratum |
-| Allegiance as a team colour | People have conflicting ties | Ties + obligations + fear + interest |
+| Allegiance as a team color | People have conflicting ties | Ties + obligations + fear + interest |
 | Faction as a monolith | Courts and temples have currents | Sub-factions and internal tendencies |
 | Culture as costume | Essentialist and unhistorical | Local, plural, phase-aware profile |
 | Date as world mood | Erases regional difference | Derived `DayContext` per region |
 | Character as quest dispenser | No life beyond the player | Wants, fears, position, itinerary, memory |
 | Arc as a linear script | Cannot survive absence or death | Graph with branches, failure, successor |
 | Storing derived state | Saves rot and patches fail | Derive from definition + state + date |
-| Rumour as narration | Destroys truth/knowledge split | Reported speech with source and reliability |
+| Rumor as narration | Destroys truth/knowledge split | Reported speech with source and reliability |
 | `isDivine` | Resolves the mystery | Interpretations, claims, ambiguity |
 
 ## 17. New entity checklist
@@ -701,7 +845,7 @@ Rules:
 |---|---|
 | M1 | Envelope, `GameState`, calendar, RNG, save version |
 | M2 | Player, destination, route, character, market, dialogue basics |
-| M5 | Full time model, phases, `DayContext`, facts, propagation, rumours |
+| M5 | Full time model, phases, `DayContext`, facts, propagation, rumors |
 | M6 | Characters, fame, position, reaction rules, arcs, lineages, memory |
 | M7 | Culture, language, religion, cultural works, factions, economy, currency |
 | M8 | Studio inspection, coverage, continuity, data-completeness checks |
@@ -711,3 +855,37 @@ Rules:
 
 The slice implements a subset. It must use the same shape, so scale work is extension,
 not replacement.
+
+## Appendix A — Phase 0 reconciliations (adopted in M1)
+
+These were the seven conflicts between the design documents and the engine. Each is now
+the implemented behavior; the documents and the code agree.
+
+1. **Relationship dimensions.** `relationship` and `factionStanding` atoms take an optional
+   `dimension`. Defaults: `trust` for people, `standing` for factions. Dimensions are
+   `trust, affection, obligation, fear, respect` and `trust, favor, obligation, standing,
+   suspicion`. Values clamp to `[-5, 5]` and a clamp emits `EffectClamped`.
+2. **Deeds.** A `deed` effect records `{id, kind, subject, witnesses, consequence}` with the
+   day and place. `flag` remains small local state; deeds are the record of what was seen
+   and what it changed.
+3. **Knowledge write path.** A `knowledge` effect writes `{fact, source, reliability,
+   belief}` into `knowledge.entries`. Player-facing models read only knowledge, never the
+   world (ADR-0004).
+4. **RNG streams.** Seven named streams: `market`, `encounters`, `travel`, `hazard`,
+   `flavour`, `narrative`, `tests`. Each is seeded by hashing `${seed}:${stream}`, so adding a stream
+   never shifts another stream's sequence.
+5. **BCE arithmetic.** One month table (twelve 30-day months plus five epagomenal days),
+   `dateToDay`/`dayToDate`, and comparisons on the day counter — never on the display year.
+6. **`save`/`load` are not commands.** They live in `src/engine/save`; `serialize` takes an
+   injected `savedAt`, because the engine has no clock.
+7. **Screens and tooling.** The screen list includes language and faction overviews. The
+   scenario format uses `narrative.characterStates.<id>.status` paths and numeric choice
+   indices.
+
+Two additions came out of implementation and are recorded here rather than in a new ADR:
+
+- **`onArrival` on a destination.** Arrival scenes are authored, not random: `newGame` and
+  `arrive()` fire the destination's `onArrival` event when it is eligible, and the event's
+  `once` cooldown lives with every other storylet's. See ADR-0007.
+- **`dialogueByDestination` on a character.** A traveler who is met in two places gets a
+  different conversation in each; `talkTo` prefers the current destination's graph.

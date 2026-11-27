@@ -1,6 +1,6 @@
 # M6 — Characters, arcs, and lineages
 
-**Status:** Planned · **Depends on:** M5 · **Architecture:** `NARRATIVE_SYSTEMS.md`
+**Status:** Blocked by Gate A and M5 · **Depends on:** M5 · **Architecture:** `NARRATIVE_SYSTEMS.md`
 **Goal:** named people persist, change, move, die, and are remembered across generations,
 with authored arcs that advance whether or not the player is present.
 
@@ -27,9 +27,9 @@ with authored arcs that advance whether or not the player is present.
 
 - [ ] `ItineraryEntry` with reasons, date ranges, routes, conditions.
 - [ ] `whereIs(character, day)` and `whoIsAt(destination, day)` pure queries.
-- [ ] Travelling state with route and arrival date.
+- [ ] Traveling state with route and arrival date.
 - [ ] Displacement via migration records, not teleport.
-- [ ] Tests: resident, visitor, travelling, overlapping entries (rejected).
+- [ ] Tests: resident, visitor, traveling, overlapping entries (rejected).
 
 ### M6-T03 — Relationships and obligations
 
@@ -80,7 +80,7 @@ with authored arcs that advance whether or not the player is present.
 - [ ] `StoryletDef` pools, tags, weights, cooldowns, once-only.
 - [ ] Director avoids tone repetition and recent repeats.
 - [ ] Storylets cannot alter phase, control, or major status.
-- [ ] Pools for arrival, market, harbour/road, temple, evening per destination.
+- [ ] Pools for arrival, market, harbor/road, temple, evening per destination.
 - [ ] Tests: cooldown, weighting, pool exhaustion, tag diversity.
 
 ### M6-T09 — Character memory

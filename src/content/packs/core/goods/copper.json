@@ -1,0 +1,17 @@
+{
+  "id": "good.copper",
+  "pack": "pack.core",
+  "contentVersion": 1,
+  "name": "Copper",
+  "art": "art.good.copper",
+  "category": "metal",
+  "weight": 4,
+  "description": "Oxhide ingots, heavy as a sleeping dog, stacked in the yard.",
+  "provenance": {
+    "confidence": "documented",
+    "sources": [
+      "Late Bronze Age oxhide ingots and Cypriot copper, general"
+    ],
+    "notes": "Copper is the island's export; ingot weights are abstracted to carrying weight."
+  }
+}

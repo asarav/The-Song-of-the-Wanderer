@@ -1,0 +1,93 @@
+[
+  {
+    "id": "ugarit-arrival",
+    "title": "Ugarit \u2014 first morning",
+    "description": "Opening answered; 120 silver, two jars of oil, every Ugarit place open.",
+    "scenario": "slice-ugarit-day",
+    "steps": 3
+  },
+  {
+    "id": "ugarit-market",
+    "title": "Ugarit \u2014 grain bought",
+    "description": "After buying two grain; use this to inspect market copy and the first price lesson.",
+    "scenario": "slice-ugarit-day",
+    "steps": 4
+  },
+  {
+    "id": "sibtu-offer",
+    "title": "Sibtu \u2014 at the loom",
+    "description": "Sibtu's first conversation is open; choose the work-and-cloth branch.",
+    "scenario": "slice-sibtu-paid",
+    "steps": 4
+  },
+  {
+    "id": "sibtu-paid",
+    "title": "Sibtu \u2014 cloth sold, paid in full",
+    "description": "The paid ending; check the relationship, journal, and closing beat.",
+    "scenario": "slice-sibtu-paid",
+    "steps": 14
+  },
+  {
+    "id": "sibtu-kept",
+    "title": "Sibtu \u2014 cloth kept",
+    "description": "The kept-cloth ending, for comparison with the paid branch.",
+    "scenario": "slice-sibtu-kept",
+    "steps": 14
+  },
+  {
+    "id": "palace-errand",
+    "title": "Palace \u2014 errand taken",
+    "description": "Hannu's errand is in hand and the palace knows the name.",
+    "scenario": "slice-palace-errand",
+    "steps": 9
+  },
+  {
+    "id": "crossing-journey",
+    "title": "Crossing \u2014 first encounter",
+    "description": "Open-water passage paid; a journey scene is waiting on the boat.",
+    "scenario": "slice-crossing",
+    "steps": 7
+  },
+  {
+    "id": "cyprus-arrival",
+    "title": "Cyprus \u2014 arrival",
+    "description": "Coastal passage finished with cargo intact; Shipti's inn is waiting.",
+    "scenario": "slice-cargo-hold",
+    "steps": 7
+  },
+  {
+    "id": "cyprus-market",
+    "title": "Cyprus \u2014 the copper yard",
+    "description": "Arrival answered at the Cypriot harbor; market and Kinyras are available.",
+    "scenario": "slice-cyprus-return",
+    "steps": 2
+  },
+  {
+    "id": "sibtu-news",
+    "title": "Cyprus \u2014 word from Ugarit",
+    "description": "Sibtu's five shekels were repaid; the delayed news has reached Cyprus and is in the journal.",
+    "scenario": "slice-sibtu-news",
+    "steps": 26
+  },
+  {
+    "id": "cyprus-counter",
+    "title": "Cyprus \u2014 counter-offer closed",
+    "description": "Haggled Kinyras to thirty-six; the copper deal, deed and closing letter are recorded.",
+    "scenario": "slice-cyprus-counter",
+    "steps": 9
+  },
+  {
+    "id": "cyprus-letter",
+    "title": "Cyprus \u2014 closing letter",
+    "description": "The slice endpoint: copper deal agreed, Shipti's letter taken, journal complete.",
+    "scenario": "slice-cyprus-return",
+    "steps": 11
+  },
+  {
+    "id": "palace-seal",
+    "title": "Cyprus \u2014 palace seal shown",
+    "description": "The palace seal branch at Kinyras' yard; check faction and knowledge effects.",
+    "scenario": "slice-palace-seal",
+    "steps": 5
+  }
+]

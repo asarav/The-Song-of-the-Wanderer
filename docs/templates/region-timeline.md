@@ -28,7 +28,7 @@ market, routes, or cast there.
 
 ## 2. World-event hooks
 
-| World event | Enters region | Local consequence | Rumour delay | Notes |
+| World event | Enters region | Local consequence | Rumor delay | Notes |
 |---|---|---|---|---|
 | | | | | |
 

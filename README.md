@@ -11,7 +11,7 @@ and relationship systems. No 3D, no open-world combat, no live AI-generated stor
 ## Status
 
 **M0 complete. The full production plan now covers M0–M19.** The repository has its
-documentation system, agent skills, toolchain, and a greybox app shell. There is no game
+documentation system, agent skills, toolchain, and a graybox app shell. There is no game
 yet. M1 builds the deterministic engine spine; M5–M8 build the scale layer (world
 timeline, character arcs, society/economy, tooling) before regional expansion begins.
 
@@ -28,7 +28,7 @@ pnpm check        # typecheck + lint + tests + content lint
 
 Requires Node 22+ and pnpm 10+.
 
-## How this repository is organised
+## How this repository is organized
 
 ```
 AGENTS.md            entry point for any contributor or agent
@@ -51,6 +51,6 @@ Start with [`AGENTS.md`](AGENTS.md), then [`docs/STATUS.md`](docs/STATUS.md). Th
 is designed for short, resumable sessions and handoffs between agents: status, decisions,
 and task state live on disk, not in conversation memory.
 
-## Licence
+## License
 
 TBD.

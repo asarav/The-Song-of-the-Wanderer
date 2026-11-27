@@ -1,0 +1,94 @@
+{
+  "id": "dlg.cyprus.copper-offer",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "speaker": "char.cyprus.kinyras",
+  "start": "offer",
+  "nodes": {
+    "offer": {
+      "text": "He has the board under his arm and the count finished.\n\n\"Grain, is it? The yard is short and the boats are late. I will give you twenty-four shekels for the measure and not ask where it came from. The copper stays mine; carry it home and you can argue with the harbor dues instead, and the dues will win.\"",
+      "choices": [
+        {
+          "text": "Agreed.",
+          "conditions": { "itemAtLeast": { "item": "good.grain", "quantity": 1 } },
+          "unavailableNote": "You have no grain to weigh, and he does not trade in promises.",
+          "effects": [
+            { "items": { "item": "good.grain", "quantity": -1 } },
+            { "money": 24 },
+            { "faction": { "faction": "faction.ugarit.merchants", "dimension": "trust", "delta": 1 } },
+            { "journal": { "entry": "journal.slice.copper-deal" } },
+            {
+              "deed": {
+                "id": "deed.copper-agreed",
+                "kind": "traded",
+                "subject": "good.grain",
+                "witnesses": ["char.cyprus.kinyras"]
+              }
+            }
+          ],
+          "next": "done"
+        },
+        {
+          "text": "Thirty-six, or I carry it to the yard myself.",
+          "conditions": {
+            "all": [
+              { "relationship": { "character": "char.cyprus.kinyras", "dimension": "respect", "atLeast": 1 } },
+              { "itemAtLeast": { "item": "good.grain", "quantity": 1 } }
+            ]
+          },
+          "unavailableNote": "He does not respect you enough to hear a counter-offer.",
+          "effects": [
+            { "items": { "item": "good.grain", "quantity": -1 } },
+            { "money": 36 },
+            {
+              "relationship": { "character": "char.cyprus.kinyras", "dimension": "respect", "delta": 1 }
+            }
+          ],
+          "next": "hard"
+        },
+        { "text": "Not today.", "next": null }
+      ]
+    },
+    "done": {
+      "text": "\"Then we are both richer and neither of us is happy. That is a good deal.\" He makes a mark on the board and does not offer to write anything else down.",
+      "choices": [
+        {
+          "text": "Count the silver.",
+          "effects": [
+            { "schedule": { "event": "evt.cyprus.return-letter", "inDays": 2 } },
+            { "knowledge": { "fact": "kinyras.buys-at-yard-price", "source": "witnessed", "reliability": 0.9 } }
+          ],
+          "next": null
+        }
+      ]
+    },
+    "hard": {
+      "text": "\"Thirty-six.\" He says it without heat, the way a man says a number he has already decided on. \"You argue like a man who has been cheated before. Good. Come back when you have more to sell.\"",
+      "choices": [
+        {
+          "text": "Take the silver.",
+          "effects": [
+            { "faction": { "faction": "faction.ugarit.merchants", "dimension": "trust", "delta": 1 } },
+            { "journal": { "entry": "journal.slice.copper-deal" } },
+            {
+              "deed": {
+                "id": "deed.copper-agreed",
+                "kind": "traded",
+                "subject": "good.grain",
+                "witnesses": ["char.cyprus.kinyras"]
+              }
+            },
+            { "knowledge": { "fact": "kinyras.buys-at-yard-price", "source": "witnessed", "reliability": 0.9 } },
+            { "schedule": { "event": "evt.cyprus.return-letter", "inDays": 2 } }
+          ],
+          "next": null
+        }
+      ]
+    }
+  },
+  "provenance": {
+    "confidence": "fictional",
+    "sources": [],
+    "notes": "The trade beat; invented. Copper by weight is period-plausible."
+  }
+}

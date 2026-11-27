@@ -19,7 +19,7 @@ Historically appropriate modes only. No universal vehicle.
 
 ## Requirements
 
-- Knowledge of the route (how learned: rumour, guide, map, companion):
+- Knowledge of the route (how learned: rumor, guide, map, companion):
 - Language / interpreter:
 - Faction permission, toll, or letter:
 - Supplies and season:

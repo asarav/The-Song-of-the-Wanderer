@@ -1,0 +1,17 @@
+{
+  "id": "good.incense",
+  "pack": "pack.core",
+  "contentVersion": 1,
+  "name": "Incense resin",
+  "art": "art.good.incense",
+  "category": "aromatic",
+  "weight": 1,
+  "description": "Resin in a stoppered jar. Temples buy it; so do households for a birth or a burial.",
+  "provenance": {
+    "confidence": "strongly-supported",
+    "sources": [
+      "Red Sea and Arabian aromatics trade, general"
+    ],
+    "notes": "Aromatics moved long distances; specific species and sources are uncertain."
+  }
+}

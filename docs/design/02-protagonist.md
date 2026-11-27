@@ -5,7 +5,7 @@ Source: spec §5, §13.6, §17.3. This file overrides improvisation.
 
 ## 1. Premise
 
-A travelling merchant in the Late Bronze Age. Not a chosen ruler, not a warrior, not a
+A traveling merchant in the Late Bronze Age. Not a chosen ruler, not a warrior, not a
 priest. Their trade is the key that opens ordinary and elite doors: grain with a farmer,
 copper with a smith, a sealed letter with an official, a story with a performer.
 
@@ -24,7 +24,7 @@ hunger, and grief. The game never supplies a definitive explanation of their nat
    being as a deity elsewhere. Similar domains do not imply identity.
 5. **Recognition must have a mechanism.** If someone knows the protagonist, the story
    must supply a plausible route: a story, a token, a family account, a resemblance, a
-   rumour, a mistake. Never teleport knowledge.
+   rumor, a mistake. Never teleport knowledge.
 6. **The player chooses their interpretation.** Dialogue offers embrace, rejection,
    investigation, and indifference. None is canonically correct.
 7. **The protagonist has a voice.** Choices express temperament; they are not blank
@@ -32,9 +32,10 @@ hunger, and grief. The game never supplies a definitive explanation of their nat
 
 ## 3. Player-shaped identity
 
-At the start the player sets:
+At the start:
 
-- **Name** — what people call them here. Not a cosmic true name.
+- **Name** — fixed to the tablet form `e-ma-a₂`. The player does not choose it; the names
+  people give them are acquired in play, never entered at a menu. Not a cosmic true name.
 - **Presentation** — clothing, grooming, bearing; affects first impressions, never gates
   content.
 - **Background** — two or three modest details (a home port, a former partner, a debt, a
@@ -52,7 +53,7 @@ table:
 | Kind | Example shape | Rule |
 |---|---|---|
 | Epithet | "the one who arrives" | Coined by a community; linguistically researched |
-| Title | a ruler's grant | Tied to a specific favour and court |
+| Title | a ruler's grant | Tied to a specific favor and court |
 | Story-name | a figure in an old tale | The tale predates the protagonist's apparent life |
 | Mistaken name | a god or hero's name | Locals disagree about the identification |
 | Family name | inherited from someone who helped them | Descendants use it without meeting the protagonist |
@@ -68,13 +69,41 @@ Rules:
   (`player.identity.localNames`). Use `flags` only for small local conditions, not as the
   primary record of identity or accomplishment. See `docs/DATA_MODEL.md` §4.
 
+### 4.1 The slice's three names (canon)
+
+These are **separate local interpretations, never a translation table** (rule 4 above).
+
+| Where | Name | Kind | Provenance |
+|---|---|---|---|
+| Ugarit, the Akkadian scribal world | **Ninshubur** | story-name; a messenger's name out of older Sumerian and Akkadian texts | theonym `documented`; its use as a story-name is fiction |
+| Cyprus and the Aegean, on tablets | **e-ma-a₂** | the display name: the Linear B tablet spelling | spelling `documented`; the person is fiction |
+| Later Aegean tradition | **Hermes** | reserved; never used in the slice | identification `strongly-supported`, attributed only |
+
+- **In-game display is the tablet name, written in its own signs.** Wherever the interface
+  prints it — the new-run masthead, the Status screen — it shows `𐀁𐀔𐀀 (e-ma-a₂)`: the
+  Linear B signs with the transliteration in parentheses. The transliteration stays what
+  the engine stores and what prose uses. The reconstructed linguistic form (*Ermahas* /
+  *Hermahas*) remains a scholarly gloss for the dossier and the codex; no character in
+  1230 BCE says it.
+- **Written forms.** The tablet spelling is `𐀁𐀔𐀀` in Linear B; Ninshubur is `𒀭𒎏𒋚`
+  (dNIN.ŠUBUR); later Greek writes Hermes as `Ἑρμῆς`; the city is `𐎜𐎂𐎗𐎚` (ugrt) in its
+  own alphabet. Each appears with its reading in parentheses — in the codex, and, for the
+  name and the city heading, in the interface (see `docs/CONTENT.md`, *Words in their own
+  script*).
+- No line asserts that the tablet name is the classical Hermes. The codex may say
+  "read as…"; dialogue may not.
+- Stable ASCII id: `name.aegean.ema-a2`. Fixtures and tooling key the name by that id;
+  `player.identity.selfName` holds the canon display form, and the player never enters it.
+- The mundane reading always survives: a shipwrecked traveler, a merchant with a
+  memorable face, a jar label, a hymn learned from a trader.
+
 ## 5. Longevity mechanics
 
 - Time advances in days; the protagonist's apparent age changes only at authored
   thresholds.
-- After roughly the first decade, visible ageing stops. This is noticed only by people
+- After roughly the first decade, visible aging stops. This is noticed only by people
   who have a reason to compare memories.
-- Most people do not recognise them across decades. Recognition is authored, rare, and
+- Most people do not recognize them across decades. Recognition is authored, rare, and
   earned.
 - Recurring characters age normally. Descendants inherit stories, debts, and grudges.
 - The journal records long gaps explicitly; no unexplained time skips.
@@ -89,7 +118,7 @@ How much the player can infer, by phase. Never more than this:
 |---|---|
 | Prologue | One recognition that cannot be explained; one dream or symbol |
 | Act I | Contradictory local names; a story that seems to describe them; a stranger's odd courtesy |
-| Act II | Someone recognises them after decades; a temple specialist is unsettled; a rumour precedes them |
+| Act II | Someone recognizes them after decades; a temple specialist is unsettled; a rumor precedes them |
 | Act III | A community's story places them at an event they never attended; a god seems to notice them |
 | Act IV | Descendants know them; different traditions claim them; the protagonist's own memory is questioned |
 | Act V | Direct encounters with apparent gods; the player's interpretation is tested, not answered |
@@ -108,7 +137,7 @@ coherent.
 
 Sample register (not final copy):
 
-> "The harbour smelled of tar and fish and someone's burnt porridge. A clerk was
+> "The harbor smelled of tar and fish and someone's burnt porridge. A clerk was
 > arguing with a sailor about the weight of a jar. I had three days before the ship
 > left, and nothing to do but learn the city."
 

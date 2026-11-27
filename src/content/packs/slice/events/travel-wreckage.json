@@ -1,0 +1,19 @@
+{
+  "id": "evt.travel.wreckage",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "kind": "storylet",
+  "title": "Wreckage",
+  "description": "A hatch cover, a broken oar, and no boat attached to either.",
+  "scope": { "routes": ["route.ugarit-cyprus"] },
+  "conditions": { "all": [] },
+  "priority": 15,
+  "major": false,
+  "scene": "dlg.travel.wreckage",
+  "effects": [],
+  "provenance": {
+    "confidence": "plausible",
+    "sources": [],
+    "notes": "A maritime vignette; the wreck is not evidence of any historical loss."
+  }
+}

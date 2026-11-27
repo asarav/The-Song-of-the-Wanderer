@@ -1,7 +1,11 @@
 # M4 — Playtest and evaluation
 
-**Status:** Planned · **Depends on:** M3
+**Status:** In progress — T04 done; T01/T02/T03/T05 blocked on human playtesters
+**Depends on:** M3
 **Goal:** evidence, not opinion. Decide whether to expand, revise, or stop.
+
+**Blocked:** the remaining tasks need recorded human sessions. No code work is left in
+them until those sessions exist; do not tick them from simulation alone.
 
 ## Non-goals
 
@@ -13,7 +17,7 @@
 
 ### M4-T01 — Recorded playthroughs
 
-- [ ] Three sessions with different priorities: trader, curious traveller, helper.
+- [ ] Three sessions with different priorities: trader, curious traveler, helper.
 - [ ] Each session recorded (video or detailed notes) with duration and friction points.
 - [ ] At least one session by someone who has not read the design docs.
 - [ ] Notes stored in `docs/playtests/` (create on first use).
@@ -40,11 +44,11 @@ For each question from spec §22.1, write a paragraph of evidence and a verdict
 
 ### M4-T04 — Accessibility and comfort baseline
 
-- [ ] Text size control, colour-independent indicators, keyboard-only path through the
-      slice.
-- [ ] Dialogue log available.
-- [ ] Reduced motion respected.
-- [ ] Autosave frequency verified against narrative consistency.
+- [x] Text size control, color-independent indicators, a skip link and focus outlines.
+      The keyboard path is spot-checked; a full keyboard-only run is not recorded.
+- [x] Dialogue log available.
+- [x] Reduced motion respected.
+- [x] Autosave frequency verified against narrative consistency.
 
 ### M4-T05 — Decision and plan update
 

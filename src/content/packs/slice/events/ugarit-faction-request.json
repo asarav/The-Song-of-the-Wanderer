@@ -1,0 +1,19 @@
+{
+  "id": "evt.ugarit.faction-request",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "kind": "local",
+  "title": "A favor asked at the gate",
+  "scope": { "destinations": ["dest.ugarit"] },
+  "conditions": { "all": [] },
+  "priority": 80,
+  "major": true,
+  "once": true,
+  "scene": "dlg.ugarit.faction-request",
+  "effects": [],
+  "provenance": {
+    "confidence": "plausible",
+    "sources": [],
+    "notes": "An invented palace errand."
+  }
+}

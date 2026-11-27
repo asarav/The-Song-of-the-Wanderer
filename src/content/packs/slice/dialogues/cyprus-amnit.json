@@ -1,0 +1,61 @@
+{
+  "id": "dlg.cyprus.amnit",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "speaker": "char.ugarit.amnit",
+  "start": "yard",
+  "entries": [{ "when": { "flag": "amnit.cyprus" }, "node": "again" }],
+  "nodes": {
+    "yard": {
+      "text": "She is already in the yard with her sleeves tied back, arguing about the weight of somebody else's copper, and she sees you before you decide whether to interrupt.\n\n\"You took the fast boat and I took the cheap one, and here we both are.\"",
+      "choices": [
+        {
+          "text": "You did not say you were crossing.",
+          "effects": [
+            { "flag": "amnit.cyprus" },
+            { "relationship": { "character": "char.ugarit.amnit", "dimension": "affection", "delta": 1 } }
+          ],
+          "next": "answer"
+        },
+        {
+          "text": "What is worth the crossing?",
+          "effects": [
+            { "flag": "amnit.cyprus" },
+            { "knowledge": { "fact": "amnit.buys-copper-on-the-island", "source": "told", "reliability": 0.8 } }
+          ],
+          "next": "answer"
+        }
+      ]
+    },
+    "again": {
+      "text": "\"You again. The wedding was yesterday and the copper is still here.\" She shifts a crate with her foot and does not offer you her hands, which are full.\n\n\"Ask me something I have not already answered.\"",
+      "choices": [
+        {
+          "text": "Does the debt get collected?",
+          "next": "debt"
+        },
+        {
+          "text": "What is worth the crossing?",
+          "effects": [
+            { "knowledge": { "fact": "amnit.buys-copper-on-the-island", "source": "told", "reliability": 0.8 } }
+          ],
+          "next": "answer"
+        },
+        { "text": "Let her work.", "next": null }
+      ]
+    },
+    "answer": {
+      "text": "\"Copper, and a cousin's wedding, and a debt I would rather collect in person.\" She hands the board to a boy and gives you her full attention for exactly as long as she can afford. \"Do not tell the harbor I said the wedding.\"\n\nSomeone calls her name from the smithy and she is already turning.",
+      "choices": [{ "text": "Let her go.", "next": null }]
+    },
+    "debt": {
+      "text": "\"In person, or it does not get collected. A man who pays a messenger has decided not to pay you.\"\n\nShe says it without heat, the way she says weights.",
+      "choices": [{ "text": "Remember it.", "next": null }]
+    }
+  },
+  "provenance": {
+    "confidence": "fictional",
+    "sources": [],
+    "notes": "Amnit's second appearance, invented."
+  }
+}

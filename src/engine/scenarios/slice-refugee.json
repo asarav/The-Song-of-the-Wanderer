@@ -1,0 +1,31 @@
+{
+  "id": "scenario.slice.refugee-tomorrow",
+  "seed": "slice-refugee-001",
+  "newGame": true,
+  "start": {
+    "date": "1230-04-01",
+    "location": "dest.ugarit",
+    "money": 120,
+    "capacity": 20,
+    "languages": { "lang.akkadian": { "xp": 25, "tier": "basic" } },
+    "knownDestinations": ["dest.ugarit"],
+    "knownRoutes": [],
+    "inventory": [{ "item": "good.olive-oil", "quantity": 2 }]
+  },
+  "commands": [
+    { "type": "chooseDialogue", "choice": 0 },
+    { "type": "chooseDialogue", "choice": 0 },
+    { "type": "chooseDialogue", "choice": 0 },
+    { "type": "talkTo", "character": "char.ugarit.sibtu" },
+    { "type": "chooseDialogue", "choice": 0 },
+    { "type": "chooseDialogue", "choice": 0 },
+    { "type": "chooseDialogue", "choice": 0 },
+    { "type": "advanceTime", "days": 1 }
+  ],
+  "assert": [
+    { "path": "narrative.pending.dialogue", "equals": "dlg.ugarit.refugee-ask" },
+    { "path": "narrative.pending.node", "equals": "ask" },
+    { "path": "knowledge.journalEntries", "contains": "journal.slice.refugee-asked" },
+    { "path": "world.scheduled", "length": 0 }
+  ]
+}

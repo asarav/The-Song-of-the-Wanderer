@@ -1,0 +1,17 @@
+{
+  "id": "good.olive-oil",
+  "pack": "pack.core",
+  "contentVersion": 1,
+  "name": "Olive oil",
+  "art": "art.good.olive-oil",
+  "category": "food",
+  "weight": 3,
+  "description": "Jars sealed with clay, counted by the jar rather than the drop.",
+  "provenance": {
+    "confidence": "documented",
+    "sources": [
+      "Levantine commodity lists, general"
+    ],
+    "notes": "A standard trade good; jar volumes are abstracted."
+  }
+}

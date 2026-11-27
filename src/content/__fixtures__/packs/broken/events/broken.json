@@ -1,0 +1,12 @@
+{
+  "id": "evt.broken",
+  "pack": "pack.broken",
+  "contentVersion": 1,
+  "kind": "local",
+  "title": "An event with a misspelled condition",
+  "conditions": { "flagg": "never-set" },
+  "priority": 1,
+  "major": false,
+  "effects": [],
+  "provenance": { "confidence": "fictional", "sources": [] }
+}

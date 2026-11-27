@@ -1,0 +1,12 @@
+{
+  "id": "culture.cyprus.harbour",
+  "pack": "pack.core",
+  "contentVersion": 1,
+  "name": "Cypriot harbor",
+  "notes": "Copper-working settlements tied to Aegean, Anatolian, and Levantine traffic. Obligations run through workshops and households rather than a single court.",
+  "provenance": {
+    "confidence": "plausible",
+    "sources": ["Late Cypriot material culture, general"],
+    "notes": "A composite harbor culture; the island held several polities."
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "id": "aff.poison",
+  "pack": "pack.core",
+  "contentVersion": 1,
+  "name": "Poisoning",
+  "kind": "poison",
+  "severity": "grave",
+  "description": "Something you ate or drank is still in you. Your hands shake and the light is too loud.",
+  "treatments": ["antidote", "healer"],
+  "remedyNote": "A healer can treat it; a specific antidote is better.",
+  "onset": "Your hands begin to shake, and the light in the doorway is too loud.",
+  "daily": "The shaking has not passed; every meal is a question you ask your body.",
+  "recovery": "The tremor leaves your hands first; the light becomes ordinary again.",
+  "provenance": {
+    "confidence": "plausible",
+    "sources": [],
+    "notes": "A discrete poisoning condition for authored scenes; no universal poison table is claimed."
+  }
+}

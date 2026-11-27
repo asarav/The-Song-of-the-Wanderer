@@ -1,0 +1,38 @@
+{
+  "id": "region.cyprus",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "name": "Cyprus",
+  "climate": "climate.cyprus",
+  "cultures": ["culture.cyprus.harbour"],
+  "languages": ["lang.cypriot", "lang.akkadian"],
+  "destinations": ["dest.cyprus"],
+  "routes": ["route.ugarit-cyprus"],
+  "mapPosition": { "x": 26, "y": 44 },
+  "mapRadius": 16,
+  "mapFeatures": [
+    {
+      "id": "feature.cyprus.ridge",
+      "kind": "mountains",
+      "points": [
+        { "x": 38, "y": 45 },
+        { "x": 26, "y": 42 },
+        { "x": 14, "y": 46 }
+      ]
+    },
+    {
+      "id": "feature.cyprus.border",
+      "kind": "border",
+      "points": [
+        { "x": 36, "y": 54 },
+        { "x": 22, "y": 58 },
+        { "x": 12, "y": 52 }
+      ]
+    }
+  ],
+  "provenance": {
+    "confidence": "strongly-supported",
+    "sources": ["Late Cypriot material culture, general"],
+    "notes": "The island held several polities. The slice shows one harbor community, not the whole island."
+  }
+}

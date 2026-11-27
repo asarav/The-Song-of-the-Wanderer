@@ -1,0 +1,22 @@
+{
+  "id": "char.ugarit.tiro",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "name": "Tiro",
+  "art": "art.ugarit.tiro",
+  "culture": "culture.levant.coastal",
+  "languages": ["lang.ugaritic", "lang.akkadian"],
+  "home": "dest.ugarit",
+  "tier": "recurring",
+  "roles": ["shipmaster"],
+  "dialogue": "dlg.ugarit.tiro.passage",
+  "wants": ["a full hold and an early tide", "to be owed a favor by someone useful"],
+  "fears": ["a winter crossing with a tired crew"],
+  "contradiction": "He complains about passengers and cannot afford to lose them.",
+  "presence": ["dest.ugarit", "dest.cyprus"],
+  "provenance": {
+    "confidence": "fictional",
+    "sources": [],
+    "notes": "An invented shipmaster; maritime traffic between the Levant and Cyprus is attested in general terms."
+  }
+}

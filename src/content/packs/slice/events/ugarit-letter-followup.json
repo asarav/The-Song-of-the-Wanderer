@@ -1,0 +1,19 @@
+{
+  "id": "evt.ugarit.letter-followup",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "kind": "local",
+  "title": "The errand's answer",
+  "scope": { "destinations": ["dest.ugarit"] },
+  "conditions": { "all": [] },
+  "priority": 60,
+  "major": true,
+  "once": true,
+  "scene": "dlg.ugarit.letter",
+  "effects": [{ "journal": { "entry": "journal.slice.letter" } }],
+  "provenance": {
+    "confidence": "plausible",
+    "sources": [],
+    "notes": "The delayed consequence of the palace errand."
+  }
+}

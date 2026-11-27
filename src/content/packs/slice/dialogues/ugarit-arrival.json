@@ -1,0 +1,62 @@
+{
+  "id": "dlg.ugarit.arrival",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "speaker": "char.ugarit.hannu",
+  "start": "gate",
+  "nodes": {
+    "gate": {
+      "text": "The gate is closing. The man behind the board has a stylus he has not yet wet.\n\n\"**Name. Cargo. And whether you have been in this harbor before.**\"",
+      "choices": [
+        {
+          "text": "Give the name you use here, and the two jars of oil.",
+          "effects": [
+            { "flag": "arrived.ugarit" },
+            { "money": -3 },
+            { "relationship": { "character": "char.ugarit.hannu", "delta": 1 } }
+          ],
+          "next": "ledger"
+        },
+        {
+          "text": "Say nothing and let him look at you.",
+          "effects": [{ "flag": "arrived.ugarit" }],
+          "next": "silence"
+        },
+        {
+          "text": "Show him the seal.",
+          "conditions": { "itemAtLeast": { "item": "good.palace-seal", "quantity": 1 } },
+          "unavailableNote": "You have no seal to show him.",
+          "effects": [
+            { "flag": "arrived.ugarit" },
+            { "faction": { "faction": "faction.ugarit.palace", "dimension": "standing", "delta": 1 } }
+          ],
+          "next": "seal"
+        }
+      ]
+    },
+    "ledger": {
+      "text": "He writes. The **harbor tax** is three shekels for a man carrying oil, and nobody has ever explained why. You put them on the board and he counts them without looking up.\n\n\"The **market** is up the hill. The inn is behind the **workshop quarter**. Do not sleep on the mole; the tide comes in and the **harbor master** will charge you for the rescue.\"",
+      "choices": [
+        { "text": "Go up the hill.", "next": null },
+        { "text": "Ask where a person can find work.", "next": "work" }
+      ]
+    },
+    "silence": {
+      "text": "\"A man who will not give a name gives me a problem, not a crime.\" He writes something short.\n\n\"Go on, then. The **market** is up the hill.\"",
+      "choices": [{ "text": "Go up the hill.", "next": null }]
+    },
+    "seal": {
+      "text": "He looks at the seal for exactly as long as it takes to decide not to look at it. \"Then you are expected, or you are trouble. Either way, not at this gate.\"\n\nHe steps aside.",
+      "choices": [{ "text": "Go through.", "next": null }]
+    },
+    "work": {
+      "text": "\"Work is the **harbor**, or the yard, or the loom. If you can write, the scribes at the gate will fight over you and then underpay you.\"",
+      "choices": [{ "text": "Remember it.", "next": null }]
+    }
+  },
+  "provenance": {
+    "confidence": "fictional",
+    "sources": [],
+    "notes": "The opening scene. Hannu is invented; harbor dues and gate scribes are plausible period detail."
+  }
+}

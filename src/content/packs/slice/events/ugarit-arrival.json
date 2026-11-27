@@ -1,0 +1,19 @@
+{
+  "id": "evt.ugarit.arrival",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "kind": "local",
+  "title": "Ugarit, at the end of the day",
+  "scope": { "destinations": ["dest.ugarit"] },
+  "conditions": { "all": [] },
+  "priority": 100,
+  "major": true,
+  "once": true,
+  "scene": "dlg.slice.opening",
+  "effects": [{ "journal": { "entry": "journal.slice.opening" } }],
+  "provenance": {
+    "confidence": "plausible",
+    "sources": [],
+    "notes": "The opening of the slice: a paced introduction to the setting, then the gate scene with Hannu, invented."
+  }
+}

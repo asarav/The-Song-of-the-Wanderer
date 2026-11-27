@@ -1,0 +1,19 @@
+{
+  "id": "evt.travel.peril-fever",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "kind": "storylet",
+  "title": "A fever on the road",
+  "description": "A heat that is not the sun, and a day that will not stay still.",
+  "scope": { "routes": ["route.ugarit-cyprus"] },
+  "conditions": { "all": [] },
+  "priority": 30,
+  "major": false,
+  "scene": "dlg.travel.peril-fever",
+  "effects": [],
+  "provenance": {
+    "confidence": "plausible",
+    "sources": [],
+    "notes": "A period-plausible travel fever; no specific disease is claimed."
+  }
+}

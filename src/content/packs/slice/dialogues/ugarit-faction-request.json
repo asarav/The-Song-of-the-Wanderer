@@ -1,0 +1,51 @@
+{
+  "id": "dlg.ugarit.faction-request",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "speaker": "char.ugarit.hannu",
+  "start": "ask",
+  "nodes": {
+    "ask": {
+      "text": "The wall is in shadow and Hannu is there, which means he was always going to be.\n\n\"The palace needs a thing carried to the island and not written down. A seal. You will show it to Kinyras and say nothing else, and if it is asked for, you never had it.\"",
+      "choices": [
+        {
+          "text": "What is it for?",
+          "effects": [
+            { "faction": { "faction": "faction.ugarit.palace", "dimension": "favour", "delta": 1 } },
+            { "schedule": { "event": "evt.ugarit.letter-followup", "inDays": 4 } }
+          ],
+          "next": "what"
+        },
+        {
+          "text": "I am not a courier.",
+          "effects": [
+            { "faction": { "faction": "faction.ugarit.palace", "dimension": "standing", "delta": -1 } }
+          ],
+          "next": "refuse"
+        }
+      ]
+    },
+    "what": {
+      "text": "\"For a man to know that the palace remembers him.\" He holds out a small pouch without quite touching it. \"That is all you need, and more than you want.\"",
+      "choices": [
+        {
+          "text": "Take the pouch.",
+          "effects": [
+            { "items": { "item": "good.palace-seal", "quantity": 1 } },
+            { "journal": { "entry": "journal.slice.faction-request" } }
+          ],
+          "next": null
+        }
+      ]
+    },
+    "refuse": {
+      "text": "\"Then forget the gate, and the gate will forget you.\" He is already walking away. \"Do not come back at the second hour.\"",
+      "choices": [{ "text": "Let him go.", "next": null }]
+    }
+  },
+  "provenance": {
+    "confidence": "fictional",
+    "sources": [],
+    "notes": "The palace errand; invented."
+  }
+}

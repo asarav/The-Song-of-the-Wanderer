@@ -1,0 +1,16 @@
+{
+  "id": "culture.levant.coastal",
+  "pack": "pack.core",
+  "contentVersion": 1,
+  "name": "Coastal Levantine",
+  "address": [
+    "A stranger is addressed by trade or origin before name.",
+    "A guest is offered water and bread before business."
+  ],
+  "notes": "Harbor society: scribes, shipmasters, brokers, and household workshops. Obligation is spoken aloud, not assumed.",
+  "provenance": {
+    "confidence": "plausible",
+    "sources": ["Ugaritic letters and administrative texts, general"],
+    "notes": "A composite of coastal Levantine harbor life; not a claim about any single town."
+  }
+}

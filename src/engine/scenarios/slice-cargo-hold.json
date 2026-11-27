@@ -1,0 +1,33 @@
+{
+  "id": "scenario.slice.cargo-hold",
+  "seed": "cargo-8",
+  "start": {
+    "date": "1230-04-01",
+    "location": "dest.ugarit",
+    "money": 100,
+    "capacity": 20,
+    "languages": { "lang.akkadian": { "xp": 25, "tier": "basic" } },
+    "knownRoutes": ["route.ugarit-cyprus"],
+    "knownDestinations": ["dest.ugarit", "dest.cyprus"],
+    "inventory": [
+      { "item": "good.copper", "quantity": 2 },
+      { "item": "good.grain", "quantity": 1 }
+    ]
+  },
+  "commands": [
+    { "type": "travel", "route": "route.ugarit-cyprus", "mode": "mode.coastal" },
+    { "type": "resolveEncounter", "choice": 0 },
+    { "type": "resolveEncounter", "choice": 0 },
+    { "type": "resolveEncounter", "choice": 0 },
+    { "type": "resolveEncounter", "choice": 0 },
+    { "type": "resolveEncounter", "choice": 0 },
+    { "type": "resolveEncounter", "choice": 0 }
+  ],
+  "assert": [
+    { "path": "player.location", "equals": "dest.cyprus" },
+    { "path": "player.inventory", "length": 1 },
+    { "path": "player.inventory.0.item", "equals": "good.copper" },
+    { "path": "player.inventory.0.quantity", "equals": 1 },
+    { "path": "player.inventory.0.quantity", "equals": 1 }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "id": "dlg.broken",
+  "pack": "pack.broken",
+  "contentVersion": 1,
+  "start": "only",
+  "nodes": {
+    "only": {
+      "text": "The choice points at a node that does not exist.",
+      "choices": [{ "text": "Go nowhere.", "next": "nowhere" }]
+    }
+  },
+  "provenance": { "confidence": "fictional", "sources": [] }
+}

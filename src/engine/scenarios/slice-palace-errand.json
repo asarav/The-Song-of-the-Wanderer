@@ -1,0 +1,34 @@
+{
+  "id": "scenario.slice.palace-errand",
+  "seed": "slice-palace-errand-001",
+  "newGame": true,
+  "start": {
+    "date": "1230-04-01",
+    "location": "dest.ugarit",
+    "money": 120,
+    "capacity": 20,
+    "languages": { "lang.akkadian": { "xp": 25, "tier": "basic" } },
+    "knownRoutes": ["route.ugarit-cyprus"],
+    "knownDestinations": ["dest.ugarit"],
+    "inventory": [{ "item": "good.olive-oil", "quantity": 2 }]
+  },
+  "commands": [
+    { "type": "chooseDialogue", "choice": 0 },
+    { "type": "chooseDialogue", "choice": 0 },
+    { "type": "chooseDialogue", "choice": 0 },
+    { "type": "talkTo", "character": "char.ugarit.hannu" },
+    { "type": "chooseDialogue", "choice": 0 },
+    { "type": "chooseDialogue", "choice": 0 },
+    { "type": "advanceTime", "days": 1 },
+    { "type": "chooseDialogue", "choice": 0 },
+    { "type": "chooseDialogue", "choice": 0 }
+  ],
+  "assert": [
+    { "path": "knowledge.journalEntries", "contains": "journal.slice.faction-request" },
+    { "path": "player.flags.hannu.errand", "equals": true },
+    { "path": "player.inventory.1.item", "equals": "good.palace-seal" },
+    { "path": "narrative.factions.faction.ugarit.palace.favour", "equals": 1 },
+    { "path": "world.scheduled", "length": 1 },
+    { "path": "narrative.pending", "equals": null }
+  ]
+}

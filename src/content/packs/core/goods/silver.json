@@ -1,0 +1,17 @@
+{
+  "id": "good.silver",
+  "pack": "pack.core",
+  "contentVersion": 1,
+  "name": "Silver",
+  "art": "art.good.silver",
+  "category": "metal",
+  "weight": 2,
+  "description": "Weighed, not coined. A merchant's scale and a set of weights are part of the trade.",
+  "provenance": {
+    "confidence": "documented",
+    "sources": [
+      "Near Eastern weighed silver as a unit of account, general"
+    ],
+    "notes": "Silver by weight served as value; coinage is anachronistic here."
+  }
+}

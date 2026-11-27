@@ -7,7 +7,7 @@ describe('engine version', () => {
     expect(ENGINE_VERSION).toMatch(/^\d+\.\d+\.\d+$/)
   })
 
-  it('starts the save format at 1', () => {
+  it('keeps a positive save format', () => {
     expect(SAVE_FORMAT_VERSION).toBeGreaterThanOrEqual(1)
   })
 })

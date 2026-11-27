@@ -1,0 +1,22 @@
+{
+  "id": "char.ugarit.hannu",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "name": "Hannu",
+  "art": "art.ugarit.hannu",
+  "culture": "culture.levant.coastal",
+  "languages": ["lang.akkadian", "lang.ugaritic"],
+  "home": "dest.ugarit",
+  "tier": "major",
+  "roles": ["harbor official", "palace servant"],
+  "dialogue": "dlg.ugarit.hannu.gate",
+  "wants": ["the dues collected", "no incident he has to explain"],
+  "fears": ["being blamed for someone else's cargo"],
+  "contradiction": "He enforces rules he thinks are foolish.",
+  "presence": ["dest.ugarit"],
+  "provenance": {
+    "confidence": "fictional",
+    "sources": [],
+    "notes": "An invented official in a documented institution."
+  }
+}

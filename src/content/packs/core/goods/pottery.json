@@ -1,0 +1,18 @@
+{
+  "id": "good.pottery",
+  "pack": "pack.core",
+  "contentVersion": 1,
+  "name": "Pottery",
+  "art": "art.good.pottery",
+  "category": "ceramic",
+  "weight": 3,
+  "fragile": true,
+  "description": "Jars and bowls packed in chaff. Every second one arrives cracked.",
+  "provenance": {
+    "confidence": "documented",
+    "sources": [
+      "Eastern Mediterranean ceramic distributions, general"
+    ],
+    "notes": "Pottery movement is one of the best-attested trade signatures of the period."
+  }
+}

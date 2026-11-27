@@ -1,0 +1,50 @@
+{
+  "id": "dlg.travel.refugees",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "start": "boat",
+  "nodes": {
+    "boat": {
+      "text": "A fishing hull, low in the water, carrying a household and what it could lift. A woman at the stern has a child asleep against her shoulder and a bundle of tools at her feet.\n\nThey are not in distress. They are simply going somewhere, slowly, with too much weight.",
+      "choices": [
+        {
+          "text": "Pass them water.",
+                    "effects": [
+            {
+              "flag": "refugees.helped-on-water"
+            },
+            { "relationship": { "character": "char.ugarit.sibtu", "dimension": "trust", "delta": 0 } }
+          ],
+          "next": "water"
+        },
+        { "text": "Ask where they are bound.", "next": "bound" },
+        { "text": "Look away.", "next": "away" }
+      ]
+    },
+    "water": {
+      "text": "The water goes into a jar that is already half full of something else. The woman says a word you do not know and touches her forehead, and the boats drift apart.",
+      "choices": [{ "text": "Watch them until they are small.", "next": null }]
+    },
+    "bound": {
+      "text": "\"Ugarit. My cousin has a roof.\" She says it as a fact she has rehearsed. \"Inland is finished for us this year.\"\n\nThe master says nothing until they are out of earshot. \"There will be more of them by the autumn.\"",
+      "choices": [
+        {
+          "text": "Say nothing.",
+          "effects": [
+            { "knowledge": { "fact": "displacement.inland-to-coast", "source": "witnessed", "reliability": 0.8 } }
+          ],
+          "next": null
+        }
+      ]
+    },
+    "away": {
+      "text": "You look at the water instead. The master looks at you, and then at the sail, and then at the water, and the boat goes on.",
+      "choices": [{ "text": "Keep looking at the water.", "next": null }]
+    }
+  },
+  "provenance": {
+    "confidence": "plausible",
+    "sources": ["Local displacement in the Late Bronze Age Levant, general"],
+    "notes": "Invented scene. Movement of households for a failed harvest is plausible and is not the later collapse."
+  }
+}

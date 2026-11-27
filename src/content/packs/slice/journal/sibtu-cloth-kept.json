@@ -1,0 +1,13 @@
+{
+  "id": "journal.slice.sibtu-cloth-kept",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "title": "The five shekels",
+  "text": "I sold Sibtu's cloth at the yard and kept the five shekels. She did not ask why. She knew the weight of the purse before I did, and she went back to the loom.",
+  "beatArt": ["art.ugarit.cloth-kept"],
+  "provenance": {
+    "confidence": "fictional",
+    "sources": [],
+    "notes": "The refugee thread's failure ending. Invented."
+  }
+}

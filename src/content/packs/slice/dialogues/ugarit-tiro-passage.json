@@ -1,0 +1,107 @@
+{
+  "id": "dlg.ugarit.tiro.passage",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "speaker": "char.ugarit.tiro",
+  "start": "greet",
+  "entries": [
+    { "when": { "flag": "tiro.passage" }, "node": "again-booked" },
+    { "when": { "flag": "met.tiro" }, "node": "again" }
+  ],
+  "nodes": {
+    "greet": {
+      "text": "You want the island. Everyone wants the island, and the island does not want any of us.",
+      "choices": [
+        { "text": "What will it cost?", "next": "price" },
+        {
+          "text": "I can work aboard, if there is work.",
+          "conditions": { "languageAtLeast": { "language": "lang.akkadian", "tier": "basic" } },
+          "unavailableNote": "You have no Akkadian to offer him, and a master will not shout the terms twice.",
+          "effects": [
+            { "flag": "met.tiro" },
+            { "relationship": { "character": "char.ugarit.tiro", "dimension": "trust", "delta": 1 } }
+          ],
+          "next": "work"
+        },
+        { "text": "Another time.", "next": null }
+      ]
+    },
+    "again": {
+      "text": "\"The mole is still there. So is the price.\" He does not look up from the rope he is coiling, which means he has already decided to hear you.",
+      "choices": [
+        { "text": "What will it cost?", "next": "price" },
+        {
+          "text": "I can work aboard, if there is work.",
+          "conditions": { "languageAtLeast": { "language": "lang.akkadian", "tier": "basic" } },
+          "unavailableNote": "You have no Akkadian to offer him, and a master will not shout the terms twice.",
+          "effects": [
+            { "flag": "met.tiro" },
+            { "relationship": { "character": "char.ugarit.tiro", "dimension": "trust", "delta": 1 } }
+          ],
+          "next": "work"
+        },
+        { "text": "Another time.", "next": null }
+      ]
+    },
+    "again-booked": {
+      "text": "\"The mole before the gulls,\" he says, before you can ask. \"The boat has not gone, and the price has not changed. When you are ready to sail, you sail.\"\n\nHe spits over the side and waits to see whether you have come to argue about the fare.",
+      "choices": [
+        { "text": "When do we sail?", "next": "sailing" },
+        { "text": "What will it cost?", "next": "price" },
+        {
+          "text": "I can work aboard again if you need hands.",
+          "conditions": { "languageAtLeast": { "language": "lang.akkadian", "tier": "basic" } },
+          "unavailableNote": "You have no Akkadian to offer him, and a master will not shout the terms twice.",
+          "next": "work"
+        },
+        { "text": "Another time.", "next": null }
+      ]
+    },
+    "sailing": {
+      "text": "\"When you have the fare and your cargo is on the mole. The boat is not waiting on the wind; it is waiting on you.\"\n\nHe goes back to the rope.",
+      "choices": [{ "text": "Leave him to it.", "next": null }]
+    },
+    "price": {
+      "text": "\"Eight if we hug the shore and sleep on the boat. Fourteen if we go straight across and sleep when we get there. Neither price includes your cargo, and both include my opinion.\"",
+      "choices": [
+        {
+          "text": "I would sooner work aboard than sit idle.",
+          "conditions": { "languageAtLeast": { "language": "lang.akkadian", "tier": "basic" } },
+          "unavailableNote": "You cannot argue terms in a language you do not have.",
+          "effects": [
+            { "flag": "met.tiro" },
+            { "unlockRoute": "route.ugarit-cyprus" },
+            { "relationship": { "character": "char.ugarit.tiro", "dimension": "obligation", "delta": 1 } }
+          ],
+          "next": "work"
+        },
+        {
+          "text": "I will think on it.",
+          "effects": [
+            { "flag": "met.tiro" },
+            { "unlockRoute": "route.ugarit-cyprus" }
+          ],
+          "next": null
+        }
+      ]
+    },
+    "work": {
+      "text": "\"Then be at the mole before the gulls, and do not bring more than you can carry up a gangplank in the dark. It will not pay your passage — the fare is still the fare — but a man who works is easier to take than one who does not.\"\n\nHe turns away before you can agree, which is how a bargain is closed here.",
+      "choices": [
+        {
+          "text": "Be there before the gulls.",
+          "effects": [
+            { "flag": "tiro.passage" },
+            { "unlockRoute": "route.ugarit-cyprus" }
+          ],
+          "next": null
+        }
+      ]
+    }
+  },
+  "provenance": {
+    "confidence": "fictional",
+    "sources": [],
+    "notes": "Tiro and his fares are invented; passage by fare or by work is a plausible arrangement."
+  }
+}

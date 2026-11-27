@@ -1,0 +1,17 @@
+{
+  "id": "codex.ugarit",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "title": "Ugarit",
+  "category": "place",
+  "text": "A port on the Levantine coast, its harbor sheltered by a headland, its palace keeping the accounts of the sea trade. Scribes here write Akkadian in cuneiform for the palace and Ugaritic in an alphabetic cuneiform for everything closer to home.\n\nThe city's own name, cut in its own alphabet, is 𐎜𐎂𐎗𐎚 (ugrt).\n\nIn 1230 BCE the city is rich, crowded, and ordinary.",
+  "provenance": {
+    "confidence": "documented",
+    "sources": [
+      "Ras Shamra / Ugarit excavations, general",
+      "Ugaritic tablets and archives, general",
+      "The city's name ugrt in the Ugaritic alphabetic texts, written 𐎜𐎂𐎗𐎚 (RS 1.002 and others)"
+    ],
+    "notes": "The city's existence, scripts and trade are attested; ugrt is its name in the alphabetic texts. Its destruction is dated to the early twelfth century, after the slice."
+  }
+}

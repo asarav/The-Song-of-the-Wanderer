@@ -110,7 +110,7 @@ ui → store → engine (never the reverse)
 
 ## 4. Content packs
 
-Content is organised into packs with manifests:
+Content is organized into packs with manifests:
 
 ```json
 {
@@ -150,7 +150,7 @@ GameState = {
   calendar: { day }
   world: WorldState            // phases, climate, deltas, facts, routes, waypoints, migrations
   player: PlayerState          // identity, location, resources, deeds, reputation, languages
-  knowledge: KnowledgeState    // facts learned, rumours, map, index entries
+  knowledge: KnowledgeState    // facts learned, rumors, map, index entries
   narrative: NarrativeState    // arcs, characters, factions, pending scene, cooldowns
   rng: RngState
 }
@@ -214,7 +214,7 @@ Breaching a budget is a milestone bug, not a polish task.
 ### Tier 3 — nightly
 
 - long-run simulation: 200 years × 10 seeds with invariants
-- persona auto-play: trader, curious traveller, helper
+- persona auto-play: trader, curious traveler, helper
 - reachability analysis and orphan report
 - prose lint and locale extraction
 - performance budgets
@@ -235,7 +235,7 @@ Breaching a budget is a milestone bug, not a polish task.
 - Dev-only libraries do not enter the game bundle.
 - Bundle target for the slice: < 500 kB gzipped. Full game: lazy-load packs; initial
   bundle under 2 MB.
-- No CSS framework until the visual language is settled; greybox CSS is intentional.
+- No CSS framework until the visual language is settled; graybox CSS is intentional.
 
 ## 10. Localisation and accessibility readiness
 
@@ -244,7 +244,7 @@ Breaching a budget is a milestone bug, not a polish task.
 - No concatenated sentences for grammar; write variants.
 - Text expansion budget: +40% for German, +30% for French/Spanish, −20% for Chinese/Japanese.
 - UI must survive 200% text size from M18; test at 150% from M2.
-- Colour is never the only indicator; use text and shape.
+- Color is never the only indicator; use text and shape.
 - Dialogue log and subtitles are structural, not bolt-ons.
 - Locale extraction and placeholder checks run in CI from M8.
 

@@ -25,10 +25,16 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "content:lint": "tsx tools/content-lint.ts",
+    "audio:build": "node tools/build-audio.mjs",
+    "audio:check": "node tools/check-audio.mjs",
+    "simulate": "tsx tools/simulate.ts",
+    "playtest:build": "tsx tools/playtest.ts",
+    "save:inspect": "tsx tools/save-inspect.ts",
+    "save:migrate": "tsx tools/save-migrate.ts",
     "skills:sync": "node tools/sync-skills.mjs",
     "skills:check": "node tools/sync-skills.mjs --check",
     "agents:sync": "node tools/sync-skills.mjs",
-    "check": "pnpm typecheck && pnpm lint && pnpm test && pnpm content:lint && pnpm skills:check"
+    "check": "pnpm typecheck && pnpm lint && pnpm test && pnpm content:lint && pnpm audio:check && pnpm skills:check"
   },
   "dependencies": {
     "react": "^19.3.1",

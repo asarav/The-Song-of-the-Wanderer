@@ -65,7 +65,7 @@ Each section separates:
 - **Reconstructed** by reasonable inference
 - **Invented** for the game
 
-The dossier is the review artefact. If it is not there, the content is not ready.
+The dossier is the review artifact. If it is not there, the content is not ready.
 
 ## 4. Dating conventions
 
@@ -110,12 +110,12 @@ The dossier is the review artefact. If it is not there, the content is not ready
 **South Asia**
 - The Mature Harappan urban system had already declined. Do not write "the Indus
   civilization" as a contemporary unified state.
-- Painted Grey Ware, early Vedic traditions, and archaeological cultures are not
+- Painted Gray Ware, early Vedic traditions, and archaeological cultures are not
   interchangeable labels. Correlating texts with material culture is contested.
 - Do not project later religious forms backward as fixed canon.
 
 **China**
-- Centre the Late Shang world on Anyang/Yinxu, with oracle-bone divination, bronze
+- Center the Late Shang world on Anyang/Yinxu, with oracle-bone divination, bronze
   production, royal warfare, and court politics.
 - Distinguish contemporary Shang evidence from later Zhou accounts of the conquest.
 - The Shang–Zhou transition is not a simple morality tale.
@@ -128,7 +128,7 @@ Before a deity, demigod, hero, or spirit appears:
 - [ ] Names, epithets, domains, stories, iconography recorded.
 - [ ] Contemporary evidence separated from later literary versions.
 - [ ] Local/regional/widely-worshipped status noted.
-- [ ] Portrayal labelled: direct, adapted, speculative, or deliberately ambiguous.
+- [ ] Portrayal labeled: direct, adapted, speculative, or deliberately ambiguous.
 - [ ] Contradictions between sources preserved where meaningful.
 - [ ] At least one mundane interpretation available to the player.
 

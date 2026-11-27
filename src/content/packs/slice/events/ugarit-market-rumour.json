@@ -1,0 +1,21 @@
+{
+  "id": "evt.ugarit.market-rumour",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "kind": "storylet",
+  "title": "A rumor in the market",
+  "scope": { "destinations": ["dest.ugarit"] },
+  "conditions": { "all": [] },
+  "priority": 30,
+  "major": false,
+  "effects": [
+    { "languageXp": { "language": "lang.ugaritic", "amount": 3 } },
+    { "knowledge": { "fact": "market.talk-of-the-road-inland", "source": "told", "reliability": 0.6 } },
+    { "destinationState": { "destination": "dest.ugarit", "state": "tense" } }
+  ],
+  "provenance": {
+    "confidence": "plausible",
+    "sources": [],
+    "notes": "Ambient market talk; the fact is rumor, not content the slice relies on."
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "id": "evt.travel.peril-wreck",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "kind": "storylet",
+  "title": "A night wreck",
+  "description": "A reef, a broken oar, and a shore that is farther than it looks.",
+  "scope": { "routes": ["route.ugarit-cyprus"] },
+  "conditions": { "all": [] },
+  "priority": 40,
+  "major": false,
+  "scene": "dlg.travel.peril-wreck",
+  "effects": [],
+  "provenance": {
+    "confidence": "plausible",
+    "sources": [],
+    "notes": "A coastal wreck is plausible; the scene is invented and does not claim a specific disaster."
+  }
+}

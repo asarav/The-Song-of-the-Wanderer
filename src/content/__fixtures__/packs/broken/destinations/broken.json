@@ -1,0 +1,13 @@
+{
+  "id": "dest.broken",
+  "pack": "pack.broken",
+  "contentVersion": 1,
+  "name": "A place with no people",
+  "kind": "port",
+  "region": "region.nowhere",
+  "intro": "Deliberately invalid: the cast is missing.",
+  "places": [],
+  "market": { "priceModifier": 1, "goods": [] },
+  "routes": [],
+  "provenance": { "confidence": "fictional", "sources": [] }
+}

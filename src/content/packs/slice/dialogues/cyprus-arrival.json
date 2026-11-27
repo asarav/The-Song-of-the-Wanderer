@@ -1,0 +1,59 @@
+{
+  "id": "dlg.cyprus.arrival",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "speaker": "char.cyprus.shipti",
+  "start": "door",
+  "nodes": {
+    "door": {
+      "text": "The island comes up gray and long, and by afternoon the smell reaches you before the harbor does: charcoal, hot stone, and something mineral underneath. You leave the landing with salt on your hands and climb into the town.\n\nThe inn is two rooms and a courtyard, and the woman in the doorway has already decided you are a customer and is prepared to be wrong about it.\n\n\"You came over the water, then. Everyone comes over the water.\"",
+      "beatArt": ["art.cyprus.arrival", "art.cyprus.inn", "art.cyprus.landing"],
+      "choices": [
+        {
+          "text": "In a small boat, and I paid for the privilege.",
+          "effects": [
+            { "relationship": { "character": "char.cyprus.shipti", "dimension": "trust", "delta": 1 } }
+          ],
+          "next": "room"
+        },
+        {
+          "text": "What is the price of a room?",
+          "next": "room"
+        },
+        {
+          "text": "I sleep where I land.",
+          "effects": [{ "flag": "cyprus.sleeps-outside" }],
+          "next": "outside"
+        }
+      ]
+    },
+    "room": {
+      "art": "art.cyprus.inn",
+      "text": "\"A night, and keep your cargo where you can see it. The yard is honest. The harbor is not.\"\n\nShe says it the way a woman says a thing she has said many times and still means.",
+      "choices": [
+        {
+          "text": "Take the room.",
+          "conditions": { "moneyAtLeast": 3 },
+          "unavailableNote": "You do not have three shekels for a room, and she is not running a charity.",
+          "effects": [
+            { "money": -3 },
+            { "stamina": 2 },
+            { "advanceTime": { "days": 1 } },
+            { "relationship": { "character": "char.cyprus.shipti", "dimension": "trust", "delta": 1 } }
+          ],
+          "next": null
+        },
+        { "text": "Not at that price.", "next": null }
+      ]
+    },
+    "outside": {
+      "text": "\"Then sleep behind the smithy. Ada will not mind, and the dogs will tell you if anyone does.\"",
+      "choices": [{ "text": "Remember the smithy.", "next": null }]
+    }
+  },
+  "provenance": {
+    "confidence": "fictional",
+    "sources": [],
+    "notes": "The island arrival scene; invented."
+  }
+}

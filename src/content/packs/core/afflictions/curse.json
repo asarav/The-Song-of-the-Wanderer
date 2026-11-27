@@ -1,0 +1,19 @@
+{
+  "id": "aff.curse",
+  "pack": "pack.core",
+  "contentVersion": 1,
+  "name": "A god's attention",
+  "kind": "curse",
+  "severity": "grave",
+  "description": "A wrong thing was said or done, and the world has begun to answer it. This is not a metaphor you can argue with.",
+  "treatments": ["shrine"],
+  "remedyNote": "A shrine and the right rite are the only authored cure.",
+  "onset": "A wrongness settles over the day that has no place in the weather.",
+  "daily": "The god's attention is still on you. Nothing in the day argues otherwise.",
+  "recovery": "The pressure lifts without ceremony. You are not sure what was forgiven.",
+  "provenance": {
+    "confidence": "fictional",
+    "sources": [],
+    "notes": "A narrative curse, deliberately unresolved in its mechanism. It is not a generic god-favour mechanic."
+  }
+}

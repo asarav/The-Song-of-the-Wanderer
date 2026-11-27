@@ -1,0 +1,19 @@
+{
+  "id": "evt.travel.fellow-sailor",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "kind": "storylet",
+  "title": "A fellow traveler",
+  "description": "Someone with too much luggage and too little sea-legs wants to talk.",
+  "scope": { "routes": ["route.ugarit-cyprus"] },
+  "conditions": { "languageAtLeast": { "language": "lang.akkadian", "tier": "basic" } },
+  "priority": 20,
+  "major": false,
+  "scene": "dlg.travel.fellow-sailor",
+  "effects": [{ "languageXp": { "language": "lang.akkadian", "amount": 2 } }],
+  "provenance": {
+    "confidence": "plausible",
+    "sources": [],
+    "notes": "A shipboard conversation. Akkadian as the shared trade tongue is the period convention used throughout the slice."
+  }
+}

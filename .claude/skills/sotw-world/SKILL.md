@@ -1,6 +1,6 @@
 ---
 name: SotW World and Timeline
-description: Author or debug the world timeline for The Song of the Wanderer — eras, regional phases, world/regional/local events, propagation, rumours, destination states, and route changes. Use when history needs to change, when an event must affect places or people, or when a save shows the wrong phase or price.
+description: Author or debug the world timeline for The Song of the Wanderer — eras, regional phases, world/regional/local events, propagation, rumors, destination states, and route changes. Use when history needs to change, when an event must affect places or people, or when a save shows the wrong phase or price.
 ---
 
 # World and timeline authoring
@@ -41,14 +41,14 @@ it one or cut it.
   an authored event says so.
 - Major events are scheduled or condition-driven, never random.
 - Every closure or unavailability needs an authored reason the UI can show.
-- Facts are objective; rumours are knowledge. Never write a rumour as narration.
+- Facts are objective; rumors are knowledge. Never write a rumor as narration.
 - Distant events arrive as reports with delay and distortion. Do not cut to a burning
   city the player cannot see.
 - Regional timelines differ. Do not synchronise events for drama.
 - No single cause for a multi-causal process.
 - Use `afterDays` for consequences. Instant consequences rob travel of meaning.
 - Climate change is an authored phase or regional process; weather is deterministic local
-  colour and never rewrites history.
+  color and never rewrites history.
 - Religious and divine events record observances, claims, and interpretations. They never
   assert a metaphysical fact.
 - A route is a corridor with waypoints, not a bare edge. Give the between-space places,
@@ -74,7 +74,7 @@ If a phase, price, or route looks wrong:
 1. Run `pnpm timeline:validate`.
 2. In the studio, inspect the region phase at the current date.
 3. Check the fact ledger for the destination/route, including validity windows.
-4. Check scheduled events that were due but cancelled or clamped.
+4. Check scheduled events that were due but canceled or clamped.
 5. Check the propagation trace for the event that should have applied.
 6. Confirm the derived state rather than a cached value. Never patch a save to hide it.
 
@@ -87,7 +87,7 @@ If a phase, price, or route looks wrong:
 | Price stuck | Modifier applied to a copy; derived state cached |
 | Route open during war | Route state not propagated by the war event |
 | Player knows too much | UI reading facts instead of knowledge |
-| Rumour arrives instantly | Missing latency/hops, or knowledge granted at source |
+| Rumor arrives instantly | Missing latency/hops, or knowledge granted at source |
 | Region stuck in a phase | No exit transition, or transition condition never true |
 | Same festival everywhere | One global calendar; observances are local and cultural |
 | Route feels empty | No waypoints, encounter pools, or calm/reflection storylets |

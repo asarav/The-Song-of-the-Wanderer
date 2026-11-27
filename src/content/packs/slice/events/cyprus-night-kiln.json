@@ -1,0 +1,20 @@
+{
+  "id": "evt.cyprus.night-kiln",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "kind": "storylet",
+  "title": "The kiln after dark",
+  "description": "One kiln is still glowing at the edge of the yard.",
+  "scope": { "destinations": ["dest.cyprus"] },
+  "conditions": { "all": [] },
+  "priority": 18,
+  "major": false,
+  "cooldownDays": 4,
+  "scene": "dlg.cyprus.night-kiln",
+  "effects": [],
+  "provenance": {
+    "confidence": "plausible",
+    "sources": ["Late Cypriot copper working and pottery, general"],
+    "notes": "Night firing and a workyard kiln are plausible; Ada's conversation is invented."
+  }
+}

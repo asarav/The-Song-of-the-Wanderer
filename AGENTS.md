@@ -15,14 +15,14 @@ Do not read the whole specification. It is 2,000 lines; grep the section you nee
    If code, docs, and spec disagree, the spec wins. Resolve the conflict and record an
    ADR in `docs/DECISIONS/`.
 2. **Content is data; logic is code.** Destinations, characters, events, dialogue, goods,
-   and routes are authored JSON validated by Zod. Behaviour comes from the closed
+   and routes are authored JSON validated by Zod. Behavior comes from the closed
    condition/effect DSL. Never put bespoke logic inside a content file.
 3. **The engine is pure and deterministic.** `src/engine/**` must not import React,
    Zustand, the DOM, `Date.now()`, or `Math.random()`. It exposes
    `reduce(state, command) → { state, events }`. All randomness comes from seeded,
    serializable streams. Every save must replay identically.
 4. **Truth is not knowledge.** Player-facing views (journal, map, index, codex, dialogue)
-   read `knowledge`, never world truth. Rumours may be wrong. Characters may believe
+   read `knowledge`, never world truth. Rumors may be wrong. Characters may believe
    false things. (ADR-0004.)
 5. **Store deltas, derive the rest.** Untouched regions derive from the timeline. Never
    persist a derived value. Content lives in packs. (ADR-0005.)
@@ -54,7 +54,7 @@ Do not read the whole specification. It is 2,000 lines; grep the section you nee
 2. Open the active milestone file, e.g. `docs/milestones/M5-world-timeline.md`.
 3. Read only the docs that task touches:
    - engine / state / saves → `docs/ARCHITECTURE.md`, `docs/DATA_MODEL.md` §1–4, §14
-   - time/events/rumours → `docs/WORLD_MODEL.md`, `docs/DATA_MODEL.md` §7, §13
+   - time/events/rumors → `docs/WORLD_MODEL.md`, `docs/DATA_MODEL.md` §7, §13
    - characters/arcs → `docs/NARRATIVE_SYSTEMS.md`, `docs/DATA_MODEL.md` §8–9
    - culture/factions/economy → `docs/DATA_MODEL.md` §5, §6, §10–12
    - systems/packs/saves → `docs/SCALING.md`
@@ -115,7 +115,7 @@ pnpm content:lint  # validate authored content
 From M1: `pnpm simulate`, `pnpm save:inspect`, `pnpm save:migrate`.
 From M8: `pnpm studio`, `pnpm content:coverage`, `pnpm content:continuity`,
 `pnpm simulate:long`, `pnpm simulate:personas`, `pnpm new:*`.
-Full catalogue: `docs/TOOLING.md`.
+Full catalog: `docs/TOOLING.md`.
 
 ---
 
@@ -123,7 +123,7 @@ Full catalogue: `docs/TOOLING.md`.
 
 - [ ] Acceptance criteria in the milestone file are met.
 - [ ] `pnpm check` is green; new checks are part of the gate.
-- [ ] New engine behaviour has a unit or scenario test.
+- [ ] New engine behavior has a unit or scenario test.
 - [ ] New historical content has provenance and, where needed, a dossier entry.
 - [ ] New data has a definition, state/view/knowledge plan, and coverage entry.
 - [ ] Player-facing views read knowledge, not truth.

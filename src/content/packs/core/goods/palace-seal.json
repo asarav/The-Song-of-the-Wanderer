@@ -1,0 +1,17 @@
+{
+  "id": "good.palace-seal",
+  "pack": "pack.core",
+  "contentVersion": 1,
+  "name": "Palace seal",
+  "art": "art.good.palace-seal",
+  "category": "tool",
+  "weight": 0,
+  "description": "A small inscribed seal in a leather pouch. It is not for sale; it is for showing.",
+  "provenance": {
+    "confidence": "plausible",
+    "sources": [
+      "Near Eastern seal practice, general"
+    ],
+    "notes": "Seals as marks of authority are attested; this particular seal is invented for the slice."
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "id": "evt.travel.spring",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "kind": "storylet",
+  "title": "A spring above the shore",
+  "description": "Fresh water in the rocks, and birds enough to make a meal.",
+  "scope": { "routes": ["route.ugarit-cyprus"] },
+  "conditions": { "all": [] },
+  "priority": 15,
+  "major": false,
+  "scene": "dlg.travel.spring",
+  "effects": [],
+  "provenance": {
+    "confidence": "plausible",
+    "sources": [],
+    "notes": "A spring and shore birds on a coastal crossing; the scene is invented."
+  }
+}

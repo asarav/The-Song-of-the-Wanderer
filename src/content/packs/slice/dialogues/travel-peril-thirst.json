@@ -1,0 +1,43 @@
+{
+  "id": "dlg.travel.peril-thirst",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "start": "skin",
+  "nodes": {
+    "skin": {
+      "beatArt": ["art.cyprus.landing", "art.cyprus.arrival"],
+      "text": "The skin is lighter than it was. The master shakes it, listens, and puts it down without saying anything. The coast is a line of pale rock and the next anchorage is not close.\n\n\"There is a pool in the rocks,\" one of the men says. \"It is not clean.\"",
+      "choices": [
+        {
+          "text": "Drink from the standing pool.",
+          "effects": [
+            { "stamina": 1 },
+            { "affliction": { "id": "aff.fever", "source": "bad water" } }
+          ],
+          "next": null
+        },
+        {
+          "text": "Ration what is left and keep rowing.",
+          "effects": [
+            { "stamina": -1 },
+            { "affliction": { "id": "aff.thirst", "source": "the crossing" } }
+          ],
+          "next": null
+        },
+        {
+          "text": "Ask the crew to share their own water.",
+          "effects": [
+            { "stamina": -1 },
+            { "affliction": { "id": "aff.thirst", "source": "a thin share" } }
+          ],
+          "next": null
+        }
+      ]
+    }
+  },
+  "provenance": {
+    "confidence": "plausible",
+    "sources": [],
+    "notes": "A discrete thirst scene, not a water meter."
+  }
+}

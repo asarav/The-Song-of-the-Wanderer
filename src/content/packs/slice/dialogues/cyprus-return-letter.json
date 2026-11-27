@@ -1,0 +1,37 @@
+{
+  "id": "dlg.cyprus.return-letter",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "speaker": "char.cyprus.shipti",
+  "start": "letter",
+  "nodes": {
+    "letter": {
+      "text": "She puts the tablet on the table between you and does not sit down.\n\n\"The letter. It is addressed to a name I cannot read and a house I do not know. Take it or leave it, but do not leave it here another month.\"",
+      "choices": [
+        {
+          "text": "Take it.",
+          "effects": [
+            { "flag": "carries.palace-letter" },
+            { "journal": { "entry": "journal.slice.letter" } },
+            { "knowledge": { "fact": "letter.addressed-from-ugarit", "source": "witnessed", "reliability": 0.9 } }
+          ],
+          "next": "read"
+        },
+        { "text": "Leave it.", "effects": [{ "flag": "left.palace-letter" }], "next": "left" }
+      ]
+    },
+    "read": {
+      "text": "The seal is Ugarit's. The hand is Hannu's, and the signs are cramped as if written quickly. It says: come back. It does not say why.\n\nShipti has already turned back to the net.",
+      "choices": [{ "text": "Put it inside your tunic.", "next": null }]
+    },
+    "left": {
+      "text": "\"Then it stays.\" She puts it back on the shelf, face down, and the conversation is over.",
+      "choices": [{ "text": "Leave the courtyard.", "next": null }]
+    }
+  },
+  "provenance": {
+    "confidence": "fictional",
+    "sources": [],
+    "notes": "The slice's closing hook; invented."
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "id": "dlg.travel.fellow-sailor",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "start": "talk",
+  "nodes": {
+    "talk": {
+      "text": "A man with too much luggage and too little sea-legs has decided that you are the most interesting person aboard.\n\n\"You are from the coast. You have the face. Is it true that the islanders pay in copper and not in silver?\"",
+      "choices": [
+        {
+          "text": "They weigh it and they argue about the weight.",
+          "effects": [
+            { "knowledge": { "fact": "cyprus.copper-by-weight", "source": "told", "reliability": 0.7 } }
+          ],
+          "next": "news"
+        },
+        { "text": "Ask him where he is bound.", "next": "news" },
+        {
+          "text": "Say you do not know and let him talk.",
+          "effects": [{ "languageXp": { "language": "lang.akkadian", "amount": 2 } }],
+          "next": "end"
+        }
+      ]
+    },
+    "news": {
+      "text": "\"There is a yard on the island that will take grain at a good price this month, and a broker there who will not. Kinyras. He buys at the yard price and sells at whatever the boats say.\"",
+      "choices": [
+        {
+          "text": "Remember the name.",
+          "effects": [
+            { "knowledge": { "fact": "kinyras.buys-at-yard-price", "source": "told", "reliability": 0.6 } }
+          ],
+          "next": "end"
+        }
+      ]
+    },
+    "end": {
+      "text": "He talks until the light goes, and then he is sick over the side and apologizes for it, and the night is easier after that.",
+      "choices": [{ "text": "Watch the water.", "next": null }]
+    }
+  },
+  "provenance": {
+    "confidence": "fictional",
+    "sources": [],
+    "notes": "A shipboard conversation; invented."
+  }
+}

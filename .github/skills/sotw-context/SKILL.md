@@ -16,7 +16,7 @@ not authoritative. Disk is.
    (`docs/milestones/M*.md`).
 4. Read only the docs that task touches:
    - engine / store / saves → `docs/ARCHITECTURE.md`
-   - timeline, phases, events, rumours → `docs/WORLD_MODEL.md`
+   - timeline, phases, events, rumors → `docs/WORLD_MODEL.md`
    - characters, arcs, lineages, storylets → `docs/NARRATIVE_SYSTEMS.md`
    - modules, packs, performance, repo evolution → `docs/SCALING.md`
    - tools and QA → `docs/TOOLING.md`

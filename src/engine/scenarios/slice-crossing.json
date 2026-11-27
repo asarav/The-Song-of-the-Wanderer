@@ -1,0 +1,35 @@
+{
+  "id": "scenario.slice.crossing",
+  "seed": "slice-001",
+  "start": {
+    "date": "1230-04-01",
+    "location": "dest.ugarit",
+    "money": 120,
+    "capacity": 20,
+    "languages": { "lang.akkadian": { "xp": 25, "tier": "basic" } },
+    "knownRoutes": ["route.ugarit-cyprus"],
+    "knownDestinations": ["dest.ugarit"],
+    "inventory": [{ "item": "good.olive-oil", "quantity": 2 }]
+  },
+  "commands": [
+    { "type": "buy", "item": "good.grain", "quantity": 2 },
+    { "type": "talkTo", "character": "char.ugarit.amnit" },
+    { "type": "chooseDialogue", "choice": 0 },
+    { "type": "chooseDialogue", "choice": 1 },
+    { "type": "chooseDialogue", "choice": 0 },
+    { "type": "chooseDialogue", "choice": 0 },
+    { "type": "travel", "route": "route.ugarit-cyprus", "mode": "mode.open" },
+    { "type": "resolveEncounter", "choice": 0 },
+    { "type": "resolveEncounter", "choice": 0 },
+    { "type": "resolveEncounter", "choice": 0 },
+    { "type": "resolveEncounter", "choice": 0 },
+    { "type": "resolveEncounter", "choice": 0 },
+    { "type": "resolveEncounter", "choice": 0 }
+  ],
+  "assert": [
+    { "path": "player.location", "equals": "dest.cyprus" },
+    { "path": "knowledge.knownDestinations", "contains": "dest.cyprus" },
+    { "path": "player.deeds.0.kind", "equals": "travelled" },
+    { "path": "narrative.relationships.char.ugarit.amnit.trust", "equals": 1 }
+  ]
+}

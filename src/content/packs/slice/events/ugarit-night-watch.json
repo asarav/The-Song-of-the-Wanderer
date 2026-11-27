@@ -1,0 +1,20 @@
+{
+  "id": "evt.ugarit.night-watch",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "kind": "storylet",
+  "title": "A lamp on the mole",
+  "description": "After the gate shuts, a lamp moves along the harbor wall.",
+  "scope": { "destinations": ["dest.ugarit"] },
+  "conditions": { "all": [] },
+  "priority": 18,
+  "major": false,
+  "cooldownDays": 4,
+  "scene": "dlg.ugarit.night-watch",
+  "effects": [],
+  "provenance": {
+    "confidence": "plausible",
+    "sources": ["Ugarit harbor and gate administration, general"],
+    "notes": "A night watch on the mole is plausible; Hannu's talk and the scene are invented."
+  }
+}

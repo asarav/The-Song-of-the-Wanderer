@@ -1,0 +1,36 @@
+{
+  "id": "dlg.travel.peril-fever",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "start": "heat",
+  "nodes": {
+    "heat": {
+      "beatArt": ["art.ugarit.night", "art.cyprus.night"],
+      "text": "It starts behind the eyes. By noon your hands are cold and your face is not, and the man at the oar has begun to watch you the way people watch a rope that is fraying.\n\n\"Sit down,\" he says. \"Or do not. But decide.\"",
+      "choices": [
+        {
+          "text": "Lie down and let the day pass over you.",
+          "effects": [
+            { "advanceTime": { "days": 1 } },
+            { "stamina": -1 },
+            { "affliction": { "id": "aff.fever", "source": "the road" } }
+          ],
+          "next": null
+        },
+        {
+          "text": "Keep moving. The crossing will not wait.",
+          "effects": [
+            { "stamina": -2 },
+            { "affliction": { "id": "aff.fever", "source": "the road" } }
+          ],
+          "next": null
+        }
+      ]
+    }
+  },
+  "provenance": {
+    "confidence": "plausible",
+    "sources": [],
+    "notes": "A discrete fever scene, not a disease simulation."
+  }
+}

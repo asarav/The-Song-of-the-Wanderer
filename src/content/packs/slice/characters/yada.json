@@ -1,0 +1,22 @@
+{
+  "id": "char.ugarit.yada",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "name": "Yada",
+  "art": "art.ugarit.yada",
+  "culture": "culture.levant.coastal",
+  "languages": ["lang.ugaritic", "lang.akkadian"],
+  "home": "dest.ugarit",
+  "tier": "recurring",
+  "roles": ["scribe", "teacher"],
+  "dialogue": "dlg.ugarit.yada.lesson",
+  "wants": ["a copy of a text he has only heard of", "a student who does not waste his morning"],
+  "fears": ["the archive being moved without him"],
+  "contradiction": "He teaches for money and resents being paid for it.",
+  "presence": ["dest.ugarit"],
+  "provenance": {
+    "confidence": "fictional",
+    "sources": [],
+    "notes": "An invented scribe. Scribal schools and archives are attested at Ugarit."
+  }
+}

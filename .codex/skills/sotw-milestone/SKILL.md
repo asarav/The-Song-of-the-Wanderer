@@ -50,7 +50,7 @@ pnpm check
 
 Expected additionally, depending on the task:
 
-- New engine behaviour has a unit or scenario test.
+- New engine behavior has a unit or scenario test.
 - New content has a scenario that reaches it.
 - Save-affecting changes include a migration and a round-trip test.
 - UI changes are reachable with the keyboard and readable at default text size.

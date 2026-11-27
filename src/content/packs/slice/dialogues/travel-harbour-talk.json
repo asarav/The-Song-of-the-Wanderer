@@ -1,0 +1,39 @@
+{
+  "id": "dlg.travel.harbour-talk",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "start": "bow",
+  "nodes": {
+    "bow": {
+      "text": "The crew talks over your head in a language that is almost familiar. Not Akkadian. Not the Ugaritic of the market. Something with a different rhythm, and words that come back around.\n\nOne of them notices you listening and says a word clearly, twice, and waits.",
+      "choices": [
+        {
+          "text": "Say the word back.",
+          "effects": [{ "languageXp": { "language": "lang.cypriot", "amount": 2 } }],
+          "next": "word"
+        },
+        {
+          "text": "Ask in Akkadian what it means.",
+          "conditions": { "languageAtLeast": { "language": "lang.akkadian", "tier": "basic" } },
+          "unavailableNote": "You do not have enough Akkadian to ask.",
+          "effects": [{ "languageXp": { "language": "lang.cypriot", "amount": 1 } }],
+          "next": "ask"
+        },
+        { "text": "Let it pass.", "next": null }
+      ]
+    },
+    "word": {
+      "text": "They laugh, but not at you. The word is repeated, and then another, and by the end of the watch you have four words and no idea how to put them together.",
+      "choices": [{ "text": "Keep the four words.", "next": null }]
+    },
+    "ask": {
+      "text": "\"Wind,\" the man says in Akkadian, and then makes a gesture that means the wind is wrong. \"Also a name. Maybe a man's name. Maybe the wind's.\"",
+      "choices": [{ "text": "Nod as if that settles it.", "next": null }]
+    }
+  },
+  "provenance": {
+    "confidence": "plausible",
+    "sources": ["Cypro-Minoan and the island's unattested speech, general"],
+    "notes": "The island's language is real but undeciphered; the game gives exposure without translation."
+  }
+}

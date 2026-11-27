@@ -1,0 +1,17 @@
+{
+  "id": "good.textile",
+  "pack": "pack.core",
+  "contentVersion": 1,
+  "name": "Wool cloth",
+  "art": "art.good.textile",
+  "category": "textile",
+  "weight": 1,
+  "description": "Bolts of dyed wool, folded into a bundle a porter can carry on one shoulder.",
+  "provenance": {
+    "confidence": "strongly-supported",
+    "sources": [
+      "Near Eastern textile trade records, general"
+    ],
+    "notes": "Textiles were a major trade good; dye and weave detail is deliberately generic."
+  }
+}

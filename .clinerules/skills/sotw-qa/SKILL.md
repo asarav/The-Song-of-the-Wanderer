@@ -5,7 +5,7 @@ description: Run, interpret, and extend the validation and QA tooling for The So
 
 # Quality and tooling
 
-The tool catalogue and rules live in `docs/TOOLING.md`. This skill is the operating
+The tool catalog and rules live in `docs/TOOLING.md`. This skill is the operating
 procedure.
 
 ## Every task
@@ -72,7 +72,7 @@ opinion.
 | Long-run invariant | Which day and entity? | Reproduce with the seed; add a regression test |
 | Persona stall | Where did progress stop? | Check access requirements and UI explanation |
 | Prose lint | Is the rule wrong or the line? | Fix the line; change the rule only by ADR |
-| Perf budget | Which operation regressed? | Profile before optimising; record the number |
+| Perf budget | Which operation regressed? | Profile before optimizeing; record the number |
 
 Do not silence a failure by deleting the check. If a rule is wrong, change it in the shared
 validator, add a test, and note it in `WORKLOG.md`.
@@ -119,4 +119,4 @@ Every gate report states:
 - top five issues with IDs,
 - what changed since the last run.
 
-Keep it short. Link artefacts; do not paste logs.
+Keep it short. Link artifacts; do not paste logs.

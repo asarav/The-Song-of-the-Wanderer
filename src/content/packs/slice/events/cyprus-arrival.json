@@ -1,0 +1,23 @@
+{
+  "id": "evt.cyprus.arrival",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "kind": "local",
+  "title": "Landfall on Cyprus",
+  "scope": { "destinations": ["dest.cyprus"] },
+  "conditions": { "all": [] },
+  "priority": 100,
+  "major": true,
+  "once": true,
+  "scene": "dlg.cyprus.arrival",
+  "effects": [
+    { "journal": { "entry": "journal.slice.first-crossing" } },
+    { "journal": { "entry": "journal.slice.cyprus-arrival" } },
+    { "schedule": { "event": "evt.cyprus.amnit-arrives", "inDays": 1 } }
+  ],
+  "provenance": {
+    "confidence": "plausible",
+    "sources": [],
+    "notes": "The arrival scene on the island. Invented; see the Cyprus dossier."
+  }
+}

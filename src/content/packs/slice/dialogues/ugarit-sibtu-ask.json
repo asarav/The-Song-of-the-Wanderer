@@ -1,0 +1,214 @@
+{
+  "id": "dlg.ugarit.sibtu.ask",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "speaker": "char.ugarit.sibtu",
+  "start": "greet",
+  "entries": [
+    {
+      "when": {
+        "all": [
+          { "flag": "sibtu.cloth-settled" },
+          { "hasJournalEntry": "journal.slice.sibtu-cloth-settled" }
+        ]
+      },
+      "node": "after-cloth"
+    },
+    { "when": { "flag": "sibtu.cloth-settled" }, "node": "after-cloth-kept" },
+    {
+      "when": {
+        "all": [
+          { "flag": "carries.sibtu-cloth" },
+          { "not": { "flag": "sibtu.cloth-taken" } },
+          { "not": { "itemAtLeast": { "item": "good.sibtu-cloth", "quantity": 1 } } },
+          { "not": { "flag": "sibtu.cloth-settled" } }
+        ]
+      },
+      "node": "bundle-missing"
+    },
+    {
+      "when": {
+        "all": [
+          { "flag": "carries.sibtu-cloth" },
+          { "flag": "sibtu.cloth-taken" },
+          { "not": { "itemAtLeast": { "item": "good.sibtu-cloth", "quantity": 1 } } }
+        ]
+      },
+      "node": "settle"
+    },
+    { "when": { "hasJournalEntry": "journal.slice.refugee-helped" }, "node": "after-help" },
+    { "when": { "hasJournalEntry": "journal.slice.refugee-refused" }, "node": "after-refusal" },
+    { "when": { "flag": "sibtu.met" }, "node": "again" }
+  ],
+  "nodes": {
+    "greet": {
+      "text": "You are the one from the harbor. Sit, if you can sit without being asked twice.\n\nThe loom takes up most of the room. Two children are sorting wool by color, badly, and one of them is winning.",
+      "choices": [
+        {
+          "text": "You are not from the city.",
+          "effects": [
+            { "flag": "sibtu.met" },
+            { "relationship": { "character": "char.ugarit.sibtu", "dimension": "trust", "delta": 1 } }
+          ],
+          "next": "story"
+        },
+        {
+          "text": "Do you need anything?",
+          "effects": [
+            { "flag": "sibtu.met" }
+          ],
+          "next": "need"
+        },
+        { "text": "(Leave her to the loom.)", "next": null }
+      ]
+    },
+    "again": {
+      "text": "\"You again.\" She does not stop the loom, and one of the children has learned to sort by color since the last time.\n\n\"Sit if you are staying. The light is better on that side.\"",
+      "choices": [
+        {
+          "text": "Do you need anything?",
+          "next": "need"
+        },
+        { "text": "Ask why she left the inland.", "next": "story" },
+        { "text": "(Leave her to the loom.)", "next": null }
+      ]
+    },
+    "after-help": {
+      "text": "The table is clearer than it was, and she does not mention it.\n\n\"Sit, if you are staying. The loom does not mind an audience.\"",
+      "choices": [
+        { "text": "Ask nothing more.", "next": null },
+        { "text": "Ask whether she has heard from inland.", "next": "news" }
+      ]
+    },
+    "after-refusal": {
+      "text": "\"You again.\" She does not stop the loom. The cloth on the table is folded and tied, and she works around it.\n\n\"If you have come to look at it, look. It does not need an opinion.\"",
+      "choices": [
+        {
+          "text": "I was wrong. I will take it to the yard.",
+          "effects": [
+            { "flag": "refugee.helped" },
+            { "journal": { "entry": "journal.slice.refugee-helped" } },
+            { "relationship": { "character": "char.ugarit.sibtu", "dimension": "obligation", "delta": 2 } },
+            { "faction": { "faction": "faction.ugarit.merchants", "dimension": "trust", "delta": 1 } },
+            { "schedule": { "event": "evt.cyprus.arrival-news", "inDays": 8 } }
+          ],
+          "next": "amends"
+        },
+        { "text": "Leave her to the loom.", "next": null }
+      ]
+    },
+    "amends": {
+      "art": "art.ugarit.cloth-amends",
+      "text": "\"Then you are owed.\" She ties the cord tighter and does not look up. \"I will not forget it, and I will not mention it again.\"\n\nShe pushes the bundle across the table with two fingers, as if it might be refused a second time.",
+      "choices": [
+        {
+          "text": "Take the bundle.",
+          "effects": [
+            { "flag": "carries.sibtu-cloth" },
+            { "flag": "sibtu.cloth-taken" },
+            { "items": { "item": "good.sibtu-cloth", "quantity": 1 } },
+            { "schedule": { "event": "evt.cyprus.arrival-news", "inDays": 8 } }
+          ],
+          "next": null
+        }
+      ]
+    },
+    "bundle-missing": {
+      "art": "art.ugarit.cloth-missing",
+      "text": "She looks at my hands, then at the table where the bundle was.\n\n\"You did not take it,\" she says. \"Take it now, and do not make me ask twice.\"",
+      "choices": [
+        {
+          "text": "Take the bundle.",
+          "effects": [
+            { "flag": "sibtu.cloth-taken" },
+            { "items": { "item": "good.sibtu-cloth", "quantity": 1 } }
+          ],
+          "next": null
+        }
+      ]
+    },
+    "settle": {
+      "art": "art.ugarit.cloth-settle",
+      "text": "\"You sold it, then.\" She sets the shuttle down and holds out her hand, palm up, as if the price were a weight she could check.",
+      "choices": [
+        {
+          "text": "Give her the five shekels.",
+          "conditions": { "moneyAtLeast": 5 },
+          "unavailableNote": "You do not have five shekels to put in her hand.",
+          "effects": [
+            { "money": -5 },
+            { "flag": "sibtu.cloth-settled" },
+            { "relationship": { "character": "char.ugarit.sibtu", "dimension": "trust", "delta": 1 } },
+            { "journal": { "entry": "journal.slice.sibtu-cloth-settled" } }
+          ],
+          "next": "settled"
+        },
+        {
+          "text": "I cannot give it to you.",
+          "effects": [
+            { "flag": "sibtu.cloth-settled" },
+            { "relationship": { "character": "char.ugarit.sibtu", "dimension": "trust", "delta": -2 } },
+            { "journal": { "entry": "journal.slice.sibtu-cloth-kept" } }
+          ],
+          "next": "kept"
+        }
+      ]
+    },
+    "settled": {
+      "art": "art.ugarit.cloth-settled",
+      "text": "She counts the five shekels twice, then puts them in the chest without a word. The loom starts again.\n\n\"Three more pairs of hands,\" she says, to the cloth. \"That is all it ever was.\"",
+      "choices": [{ "text": "Leave her to it.", "next": null }]
+    },
+    "kept": {
+      "art": "art.ugarit.cloth-kept",
+      "text": "She does not ask why. \"No,\" she says, and takes up the shuttle. \"You are not the first.\"\n\nThe loom fills the room again, and the children have stopped pretending to sort wool.",
+      "choices": [{ "text": "Leave.", "next": null }]
+    },
+    "after-cloth": {
+      "art": "art.ugarit.cloth-after",
+      "text": "The chest is shut and the loom is going. She does not mention the cloth, and neither do I.\n\n\"Sit, if you are staying,\" she says. \"The light is still better on that side.\"",
+      "choices": [
+        { "text": "Ask whether she has heard from inland.", "next": "news" },
+        { "text": "Ask nothing more.", "next": null }
+      ]
+    },
+    "after-cloth-kept": {
+      "text": "The chest is shut and the loom is going. She does not ask about the five shekels, and I do not offer them.\n\n\"You know where the door is,\" she says, and turns the shuttle. The children do not look up.",
+      "beatArt": ["art.ugarit.cloth-kept", "art.ugarit.sibtu"],
+      "choices": [{ "text": "Leave her to the loom.", "next": null }]
+    },
+    "news": {
+      "text": "\"No. News comes to the harbor before it comes to the workshop quarter.\"\n\nShe turns the shuttle. \"If you hear anything, you will tell me before you tell the yard.\"",
+      "choices": [{ "text": "Say you will.", "next": null }]
+    },
+    "story": {
+      "text": "\"Inland. A bad year, then a worse one, and a cousin with a roof and a mouth.\" She does not stop working. \"My husband stayed to bring the last of it. That was two months ago.\"",
+      "choices": [
+        {
+          "text": "Ask nothing more.",
+          "effects": [
+            { "knowledge": { "fact": "sibtu.husband-stayed-inland", "source": "told", "reliability": 0.8 } }
+          ],
+          "next": "need"
+        }
+      ]
+    },
+    "need": {
+      "text": "\"Tomorrow. Ask me tomorrow, when the children are out and I can say it without them hearing.\"",
+      "choices": [
+        {
+          "text": "Tomorrow, then.",
+          "effects": [
+            { "schedule": { "event": "evt.ugarit.refugee-ask", "inDays": 1 } }
+          ],
+          "next": null
+        }
+      ]
+    }
+  },
+  "provenance": {
+    "confidence": "fictional",
+    "sources": [],
+    "notes": "Sibtu and her household are invented. Displacement for a failed harvest is plausible in this period."
+  }
+}

@@ -1,0 +1,128 @@
+{
+  "id": "dlg.cyprus.shipti.inn",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "speaker": "char.cyprus.shipti",
+  "start": "courtyard",
+  "entries": [
+    { "when": { "flag": "carries.palace-letter" }, "node": "again-carried" },
+    { "when": { "flag": "left.palace-letter" }, "node": "again-left" },
+    { "when": { "flag": "shipti.letters" }, "node": "again-letters" },
+    { "when": { "flag": "shipti.who" }, "node": "again-who" }
+  ],
+  "nodes": {
+    "courtyard": {
+      "text": "The courtyard is empty except for Shipti, who is mending a net she does not own and listening to everything.\n\n\"The yard is honest and the harbor is not. I said that already, did I?\"",
+      "choices": [
+        {
+          "text": "Who buys copper here?",
+          "effects": [{ "flag": "shipti.who" }],
+          "next": "who"
+        },
+        {
+          "text": "Any letters from the mainland?",
+          "effects": [{ "flag": "shipti.letters" }],
+          "next": "letters"
+        },
+        {
+          "text": "Say nothing and drink what you are given.",
+          "effects": [{ "flag": "shipti.quiet" }],
+          "next": "quiet"
+        }
+      ]
+    },
+    "again-who": {
+      "text": "\"Kinyras, and the nameless man from Alashiya.\" She bites the thread. \"I have not changed my mind about either of them, and neither has the yard.\"",
+      "choices": [
+        { "text": "Any letters from the mainland?", "next": "letters" },
+        {
+          "text": "Say nothing and drink what you are given.",
+          "effects": [{ "flag": "shipti.quiet" }],
+          "next": "quiet"
+        }
+      ]
+    },
+    "again-letters": {
+      "text": "\"The shelf is empty of letters and full of other people's business.\"\n\nShe nods at the shelf anyway.",
+      "choices": [
+        { "text": "Who buys copper here?", "next": "who" },
+        {
+          "text": "Say nothing and drink what you are given.",
+          "effects": [{ "flag": "shipti.quiet" }],
+          "next": "quiet"
+        }
+      ]
+    },
+    "again-carried": {
+      "text": "She looks at your tunic where the tablet is, and then at the door, and then at her net.\n\n\"Still carrying it. Good. Wear it where it does not show, and do not read it in the yard.\"",
+      "choices": [
+        { "text": "Who buys copper here?", "next": "who" },
+        {
+          "text": "Say nothing and drink what you are given.",
+          "effects": [{ "flag": "shipti.quiet" }],
+          "next": "quiet"
+        }
+      ]
+    },
+    "again-left": {
+      "text": "\"The letter is still on the shelf, face down, where you left it.\" She does not look up from the net. \"I am not its keeper, and I am not yours.\"",
+      "choices": [
+        {
+          "text": "I have changed my mind about the letter.",
+          "next": "late-letter"
+        },
+        { "text": "Leave it there.", "next": null }
+      ]
+    },
+    "late-letter": {
+      "text": "She puts the tablet on the table between you and goes back to the net.\n\n\"Take it or leave it. But do not leave it here another month.\"",
+      "choices": [
+        {
+          "text": "Take it.",
+          "effects": [
+            { "flag": "carries.palace-letter" },
+            { "journal": { "entry": "journal.slice.letter" } },
+            { "knowledge": { "fact": "letter.addressed-from-ugarit", "source": "witnessed", "reliability": 0.9 } }
+          ],
+          "next": "read"
+        },
+        { "text": "Leave it after all.", "next": null }
+      ]
+    },
+    "read": {
+      "text": "The seal is Ugarit's. The hand is Hannu's, and the signs are cramped as if written quickly. It says: come back. It does not say why.\n\nShipti has already turned back to the net.",
+      "choices": [{ "text": "Put it inside your tunic.", "next": null }]
+    },
+    "who": {
+      "text": "\"Kinyras. And a man from Alashiya who does not give a name, which is not the same as not having one.\" She bites the thread. \"If the nameless man offers you a price, take it and do not ask him to repeat it.\"",
+      "choices": [
+        {
+          "text": "Remember the warning.",
+          "effects": [
+            { "knowledge": { "fact": "alashiya.nameless-buyer", "source": "told", "reliability": 0.6 } }
+          ],
+          "next": null
+        }
+      ]
+    },
+    "letters": {
+      "text": "\"One. It has been on the shelf for a month and the seal is not for me.\" She nods at a shelf. \"Ugarit's mark. If you are going back, it is yours to carry.\"",
+      "choices": [
+        {
+          "text": "Look at the shelf.",
+          "effects": [{ "schedule": { "event": "evt.cyprus.return-letter", "inDays": 1 } }],
+          "next": null
+        }
+      ]
+    },
+    "quiet": {
+      "text": "She pours something that is not water and does not charge you for it, and the two of you listen to the yard until the light goes.",
+      "choices": [{ "text": "Go to bed.", "next": null }]
+    }
+  },
+  "provenance": {
+    "confidence": "fictional",
+    "sources": [],
+    "notes": "Shipti and the inn are invented."
+  }
+}

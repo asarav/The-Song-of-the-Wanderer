@@ -1,0 +1,13 @@
+{
+  "id": "journal.slice.sibtu-news",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "title": "Word from the workshop quarter",
+  "text": "A sailor from Ugarit says Sibtu's household has settled. The five shekels bought flax, the loom is busy, and the children have work. She did not send a message; the yard talks anyway.",
+  "beatArt": ["art.ugarit.workshops"],
+  "provenance": {
+    "confidence": "fictional",
+    "sources": [],
+    "notes": "The visible consequence of returning Sibtu's cloth money. Invented."
+  }
+}

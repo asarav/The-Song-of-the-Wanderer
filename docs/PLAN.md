@@ -36,19 +36,19 @@ feature must first be proven by re-expressing existing slice content through it.
 | ID | Milestone | Outcome | Status |
 |---|---|---|---|
 | M0 | Bootstrap | Docs, skills, toolchain, shell | **Done** |
-| M1 | Engine spine | Deterministic state, time, RNG, DSL, registry, saves, scenarios | Next |
-| M2 | Slice systems + greybox UI | Market, travel, dialogue, journal, language, relationships | Planned |
-| M3 | Slice content | Ugarit and Cyprus authored end to end | Planned |
-| M4 | Playtest and evaluation | Evidence for the seven slice questions; go/no-go | Planned |
+| M1 | Engine spine | Deterministic state, time, RNG, DSL, registry, saves, scenarios | **Done** |
+| M2 | Slice systems + graybox UI | Market, travel, dialogue, journal, language, relationships | **Done** |
+| M3 | Slice content | Ugarit and Cyprus authored end to end | **Done** |
+| M4 | Playtest and evaluation | Evidence for the seven slice questions; go/no-go | **In progress — human sessions blocked** |
 
 ### Wave 1 — Build for scale (M5–M8)
 
 | ID | Milestone | Outcome | Status |
 |---|---|---|---|
-| M5 | World model and timeline | Eras, regional phases, world/regional/local events, propagation, truth vs knowledge | Planned |
-| M6 | Characters, arcs, lineages | Lives that continue off-screen; recurring cast; generations | Planned |
-| M7 | Society, culture, economy | Factions, obligations, languages, customs, trade networks at scale | Planned |
-| M8 | Authoring and QA utilities | Content studio, coverage, continuity, long-run simulation, prose/locale tools | Planned |
+| M5 | World model and timeline | Eras, regional phases, world/regional/local events, propagation, truth vs knowledge | Blocked by Gate A |
+| M6 | Characters, arcs, lineages | Lives that continue off-screen; recurring cast; generations | Blocked by Gate A |
+| M7 | Society, culture, economy | Factions, obligations, languages, customs, trade networks at scale | Blocked by Gate A |
+| M8 | Authoring and QA utilities | Content studio, coverage, continuity, long-run simulation, prose/locale tools | Blocked by Gate A |
 
 ### Wave 2 — Fill the world (M9–M14)
 
@@ -91,7 +91,7 @@ problems Wave 1 solves, and they are the reason M5–M8 exist.
 | Problem | Where solved |
 |---|---|
 | The world must change over 300+ years without one giant script | `WORLD_MODEL.md` §2–4, M5 |
-| Distant events must reach the player as rumours, not cutscenes | `WORLD_MODEL.md` §5, M5 |
+| Distant events must reach the player as rumors, not cutscenes | `WORLD_MODEL.md` §5, M5 |
 | The player must be able to believe false things | `WORLD_MODEL.md` §5, ADR-0004 |
 | Characters must age, move, die, and have descendants | `NARRATIVE_SYSTEMS.md` §2–4, M6 |
 | A character arc must advance across decades and regions | `NARRATIVE_SYSTEMS.md` §3, M6 |
@@ -213,7 +213,7 @@ Every feature must pass spec §21 and answer:
 
 Explicitly out of scope at every stage: grand strategy, city or population management,
 full economic simulation, physics travel, walkable cities, action combat, survival
-meters, crafting trees, procedural civilisations, a universal pantheon, mandatory combat,
+meters, crafting trees, procedural civilizations, a universal pantheon, mandatory combat,
 class systems, grinding, live generated story.
 
 The scale layer is not an exception. World events are authored, propagation is authored,
@@ -228,8 +228,8 @@ and characters are authored. We simulate *consequences*, not history.
 | Continuity breaks across centuries | High | Facts ledger, continuity linter, long-run simulation, golden saves |
 | Saves break with every content patch | High | Versioned saves, migrations, golden save corpus (ADR-0005) |
 | Agent context loss at scale | High | STATUS, milestone files, skills, ADRs, small tasks |
-| Region content feels interchangeable | Medium | Culture profiles per destination, not per civilisation; sensory bibles |
-| Collapse becomes one cutscene | Medium | Regional phases, local consequences, rumour latency, no single cause |
+| Region content feels interchangeable | Medium | Culture profiles per destination, not per civilization; sensory bibles |
+| Collapse becomes one cutscene | Medium | Regional phases, local consequences, rumor latency, no single cause |
 | Endings feel like a menu | Medium | State-composed endings, regional variation, thematic families |
 | Tooling consumes the project | Medium | Tools are milestone deliverables with acceptance tests, not side quests |
 | Art/audio blocks progress | Medium | Asset IDs and placeholders; no build depends on assets |

@@ -8,7 +8,7 @@ gated on a completed dossier set and a milestone file.
 | # | Region | Slice | Stage | Notes |
 |---|---|---|---|---|
 | A | Aegean and Mycenaean world | — | 3 | Palace systems, craft mobility |
-| B | Anatolia and Cyprus | **Cyprus** | **Slice** | Crossroads; copper; harbour society |
+| B | Anatolia and Cyprus | **Cyprus** | **Slice** | Crossroads; copper; harbor society |
 | C | Levant and eastern Mediterranean | **Ugarit** | **Slice** | Opening; commercial and scribal world |
 | D | Egypt and the Nile | — | 3 | Multiple destinations, not one capital |
 | E | Nubia and the Middle Nile | — | 3 | Kerma legacy; Egyptian reach |
@@ -28,10 +28,10 @@ budget and exit criteria are in `milestones/M9-M19-production-waves.md`.
 ## 2. Slice geography
 
 **Ugarit (C)** — the opening destination. A port city with a palace, temples, scribal
-archive, merchant houses, and a working harbour. The player begins here with modest
+archive, merchant houses, and a working harbor. The player begins here with modest
 stock, partial Akkadian, and one contact.
 
-**Cyprus (B)** — the second destination. A harbour community and copper-working
+**Cyprus (B)** — the second destination. A harbor community and copper-working
 settlement, connected to Aegean, Anatolian, and Levantine networks. The return leg
 creates the first loop.
 
@@ -52,7 +52,7 @@ Long-distance travel is a chain of regional stages, not a single road (spec §4.
   chronology.
 
 Each corridor requires guides, contacts, languages, or patronage at its joints. Unknown
-routes appear as rumours, not as menu options.
+routes appear as rumors, not as menu options.
 
 ## 4. Destination standard
 

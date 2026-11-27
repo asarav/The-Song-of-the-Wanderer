@@ -1,0 +1,18 @@
+{
+  "id": "faction.ugarit.palace",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "name": "The palace at Ugarit",
+  "type": "court",
+  "interests": [
+    "control of the harbor and its dues",
+    "good relations with the Hittite court",
+    "grain reaching the city before winter"
+  ],
+  "description": "Officials, scribes, and a gate that decides who is worth its time. The palace does not need to be liked; it needs to be obeyed, and it knows the difference.",
+  "provenance": {
+    "confidence": "strongly-supported",
+    "sources": ["Ugaritic palace archives and correspondence, general"],
+    "notes": "Palace administration at Ugarit is attested. The named officials are invented."
+  }
+}

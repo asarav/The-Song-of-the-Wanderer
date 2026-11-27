@@ -1,0 +1,19 @@
+{
+  "id": "evt.ugarit.refugee-ask",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "kind": "local",
+  "title": "Sibtu asks",
+  "scope": { "destinations": ["dest.ugarit"] },
+  "conditions": { "not": { "hasJournalEntry": "journal.slice.refugee-asked" } },
+  "priority": 70,
+  "major": true,
+  "once": true,
+  "scene": "dlg.ugarit.refugee-ask",
+  "effects": [{ "journal": { "entry": "journal.slice.refugee-asked" } }],
+  "provenance": {
+    "confidence": "plausible",
+    "sources": [],
+    "notes": "The refugee thread's request beat. Invented."
+  }
+}

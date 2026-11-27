@@ -1,0 +1,12 @@
+{
+  "id": "climate.levant-coast",
+  "pack": "pack.core",
+  "contentVersion": 1,
+  "name": "Levantine coast",
+  "notes": "Hot dry summers, mild wet winters, sea breezes in the afternoon. Rain arrives between autumn and spring.",
+  "provenance": {
+    "confidence": "plausible",
+    "sources": ["Regional Mediterranean climate, general"],
+    "notes": "A climate band for scene-setting, not a palaeoclimate reconstruction."
+  }
+}

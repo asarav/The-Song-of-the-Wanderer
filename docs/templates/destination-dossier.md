@@ -90,7 +90,7 @@ Who might flee, return, or be remembered by descendants?
 - Landscape and weather:
 - Sounds:
 - Smells:
-- Colours and materials:
+- Colors and materials:
 - Animals:
 - Crowd and quiet:
 

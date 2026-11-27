@@ -10,8 +10,8 @@ opened the repository.
 | `PLAN.md` | Roadmap M0–M19, waves, gates, risks | Starting or re-planning |
 | `ARCHITECTURE.md` | Layers, command/event flow, state model, saves, modules | Touching `src/engine` or `src/store` |
 | `DATA_MODEL.md` | Canonical entity shapes: player, places, routes, time, characters, arcs, factions, culture, knowledge | Designing or extending any entity, save field, or content type |
-| `ASSETS.md` | Asset IDs, manifest, exploratory generation workflow, visual review and promotion | Adding or reviewing any visual asset |
-| `WORLD_MODEL.md` | Eras, phases, world/local events, propagation, truth vs knowledge | Timeline, events, rumours, destination states |
+| `ASSETS.md` | Asset IDs, manifests, exploratory art/audio workflow, review and promotion | Adding or reviewing any visual or audio asset |
+| `WORLD_MODEL.md` | Eras, phases, world/local events, propagation, truth vs knowledge | Timeline, events, rumors, destination states |
 | `NARRATIVE_SYSTEMS.md` | Characters, arcs, lineages, recurrence, storylets, journal | Any character, arc, or scene |
 | `SCALING.md` | Modules, content packs, save partitioning, performance, testing tiers | Adding a system, pack, or dependency |
 | `TOOLING.md` | Linters, studio, coverage, continuity, simulation, generators | Building or using a tool |
@@ -19,7 +19,7 @@ opened the repository.
 | `HISTORY.md` | Confidence taxonomy, sourcing, dossier workflow, review gates | Any historical claim |
 | `WORKLOG.md` | Append-only record of completed sessions | Reconstructing why something changed |
 | `DECISIONS/` | ADRs for decisions that should not be relitigated | Before a structural change |
-| `design/` | Distilled world truth: timeline, regions, protagonist, acts | Writing scenes or characters |
+| `design/` | Distilled world truth: timeline, regions, protagonist, acts, demography, slice arc/tutorial audit | Writing scenes or characters |
 | `milestones/` | Task lists, acceptance criteria, demo scripts | Every working session |
 | `templates/` | Destination dossier, region timeline, character, arc, event, route | Creating new content |
 
@@ -38,8 +38,10 @@ If two conflict, the higher entry wins and the lower one is corrected in the sam
 | Task | Read |
 |---|---|
 | Engine kernel, DSL, saves | `ARCHITECTURE.md` §2–6, `DATA_MODEL.md` §1–4, §14, ADR-0003, ADR-0005 |
-| Timeline, phases, events, rumours | `WORLD_MODEL.md`, `DATA_MODEL.md` §7, §13, ADR-0004, `design/00-timeline.md` |
-| Character, arc, lineage, storylet | `NARRATIVE_SYSTEMS.md`, `DATA_MODEL.md` §8–9, `templates/character.md`, `templates/arc.md` |
+| Timeline, phases, events, rumors | `WORLD_MODEL.md`, `DATA_MODEL.md` §7, §13, ADR-0004, `design/00-timeline.md` |
+| Character, arc, lineage, storylet | `NARRATIVE_SYSTEMS.md`, `DATA_MODEL.md` §8–9, `templates/character.md`, `templates/arc.md`, `design/slice-arc-audit.md` |
+| Ages, crowds, settlement population | `design/04-demography.md` |
+| The wider world and its landscapes | `design/05-the-world-in-1230.md` |
 | New region or destination | `design/01-regions.md`, `HISTORY.md`, `DATA_MODEL.md` §5–6, `templates/destination-dossier.md`, `templates/region-timeline.md` |
 | Faction, culture, language, economy | `DATA_MODEL.md` §5–6, §10–12, `SCALING.md` §3 |
 | Tooling or QA | `TOOLING.md` |

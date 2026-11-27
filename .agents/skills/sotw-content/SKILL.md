@@ -31,7 +31,7 @@ Read `docs/CONTENT.md` first. It is the full ruleset; this skill is the working 
 - A route is a corridor with segments and waypoints; mobile groups are distinct from
   factions.
 - `DayContext` is derived. Climate change is authored; weather is deterministic local
-  colour.
+  color.
 - Religious or divine content records observances, claims, and interpretations, never a
   metaphysical fact.
 
@@ -85,7 +85,7 @@ genuinely wrong, change it with a test and note it in the milestone file.
 From M5 onward, content includes entities that change over time. Use the dedicated skill
 for each:
 
-- **Phases, world events, local events, propagation, rumours, route states** —
+- **Phases, world events, local events, propagation, rumors, route states** —
   `sotw-world`. Follow the chain: world event → regional condition → local pressure →
   character decision → delayed consequence.
 - **Characters, itineraries, arcs, lineages, recognition, storylets** — `sotw-character`.

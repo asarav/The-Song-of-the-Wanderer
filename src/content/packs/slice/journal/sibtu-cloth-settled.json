@@ -1,0 +1,12 @@
+{
+  "id": "journal.slice.sibtu-cloth-settled",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "title": "The price of the cloth",
+  "text": "I sold Sibtu's cloth at the yard for five shekels and put them in her hand. She counted them twice, put them away, and did not say thank you, which I am learning is not the same as not being thanked.",
+  "provenance": {
+    "confidence": "fictional",
+    "sources": [],
+    "notes": "The consignment is returned to Sibtu. Invented."
+  }
+}

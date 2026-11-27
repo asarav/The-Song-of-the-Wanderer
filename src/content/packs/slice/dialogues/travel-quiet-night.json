@@ -1,0 +1,30 @@
+{
+  "id": "dlg.travel.quiet-night",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "start": "night",
+  "nodes": {
+    "night": {
+      "text": "The boat lies in the lee of a headland. Everyone is asleep but you and one man at the bow who is not quite awake either.\n\nThere is one light on the shore and no way of telling whose it is.",
+      "choices": [
+        { "text": "Stay until the light goes out.", "next": null },
+        {
+          "text": "Ask the man at the bow whose light it is.",
+          "effects": [
+            { "knowledge": { "fact": "coast.lights-are-farmsteads", "source": "told", "reliability": 0.5 } }
+          ],
+          "next": "answer"
+        }
+      ]
+    },
+    "answer": {
+      "text": "\"A farmstead. Or a shrine with a bad lamp. Or a man who does not want to be visited.\" He yawns. \"You will learn not to ask.\"",
+      "choices": [{ "text": "Learn it.", "next": null }]
+    }
+  },
+  "provenance": {
+    "confidence": "plausible",
+    "sources": [],
+    "notes": "An atmospheric vignette."
+  }
+}

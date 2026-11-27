@@ -30,7 +30,7 @@ Rules:
 - The store contains no rules. It is an adapter plus memoised selectors.
 - `src/engine` never imports React, Zustand, UI, the store, the DOM, `Math.random`, or the
   wall clock. ESLint enforces this.
-- Content is data. If a scene needs behaviour the DSL cannot express, the DSL is extended
+- Content is data. If a scene needs behavior the DSL cannot express, the DSL is extended
   deliberately with tests and an ADR — never with a content-side script.
 
 ## 2. Command → event pipeline
@@ -50,8 +50,10 @@ function reduce(state: GameState, command: Command, content: ContentIndex): Comm
   notifications, and test assertions.
 - Expected failure returns the original state, no events, and a reason. Do not throw.
 
-Command set grows by milestone. Core commands: `advanceTime`, `travel`, `resolveScene`,
-`resolveEncounter`, `buy`, `sell`, `talkTo`, `rest`, `chooseArcBeat`, `save`, `load`.
+Command set grows by milestone. Slice commands: `advanceTime`, `rest`, `work`, `travel`,
+`buy`, `sell`, `talkTo`, `chooseDialogue`, `resolveEncounter` (see
+`src/engine/kernel/commands.ts`).
+`save` and `load` are **not** commands: they are the save module, called by the store.
 
 ## 3. State model
 
@@ -128,7 +130,7 @@ A closed, serializable vocabulary. Content never contains code.
 { "all": [
   { "languageAtLeast": { "language": "akkadian", "tier": "basic" } },
   { "any": [
-    { "relationshipAtLeast": { "character": "char.ugarit.amnit", "value": 2 } },
+    { "relationship": { "character": "char.ugarit.amnit", "dimension": "trust", "atLeast": 2 } },
     { "flag": "helped.refugees.ugarit" }
   ]}
 ]}
@@ -158,9 +160,10 @@ Implementation notes:
 - No `Date.now()`, `new Date()`, `Math.random()`, or locale-dependent formatting inside the
   engine.
 - Day-count calendar. Formatting to "Month, Year BCE" happens at the UI boundary.
-- RNG streams: `market`, `encounters`, `travel`, `flavour`, `narrative`, `tests`. Each is a
-  small integer state stored in `state.rng`.
-- Separate streams mean adding a market item cannot change which encounter you meet.
+- RNG streams: `market`, `encounters`, `travel`, `hazard`, `flavour`, `narrative`,
+  `tests`. Each is a small integer state stored in `state.rng`.
+- Separate streams mean adding a market item cannot change which encounter you meet, and
+  adding road hazards cannot shift an existing encounter or market roll.
 - Scheduled events resolve by due day, then stable ID order.
 - Every command is replayable from a save plus a command log.
 
@@ -201,10 +204,11 @@ The UI never reads world truth directly. It reads derived, player-facing views:
 |---|---|---|
 | Journal | knowledge entries + journal content | facts the protagonist never learned |
 | Character index | knowledge + character defs | current status if unknown |
-| Map | known destinations/routes + rumour state | closed routes the player has not heard about |
+| Map (local/regional/world) | known destinations/routes + current region + rumor state | unknown places, closed routes, and region names under fog |
 | Codex | phase-appropriate authored entries | deliberate ambiguity resolutions |
 | Market | derived destination state + player knowledge | hidden modifiers without an in-world reason |
 | Day context | calendar + phases + active events | events the protagonist has not learned of |
+| Day report | afflictions before/after a calendar move + definitions | conditions the player does not have |
 | Route view | route def + route state + knowledge | unknown closures, waypoints, or dangers |
 
 A "no truth leak" test suite is mandatory from M5.
@@ -233,7 +237,12 @@ save  ← kernel (+ migrations)
 ui → store → engine (never reverse)
 ```
 
-Each submodule exports a narrow surface. Cross-cutting work goes through kernel types.
+Each submodule is **sealed**: it exposes only its `index.ts`, and every other module —
+as well as `src/store` and `src/ui` — imports it through that surface (`../state`,
+`@engine/state`). ESLint enforces this from the module list in `eslint.config.js`;
+importing `../state/schema` is a lint error. A module may still import its own files.
+Cross-cutting work goes through kernel types. Pure state utilities (`cloneState`,
+`deepFreeze`) live in `state`, so `dsl` never has to import the kernel.
 
 ## 11. Testing strategy
 

@@ -1,0 +1,80 @@
+{
+  "id": "dlg.travel.checkpoint",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "start": "hail",
+  "nodes": {
+    "hail": {
+      "text": "A low hull with too many men in it comes alongside without hurrying, which is its own kind of threat.\n\n\"Bound where, carrying what, and by whose leave?\" The speaker's Akkadian is careful and bad.",
+      "choices": [
+        {
+          "text": "Say nothing and let the master handle it.",
+          "conditions": { "moneyAtLeast": 6 },
+          "unavailableNote": "You do not have six shekels for the master's fee.",
+          "effects": [{ "money": -6 }],
+          "next": "settled"
+        },
+        {
+          "text": "Show the palace seal.",
+          "conditions": { "itemAtLeast": { "item": "good.palace-seal", "quantity": 1 } },
+          "unavailableNote": "You have no seal to show them, and they would not believe a description of one.",
+          "effects": [
+            { "faction": { "faction": "faction.ugarit.palace", "dimension": "standing", "delta": 1 } },
+            { "flag": "passed.checkpoint.by-seal" }
+          ],
+          "next": "seal"
+        },
+        {
+          "text": "Pay the toll.",
+          "conditions": { "moneyAtLeast": 10 },
+          "unavailableNote": "You do not have ten shekels for the toll.",
+          "effects": [{ "money": -10 }],
+          "next": "paid"
+        },
+        {
+          "text": "Argue the toll in Akkadian.",
+          "conditions": { "languageAtLeast": { "language": "lang.akkadian", "tier": "conversational" } },
+          "unavailableNote": "Your Akkadian is not quick enough to argue a toll.",
+          "effects": [{ "money": -4 }],
+          "next": "argued"
+        },
+        {
+          "text": "Keep your silver and work the rest of the crossing.",
+          "conditions": { "not": { "moneyAtLeast": 6 } },
+          "unavailableNote": "You have enough silver to let the master settle it.",
+          "effects": [
+            { "advanceTime": { "days": 1 } },
+            { "flag": "worked.passage.toll" }
+          ],
+          "next": "worked"
+        }
+      ]
+    },
+    "seal": {
+      "text": "The seal is looked at, handed back, and not mentioned again. The patrol boat peels away toward the shore.\n\n\"That was worth more than the toll,\" the master says. \"Try not to spend it all at once.\"",
+      "choices": [{ "text": "Watch them go.", "next": null }]
+    },
+    "settled": {
+      "text": "The master speaks for you, briefly and without warmth, and takes his fee out of your purse for the trouble. The patrol boat turns away without ceremony.",
+      "choices": [{ "text": "Count what is left.", "next": null }]
+    },
+    "paid": {
+      "text": "The silver goes into a bag that is already full. Nobody writes a receipt. The patrol boat turns away without ceremony.",
+      "choices": [{ "text": "Count what is left.", "next": null }]
+    },
+    "argued": {
+      "text": "You argue the toll down to four shekels and pay it, and the patrol boat leaves before you can be asked to repeat the argument.",
+      "choices": [{ "text": "Let it go.", "next": null }]
+    },
+    "worked": {
+      "text": "The master speaks for you and then puts you to work: bailing, hauling, and holding a steering oar until your hands stop being yours. The patrol boat turns away without ceremony. You keep your silver and lose a day.",
+      "beatArt": ["art.ugarit.harbour"],
+      "choices": [{ "text": "Earn your passage.", "next": null }]
+    }
+  },
+  "provenance": {
+    "confidence": "plausible",
+    "sources": ["Late Bronze Age maritime tolls and patrols, general"],
+    "notes": "Tolls and patrols are plausible; this encounter is invented."
+  }
+}

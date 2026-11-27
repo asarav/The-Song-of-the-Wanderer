@@ -1,0 +1,22 @@
+{
+  "id": "char.cyprus.kinyras",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "name": "Kinyras",
+  "art": "art.cyprus.kinyras",
+  "culture": "culture.cyprus.harbour",
+  "languages": ["lang.akkadian", "lang.cypriot"],
+  "home": "dest.cyprus",
+  "tier": "major",
+  "roles": ["copper broker"],
+  "dialogue": "dlg.cyprus.kinyras.meeting",
+  "wants": ["a buyer who will not argue about weight", "his name in a mainland merchant's ledger"],
+  "fears": ["a shipment that arrives short", "being cut out of the mainland trade"],
+  "contradiction": "He bargains hard and keeps his word exactly.",
+  "presence": ["dest.cyprus"],
+  "provenance": {
+    "confidence": "fictional",
+    "sources": [],
+    "notes": "An invented broker. Copper is central to Late Cypriot exchange; the individual is fictional."
+  }
+}

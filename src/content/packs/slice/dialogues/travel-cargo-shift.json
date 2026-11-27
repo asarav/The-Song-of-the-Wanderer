@@ -1,0 +1,45 @@
+{
+  "id": "dlg.travel.cargo-shift",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "start": "shift",
+  "nodes": {
+    "shift": {
+      "text": "Something works loose in the night and goes over the side with a noise like a door closing.\n\nBy the time you are awake, {cargo} is hanging over the gunwale, held by one wet lashing, and the crew is deciding whether it is worth stopping for.",
+      "choices": [
+        {
+          "text": "Go over the side after it.",
+          "effects": [
+            { "stamina": -3 },
+            { "loseCargo": { "quantity": 1 } },
+            { "flag": "went.overboard" }
+          ],
+          "next": "wet"
+        },
+        {
+          "text": "Wake the crew properly.",
+          "effects": [{ "flag": "woke.crew" }],
+          "next": "crew"
+        },
+        { "text": "Let it go.", "effects": [{ "loseCargo": { "quantity": 1 } }], "next": "lost" }
+      ]
+    },
+    "wet": {
+      "text": "You go over the side and come up with rope and water and nothing worth keeping. The crew hauls you back aboard with the particular disgust of men who have done this before, and the hold is lighter by what the sea took.",
+      "choices": [{ "text": "Change into something dry.", "next": null }]
+    },
+    "crew": {
+      "text": "They are awake before you finish the sentence. The lashing is remade properly, and a boy is sent to check the rest, and the master says nothing to you at all, which is approval.",
+      "choices": [{ "text": "Go back to sleep.", "next": null }]
+    },
+    "lost": {
+      "text": "It is gone. The sea keeps its accounts in a different ledger.",
+      "choices": [{ "text": "Go back to sleep.", "next": null }]
+    }
+  },
+  "provenance": {
+    "confidence": "plausible",
+    "sources": [],
+    "notes": "A cargo-handling vignette; invented. The lost good is read from the hold."
+  }
+}

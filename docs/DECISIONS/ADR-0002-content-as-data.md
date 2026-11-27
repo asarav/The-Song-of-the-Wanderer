@@ -8,11 +8,11 @@
 The game will contain hundreds of events, characters, and dialogue graphs across many
 regions. Authors (human and agent) need to add content without touching engine code.
 At the same time, hidden imperative logic inside content makes saves fragile,
-behaviour untestable, and bugs hard to locate.
+behavior untestable, and bugs hard to locate.
 
 ## Decision
 
-All authored content is **JSON validated by Zod**. Runtime behaviour is expressed with a
+All authored content is **JSON validated by Zod**. Runtime behavior is expressed with a
 **closed, serializable DSL** of conditions and effects. There is no embedded script
 language and no per-entity code.
 

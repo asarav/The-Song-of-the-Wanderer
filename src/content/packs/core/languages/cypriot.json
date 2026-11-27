@@ -1,0 +1,12 @@
+{
+  "id": "lang.cypriot",
+  "pack": "pack.core",
+  "contentVersion": 1,
+  "name": "The island tongue",
+  "notes": "A local speech the traveler hears but cannot place. Its scripts remain undeciphered, and no one here can read them.",
+  "provenance": {
+    "confidence": "unresolved",
+    "sources": ["Cypro-Minoan corpus, general"],
+    "notes": "Deliberately unnamed and untranslated in play: the writing is attested, the reading is not."
+  }
+}

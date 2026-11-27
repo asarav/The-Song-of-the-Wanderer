@@ -1,0 +1,18 @@
+{
+  "id": "faction.ugarit.merchants",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "name": "The merchant households",
+  "type": "guild",
+  "interests": [
+    "keeping the crossing open",
+    "prices that survive a bad harvest",
+    "not being squeezed by harbor dues"
+  ],
+  "description": "Not a guild with a hall and a seal, but a web of households that know each other's ships. They will vouch for a stranger once, and remember if it goes badly.",
+  "provenance": {
+    "confidence": "plausible",
+    "sources": ["Ugaritic commercial correspondence, general"],
+    "notes": "Merchant households are attested. Their organization as a body with interests is a narrative abstraction."
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "id": "evt.travel.rescue-patrol",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "kind": "storylet",
+  "title": "A patrol boat",
+  "description": "Men under a king's standard, and a water jar that is not for everyone.",
+  "scope": { "routes": ["route.ugarit-cyprus"] },
+  "conditions": { "all": [] },
+  "priority": 20,
+  "major": false,
+  "scene": "dlg.travel.rescue-patrol",
+  "effects": [],
+  "provenance": {
+    "confidence": "plausible",
+    "sources": [],
+    "notes": "A small coastal patrol and its water; the scene is invented."
+  }
+}

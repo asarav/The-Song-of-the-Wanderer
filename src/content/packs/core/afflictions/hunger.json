@@ -1,0 +1,19 @@
+{
+  "id": "aff.hunger",
+  "pack": "pack.core",
+  "contentVersion": 1,
+  "name": "Empty belly",
+  "kind": "hunger",
+  "severity": "light",
+  "description": "You have gone too long without a meal, and the road keeps reminding you of it.",
+  "treatments": ["town", "rest", "food"],
+  "remedyNote": "A day in port, a rest with provisions, or a meal on the road will clear it.",
+  "onset": "By evening your hands are unsteady and the smell of bread is everywhere.",
+  "daily": "Your belly is a small, patient complaint that will not be ignored.",
+  "recovery": "A bowl of something plain, and the world steadies.",
+  "provenance": {
+    "confidence": "plausible",
+    "sources": [],
+    "notes": "A discrete travel condition, not a hunger meter."
+  }
+}

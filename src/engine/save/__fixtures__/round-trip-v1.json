@@ -1,0 +1,124 @@
+{
+  "saveVersion": 1,
+  "engineVersion": "0.1.0",
+  "contentVersions": {},
+  "savedAt": "2026-11-26T00:00:00.000Z",
+  "state": {
+    "meta": {
+      "saveVersion": 1,
+      "engineVersion": "0.1.0",
+      "contentVersions": {},
+      "seed": "scenario-001",
+      "eventSequence": 21
+    },
+    "calendar": {
+      "day": 93
+    },
+    "world": {
+      "destinationStates": {},
+      "routeStates": {},
+      "migrations": [],
+      "scheduled": []
+    },
+    "player": {
+      "identity": {
+        "selfName": "e-ma-a₂",
+        "presentation": "weathered",
+        "background": [],
+        "localNames": {}
+      },
+      "location": "dest.cyprus",
+      "money": 98,
+      "inventory": [
+        {
+          "item": "good.grain",
+          "quantity": 2
+        }
+      ],
+      "capacity": 20,
+      "transport": "transport.on-foot",
+      "languages": {
+        "lang.akkadian": {
+          "xp": 29,
+          "tier": "basic"
+        }
+      },
+      "deeds": [
+        {
+          "id": "deed.travelled.route.ugarit-cyprus.93",
+          "kind": "travelled",
+          "day": 93,
+          "place": "route.ugarit-cyprus",
+          "subject": "dest.cyprus",
+          "witnesses": [],
+          "knowledge": []
+        }
+      ],
+      "reputation": {},
+      "obligations": [],
+      "flags": {}
+    },
+    "knowledge": {
+      "entries": [],
+      "knownRoutes": [
+        "route.ugarit-cyprus"
+      ],
+      "knownDestinations": [
+        "dest.ugarit",
+        "dest.cyprus"
+      ],
+      "characterIndex": {
+        "char.ugarit.amnit": {
+          "name": "Amnit",
+          "lastSeen": {
+            "day": 90,
+            "location": "dest.ugarit"
+          }
+        }
+      },
+      "journalEntries": [
+        "journal.test.squall"
+      ]
+    },
+    "narrative": {
+      "arcStates": {},
+      "characterStates": {
+        "char.ugarit.amnit": {
+          "status": "alive",
+          "location": "dest.ugarit",
+          "age": "unknown",
+          "relationships": {},
+          "flags": {},
+          "lastSeenByPlayer": {
+            "day": 90,
+            "location": "dest.ugarit"
+          }
+        }
+      },
+      "relationships": {
+        "char.ugarit.amnit": {
+          "trust": 1,
+          "affection": 0,
+          "obligation": 0,
+          "fear": 0,
+          "respect": 0
+        }
+      },
+      "factions": {},
+      "pending": null,
+      "journey": null,
+      "storyletCooldowns": {
+        "evt.squall": 92,
+        "evt.fellow-traveller": 92
+      }
+    },
+    "rng": {
+      "market": 27252953,
+      "encounters": 480418242,
+      "travel": 1002733019,
+      "flavour": 3964884034,
+      "narrative": 2228985405,
+      "tests": 2003923418
+    }
+  }
+}

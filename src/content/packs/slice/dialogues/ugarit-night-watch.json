@@ -1,0 +1,44 @@
+{
+  "id": "dlg.ugarit.night-watch",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "speaker": "char.ugarit.hannu",
+  "start": "greet",
+  "provenance": {
+    "confidence": "plausible",
+    "sources": ["Ugarit harbor administration, general"],
+    "notes": "Hannu's night watch and the warehouse counting are invented; the harbor setting is plausible."
+  },
+  "nodes": {
+    "greet": {
+      "text": "The gate is shut, but the mole is not empty. A man with a lamp walks the stones, stopping at each hull the way a scribe stops at each line.\n\n**Hannu** lifts the lamp so it lights your face and not his.\n\n\"You are up late for a man with cargo to sell in the morning.\"",
+      "choices": [
+        { "text": "Ask what he is looking for.", "next": "watch" },
+        { "text": "Say you could not sleep.", "next": "sleepless" },
+        { "text": "Leave him to the stones.", "next": null }
+      ]
+    },
+    "watch": {
+      "text": "\"Rope,\" he says. \"Tar. A hull sitting too low. The sea takes a boat quietly, and the harbor is blamed in the morning.\"\n\nHe moves the lamp along the next mooring. \"Your jars are on the second shelf in the warehouse. I counted them myself. Do not make me count them again.\"",
+      "choices": [{ "text": "Thank him and go.", "next": null }]
+    },
+    "sleepless": {
+      "text": "\"Then walk,\" he says. \"Walking is cheaper than drinking, and it does not lie to you about the morning.\"\n\nHe hands you nothing and asks for nothing. The lamp goes on down the mole, and the dark closes behind it.",
+      "choices": [
+        {
+          "text": "Walk a while.",
+          "effects": [
+            {
+              "knowledge": {
+                "fact": "ugarit.mole.night-watch",
+                "source": "witnessed",
+                "reliability": 0.7
+              }
+            }
+          ],
+          "next": null
+        }
+      ]
+    }
+  }
+}

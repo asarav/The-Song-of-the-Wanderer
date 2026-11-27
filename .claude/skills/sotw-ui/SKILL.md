@@ -1,6 +1,6 @@
 ---
 name: SotW UI and Read Models
-description: Build greybox and final UI for The Song of the Wanderer — React screens, Zustand adapters, read models, accessibility, text extraction, and truth-vs-knowledge discipline. Use when touching src/ui, src/store, screens, or player-facing views.
+description: Build graybox and final UI for The Song of the Wanderer — React screens, Zustand adapters, read models, accessibility, text extraction, and truth-vs-knowledge discipline. Use when touching src/ui, src/store, screens, or player-facing views.
 ---
 
 # UI and read models
@@ -15,7 +15,7 @@ procedure.
 - Player-facing views read **knowledge**, never world truth.
 - No rules in components. Rules belong in the engine.
 - No hard-coded player text. All strings live in content or `src/ui/strings.ts`.
-- Greybox first. Visual polish waits for M18.
+- Graybox first. Visual polish waits for M18.
 
 ## Read models
 
@@ -23,7 +23,7 @@ procedure.
 |---|---|---|
 | Journal | knowledge entries + journal content | facts the protagonist never learned |
 | Character index | knowledge + character defs | current status if unknown |
-| Map | known destinations/routes + rumour state | closed routes the player has not heard about |
+| Map | known destinations/routes + rumor state | closed routes the player has not heard about |
 | Codex | phase-appropriate authored entries | deliberate ambiguity resolutions |
 | Market | derived destination state + player knowledge | hidden modifiers without an in-world reason |
 | Day context | calendar + phases + active events | events the protagonist has not learned of |
@@ -38,7 +38,7 @@ A "no truth leak" test suite is mandatory from M5.
 - Loading, empty, and error states are explicit.
 - Every unavailable option explains why in-world.
 - Forms and lists survive 150–200% text size.
-- Colour is never the only indicator; use text and shape.
+- Color is never the only indicator; use text and shape.
 
 ## Accessibility baseline
 
@@ -46,7 +46,7 @@ A "no truth leak" test suite is mandatory from M5.
 - Dialogue log available.
 - Reduced motion respected.
 - Text size control.
-- Colour-independent indicators.
+- Color-independent indicators.
 - Save/load and settings reachable without a mouse.
 
 ## Localisation readiness

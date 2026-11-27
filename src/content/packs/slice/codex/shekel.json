@@ -1,0 +1,16 @@
+{
+  "id": "codex.shekel",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "title": "Silver, weighed",
+  "category": "measure",
+  "text": "Silver is not coined here. A price is a weight, and the balance stands on the mat between buyer and seller: cut pieces, a beam, a box of stone weights.\n\nThe measure is the **shekel**. On this coast a shekel of silver weighs about nine or ten grams — near enough to a heaped teaspoon of salt, if the spoon were silver. Fifty shekels make one mina.\n\nA jar of oil costs three shekels: a little under thirty grams of silver. That is what this market haggles over, and no price here is set anywhere else.\n\nThe same silver is counted on the island. Copper is money there too, in the yard and by the ingot, but in this ledger it is cargo: the traveler keeps **one purse**, weighed silver, and it spends on both shores. Only the asking price changes with the harbor.",
+  "provenance": {
+    "confidence": "documented",
+    "sources": [
+      "Syrian and Ugaritic weight systems, general",
+      "Ras Shamra economic and administrative tablets, general"
+    ],
+    "notes": "Value weighed as silver, the shekel and the mina, and the absence of coin are attested. The local shekel was of the order of 9–10 g. The modern gloss (grams, a teaspoon of salt) belongs to the reader, not to anyone in the scene, and every price in play is authored rather than converted from a metrological table. One purse of silver for the whole voyage is a game decision (ADR-0009), not a claim that silver was the only medium of exchange on Cyprus."
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "id": "journal.slice.rumour",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "title": "What the market says",
+  "text": "Grain is dear and the inland road is worse. Two households have come down to the coast this month. Nobody says the word disaster; everybody counts who is missing.",
+  "provenance": { "confidence": "fictional", "sources": [], "notes": "Market rumor, deliberately unverified in play." }
+}

@@ -1,0 +1,17 @@
+{
+  "id": "good.cedar",
+  "pack": "pack.core",
+  "contentVersion": 1,
+  "name": "Cedar timber",
+  "art": "art.good.cedar",
+  "category": "timber",
+  "weight": 6,
+  "description": "Long straight trunks for ship ribs and temple roofs, floated and dragged.",
+  "provenance": {
+    "confidence": "documented",
+    "sources": [
+      "Levantine timber in Egyptian and Near Eastern records, general"
+    ],
+    "notes": "Cedar from the Levantine mountains is widely attested as a traded timber."
+  }
+}
