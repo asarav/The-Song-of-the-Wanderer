@@ -45,6 +45,7 @@ async function main(): Promise<void> {
   }
   for (const entry of index.journal.values()) push(`journal:${entry.id}`, entry.text, entry.beatArt)
   for (const entry of index.codex.values()) push(`codex:${entry.id}`, entry.text, entry.beatArt)
+  for (const entry of index.ambient.values()) push(`ambient:${entry.id}`, entry.text, entry.beatArt)
 
   const missing = beats.filter((beat) => !beat.art && !backlog.has(beat.key))
   const byKey = new Map(beats.map((beat) => [beat.key, beat]))
@@ -52,6 +53,15 @@ async function main(): Promise<void> {
 
   for (const beat of missing) process.stdout.write(`art:ledger missing ${beat.key}\n`)
   for (const key of stale) process.stdout.write(`art:ledger stale ${key}\n`)
+
+  const debtByPool = new Map<string, number>()
+  for (const key of backlog) {
+    const pool = key.split(':')[0] ?? 'unknown'
+    debtByPool.set(pool, (debtByPool.get(pool) ?? 0) + 1)
+  }
+  for (const [pool, count] of [...debtByPool].sort((a, b) => a[0].localeCompare(b[0]))) {
+    process.stdout.write(`art:ledger debt ${pool} ${count}\n`)
+  }
 
   // The ledger's documented ceiling; `beatArt.test.ts` enforces the same number.
   const cap = 257

@@ -93,6 +93,7 @@ const authoredBeatArt = [
   ]),
   ...[...index.journal.values()].flatMap((entry) => entry.beatArt ?? []),
   ...[...index.codex.values()].flatMap((entry) => entry.beatArt ?? []),
+  ...[...index.ambient.values()].flatMap((entry) => entry.beatArt ?? []),
 ]
 
 describe('art catalog', () => {

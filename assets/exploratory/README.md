@@ -19,11 +19,11 @@ manifest. The files here are the copies of record; the app serves the same image
 - **Regional dress and objects:** dress, hair, beards, ornaments, pottery wares and
   furniture must follow the region in `docs/ASSETS.md` §2.11, not a generic Mediterranean
   or classical default. Occupation and class change the clothing within the same place.
-- **Files:** 62 (13 places, 10 world views, 2 land views, 9 portraits, 11 scene beats,
-  5 prologue beats, 12 cargo thumbnails).
+- **Files:** 165 (13 places, 10 world views, 2 land views, 9 portraits, 108 scene beats,
+  5 prologue beats, 12 cargo thumbnails, and the interior, cloth and travel plates).
 - **Where used:** Place screen hero, activity cards, speaker portraits, People list, a
-  scene's beat card and the finished passage it settles into, the main menu's land cards
-  and the prologue's beats.
+  scene's beat card and the finished passage it settles into, the main menu's land cards,
+  the prologue's beats, every travel dialogue beat, and the journal and codex entries.
 - **Review status:** `reviewed` = checked for anachronism, caricature and tone. None is
   `promoted`; promotion needs the M18 manifest and historical sign-off.
 
@@ -278,14 +278,19 @@ These are real, recorded defects; they were not hidden by the replacements above
   put the brokers in tailored robes; `cyprus-arrival` distant figures and flat cakes;
   `ugarit-cloth-settled` and `ugarit-cloth-after` retain sewn tunics/loom hardware, and the
   chest in `-after` still carries dark corner plates (a local wood patch was rejected as a
-  visible panel); `cyprus-ada` soot is heavy; `ugarit-night` keeps one wall lantern/torch.
+  visible panel); `cyprus-ada` soot is heavy; `ugarit-night` keeps one wall lantern/torch;
+  `belet-drum` and `belet-cup-pour` crop the temple figures at three to six times their
+  size in the source plate, so the hands soften and the drummer's far arm reads as fused
+  at full zoom (re-cut at lower zoom in M18).
 - **Objects and wares:** `cyprus-smithy` stemmed cup (period-possible, keep out of M18
   brief); `good-wine` slip brightness; `good-textile` banding bolder than the evidence;
   `good-palace-seal` tablet marks decorative, not readable text; `prologue-bronze` tablet
   reads a little like a whetstone; `prologue-arrival` sail foot still suggests a
   fore-and-aft rig; `land-cyprus` bowls are less diagnostic than the three named wares;
   `ugarit-market` patterned textiles decorative rather than attested; `ugarit-temple`
-  drummer reads male, which the canon allows but should be checked if pinned to Belet.
+  drummer reads male, which the canon allows but should be checked if pinned to Belet;
+  the wooden stylus in `prologue-gate` and its crops (`hannu-reed`, `shipti-tablet-bench`,
+  `yada-seal`) is a stubby dowel rather than a cut reed.
 - **Gate detail:** `world-mycenae` is a recognizable Lion Gate but uses regular ashlar and
   a high rectangular relief rather than Cyclopean masonry and a shallow triangular
   relieving slab. The modern-dressed figures are gone.
@@ -298,3 +303,311 @@ introducing a worse one; the replacement set therefore uses only takes whose rem
 errors are documented, and crops or removes figures where a local repaint left visible
 patches. The next M18 pass should use reference-led object and garment briefs, not another
 unconstrained scene prompt.
+
+## Travel beats — 2026-11-28
+
+Every travel dialogue beat now has its own plate, so the crossing no longer borrows a
+harbour or a speaker portrait for a scene it does not show. The patrol, cargo, passenger,
+crew, night-watch, refugee, squall and wreckage plates were generated for the beat named
+in the table. `art.good.copper`, `art.good.olive-oil`, `art.good.palace-seal`,
+`art.good.silver`, `art.cyprus.landing`, `art.cyprus.kinyras` and `art.ugarit.tiro` also
+carry beats where the object or person is the subject.
+
+| File | Art ID | Beat | Status |
+| --- | --- | --- | --- |
+| `travel-patrol-hail.jpg` | `art.travel.patrol-hail` | The low patrol hull comes alongside | reviewed — specific to the hail; the patrol spears are a little regular |
+| `travel-patrol-speaker.jpg` | `art.travel.patrol-speaker` | The patrol leader asks by whose leave | reviewed — lean and weathered, not heroic; the wrapped kilt is right |
+| `travel-master-pays.jpg` | `art.travel.master-pays` | The master pays the fee from the purse | reviewed — the sleeves still read sewn; the cut silver and purse are right (M18) |
+| `travel-toll-silver.jpg` | `art.travel.toll-silver` | The toll silver goes into a full bag | reviewed — irregular hacksilber, no coins; the bag is right |
+| `travel-patrol-leaving.jpg` | `art.travel.patrol-leaving` | The patrol turns away | reviewed — rowers' backs and the trader's steering oar; no later dress |
+| `travel-work-passage.jpg` | `art.travel.work-passage` | Bailing, hauling and holding the steering oar | reviewed — the work is the subject; the bare torso is a little heroic (M18) |
+| `travel-cargo-lashing.jpg` | `art.travel.cargo-lashing` | The cargo hangs by one wet lashing at night | reviewed — lamp, lashing and cargo are the subject |
+| `travel-cargo-over-side.jpg` | `art.travel.cargo-over-side` | The cargo goes over the side | reviewed — close hands-and-rope view; no modern fittings |
+| `travel-wet-rope.jpg` | `art.travel.wet-rope` | You come up with rope and water | reviewed — hands, wet rope and sea only; specific to the failed recovery |
+| `travel-empty-sea.jpg` | `art.travel.empty-sea` | The sea keeps its accounts | reviewed — empty wake and one cut rope end; no debris field |
+| `travel-passenger.jpg` | `art.travel.passenger` | The passenger with too much luggage | reviewed — specific to the talkative landsman; no modern luggage |
+| `travel-seasick.jpg` | `art.travel.seasick` | He is sick over the side and apologizes | reviewed — dusk, cloth and slumped bags; restrained |
+| `travel-crew-bow.jpg` | `art.travel.crew-bow` | The crew talks over your head in their own language | reviewed — mixed Levantine and Cypriot dress; no readable words |
+| `travel-words.jpg` | `art.travel.words` | One word is repeated, then another | reviewed — mouths and gesture, no speech bubbles or text |
+| `travel-wind-gesture.jpg` | `art.travel.wind-gesture` | The gesture that means the wind is wrong | reviewed — luffing sail and flat hand; no diagram |
+| `travel-headland-light.jpg` | `art.travel.headland-light` | The boat lies in the lee of a headland | reviewed — one shore light and two people; the watchman is still heroic (M18) |
+| `travel-night-watch.jpg` | `art.travel.night-watch` | The half-awake man at the bow answers | reviewed — quiet two-figure scene; no moon or modern lantern |
+| `travel-fishing-hull.jpg` | `art.travel.fishing-hull` | The overloaded fishing hull | reviewed — household goods and child at the stern; not a distress scene |
+| `travel-child-stern.jpg` | `art.travel.child-stern` | The woman with the sleeping child | reviewed — close stern view; tools and jar at her feet |
+| `travel-water-jar.jpg` | `art.travel.water-jar` | Water goes into a jar already half full | reviewed — two hulls touching on open water; sleeves read sewn (M18) |
+| `travel-two-boats.jpg` | `art.travel.two-boats` | The boats drift apart | reviewed — the farewell gesture is the subject; no land |
+| `travel-squall.jpg` | `art.travel.squall` | The wind turns and the boat works at the water | reviewed — reefed sail, shouting master and sliding jar; the boy is too muscular (M18) |
+| `travel-water-jar-caught.jpg` | `art.travel.water-jar-caught` | The boy catches the loose water jar | reviewed — hands clamp the jar against the rope; specific to the catch |
+| `travel-bread-boy.jpg` | `art.travel.bread-boy` | The boy offers a corner of bread | reviewed — tired dusk, no eye contact; specific to the after-squall beat |
+| `travel-wreckage.jpg` | `art.travel.wreckage` | Hatch cover, broken oar and good rope | reviewed — objects only, no bodies; the gunwale frames the loss |
+| `travel-harbor-prayer.jpg` | `art.travel.harbor-prayer` | The master says the harbor prayer | reviewed — lamp, bowed heads and low coast; no temple or priest |
+
+Known defects in this set are recorded above rather than hidden: sewn sleeves in the
+payment and water-jar plates, a heroic build in the work and squall plates, and a
+muscular watchman at the headland. They are specific to their beats; the garment and
+proportion corrections belong in the M18 reference-led pass.
+
+## Journal and codex coverage — 2026-11-28
+
+Every journal entry and codex page now has a plate for every paced beat. These are
+existing plates, reused only where the subject is the entry's subject: a speaker's
+portrait for an entry about that speaker, a tablet or seal for an entry about writing,
+a balance or ingot for an entry about weight and copper. No new image was generated for
+this pool. The mapping is recorded here so a later editor can replace an inherited plate
+without guessing which beat it covered.
+
+| Entry | Beats | Plate(s) |
+| --- | --- | --- |
+| `journal.slice.amnit-met` | 1 | `art.ugarit.amnit` |
+| `journal.slice.copper-deal` | 1 | `art.cyprus.kinyras` |
+| `journal.slice.cyprus-arrival` | 1 | `art.cyprus.arrival` |
+| `journal.slice.faction-request` | 1 | `art.good.palace-seal` |
+| `journal.slice.first-crossing` | 1 | `art.cyprus.landing` |
+| `journal.slice.letter` | 1 | `art.good.palace-seal` |
+| `journal.slice.mystery` | 1 | `art.ugarit.belet` |
+| `journal.slice.opening` | 2 | `art.opening.oil`, `art.prologue.purse` |
+| `journal.slice.quiet-night` | 1 | `art.travel.headland-light` |
+| `journal.slice.refugee-asked` | 1 | `art.ugarit.sibtu` |
+| `journal.slice.refugee-helped` | 1 | `art.ugarit.cloth-table` |
+| `journal.slice.refugee-refused` | 1 | `art.ugarit.cloth-kept` |
+| `journal.slice.rumour` | 1 | `art.ugarit.harbour` |
+| `journal.slice.seal-delivered` | 1 | `art.cyprus.yard` |
+| `journal.slice.sibtu-cloth-settled` | 1 | `art.ugarit.cloth-settled` |
+| `codex.akkadian` | 2 | `art.ugarit.archive`, `art.ugarit.yada` |
+| `codex.alashiya` | 2 | `art.good.copper`, `art.cyprus.arrival` |
+| `codex.crossing` | 2 | `art.land.levant`, `art.travel.work-passage` |
+| `codex.cyprus` | 2 | `art.cyprus.yard`, `art.cyprus.inn` |
+| `codex.mina` | 3 | `art.good.silver`, `art.cyprus.yard`, `art.ugarit.market` |
+| `codex.names` | 4 | `art.ugarit.yada`, `art.ugarit.belet`, `art.ugarit.archive`, `art.good.palace-seal` |
+| `codex.shekel` | 4 | `art.cyprus.yard`, `art.good.silver`, `art.good.olive-oil`, `art.ugarit.market` |
+| `codex.ugarit` | 3 | `art.ugarit.high`, `art.good.palace-seal`, `art.ugarit.market` |
+| `codex.year` | 3 | `art.ugarit.archive`, `art.ugarit.yada`, `art.travel.empty-sea` |
+
+## Completed city dialogues — 2026-11-28
+
+Three city dialogues now have a distinct plate for every beat. `dlg.cyprus.arrival`
+keeps its three arrival plates and adds the existing inn interior and smithy; one new
+detail plate, `cyprus-inn-room-detail.jpg`, was cropped from a wider room study to remove
+a modern chest edge. `dlg.ugarit.faction-request` and `dlg.ugarit.letter` use the palace
+hall, gate, seal, purse and harbour plates, each showing the beat's object or room rather
+than a portrait.
+
+| Dialogue | Node | Plates |
+| --- | --- | --- |
+| `dlg.cyprus.arrival` | `door` | `art.cyprus.arrival`, `art.cyprus.inn`, `art.cyprus.landing` |
+| `dlg.cyprus.arrival` | `room` | `art.cyprus.inn-interior`, `art.cyprus.inn-room` |
+| `dlg.cyprus.arrival` | `outside` | `art.cyprus.smithy` |
+| `dlg.ugarit.faction-request` | `ask` | `art.ugarit.palace-hall`, `art.good.palace-seal` |
+| `dlg.ugarit.faction-request` | `what` | `art.ugarit.palace-hall`, `art.prologue.purse` |
+| `dlg.ugarit.faction-request` | `refuse` | `art.ugarit.palace-gate` |
+| `dlg.ugarit.letter` | `letter` | `art.good.palace-seal`, `art.ugarit.palace-gate` |
+| `dlg.ugarit.letter` | `gate` | `art.ugarit.palace-gate` |
+| `dlg.ugarit.letter` | `burn` | `art.ugarit.harbour` |
+
+The palace-hall plate appears in two different `faction-request` nodes because both beats
+are the same audience in the same room; the gate plate appears in two `letter` nodes
+because the second is the same gate at the appointed hour. No portrait carries a beat.
+
+## Completed cloth and yard dialogues — 2026-11-29
+
+The whole Sibtu thread and the two dialogues built on the same approved material now have
+one subject-specific plate per beat. No image was generated this turn. The cloth room is
+extended only by crops of the nine approved cloth scenes: loom frames, heddle bars, clay
+weights, the table, the tied bundle, the children's feet in the doorway, the shut chest's
+rope and the silver in Sibtu's hands. The copper yard is extended by crops of its tally
+board and ingot stack. Portraits, the market street and neighbouring scenes are not used.
+
+| Dialogue | Node | Plates |
+| --- | --- | --- |
+| `dlg.ugarit.sibtu.ask` | `greet` | `art.ugarit.sibtu-greet-loom`, `art.ugarit.cloth-refused` |
+| `dlg.ugarit.sibtu.ask` | `again` | `art.ugarit.sibtu-again-loom`, `art.ugarit.sibtu-again-stool` |
+| `dlg.ugarit.sibtu.ask` | `after-help` | `art.ugarit.cloth-tied`, `art.ugarit.sibtu-help-cord` |
+| `dlg.ugarit.sibtu.ask` | `after-refusal` | `art.ugarit.cloth-table`, `art.ugarit.sibtu-refusal-lap` |
+| `dlg.ugarit.sibtu.ask` | `amends` | `art.ugarit.cloth-amends`, `art.ugarit.sibtu-amends-hand` |
+| `dlg.ugarit.sibtu.ask` | `bundle-missing` | `art.ugarit.cloth-missing`, `art.ugarit.sibtu-missing-table` |
+| `dlg.ugarit.sibtu.ask` | `settle` | `art.ugarit.cloth-settle` |
+| `dlg.ugarit.sibtu.ask` | `settled` | `art.ugarit.cloth-settled`, `art.ugarit.sibtu-settled-silver` |
+| `dlg.ugarit.sibtu.ask` | `kept` | `art.ugarit.cloth-kept`, `art.ugarit.sibtu-kept-door` |
+| `dlg.ugarit.sibtu.ask` | `after-cloth` | `art.ugarit.cloth-after`, `art.ugarit.sibtu-after-chest` |
+| `dlg.ugarit.sibtu.ask` | `after-cloth-kept` | `art.ugarit.sibtu-after-loom`, `art.ugarit.sibtu-after-room` |
+| `dlg.ugarit.sibtu.ask` | `news` | `art.ugarit.sibtu-news-shuttle`, `art.ugarit.sibtu-news-wall` |
+| `dlg.ugarit.sibtu.ask` | `story` | `art.ugarit.sibtu-story-warp` |
+| `dlg.ugarit.sibtu.ask` | `need` | `art.ugarit.sibtu-need-loom`, `art.ugarit.sibtu-need-warp` |
+| `dlg.ugarit.refugee-ask` | `ask` | `art.ugarit.cloth-table`, `art.ugarit.sibtu-help-cord`, `art.ugarit.sibtu-missing-table` |
+| `dlg.ugarit.refugee-ask` | `thanks` | `art.ugarit.cloth-tied`, `art.ugarit.sibtu-again-loom` |
+| `dlg.ugarit.refugee-ask` | `refused` | `art.ugarit.cloth-refused` |
+| `dlg.cyprus.copper-offer` | `offer` | `art.cyprus.yard` |
+| `dlg.cyprus.copper-offer` | `done` | `art.cyprus.copper-board`, `art.prologue.purse` |
+| `dlg.cyprus.copper-offer` | `hard` | `art.cyprus.copper-ingots`, `art.good.silver` |
+
+`dlg.ugarit.refugee-ask` previously used Sibtu's portrait and the market street for its
+second beat; both are gone. `dlg.cyprus.copper-offer` previously used Kinyras's portrait
+and the arrival harbor for its closing nodes; both are gone. The cloth plates repeat across
+the two Sibtu dialogues only where the same room, loom or bundle is actually shown.
+
+## Completed temple dialogue — 2026-11-28
+
+`dlg.ugarit.belet.temple` now has one plate per beat, and all but one are crops of the
+approved temple plate `ugarit-temple.jpg`. No image was generated. The crops take the
+temple's own detail: the two doorways and their thresholds, the altar ledge with the
+bronze tripod lamps and the fire, the smoking brazier on its three feet, the frame drum
+and its laced hide, the storage jars, the hands pouring into a bronze cup, the bread and
+fruit on the reed mat, the folded cloth on the step and the painted wall above the door.
+The singer's face, the drummer's face and the temple's neighbours are not used.
+
+| Beat | Plate |
+| --- | --- |
+| `greet:1` | `belet-doorway.jpg` — `art.ugarit.belet-doorway` |
+| `again-hymn:1` | `belet-folded-cloth.jpg` — `art.ugarit.belet-cloth` |
+| `again-oil:1` | `belet-altar-fire.jpg` — `art.ugarit.belet-altar-fire` |
+| `again-oil:2` | `sibtu-again-stool.jpg` — `art.ugarit.sibtu-again-stool`, reused |
+| `after-mystery:1` | `belet-threshold-still.jpg` — `art.ugarit.belet-threshold` |
+| `after-mystery:2` | `belet-lamp.jpg` — `art.ugarit.belet-lamp` |
+| `changed:1` | `belet-wall.jpg` — `art.ugarit.belet-wall` |
+| `changed:2` | `belet-offering-mat.jpg` — `art.ugarit.belet-offering-mat` |
+| `hymn:1` | `belet-incense.jpg` — `art.ugarit.belet-incense` |
+| `hymn:2` | `belet-drum.jpg` — `art.ugarit.belet-drum` |
+| `heard:1` | `belet-wine-jar.jpg` — `art.ugarit.belet-wine-jar` |
+| `heard:2` | `belet-cup-pour.jpg` — `art.ugarit.belet-cup-pour` |
+| `oil:1` | `belet-oil-jars.jpg` — `art.ugarit.belet-oil-jars` |
+| `only:1` | `belet-lamp-trim.jpg` — `art.ugarit.belet-lamp-trim` |
+
+Reuse decision: `again-oil:2` is Belet moving a stool with her foot, and the only
+approved stool is the Ugarit one already cropped for Sibtu's room
+(`sibtu-again-stool.jpg`). Same city, same three-legged form, same stone floor, so the
+existing plate is reused instead of a near-identical second crop being made, and the
+catalogue keeps one ID for it. Nothing else repeats inside the dialogue.
+## Completed inn dialogue — 2026-11-28
+
+`dlg.cyprus.shipti.inn` has one plate per beat. The courtyard bench, stool, storage jar,
+door, shelf and thread are crops of the approved Cypriot inn plates. Four subjects had no
+approved source — the fishing net, the shelf itself, and the linen mid-mend — so those
+were generated using an approved plate from the same culture and room as the reference
+image (`cyprus-inn.jpg` for the courtyard, `cyprus-inn-interior.jpg` for the room), then
+cropped to the object. No take was wired without passing that check.
+
+| Beat | Plate |
+| --- | --- |
+| `courtyard:1` | `shipti-mend-net.jpg` — `art.cyprus.shipti-mend-net`, generated, replaced figure-free |
+| `courtyard:2` | `shipti-stools.jpg` — `art.cyprus.shipti-stools` |
+| `again-who:1` | `shipti-thread.jpg` — `art.cyprus.shipti-thread`, generated, replaced figure-free |
+| `again-letters:1` | `shipti-shelf.jpg` — `art.cyprus.shipti-shelf`, generated |
+| `again-letters:2` | `shipti-shelf-cloth.jpg` — `art.cyprus.shipti-shelf-cloth` |
+| `again-carried:1` | `shipti-net-knot.jpg` — `art.cyprus.shipti-net-knot`, generated, replaced figure-free |
+| `again-carried:2` | `shipti-door.jpg` — `art.cyprus.shipti-door` |
+| `again-left:1` | `shipti-net-lap.jpg` — `art.cyprus.shipti-net-lap`, generated, replaced figure-free |
+| `late-letter:1` | `shipti-tablet-bench.jpg` — `art.cyprus.shipti-tablet-bench` |
+| `late-letter:2` | `shipti-cord.jpg` — `art.cyprus.shipti-cord` |
+| `read:1` | `shipti-sealed.jpg` — `art.cyprus.shipti-sealed` |
+| `read:2` | `shipti-net-idle.jpg` — `art.cyprus.shipti-net-idle`, generated, replaced figure-free |
+| `letters:1` | `shipti-shelf-seal.jpg` — `art.cyprus.shipti-shelf-seal` |
+| `quiet:1` | `shipti-pour.jpg` — `art.cyprus.shipti-pour` |
+
+Generated takes that were discarded: a mending plate whose sitter wore a shawl, belt and
+sewn cuff; a knot plate with patched sleeves (re-rolled with a plain linen sleeve); a lap
+plate with a buttoned placket and modern belt; a mending plate that rendered the sitter as
+a fleece-covered mound (the arm, needle and net were re-cropped from it instead); and a
+shelf plate that came back with a hanging glass lamp and a loaf (re-rolled as daylight
+only, then cropped past its mullioned opening).
+
+Second pass over the same plates: every take that showed people failed on anatomy and
+was replaced. `shipti-net-knot` had four hands on one net and `shipti-thread` three;
+`shipti-mend-net` and `shipti-net-idle` each carried a hand cut by the frame with the
+wrist fused into the net, and `shipti-net-lap` merged the net into a garment with no
+readable shoulder. All five were generated again from `cyprus-inn.jpg` with "no people,
+no hands, no arms" in the brief, and each take was checked for hands, limbs, faces, a
+second figure and later metalwork before wiring. The beat plates in this dialogue now
+carry no figure at all, and the alt text was rewritten to match.
+## Completed gate dialogue — 2026-11-28
+
+`dlg.ugarit.hannu.gate` has one plate per beat. Nine are crops and three were generated, as
+the note under the table records. Reading
+`prologue-gate.jpg` as Hannu’s desk settled the scene: it is a gate with an open leaf, a
+stone bench inside it, a blank clay tablet and a stylus on the bench, bread on a cloth, a
+sealed cord on the ground and a wall in shadow — with no figures in it. The archive plate
+supplies the smoking lamp, the stacked and upright tablets for the two ledgers, and the
+baskets.
+
+| Beat | Plate |
+| --- | --- |
+| `greet:1` | `hannu-gate.jpg` — `art.ugarit.hannu-gate` |
+| `again:1` | `hannu-lamp.jpg` — `art.ugarit.hannu-lamp` |
+| `after-answered:1` | `hannu-tablet.jpg` — `art.ugarit.hannu-tablet` |
+| `after-answered:2` | `hannu-shadow.jpg` — `art.ugarit.hannu-shadow` |
+| `after-burned:1` | `hannu-board-down.jpg` — `art.ugarit.hannu-board-down`, generated |
+| `after-burned:2` | `hannu-signs.jpg` — `art.ugarit.hannu-signs` |
+| `wants:1` | `hannu-seal.jpg` — `art.ugarit.hannu-seal` |
+| `wants:2` | `hannu-reed.jpg` — `art.ugarit.hannu-reed`, generated |
+| `finished:1` | `hannu-board.jpg` — `art.ugarit.hannu-board`, generated |
+| `finished:2` | `hannu-sealed.jpg` — `art.ugarit.hannu-sealed` |
+| `errand:1` | `hannu-bread.jpg` — `art.ugarit.hannu-bread` |
+| `passing:1` | `hannu-baskets.jpg` — `art.ugarit.hannu-baskets` |
+
+Three of the writing beats first shared near-identical crops of the same bench, tablet and
+dowel at three zooms: `after-burned:1`, `wants:2` and `finished:1`. All three plates were
+replaced with generated subjects against `prologue-gate.jpg`, with "no people, no hands" in
+the brief: `hannu-reed` is the stylus alone on the bench edge under the gateway shadow,
+`hannu-board-down` is the closed tablet with the stylus and a reed laid down beside it and
+a knotted cord over the edge, and `hannu-board` is a worked board leaning back against the
+stone jamb with sparse wedge cuts across its face — upright and leaning, so its silhouette
+is nothing like the flat closed tablet beside it. Two takes were rejected: a board-down
+that washed wet slip over the tablet and read as wet dough, and an upright board whose
+raised bezel round the face read as a modern framed panel. The three beats now show three
+different subjects, and each alt names its own.
+
+Discarded crops: an archive shelf that showed book-like leaves, a drawer with knobs and a
+leather shoe, and a table corner whose metal ewer read later than the set. Neither was
+wired.
+## Completed archive dialogue — 2026-11-28
+
+`dlg.ugarit.yada.lesson` has one plate per beat and nothing was generated. The board, the
+wedge signs, the seal and the cord come from `good-palace-seal.jpg`; the blank board and
+the basket from `prologue-gate.jpg`; the shelves, the tablet stacks, the upright tablets
+and the doorframe from `ugarit-archive.jpg`. Each is cropped to the object the beat names,
+and the archive’s paper, pen, drawer, brass ewer and flame are outside every frame. The
+first crops of `work:1`, `return:2` and `who:1` caught the ewer at the edge or in full,
+so those three were re-cut from the source at `crop=330:300:60:180`,
+`crop=240:105:400:195` and `crop=170:100:95:390` — shelves with baskets, three upright
+inscribed tablets, and the tablet stack with a basket edge. The archive draws its
+tablets with thin leaf edges, so a stack still reads a little like bound books (M18).
+
+| Beat | Plate |
+| --- | --- |
+| `greet:1` | `yada-board.jpg` — `art.ugarit.yada-board` |
+| `greet:2` | `yada-signs.jpg` — `art.ugarit.yada-signs` |
+| `lesson:1` | `yada-line.jpg` — `art.ugarit.yada-line` |
+| `lesson:2` | `yada-reed.jpg` — `art.ugarit.yada-reed` |
+| `free:1` | `yada-face-down.jpg` — `art.ugarit.yada-face-down` |
+| `free:2` | `yada-cord.jpg` — `art.ugarit.yada-cord` |
+| `return:1` | `yada-door.jpg` — `art.ugarit.yada-door` |
+| `return:2` | `yada-tablet-stack.jpg` — `art.ugarit.yada-tablet-stack` |
+| `return:3` | `yada-basket.jpg` — `art.ugarit.yada-basket` |
+| `who:1` | `yada-tablet.jpg` — `art.ugarit.yada-tablet` |
+| `work:1` | `yada-shelves.jpg` — `art.ugarit.yada-shelves` |
+| `work:2` | `yada-seal.jpg` — `art.ugarit.yada-seal` |
+
+Discarded crops: the archive desk (paper sheets, drawer knobs, a brass ewer) and a shelf
+frame dominated by a traveller’s hair. Neither was wired.
+## Remaining dialogue debt — 2026-11-28
+
+Every remaining borrowed plate is in the city dialogue pool. These 10 dialogues need one
+bespoke scene plate per beat; the pool is left whole rather than scattered. Travel,
+journal, codex, place, night and ambient have no debt.
+
+Nothing here is blocked by a missing subject: the three dialogues that were waiting on a
+net, a shelf, a gate desk and a board are finished above. The rest are untouched because
+their props have not been hunted yet, not because the set cannot carry them.
+
+| Dialogue | Beats still borrowing |
+| --- | --- |
+| `dlg.ugarit.amnit.meeting` | 10 |
+| `dlg.cyprus.ada.smithy` | 9 |
+| `dlg.ugarit.arrival` | 9 |
+| `dlg.ugarit.tiro.passage` | 9 |
+| `dlg.cyprus.amnit` | 8 |
+| `dlg.cyprus.night-kiln` | 8 |
+| `dlg.ugarit.mystery` | 7 |
+| `dlg.ugarit.night-watch` | 7 |
+| `dlg.cyprus.kinyras.meeting` | 6 |
+| `dlg.cyprus.return-letter` | 5 |
+| **Total** | **78** |

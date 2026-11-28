@@ -58,6 +58,9 @@ function passages(): Passage[] {
   for (const entry of index.codex.values()) {
     rows.push({ key: `codex:${entry.id}`, text: entry.text, beatArt: entry.beatArt })
   }
+  for (const entry of index.ambient.values()) {
+    rows.push({ key: `ambient:${entry.id}`, text: entry.text, beatArt: entry.beatArt })
+  }
 
   return rows
 }
