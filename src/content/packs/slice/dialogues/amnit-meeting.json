@@ -20,7 +20,7 @@
   ],
   "nodes": {
     "greet": {
-      "text": "The woman at the scale does not look up. She has a scoop of emmer in one hand and a weight in the other, and she watches the beam the way a mother watches a child on a roof. A boy waits beside her with a tally board and the patience of someone paid by the day. \"You have the look of someone who slept on a boat,\" she says, to the grain. \"Stand at the end of the mat. Not that end. The end where I can see your hands.\"",
+      "text": "The woman at the scale does not look up. She has a scoop of emmer in one hand, a weight in the other, and she watches the beam the way a mother watches a child on a roof. A boy waits beside her with a tally board and the patience of someone paid by the day. \"You have the look of someone who slept on a boat,\" she says, to the grain. \"Stand at the end of the mat. Not that end. The end where I can see your hands.\"",
       "choices": [
         {
           "text": "Only the last three nights.",
@@ -283,7 +283,7 @@
       ]
     },
     "sibtu": {
-      "text": "\"A weaver called Sibtu. She is in the workshop quarter and she will not ask you for anything, which is how you will know she needs it.\" Amnit sets the weight down. \"If you go, go because you want to. I have already done my part, and my part has a limit.\"",
+      "text": "\"A weaver called Sibtu. She is in the workshop quarter. She will not ask you for anything, which is how you will know she needs it.\" Amnit sets the weight down. \"If you go, go because you want to. I have already done my part, and my part has a limit.\"",
       "choices": [
         {
           "text": "Remember the name.",

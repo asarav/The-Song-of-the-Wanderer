@@ -7,7 +7,7 @@
   "nodes": {
     "ask": {
       "art": "art.ugarit.cloth-table",
-      "text": "The children are out. She has a bundle of cloth on the table, folded twice and tied with cord.\n\n\"Three more pairs of hands and no flax to spin. I need a buyer who will not cheat me on the weight, and I cannot go to the yard myself without someone deciding I am for sale.\"\n\nShe says the last part plainly, as a fact about the yard and not about herself.",
+      "text": "The children are out. She has a bundle of cloth on the table, folded twice and tied with cord.\n\n\"Three more pairs of hands and no flax to spin. I need a buyer who will not cheat me on the weight. I cannot go to the yard myself. Someone would decide I am for sale.\"\n\nShe says the last part plainly, as a fact about the yard and not about herself.",
       "choices": [
         {
           "text": "I will take it to the yard and sell it at what it is worth.",

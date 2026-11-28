@@ -163,7 +163,7 @@
           "text": "Ask nothing more.",
           "next": null,
           "id": "ask-nothing-more",
-          "intent": "probe"
+          "intent": "deflect"
         },
         {
           "text": "Ask whether she has heard from inland.",
@@ -399,7 +399,7 @@
           "text": "Ask nothing more.",
           "next": null,
           "id": "ask-nothing-more",
-          "intent": "probe"
+          "intent": "deflect"
         }
       ]
     },

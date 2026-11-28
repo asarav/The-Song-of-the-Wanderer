@@ -9,8 +9,10 @@
  */
 
 import { readFile } from 'node:fs/promises'
-import { join } from 'node:path'
+import { join, resolve } from 'node:path'
+import { fileURLToPath } from 'node:url'
 
+import type { ContentIndex } from '../src/engine/content'
 import { loadContent } from './simulate'
 
 const NUMBER_WORDS: Record<string, number> = {
@@ -38,12 +40,12 @@ const NUMBER_WORDS: Record<string, number> = {
   hundred: 100,
 }
 
-interface Allowance {
+export interface PriceAllowance {
   place: string
   reason: string
 }
 
-interface Finding {
+export interface PriceFinding {
   entity: string
   node: string
   message: string
@@ -69,15 +71,11 @@ function moneyIn(effects: unknown): number[] {
   )
 }
 
-async function main(): Promise<void> {
-  const json = process.argv.includes('--json')
-  const index = await loadContent()
-  const allowances = JSON.parse(
-    await readFile(join(process.cwd(), 'tools', 'price-allowlist.json'), 'utf8'),
-  ) as Allowance[]
+/** The predicate. The CLI and the broken-fixture test both run this function. */
+export function checkPrices(index: ContentIndex, allowances: PriceAllowance[]): PriceFinding[] {
   const allowed = new Map(allowances.map((entry) => [entry.place, entry.reason]))
+  const findings: PriceFinding[] = []
 
-  const findings: Finding[] = []
   for (const dialogue of index.dialogues.values()) {
     for (const [nodeId, node] of Object.entries(dialogue.nodes)) {
       const place = `${dialogue.id}:${nodeId}`
@@ -112,6 +110,17 @@ async function main(): Promise<void> {
     }
   }
 
+  return findings
+}
+
+async function main(): Promise<void> {
+  const json = process.argv.includes('--json')
+  const index = await loadContent()
+  const allowances = JSON.parse(
+    await readFile(join(process.cwd(), 'tools', 'price-allowlist.json'), 'utf8'),
+  ) as PriceAllowance[]
+  const findings = checkPrices(index, allowances)
+
   if (json) {
     process.stdout.write(`${JSON.stringify({ ok: findings.length === 0, findings }, null, 2)}\n`)
   } else {
@@ -125,4 +134,7 @@ async function main(): Promise<void> {
   if (findings.length > 0) process.exitCode = 1
 }
 
-void main()
+const invokedPath = process.argv[1] ? resolve(process.argv[1]) : ''
+if (invokedPath === fileURLToPath(import.meta.url)) {
+  await main()
+}

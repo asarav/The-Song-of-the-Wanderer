@@ -62,6 +62,10 @@ acceptance tests, not side projects.
 | `pnpm perf:budget` | Load, save, memory, pack size | M8 | Planned |
 | `pnpm studio` | Development inspector and graph viewer | M8 | Planned |
 
+Every gate's predicate has a deliberately broken fixture in `tools/gates.test.ts`, run by
+`pnpm test`. Fixtures live only in that file: they cannot enter a pack, the manuscript or
+a generated table, and a gate that stops checking fails the suite by expected message.
+
 ## 3. Content studio
 
 A dev-only web app (or a guarded route in the game) for inspection and debugging. Read-only

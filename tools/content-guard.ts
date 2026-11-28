@@ -12,9 +12,10 @@
 
 import { createHash } from 'node:crypto'
 import { readFile, writeFile } from 'node:fs/promises'
-import { join } from 'node:path'
+import { join, resolve } from 'node:path'
+import { fileURLToPath } from 'node:url'
 
-import type { DialogueDef } from '../src/engine/content'
+import type { ContentIndex, DialogueDef } from '../src/engine/content'
 import { loadContent } from './simulate'
 
 const LOCK = join(process.cwd(), 'content', 'mechanics.lock.json')
@@ -25,7 +26,7 @@ interface LockEntry {
   updatedAt: string
 }
 
-interface LockFile {
+export interface LockFile {
   version: number
   dialogues: Record<string, LockEntry>
 }
@@ -72,14 +73,41 @@ function fingerprint(dialogue: DialogueDef): string {
     .slice(0, 16)
 }
 
+/** Stable hashes for every graph, independent of prose. */
+export function fingerprintAll(index: ContentIndex): Record<string, string> {
+  const current: Record<string, string> = {}
+  for (const dialogue of index.dialogues.values()) current[dialogue.id] = fingerprint(dialogue)
+  return current
+}
+
+/** The predicate. The CLI and the broken-fixture test both run this function. */
+export function guardProblems(
+  current: Record<string, string>,
+  lock: LockFile,
+): string[] {
+  const added = Object.keys(current).filter((id) => !lock.dialogues[id])
+  const removed = Object.keys(lock.dialogues).filter((id) => !current[id])
+  const changed = Object.keys(current).filter(
+    (id) => lock.dialogues[id] && lock.dialogues[id].hash !== current[id],
+  )
+
+  const problems: string[] = []
+  for (const id of added) problems.push(`${id}: no locked mechanics (new graph)`)
+  for (const id of removed) problems.push(`${id}: locked graph is gone`)
+  for (const id of changed) {
+    const previous = lock.dialogues[id]
+    problems.push(`${id}: mechanics changed since "${previous?.reason ?? 'unknown'}"`)
+  }
+  return problems
+}
+
 async function main(): Promise<void> {
   const update = process.argv.includes('--update')
   const reasonIndex = process.argv.indexOf('--reason')
   const reason = reasonIndex >= 0 ? process.argv[reasonIndex + 1] : undefined
 
   const index = await loadContent()
-  const current: Record<string, string> = {}
-  for (const dialogue of index.dialogues.values()) current[dialogue.id] = fingerprint(dialogue)
+  const current = fingerprintAll(index)
 
   let lock: LockFile
   try {
@@ -115,13 +143,7 @@ async function main(): Promise<void> {
     return
   }
 
-  const problems: string[] = []
-  for (const id of added) problems.push(`${id}: no locked mechanics (new graph)`)
-  for (const id of removed) problems.push(`${id}: locked graph is gone`)
-  for (const id of changed) {
-    const previous = lock.dialogues[id]
-    problems.push(`${id}: mechanics changed since "${previous?.reason ?? 'unknown'}"`)
-  }
+  const problems = guardProblems(current, lock)
 
   if (problems.length > 0) {
     for (const problem of problems) process.stdout.write(`content:guard ${problem}\n`)
@@ -134,4 +156,7 @@ async function main(): Promise<void> {
   process.stdout.write(`content:guard - ${Object.keys(current).length} dialogues unchanged\n`)
 }
 
-void main()
+const invokedPath = process.argv[1] ? resolve(process.argv[1]) : ''
+if (invokedPath === fileURLToPath(import.meta.url)) {
+  await main()
+}

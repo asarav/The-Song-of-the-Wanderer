@@ -9,7 +9,8 @@
  */
 
 import { readFile } from 'node:fs/promises'
-import { join } from 'node:path'
+import { join, resolve } from 'node:path'
+import { fileURLToPath } from 'node:url'
 
 import { GENERATED } from './lib/docs'
 import { loadContent } from './simulate'
@@ -27,39 +28,61 @@ const REQUIRED = [
   'docs/DECISIONS/ADR-0018-character-scene-model.md',
 ]
 
-async function main(): Promise<void> {
+export interface DocsSnapshot {
+  required: string[]
+  files: Map<string, string>
+  /** Path → the exact text the generator currently produces. */
+  generated: Map<string, string>
+}
+
+/** The predicate. The CLI and the broken-fixture test both run this function. */
+export function checkDocs(snapshot: DocsSnapshot): string[] {
   const problems: string[] = []
-  const index = await loadContent()
 
-  for (const path of REQUIRED) {
-    try {
-      await readFile(join(process.cwd(), path), 'utf8')
-    } catch {
-      problems.push(`missing required file ${path}`)
-    }
+  for (const path of snapshot.required) {
+    if (!snapshot.files.has(path)) problems.push(`missing required file ${path}`)
+  }
+  for (const [path, expected] of snapshot.generated) {
+    const actual = snapshot.files.get(path)
+    if (actual === undefined) problems.push(`missing generated file ${path}`)
+    else if (actual !== expected) problems.push(`${path} is stale; run pnpm docs:sync`)
   }
 
-  for (const [path, render] of Object.entries(GENERATED)) {
-    let actual: string
-    try {
-      actual = await readFile(join(process.cwd(), path), 'utf8')
-    } catch {
-      problems.push(`missing generated file ${path}`)
-      continue
-    }
-    if (actual !== render(index)) {
-      problems.push(`${path} is stale; run pnpm docs:sync`)
-    }
-  }
-
-  const status = await readFile(join(process.cwd(), 'docs/STATUS.md'), 'utf8')
+  const status = snapshot.files.get('docs/STATUS.md') ?? ''
   if (!status.includes('M4b')) problems.push('STATUS.md does not name M4b')
   if (!status.includes('Active task')) problems.push('STATUS.md has no active task line')
 
-  const tooling = await readFile(join(process.cwd(), 'docs/TOOLING.md'), 'utf8')
+  const tooling = snapshot.files.get('docs/TOOLING.md') ?? ''
   for (const command of ['model:check', 'prose:lint', 'price:check', 'content:guard', 'task:brief']) {
-    if (!tooling.includes(command)) problems.push(`docs/TOOLING.md does not document ${command}`)
+    if (!tooling.includes(command)) {
+      problems.push(`docs/TOOLING.md does not document ${command}`)
+    }
   }
+
+  return problems
+}
+
+async function main(): Promise<void> {
+  const index = await loadContent()
+  const files = new Map<string, string>()
+  for (const path of REQUIRED) {
+    try {
+      files.set(path, await readFile(join(process.cwd(), path), 'utf8'))
+    } catch {
+      // Missing files are reported by the predicate; the fixture can leave them absent.
+    }
+  }
+  const generated = new Map<string, string>()
+  for (const [path, render] of Object.entries(GENERATED)) {
+    generated.set(path, render(index))
+    try {
+      files.set(path, await readFile(join(process.cwd(), path), 'utf8'))
+    } catch {
+      // Reported by the predicate.
+    }
+  }
+
+  const problems = checkDocs({ required: REQUIRED, files, generated })
 
   for (const problem of problems) process.stdout.write(`docs:check ${problem}\n`)
   process.stdout.write(
@@ -68,4 +91,7 @@ async function main(): Promise<void> {
   if (problems.length > 0) process.exitCode = 1
 }
 
-void main()
+const invokedPath = process.argv[1] ? resolve(process.argv[1]) : ''
+if (invokedPath === fileURLToPath(import.meta.url)) {
+  await main()
+}

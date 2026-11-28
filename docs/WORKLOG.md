@@ -1778,3 +1778,19 @@ smithy illustration showed a man, contradicting Ada's dialogue and portrait.
   `prose:lint` 14 warnings), `pnpm build` green (existing chunk warning).
 - Follow-up: the fresh-reader session (T02) is external; two probe-only Sibtu follow-ups
   and a few sentence-ceiling warnings remain for the next prose pass.
+
+## 2026-11-28 — M4b-T00b — Prove the gates and clear prose warnings
+
+- Exposed each gate's predicate (`checkModel`, `lintProse`, `checkPrices`,
+  `guardProblems`/`fingerprintAll`, `checkInvariants`, `checkDocs`) so the CLI and the
+  fixture test run the same code; CLIs still run only when invoked directly.
+- Added 18 broken-fixture tests in `tools/gates.test.ts`, each asserting its expected
+  error; no fixture lives in a content path. The first-person fixture exposed a
+  case-sensitive regex, now fixed.
+- Split eleven over-ceiling quoted sentences, trimmed Amnit's opening from 91 to 90 words
+  without adding a beat or art plate, and made Sibtu's "Ask nothing more" a `deflect`.
+  No ceiling was widened; mechanics guard updated for the intents.
+- Verification: `pnpm check` green (55 files / 1105 tests; `model:check` 0/0;
+  `prose:lint` 0/0; price/guard/invariants/docs/audio/skills clean); `pnpm build` green.
+- Still open: the external T02 fresh-reader session. M5 remains blocked until it is
+  recorded; no push, PR or merge was made.

@@ -3,7 +3,8 @@
 Every recurring conversation now carries a scene contract and stable answer ids. This is
 the human audit of what each scene is *for*; `pnpm model:check` proves the structural
 half, `pnpm prose:lint` the mechanical half. A scene that cannot answer the three
-questions below is not ready.
+questions below is not ready. At the close of this pass both checks report **0 errors and 0
+warnings**; no sentence ceiling was widened to get there.
 
 | Scene | Goal | Turn | Answer that is not a probe | Callback |
 |---|---|---|---|---|
@@ -32,6 +33,15 @@ questions below is not ready.
   second meeting is deliberately not written; do not add one until M6 owns recurrence.
 - The four event scenes use a recurring speaker but are not `talkTo` conversations. The
   model check treats them as events, not as repeatable graphs.
-- Sibtu's `after-help` and `after-cloth` nodes are still probe-only; they are short
-  follow-ups, but they should gain one concrete action when the cloth thread is next
-  revised.
+
+## Resolved in the prose pass
+
+- Amnit's 91-word opening is 90 words after trimming one conjunction, so it stays one beat
+  and no illustration plate was added.
+- Eleven quoted sentences were split at their existing clause boundaries. The authored
+  ceilings were kept: Amnit 22, Ada 20, Hannu 18, Sibtu 16, Tiro 22, Yada 26.
+- Sibtu's `after-help` and `after-cloth` follow-ups now offer `deflect` ("Ask nothing
+  more") beside the question, so the node is a choice to disengage rather than a second
+  probe. The mechanics guard records that change.
+- The first-person rule now matches capitalised narration as well as lower case; the
+  broken-fixture test caught the old case-sensitive pattern.

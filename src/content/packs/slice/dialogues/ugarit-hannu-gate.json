@@ -153,7 +153,7 @@
       ]
     },
     "wants": {
-      "text": "\"A man who can carry a thing from one gate to another without opening it.\"\n\nHe wets the stylus at last. \"That is all I will say at this gate, and if you repeat it I will say I said nothing. The wall has ears and the wall does not pay for them.\"",
+      "text": "\"A man who can carry a thing from one gate to another without opening it.\"\n\nHe wets the stylus at last. \"That is all I will say at this gate. If you repeat it I will say I said nothing. The wall has ears and the wall does not pay for them.\"",
       "choices": [
         {
           "text": "Remember it.",
@@ -175,7 +175,7 @@
       ]
     },
     "errand": {
-      "text": "\"Not here.\" He does not look up. \"Come back at the second hour and stand where the wall is in shadow. If I am not there, I was never asked.\" He pushes the bread along the wall toward you, an inch. \"Eat something. You look like a man who has been sleeping on the mole, and the palace does not bargain with the tired.\"",
+      "text": "\"Not here.\" He does not look up. \"Come back at the second hour and stand where the wall is in shadow. If I am not there, I was never asked.\" He pushes the bread along the wall toward you, an inch. \"Eat something. You look like a man who has been sleeping on the mole. The palace does not bargain with the tired.\"",
       "choices": [
         {
           "text": "I will come.",

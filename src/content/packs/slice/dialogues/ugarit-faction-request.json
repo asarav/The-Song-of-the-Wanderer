@@ -6,7 +6,7 @@
   "start": "ask",
   "nodes": {
     "ask": {
-      "text": "The wall is in shadow and Hannu is there, which means he was always going to be.\n\n\"The palace needs a thing carried to the island and not written down. A seal. You will show it to Kinyras and say nothing else, and if it is asked for, you never had it.\"",
+      "text": "The wall is in shadow and Hannu is there, which means he was always going to be.\n\n\"The palace needs a thing carried to the island and not written down. A seal. You will show it to Kinyras and say nothing else. If it is asked for, you never had it.\"",
       "choices": [
         {
           "text": "What is it for?",

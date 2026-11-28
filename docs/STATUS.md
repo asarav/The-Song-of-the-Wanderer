@@ -1,7 +1,7 @@
 # Status
 
 **Updated:** 2026-11-28 · **Phase:** M4b — slice revision (M4 closed, ADR-0017)
-**Health:** `pnpm check` green (54 files / 1087 tests, all content gates) · `pnpm build` green (existing chunk warning)
+**Health:** `pnpm check` green (55 files / 1105 tests, all content gates) · `pnpm build` green (existing chunk warning)
 **Active task:** M4b-T02 — the fresh-reader session (external evidence)
 
 This file is the shared memory between sessions. Rewrite it at the end of a work
@@ -47,6 +47,11 @@ The model is now data, and the data is mandatory:
   becomes a standing notice in the same channel as the language notice.
 - **Mechanics guard** — prose edits are free; changing choice order/ids, effects,
   conditions, entries or contracts needs `pnpm content:guard --update --reason`.
+- **Proof the gates check** — 18 broken-fixture tests in `tools/gates.test.ts` assert the
+  expected error from every gate: missing voice/want, missing contract, unresolved
+  callback, asymmetric kin, probe-only scene, duplicate choice id, unread flag, bad POV,
+  anachronism, overlong beat, uncosted price, unlocked mechanics edit, broken invariant
+  and stale docs. Fixtures are in-memory only; none enter a pack, manuscript or table.
 
 Commands in `docs/TOOLING.md`: `task:brief`, `ask`, `entity`, `flag`, `impact`,
 `content:workbench`, `scene:preview`, `manuscript`, `coverage:choices`, `affected`,
@@ -56,9 +61,8 @@ Commands in `docs/TOOLING.md`: `task:brief`, `ask`, `entity`, `flag`, `impact`,
 
 - **M4b-T02 external reader.** Record the session in `docs/playtests/human/`; then update
   `findings.md`, mark M4b done, and open M5.
-- **Prose warnings, not failures.** `prose:lint` reports 14 warnings: a few character
-  sentences over their authored ceiling and two probe-only Sibtu follow-ups. They are
-  listed in `docs/design/dialogue-audit.md` for the next prose pass.
+- **Prose is clean.** `prose:lint` reports 0 errors and 0 warnings; the ceilings are
+  unchanged and the audit records what changed.
 - **Art debt.** `pnpm art:ledger` reports 0 missing, 0 stale, 253 legacy borrowings
   (cap 257). Debt must keep shrinking; a new beat cannot borrow.
 - **Audio stays M18.** The exploratory beds are unchanged.

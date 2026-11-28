@@ -9,11 +9,13 @@
  */
 
 import { readFile } from 'node:fs/promises'
-import { join } from 'node:path'
+import { join, resolve } from 'node:path'
+import { fileURLToPath } from 'node:url'
 
+import type { ContentIndex } from '../src/engine/content'
 import { loadContent } from './simulate'
 
-interface Invariant {
+export interface Invariant {
   id: string
   description: string
   dialogue: string
@@ -25,17 +27,20 @@ interface Invariant {
   journal?: string
 }
 
+export interface InvariantFailure {
+  id: string
+  message: string
+}
+
 const isObject = (value: unknown): value is Record<string, unknown> =>
   typeof value === 'object' && value !== null && !Array.isArray(value)
 
-async function main(): Promise<void> {
-  const json = process.argv.includes('--json')
-  const index = await loadContent()
-  const invariants = JSON.parse(
-    await readFile(join(process.cwd(), 'content', 'invariants.json'), 'utf8'),
-  ) as Invariant[]
-
-  const failures: { id: string; message: string }[] = []
+/** The predicate. The CLI and the broken-fixture test both run this function. */
+export function checkInvariants(
+  index: ContentIndex,
+  invariants: Invariant[],
+): InvariantFailure[] {
+  const failures: InvariantFailure[] = []
 
   for (const invariant of invariants) {
     const dialogue = index.dialogues.get(invariant.dialogue)
@@ -96,6 +101,17 @@ async function main(): Promise<void> {
     }
   }
 
+  return failures
+}
+
+async function main(): Promise<void> {
+  const json = process.argv.includes('--json')
+  const index = await loadContent()
+  const invariants = JSON.parse(
+    await readFile(join(process.cwd(), 'content', 'invariants.json'), 'utf8'),
+  ) as Invariant[]
+  const failures = checkInvariants(index, invariants)
+
   if (json) {
     process.stdout.write(`${JSON.stringify({ ok: failures.length === 0, failures }, null, 2)}\n`)
   } else {
@@ -109,4 +125,7 @@ async function main(): Promise<void> {
   if (failures.length > 0) process.exitCode = 1
 }
 
-void main()
+const invokedPath = process.argv[1] ? resolve(process.argv[1]) : ''
+if (invokedPath === fileURLToPath(import.meta.url)) {
+  await main()
+}

@@ -11,6 +11,9 @@
  * Usage: `pnpm prose:lint [--json] [--only <entity>]`
  */
 
+import { resolve } from 'node:path'
+import { fileURLToPath } from 'node:url'
+
 import { splitBeats } from '../src/engine/text/beats'
 import type { CharacterDef, ContentIndex } from '../src/engine/content'
 import { loadContent } from './simulate'
@@ -22,7 +25,7 @@ export interface ProseIssue {
   message: string
 }
 
-const FIRST_PERSON = /\b(I|me|my|mine|myself|we|us|our|ours)\b/
+const FIRST_PERSON = /\b(I|me|my|mine|myself|we|us|our|ours)\b/gi
 const ANACHRONISMS = [
   'okay',
   'ok',
@@ -223,4 +226,7 @@ function main(): void {
   })()
 }
 
-main()
+const invokedPath = process.argv[1] ? resolve(process.argv[1]) : ''
+if (invokedPath === fileURLToPath(import.meta.url)) {
+  main()
+}
