@@ -313,6 +313,41 @@ export const ART: Record<string, ArtAsset> = {
     src: file('prologue-purse.jpg'),
     alt: 'Two hemispherical bowls of one shape side by side — a white-slipped Cypriot bowl with a dark band of lozenges, and a local copy with a red band and a painted fish — beside a beam balance holding cut pieces of silver, jars, folded cloth, a tablet and an oxhide-shaped copper slab.',
   },
+  'art.ugarit.high': {
+    id: 'art.ugarit.high',
+    kind: 'place',
+    horizon: 'A',
+    src: file('ugarit-high.jpg'),
+    alt: 'Ugarit seen from the acropolis: flat plastered roofs and narrow streets below, the palace and temple precincts, the harbor mole with ships, vineyards and olive terraces, wooded hills and the sea in warm morning light.',
+  },
+  'art.ugarit.palace-hall': {
+    id: 'art.ugarit.palace-hall',
+    kind: 'scene',
+    horizon: 'A',
+    src: file('ugarit-palace-hall.jpg'),
+    alt: 'Interior of the Ugarit palace hall: dressed stone walls with faded painted bands and Egyptianising figures, timber ceiling beams, stone column bases, a patterned floor, a low dais and a few officials at the edges.',
+  },
+  'art.ugarit.archive': {
+    id: 'art.ugarit.archive',
+    kind: 'scene',
+    horizon: 'A',
+    src: file('ugarit-archive.jpg'),
+    alt: 'The palace archive at Ugarit: shelves and woven baskets of clay tablets, a scribe writing at a low table by an oil lamp, sealed jars and a plastered wall with a simple painted band.',
+  },
+  'art.cyprus.inn-interior': {
+    id: 'art.cyprus.inn-interior',
+    kind: 'scene',
+    horizon: 'A',
+    src: file('cyprus-inn-interior.jpg'),
+    alt: 'The common room of a Cypriot inn at dusk: plastered walls with red and mauve bands, timber beams, a plank table with wine bowls and a storage jar, stools, a brazier and travelers standing near the open door.',
+  },
+  'art.mycenae.megaron': {
+    id: 'art.mycenae.megaron',
+    kind: 'scene',
+    horizon: 'A',
+    src: file('mycenae-megaron.jpg'),
+    alt: 'Interior of a Mycenaean megaron: a round central hearth, four painted columns, a low throne against the far wall, white plaster walls with flat red, blue and yellow bands, and a king with attendants small in the monumental room.',
+  },
 
   /*
    * The wider world of 1230 BCE, as the menu shows it and the prologue visits it: Egypt,
@@ -353,7 +388,7 @@ export const ART: Record<string, ArtAsset> = {
     kind: 'place',
     horizon: 'A',
     src: file('world-mycenae.jpg'),
-    alt: 'The Lion Gate at Mycenae: two carved lions above the lintel in a massive stone wall, with green barley, olive groves, cypress and mountains.',
+    alt: 'The citadel of Mycenae on its rocky hill above the Argive plain: cyclopean walls and the Lion Gate in the middle distance, the palace and terraced town on the summit, barley fields, olive groves and distant blue mountains.',
   },
   'art.world.abu-simbel': {
     id: 'art.world.abu-simbel',
@@ -367,7 +402,7 @@ export const ART: Record<string, ArtAsset> = {
     kind: 'place',
     horizon: 'A',
     src: file('world-dur-kurigalzu.jpg'),
-    alt: 'The Kassite ziggurat of Dur-Kurigalzu above a canal and green barley: a shaduf, a reed boat, marsh birds, date palms, flat-roofed houses, workers carrying baskets and a scribe.',
+    alt: 'The Kassite ziggurat of Dur-Kurigalzu dominating its temple and palace precinct, with irrigated barley fields, canals, date palms, a reed boat, tiny workers and donkeys, and dry steppe and hills beyond.',
   },
   'art.world.enkomi': {
     id: 'art.world.enkomi',
@@ -381,7 +416,7 @@ export const ART: Record<string, ArtAsset> = {
     kind: 'place',
     horizon: 'A',
     src: file('world-anyang.jpg'),
-    alt: 'The Shang capital at Anyang: a rammed-earth platform with plain red-brown timber posts and a straight thatched hall, bronze ding vessels and bronze workers, green millet fields, river reeds and wooded hills.',
+    alt: 'The Shang royal precinct at Anyang: broad rammed-earth platforms and thatched halls, a bronze foundry with smoke, chariots and workshops, small figures at the walls, and millet fields, reed marsh and a river beyond.',
   },
   'art.world.mohenjo-daro': {
     id: 'art.world.mohenjo-daro',

@@ -105,7 +105,7 @@
       ]
     },
     "done": {
-      "text": "\"Then we are both richer and neither of us is happy. That is a good deal.\" He makes a mark on the board and does not offer to write anything else down. \"If the yard asks, you sold to me at the price I said. If your friend asks, you did better.\"",
+      "text": "\"Then we are both richer and neither of us is happy. That is a good deal.\" He makes a mark on the board and does not offer to write anything else down. \"If the yard asks, you sold to me at the price I said. If your friend asks, you did better.\"\n\nHe turns the board face down and goes to the next seller.",
       "choices": [
         {
           "text": "Count the silver.",
@@ -128,10 +128,14 @@
           "id": "count-the-silver",
           "intent": "reveal"
         }
+      ],
+      "beatArt": [
+        "art.cyprus.kinyras",
+        "art.cyprus.arrival"
       ]
     },
     "hard": {
-      "text": "\"Thirty-six.\" He says it without heat, the way a man says a number he has already decided on. \"You argue like a man who has been cheated before. Good. Come back when you have more to sell, and bring the same face. I like a man whose face does not change.\"",
+      "text": "\"Thirty-six.\" He says it without heat, the way a man says a number he has already decided on. \"You argue like a man who has been cheated before. Good. Come back when you have more to sell, and bring the same face. I like a man whose face does not change.\"\n\nThe board goes down. The next man is already waiting.",
       "choices": [
         {
           "text": "Take the silver.",
@@ -176,6 +180,10 @@
           "id": "take-the-silver",
           "intent": "help"
         }
+      ],
+      "beatArt": [
+        "art.cyprus.kinyras",
+        "art.cyprus.arrival"
       ]
     }
   },

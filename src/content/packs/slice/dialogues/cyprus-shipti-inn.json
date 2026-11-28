@@ -50,14 +50,6 @@
           "effects": [
             {
               "flag": "shipti.letters"
-            },
-            {
-              "promise": {
-                "id": "promise.shipti.brother",
-                "character": "char.cyprus.shipti",
-                "kind": "debt",
-                "text": "A letter, and three years of money, from Shipti’s brother in Ugarit"
-              }
             }
           ],
           "next": "letters",
@@ -85,16 +77,7 @@
           "next": "letters",
           "id": "any-letters-from-the",
           "intent": "reveal",
-          "effects": [
-            {
-              "promise": {
-                "id": "promise.shipti.brother",
-                "character": "char.cyprus.shipti",
-                "kind": "debt",
-                "text": "A letter, and three years of money, from Shipti’s brother in Ugarit"
-              }
-            }
-          ]
+          "effects": []
         },
         {
           "text": "Say nothing and drink what you are given.",
@@ -116,7 +99,8 @@
           "text": "Who buys copper here?",
           "next": "who",
           "id": "who-buys-copper-here",
-          "intent": "probe"
+          "intent": "probe",
+          "effects": []
         },
         {
           "text": "Say nothing and drink what you are given.",
@@ -138,7 +122,8 @@
           "text": "Who buys copper here?",
           "next": "who",
           "id": "who-buys-copper-here",
-          "intent": "probe"
+          "intent": "probe",
+          "effects": []
         },
         {
           "text": "Say nothing and drink what you are given.",
@@ -160,18 +145,20 @@
           "text": "I have changed my mind about the letter.",
           "next": "late-letter",
           "id": "i-have-changed-my",
-          "intent": "reveal"
+          "intent": "reveal",
+          "effects": []
         },
         {
           "text": "Leave it there.",
           "next": null,
           "id": "leave-it-there",
-          "intent": "deflect"
+          "intent": "deflect",
+          "effects": []
         }
       ]
     },
     "late-letter": {
-      "text": "She puts the tablet on the table between you and goes back to the net.\n\n\"Take it or leave it. But do not leave it here another month.\" She works a knot, then adds, \"And if you see my brother in Ugarit, tell him I have not forgiven him. He will know what for.\"",
+      "text": "She puts the tablet on the table between you and goes back to the net.\n\n\"Take it or leave it. But do not leave it here another month.\" She works a knot, then adds, \"And when you reach Ugarit, tell my brother I have not forgiven him. He will know what for. That is the whole of what I ask.\"",
       "choices": [
         {
           "text": "Take it.",
@@ -190,6 +177,15 @@
                 "source": "witnessed",
                 "reliability": 0.9
               }
+            },
+            {
+              "promise": {
+                "id": "promise.shipti.brother",
+                "character": "char.cyprus.shipti",
+                "kind": "promise",
+                "owedBy": "player",
+                "text": "Tell Shipti’s brother in Ugarit that she has not forgiven him"
+              }
             }
           ],
           "next": "read",
@@ -200,7 +196,8 @@
           "text": "Leave it after all.",
           "next": null,
           "id": "leave-it-after-all",
-          "intent": "deflect"
+          "intent": "deflect",
+          "effects": []
         }
       ]
     },
@@ -211,12 +208,13 @@
           "text": "Put it inside your tunic.",
           "next": null,
           "id": "put-it-inside-your",
-          "intent": "reveal"
+          "intent": "reveal",
+          "effects": []
         }
       ]
     },
     "who": {
-      "text": "\"Kinyras. And a man from Alashiya who does not give a name, which is not the same as not having one.\" She bites the thread. \"Kinyras will cheat you by the letter of the count. The nameless man will cheat you by the spirit. Choose which you can live with.\"",
+      "text": "\"Kinyras. And a man from Alashiya who does not give a name, which is not the same as not having one.\" She bites the thread. \"Kinyras will cheat you by the letter of the count. The nameless man will cheat you by the spirit. Choose which you can live with.\"\n\nShe turns the shirt inside out and begins again.",
       "choices": [
         {
           "text": "Remember the warning.",
@@ -233,6 +231,10 @@
           "id": "remember-the-warning",
           "intent": "reveal"
         }
+      ],
+      "beatArt": [
+        "art.cyprus.shipti",
+        "art.cyprus.inn"
       ]
     },
     "letters": {
@@ -268,7 +270,8 @@
           "text": "Agree to come back tomorrow.",
           "next": null,
           "id": "agree-to-come-back",
-          "intent": "reveal"
+          "intent": "reveal",
+          "effects": []
         }
       ]
     },
@@ -279,7 +282,8 @@
           "text": "Go to bed.",
           "next": null,
           "id": "go-to-bed",
-          "intent": "reveal"
+          "intent": "reveal",
+          "effects": []
         }
       ]
     }

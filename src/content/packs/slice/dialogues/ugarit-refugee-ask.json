@@ -39,7 +39,8 @@
                 "id": "promise.sibtu.cloth",
                 "character": "char.ugarit.sibtu",
                 "kind": "debt",
-                "text": "Five shekels for Sibtu’s cloth, once it is sold"
+                "text": "Five shekels for Sibtu’s cloth, once it is sold",
+                "owedBy": "player"
               }
             }
           ],
@@ -97,7 +98,7 @@
     },
     "thanks": {
       "art": "art.ugarit.cloth-tied",
-      "text": "\"Then you are owed.\" She ties the cord tighter and does not look up. \"I will not forget it, and I will not mention it again.\"",
+      "text": "\"Then you are owed.\" She ties the cord tighter and does not look up. \"I will not forget it, and I will not mention it again.\"\n\nThe loom takes her back, and the street keeps its noise.",
       "choices": [
         {
           "text": "Take the bundle.",
@@ -125,7 +126,8 @@
                 "id": "promise.sibtu.cloth",
                 "character": "char.ugarit.sibtu",
                 "kind": "debt",
-                "text": "Five shekels for Sibtu’s cloth, once it is sold"
+                "text": "Five shekels for Sibtu’s cloth, once it is sold",
+                "owedBy": "player"
               }
             }
           ],
@@ -133,6 +135,10 @@
           "id": "take-the-bundle",
           "intent": "cost"
         }
+      ],
+      "beatArt": [
+        "art.ugarit.sibtu",
+        "art.ugarit.market"
       ]
     },
     "refused": {

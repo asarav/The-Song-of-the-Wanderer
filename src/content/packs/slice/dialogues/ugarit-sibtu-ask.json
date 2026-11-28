@@ -250,7 +250,8 @@
                 "id": "promise.sibtu.cloth",
                 "character": "char.ugarit.sibtu",
                 "kind": "debt",
-                "text": "Five shekels for Sibtu’s cloth, once it is sold"
+                "text": "Five shekels for Sibtu’s cloth, once it is sold",
+                "owedBy": "player"
               }
             }
           ],
@@ -281,7 +282,8 @@
                 "id": "promise.sibtu.cloth",
                 "character": "char.ugarit.sibtu",
                 "kind": "debt",
-                "text": "Five shekels for Sibtu’s cloth, once it is sold"
+                "text": "Five shekels for Sibtu’s cloth, once it is sold",
+                "owedBy": "player"
               }
             }
           ],
@@ -375,7 +377,7 @@
     },
     "kept": {
       "art": "art.ugarit.cloth-kept",
-      "text": "She does not ask why. \"No,\" she says, and takes up the shuttle. \"You are not the first.\"\n\nThe loom fills the room again, and the children have stopped pretending to sort wool. \"Close the door behind you,\" she says. \"The draught is bad for the little one.\"",
+      "text": "She does not ask why. \"No,\" she says, and takes up the shuttle. \"You are not the first.\"\n\nThe loom fills the room again, and the children have stopped pretending to sort wool. \"Close the door behind you,\" she says. \"The draft is bad for the little one.\"",
       "choices": [
         {
           "text": "Leave.",
@@ -404,7 +406,7 @@
       ]
     },
     "after-cloth-kept": {
-      "text": "The chest is shut and the loom is going. She does not ask about the five shekels, and you do not offer them.\n\n\"You know where the door is,\" she says, and turns the shuttle. The children do not look up, which is worse than if they had.",
+      "text": "The five shekels sit between you and the loom, and neither of you moves them. She does not ask about the five shekels, and you do not offer them.\n\n\"You know where the door is,\" she says, and turns the shuttle. The children do not look up, which is worse than if they had.",
       "beatArt": [
         "art.ugarit.cloth-kept",
         "art.ugarit.sibtu"
@@ -450,7 +452,7 @@
       ]
     },
     "need": {
-      "text": "\"Tomorrow. Ask me tomorrow, when the children are out and I can say it without them hearing.\" She looks at the loom, not at you. \"And come in the morning, when I have not yet decided to be proud.\"",
+      "text": "\"Tomorrow. Ask me tomorrow, when the children are out and I can say it without them hearing.\" She looks at the loom, not at you. \"And come in the morning, when I have not yet decided to be proud.\"\n\nShe lifts the shuttle, and the conversation is over.",
       "choices": [
         {
           "text": "Tomorrow, then.",
@@ -466,6 +468,10 @@
           "id": "tomorrow-then",
           "intent": "reveal"
         }
+      ],
+      "beatArt": [
+        "art.ugarit.sibtu",
+        "art.ugarit.workshops"
       ]
     }
   },

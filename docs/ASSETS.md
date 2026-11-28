@@ -16,7 +16,7 @@ promoted. It complements `TOOLING.md` §10 and `DATA_MODEL.md`.
 - Content references `art.*` and `audio.*` IDs, never file paths. The slice's art IDs
   resolve through `src/ui/art.ts`; the files live in `public/art/` with copies of record
   and review notes in `assets/exploratory/`.
-- Every `ArtAsset` carries its ADR-0010 horizon (`A`, `B` or `C`). All 62 current
+- Every `ArtAsset` carries its ADR-0010 horizon (`A`, `B` or `C`). All 67 current
   exploratory records are horizon A; `art.test.ts` rejects a missing or invalid horizon
   and keeps the slice A-only.
 - Exploratory audio ships in `public/audio/`: ten ambience beds, two original modal cues
@@ -276,7 +276,7 @@ image, but it is not a substitute for the beats.
   language variant), and one passage may not repeat an ID.
 - A new beat with no plate fails `src/ui/beatArt.test.ts`. The legacy ledger
   `src/ui/beatArtBacklog.ts` names beats that predate the rule; it may shrink only, never
-  grow, and an illustrated beat must leave it. There are 257 legacy beats at the time of
+  grow, and an illustrated beat must leave it. There are 243 legacy beats at the time of
   writing; the opening's ten and both starting places' four each are illustrated.
 - A plate must show the beat, not the passage in general: the object being weighed, the
   jar being set down, the tablet being wetted. If two consecutive beats would need the

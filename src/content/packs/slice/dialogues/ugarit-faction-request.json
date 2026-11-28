@@ -44,10 +44,11 @@
           "id": "i-am-not-a",
           "intent": "help"
         }
-      ]
+      ],
+      "art": "art.ugarit.palace-hall"
     },
     "what": {
-      "text": "\"For a man to know that the palace remembers him.\" He holds out a small pouch without quite touching it. \"That is all you need, and more than you want.\"",
+      "text": "\"For a man to know that the palace remembers him.\" He holds out a small pouch without quite touching it. \"That is all you need, and more than you want.\"\n\nThe pouch stays in his hand until you take it.",
       "choices": [
         {
           "text": "Take the pouch.",
@@ -68,6 +69,10 @@
           "id": "take-the-pouch",
           "intent": "cost"
         }
+      ],
+      "beatArt": [
+        "art.ugarit.hannu",
+        "art.ugarit.palace-gate"
       ]
     },
     "refuse": {

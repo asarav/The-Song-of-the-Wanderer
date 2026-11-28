@@ -488,7 +488,7 @@ code {
 
 .stage {
   padding: 3rem 2.5rem 5rem;
-  max-width: 52rem;
+  max-width: 70rem;
   /* Lets the reader collapse on the width it actually has, in rem, not just on the
      viewport, so increased text size is measured too. */
   container-type: inline-size;
@@ -688,7 +688,7 @@ code {
 /* One beat at a time: a picture beside the line, not a growing wall of text. */
 .story-beat {
   display: grid;
-  grid-template-columns: minmax(0, 9.5rem) minmax(0, 1fr);
+  grid-template-columns: minmax(0, clamp(9.5rem, 18vw, 16rem)) minmax(0, 1fr);
   gap: 1rem 1.2rem;
   align-items: start;
   animation: beat-in 0.28s ease-out;
@@ -819,10 +819,13 @@ code {
 
 .feedback {
   position: fixed;
-  left: 50%;
+  /* The reading stage is centered in the space beside the rail, not in the viewport. */
+  left: calc((100vw + clamp(10rem, 20vw, 15rem)) / 2);
   bottom: 1.5rem;
   transform: translateX(-50%);
   margin: 0;
+  width: max-content;
+  max-width: min(34rem, calc(100vw - clamp(10rem, 20vw, 15rem) - 2rem));
   padding: 0.6rem 1rem;
   background: var(--night);
   color: var(--parchment);
@@ -1074,7 +1077,10 @@ code {
 }
 
 .btn:disabled {
-  opacity: 0.45;
+  opacity: 1;
+  color: rgba(53, 38, 25, 0.68);
+  background: rgba(255, 255, 255, 0.35);
+  border-color: rgba(93, 66, 38, 0.28);
   cursor: default;
 }
 
@@ -1684,7 +1690,9 @@ code {
 
 .map-key-fog {
   border-radius: 2px;
-  background: #e7dec9;
+  background:
+    repeating-linear-gradient(45deg, transparent 0 2px, rgba(92, 74, 48, 0.32) 2px 3px),
+    #e7dec9;
   border: 1px dashed rgba(92, 74, 48, 0.5);
 }
 
@@ -3856,6 +3864,178 @@ html {
   margin: 0.35rem 0 1.4rem;
   max-width: 30rem;
   font-size: 0.9rem;
+}
+
+/* A disabled door on a dark title must still read as part of the title, not the browser's
+   default light button. */
+.menu .btn:disabled,
+.title-shell .btn:disabled {
+  background: rgba(246, 236, 215, 0.05);
+  border-color: rgba(196, 154, 74, 0.24);
+  color: rgba(246, 236, 215, 0.52);
+  opacity: 1;
+}
+
+/* The exit card covers the next screen until the reader asks for it. */
+.scene-exit-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  display: grid;
+  place-items: center;
+  padding: 1.25rem;
+  background: rgba(15, 11, 8, 0.72);
+  backdrop-filter: blur(4px);
+}
+
+.scene-exit {
+  width: min(34rem, 100%);
+  max-height: calc(100dvh - 2.5rem);
+  padding: 2rem;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  border: 1px solid rgba(196, 154, 74, 0.48);
+  border-radius: 6px;
+  background: #f4e9d3;
+  box-shadow: 0 30px 70px -30px rgba(0, 0, 0, 0.85);
+}
+
+.scene-exit h2 {
+  margin: 0 0 1rem;
+  color: var(--bronze);
+}
+
+.scene-exit-line {
+  margin: 0 0 1rem;
+  font-size: 1.05rem;
+  font-style: italic;
+  line-height: 1.65;
+  color: #352619;
+}
+
+.scene-exit-next {
+  margin-bottom: 1.2rem;
+}
+
+.scene-exit-night {
+  margin: -0.25rem 0 1.2rem;
+  color: #6b4a2a;
+}
+
+@media (max-width: 480px) {
+  .scene-exit {
+    padding: 1.35rem;
+  }
+
+  .scene-exit-line {
+    font-size: 1rem;
+    line-height: 1.55;
+  }
+}
+
+/* Passage prices are read as a list of terms, not a run-on sentence. */
+.passage-card .passage-facts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.45rem 0.9rem;
+  margin: 0.65rem 0;
+}
+
+.passage-facts div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.05rem;
+}
+
+.passage-facts dt {
+  font-family: 'Trebuchet MS', system-ui, sans-serif;
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+
+.passage-facts dd {
+  margin: 0;
+  font-size: 0.92rem;
+  color: var(--ink);
+}
+
+.closed-road {
+  margin-top: 1.5rem;
+  padding: 1rem 1.1rem;
+  border: 1px dashed rgba(93, 66, 38, 0.38);
+  border-radius: 4px;
+  background: rgba(230, 213, 182, 0.35);
+}
+
+.closed-road h3 {
+  margin-top: 0;
+}
+
+.closed-road p {
+  margin: 0;
+  color: var(--ink-muted);
+  line-height: 1.55;
+}
+
+.cargo-comparison li {
+  align-items: start;
+}
+
+/* Distinct local silhouettes: the shape says what kind of place this is before the label. */
+.map-building-line {
+  fill: none;
+  stroke: rgba(49, 38, 24, 0.72);
+  stroke-width: 0.36;
+  stroke-linecap: round;
+}
+
+.map-building-door-shape {
+  fill: rgba(49, 38, 24, 0.5);
+  stroke: none;
+}
+
+.map-fog-line {
+  fill: none;
+  stroke: rgba(92, 74, 48, 0.4);
+  stroke-width: 0.32;
+}
+
+.map-fog-hatch {
+  stroke: none;
+  opacity: 0.78;
+  pointer-events: none;
+}
+
+.map-kind-legend {
+  flex-basis: 100%;
+  line-height: 1.5;
+}
+
+@media (max-width: 46rem) {
+  .feedback {
+    left: 50%;
+    max-width: calc(100vw - 2rem);
+  }
+
+  /* The passage card's two-column list grid leaves too little room for the terms and the
+     action at a phone width; stack the action under its card instead of over the facts. */
+  .list li.passage-card {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.35rem;
+  }
+
+  .passage-card > .btn {
+    align-self: flex-start;
+    margin-top: 0.35rem;
+  }
+
+  .passage-card .passage-facts {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

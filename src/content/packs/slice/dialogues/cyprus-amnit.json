@@ -28,6 +28,12 @@
                 "dimension": "affection",
                 "delta": 1
               }
+            },
+            {
+              "schedule": {
+                "event": "evt.cyprus.amnit-departs",
+                "inDays": 3
+              }
             }
           ],
           "next": "answer",
@@ -46,6 +52,12 @@
                 "source": "told",
                 "reliability": 0.8
               }
+            },
+            {
+              "schedule": {
+                "event": "evt.cyprus.amnit-departs",
+                "inDays": 3
+              }
             }
           ],
           "next": "answer",
@@ -55,7 +67,7 @@
       ]
     },
     "again": {
-      "text": "\"You again. The wedding was yesterday and the copper is still here.\" She shifts a crate with her foot and does not offer you her hands, which are full.\n\n\"Ask me something I have not already answered. Or help me carry this, and I will tell you something for free.\"",
+      "text": "“The wedding is over and the copper is still here.” She shifts a crate with her foot and does not offer you her hands, which are full.\n\n“Ask me something I have not already answered. Or help me carry this, and I will tell you something for free.”",
       "choices": [
         {
           "text": "Does the debt get collected?",
@@ -101,17 +113,18 @@
       "text": "\"In person, or it does not get collected. A man who pays a messenger has decided not to pay you.\"\n\nShe says it without heat, the way she says weights. Then she looks at you. \"You are a stranger here. If I need a witness, will you stand? It is not dangerous. It is only standing where he can see you.\"",
       "choices": [
         {
-          "text": "Remember it.",
+          "text": "Stand as her witness when the time comes.",
           "next": null,
           "id": "remember-it",
           "intent": "reveal",
           "effects": [
             {
               "promise": {
-                "id": "promise.amnit.debt",
+                "id": "promise.amnit.witness",
                 "character": "char.ugarit.amnit",
-                "kind": "debt",
-                "text": "A cousin’s debt Amnit means to collect in person"
+                "kind": "promise",
+                "owedBy": "player",
+                "text": "Stand as Amnit’s witness when she collects the debt"
               }
             }
           ]

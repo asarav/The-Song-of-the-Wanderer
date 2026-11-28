@@ -416,15 +416,17 @@ export const EFFECT_ATOMS: Record<string, EffectAtom> = {
         id: z.string().min(1),
         character: z.string().min(1),
         kind: z.enum(['promise', 'debt']),
+        owedBy: z.enum(['player', 'character']),
         text: z.string().min(1),
         dueDay: z.int().min(0).optional(),
       })
       .strict(),
     apply: (payload, ctx) => {
-      const { id, character, kind, text, dueDay } = payload as {
+      const { id, character, kind, owedBy, text, dueDay } = payload as {
         id: string
         character: string
         kind: 'promise' | 'debt'
+        owedBy: 'player' | 'character'
         text: string
         dueDay?: number
       }
@@ -433,6 +435,7 @@ export const EFFECT_ATOMS: Record<string, EffectAtom> = {
         id,
         character,
         kind,
+        owedBy,
         text,
         openedDay: ctx.state.calendar.day,
         ...(dueDay === undefined ? {} : { dueDay }),
@@ -443,6 +446,7 @@ export const EFFECT_ATOMS: Record<string, EffectAtom> = {
         id,
         character,
         kind,
+        owedBy,
         ...(dueDay === undefined ? {} : { dueDay }),
       })
     },

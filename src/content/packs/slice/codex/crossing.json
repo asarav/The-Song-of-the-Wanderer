@@ -7,7 +7,9 @@
   "text": "Ships work the coast when they can and strike across when they must. A coastal passage is slower, cheaper, and has somewhere to run to. Open water is the reverse.\n\nPassage is bought, worked, or owed. A master who takes you without payment is either doing you a favor or putting you in his ledger, and he will tell you which.",
   "provenance": {
     "confidence": "plausible",
-    "sources": ["Eastern Mediterranean maritime practice, general"],
+    "sources": [
+      "Eastern Mediterranean maritime practice, general"
+    ],
     "notes": "Coastal and open-water options are a game abstraction of real sailing choices."
   }
 }

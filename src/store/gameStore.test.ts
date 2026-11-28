@@ -13,6 +13,8 @@ describe('game store', () => {
       screen: 'title',
       feedback: null,
       timePassed: null,
+      sceneExit: null,
+      nightPending: false,
       dialogueLog: [],
       readPassages: [],
       placeId: null,
@@ -120,6 +122,26 @@ describe('game store', () => {
     expect(useGameStore.getState().placeId).toBe('act.ugarit.market')
   })
 
+  it('keeps a closing card between a finished scene and the next screen', () => {
+    start()
+    useGameStore.getState().visitPlace('act.ugarit.market')
+    useGameStore.getState().dispatch({ type: 'talkTo', character: 'char.ugarit.amnit' })
+    for (let step = 0; step < 10 && useGameStore.getState().state?.narrative.pending; step += 1) {
+      const pending = useGameStore.getState().state?.narrative.pending
+      const node = pending
+        ? useGameStore.getState().index.dialogues.get(pending.dialogue)?.nodes[pending.node]
+        : undefined
+      if (!node || node.choices.length === 0) break
+      useGameStore.getState().dispatch({ type: 'chooseDialogue', choice: node.choices.length - 1 })
+    }
+
+    const exit = useGameStore.getState().sceneExit
+    expect(exit).not.toBeNull()
+    expect(exit?.line.length).toBeGreaterThan(20)
+    useGameStore.getState().dismissSceneExit()
+    expect(useGameStore.getState().sceneExit).toBeNull()
+  })
+
   it('shows the night after a day and returns to day on waking', () => {
     start()
 
@@ -131,10 +153,7 @@ describe('game store', () => {
     for (let step = 0; step < 5 && useGameStore.getState().state?.narrative.pending; step += 1) {
       useGameStore.getState().dispatch({ type: 'chooseDialogue', choice: 0 })
     }
-    expect(useGameStore.getState().screen).toBe('destination')
-
-    // The next night is still on cooldown, so the place after dark is the screen.
-    useGameStore.getState().dispatch({ type: 'advanceTime', days: 1 })
+    // A day spent in a scene ends after dark; the night is not skipped on the way back.
     expect(useGameStore.getState().screen).toBe('night')
 
     useGameStore.getState().setScreen('destination')

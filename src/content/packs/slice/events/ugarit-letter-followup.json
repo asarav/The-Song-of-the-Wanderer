@@ -4,16 +4,33 @@
   "contentVersion": 1,
   "kind": "local",
   "title": "The errand's answer",
-  "scope": { "destinations": ["dest.ugarit"] },
-  "conditions": { "all": [] },
+  "scope": {
+    "destinations": [
+      "dest.ugarit"
+    ]
+  },
+  "conditions": {
+    "all": [
+      {
+        "flag": "carries.palace-letter"
+      }
+    ]
+  },
   "priority": 60,
   "major": true,
   "once": true,
   "scene": "dlg.ugarit.letter",
-  "effects": [{ "journal": { "entry": "journal.slice.letter" } }],
+  "effects": [
+    {
+      "journal": {
+        "entry": "journal.slice.letter"
+      }
+    }
+  ],
   "provenance": {
     "confidence": "plausible",
     "sources": [],
     "notes": "The delayed consequence of the palace errand."
-  }
+  },
+  "description": "The letter asked you back to Ugarit. The palace gate keeps its second hour, and Hannu is not a man who waits twice."
 }

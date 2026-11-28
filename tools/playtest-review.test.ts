@@ -35,6 +35,7 @@ describe('automated playtest review', () => {
             id: 'promise.review',
             character: 'char.ugarit.amnit',
             kind: 'promise' as const,
+            owedBy: 'player' as const,
             text: 'Bring the cloth back.',
             openedDay: 1,
             status: 'open' as const,

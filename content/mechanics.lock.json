@@ -7,14 +7,14 @@
       "updatedAt": "2026-11-28T00:46:40.339Z"
     },
     "dlg.cyprus.ada.smithy": {
-      "hash": "a19b4f4355dc6aeb",
-      "reason": "Record the blade topic Ada has already explained, and acknowledge Tiro and Yada help answers",
-      "updatedAt": "2026-11-28T01:54:58.579Z"
+      "hash": "c965546fc0d60d05",
+      "reason": "Playtest revision: directional promises, result nodes, scene exits and corrected continuity",
+      "updatedAt": "2026-11-28T03:37:37.048Z"
     },
     "dlg.cyprus.amnit": {
-      "hash": "b6996d90df04c625",
-      "reason": "Obligations: Sibtu cloth, Amnit debt and Shipti brother now open and settle promise records",
-      "updatedAt": "2026-11-28T00:58:48.866Z"
+      "hash": "5b64e35e1cbc543b",
+      "reason": "Playtest revision: directional promises, result nodes, scene exits and corrected continuity",
+      "updatedAt": "2026-11-28T03:37:37.048Z"
     },
     "dlg.cyprus.arrival": {
       "hash": "15df805012e4b336",
@@ -37,14 +37,14 @@
       "updatedAt": "2026-11-28T00:46:40.339Z"
     },
     "dlg.cyprus.return-letter": {
-      "hash": "6ff80bd4229ff934",
-      "reason": "M4b model migration: stable choice ids, intents and scene contracts",
-      "updatedAt": "2026-11-28T00:46:40.339Z"
+      "hash": "2a5e71b5ee534f52",
+      "reason": "Playtest revision: directional promises, result nodes, scene exits and corrected continuity",
+      "updatedAt": "2026-11-28T03:37:37.048Z"
     },
     "dlg.cyprus.shipti.inn": {
-      "hash": "173ce1cdb3c2421d",
-      "reason": "Obligations: Sibtu cloth, Amnit debt and Shipti brother now open and settle promise records",
-      "updatedAt": "2026-11-28T00:58:48.866Z"
+      "hash": "ebbbeb77383f5bd1",
+      "reason": "Playtest revision: directional promises, result nodes, scene exits and corrected continuity",
+      "updatedAt": "2026-11-28T03:37:37.048Z"
     },
     "dlg.slice.opening": {
       "hash": "4e49cbb066ccd1fc",
@@ -92,9 +92,9 @@
       "updatedAt": "2026-11-28T00:46:40.339Z"
     },
     "dlg.travel.quiet-night": {
-      "hash": "fb9b66c8c9bb173e",
-      "reason": "M4b model migration: stable choice ids, intents and scene contracts",
-      "updatedAt": "2026-11-28T00:46:40.339Z"
+      "hash": "82591cd1b3cc0262",
+      "reason": "Playtest revision: directional promises, result nodes, scene exits and corrected continuity",
+      "updatedAt": "2026-11-28T03:37:37.048Z"
     },
     "dlg.travel.refugees": {
       "hash": "8230fb9bbdc29ac5",
@@ -117,9 +117,9 @@
       "updatedAt": "2026-11-28T00:46:40.339Z"
     },
     "dlg.travel.spring": {
-      "hash": "02d5aff5924fe804",
-      "reason": "M4b model migration: stable choice ids, intents and scene contracts",
-      "updatedAt": "2026-11-28T00:46:40.339Z"
+      "hash": "ea8196f9b65bd967",
+      "reason": "Playtest revision: directional promises, result nodes, scene exits and corrected continuity",
+      "updatedAt": "2026-11-28T03:37:37.048Z"
     },
     "dlg.travel.squall": {
       "hash": "2628c1452f215ebc",
@@ -162,19 +162,19 @@
       "updatedAt": "2026-11-28T00:46:40.339Z"
     },
     "dlg.ugarit.night-watch": {
-      "hash": "90eb83ad01675bc6",
-      "reason": "M4b model migration: stable choice ids, intents and scene contracts",
-      "updatedAt": "2026-11-28T00:46:40.339Z"
+      "hash": "5fa9fa510f34e3ee",
+      "reason": "Playtest revision: directional promises, result nodes, scene exits and corrected continuity",
+      "updatedAt": "2026-11-28T03:37:37.048Z"
     },
     "dlg.ugarit.refugee-ask": {
-      "hash": "32235b1d8d9e7d08",
-      "reason": "Obligations: Sibtu cloth, Amnit debt and Shipti brother now open and settle promise records",
-      "updatedAt": "2026-11-28T00:58:48.866Z"
+      "hash": "d7e0758c196d55f0",
+      "reason": "Playtest revision: directional promises, result nodes, scene exits and corrected continuity",
+      "updatedAt": "2026-11-28T03:37:37.048Z"
     },
     "dlg.ugarit.sibtu.ask": {
-      "hash": "ff5f93ac167f798d",
-      "reason": "Sibtu's 'Ask nothing more' is a deflect, not a probe, so the follow-up scene offers a real disengagement choice",
-      "updatedAt": "2026-11-28T01:14:24.134Z"
+      "hash": "2760ad5f3513aa61",
+      "reason": "Playtest revision: directional promises, result nodes, scene exits and corrected continuity",
+      "updatedAt": "2026-11-28T03:37:37.048Z"
     },
     "dlg.ugarit.tiro.passage": {
       "hash": "08abf4678595323a",
@@ -182,9 +182,9 @@
       "updatedAt": "2026-11-28T00:46:40.339Z"
     },
     "dlg.ugarit.yada.lesson": {
-      "hash": "b7b7ed7030f49a82",
-      "reason": "Enforce a second recurring graph for Tiro and Yada, and add entry branches for one-shot flags",
-      "updatedAt": "2026-11-28T01:30:06.207Z"
+      "hash": "eae5595544cdcaf9",
+      "reason": "Playtest revision: directional promises, result nodes, scene exits and corrected continuity",
+      "updatedAt": "2026-11-28T03:37:37.048Z"
     },
     "dlg.cyprus.tiro": {
       "hash": "df18cd11b8f25172",

@@ -122,6 +122,12 @@
     },
     {
       "type": "chooseChoice",
+      "choiceId": "go-below-as-the",
+      "dialogue": "dlg.travel.quiet-night",
+      "node": "watched"
+    },
+    {
+      "type": "chooseChoice",
       "choiceId": "pass-them-water",
       "dialogue": "dlg.travel.refugees",
       "node": "boat"
@@ -188,13 +194,13 @@
     },
     {
       "target": "events",
-      "step": 25,
+      "step": 26,
       "path": "eventTypes",
       "contains": "JournalEntryAdded"
     },
     {
       "target": "events",
-      "step": 25,
+      "step": 26,
       "path": "eventTypes",
       "contains": "KnowledgeLearned"
     }

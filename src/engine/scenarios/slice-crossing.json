@@ -78,9 +78,21 @@
     },
     {
       "type": "chooseChoice",
+      "choiceId": "go-below-as-the",
+      "dialogue": "dlg.travel.quiet-night",
+      "node": "watched"
+    },
+    {
+      "type": "chooseChoice",
       "choiceId": "fill-every-skin-at",
       "dialogue": "dlg.travel.spring",
       "node": "seep"
+    },
+    {
+      "type": "chooseChoice",
+      "choiceId": "push-off-with-the",
+      "dialogue": "dlg.travel.spring",
+      "node": "watered"
     },
     {
       "type": "chooseChoice",

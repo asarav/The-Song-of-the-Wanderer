@@ -4,5 +4,9 @@
   "contentVersion": 1,
   "title": "The end of a crossing",
   "text": "I came into Ugarit at dusk with **two jars of oil** and no one waiting. The gate official wrote something down without asking how it was spelled. **The market is up the hill**; the harbor is where work is.\n\nI have a purse, a language that gets me through a gate, and one evening to learn what this city wants.",
-  "provenance": { "confidence": "fictional", "sources": [], "notes": "The player's own opening note." }
+  "provenance": {
+    "confidence": "fictional",
+    "sources": [],
+    "notes": "The player's own opening note."
+  }
 }

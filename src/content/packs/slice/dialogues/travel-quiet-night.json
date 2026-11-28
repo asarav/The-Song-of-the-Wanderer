@@ -9,7 +9,7 @@
       "choices": [
         {
           "text": "Stay until the light goes out.",
-          "next": null,
+          "next": "watched",
           "id": "stay-until-the-light",
           "intent": "reveal"
         },
@@ -39,6 +39,22 @@
           "id": "learn-it",
           "intent": "reveal"
         }
+      ]
+    },
+    "watched": {
+      "art": "art.cyprus.night",
+      "text": "The light does not go out. It dims once, as if someone has passed a hand before it, and then holds steady until the sky behind the headland is gray.\n\nThe man at the bow has stopped pretending to be awake. “A farmstead, then,” he says, and goes below. You keep the last of the watch alone, with the shore beginning to show its shape.",
+      "choices": [
+        {
+          "text": "Go below as the sky lightens.",
+          "next": null,
+          "id": "go-below-as-the",
+          "intent": "reveal"
+        }
+      ],
+      "beatArt": [
+        "art.cyprus.night",
+        "art.cyprus.arrival"
       ]
     }
   },

@@ -17,7 +17,7 @@
       "text": "The gate is closing. The man behind the board has a stylus he has not yet wet and a piece of bread on the wall beside him that he has forgotten. He looks at your hands before he looks at your face.\n\n\"Name. Cargo. And whether you have been in this harbor before.\" He says it the way a man says a list he has said all day. Behind him a porter is arguing with a scribe about a jar, and neither of them is winning.",
       "choices": [
         {
-          "text": "Give your name, and the truth about your cargo.",
+          "text": "Give your name, and declare your two jars of oil.",
           "effects": [
             {
               "flag": "arrived.ugarit"
@@ -78,7 +78,8 @@
           ],
           "next": "seal",
           "id": "show-him-the-palace",
-          "intent": "help"
+          "intent": "help",
+          "hiddenWhenUnavailable": true
         }
       ]
     },

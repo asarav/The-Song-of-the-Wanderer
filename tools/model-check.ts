@@ -14,6 +14,7 @@ import { join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 import type { ContentIndex } from '../src/engine/content'
+import { splitBeats } from '../src/engine/text/beats'
 import { flagUses } from './lib/flags'
 import { loadContent } from './simulate'
 
@@ -184,13 +185,23 @@ export function checkModel(index: ContentIndex, terminals: TerminalFlag[] = []):
   for (const dialogue of index.dialogues.values()) {
     for (const node of Object.values(dialogue.nodes)) {
       for (const choice of node.choices) {
-        for (const effect of effectList(choice.effects)) noteEffect(effect)
+        for (const effect of effectList(choice.effects)) {
+          noteEffect(effect)
+          if (isObject(effect.promise) && !['player', 'character'].includes(String(effect.promise.owedBy))) {
+            add('error', dialogue.id, `promise "${String(effect.promise.id)}" has no valid owedBy`)
+          }
+        }
         if (choice.journal) journalsWritten.add(choice.journal)
       }
     }
   }
   for (const event of index.events.values()) {
-    for (const effect of effectList(event.effects)) noteEffect(effect)
+    for (const effect of effectList(event.effects)) {
+      noteEffect(effect)
+      if (isObject(effect.promise) && !['player', 'character'].includes(String(effect.promise.owedBy))) {
+        add('error', event.id, `promise "${String(effect.promise.id)}" has no valid owedBy`)
+      }
+    }
     if (event.journal) journalsWritten.add(event.journal)
   }
 
@@ -368,6 +379,22 @@ export function checkModel(index: ContentIndex, terminals: TerminalFlag[] = []):
       if (new Set(choiceIds).size !== choiceIds.length) {
         add('error', dialogue.id, `choice ids must be unique within node "${nodeId}"`)
       }
+      const allTerminal =
+        node.choices.length > 0 &&
+        node.choices.every((choice) => !choice.next) &&
+        !node.nextDialogue
+      if (
+        allTerminal &&
+        node.choices.some((choice) => effectList(choice.effects).length > 0) &&
+        splitBeats(node.text).length < 2
+      ) {
+        add(
+          'warning',
+          dialogue.id,
+          `node "${nodeId}" ends on its last choice without a closing beat`,
+          sourceOf(index, dialogue.id),
+        )
+      }
     }
     if (ids !== choices) {
       add('error', dialogue.id, `${choices - ids} choices have no stable id`)
@@ -392,7 +419,12 @@ export function checkModel(index: ContentIndex, terminals: TerminalFlag[] = []):
     if (use.writer.length === 0) continue
     if (use.reader.length === 0 && !declared.has(use.flag)) {
       add('error', use.flag, 'flag is written but never read, and not declared terminal')
-    } else if (use.reader.length > 0 && !entryFlags.has(use.flag) && !declared.has(use.flag)) {
+    } else if (
+      use.reader.length > 0 &&
+      !entryFlags.has(use.flag) &&
+      !declared.has(use.flag) &&
+      !use.reader.some((reader) => reader.startsWith('evt.'))
+    ) {
       add(
         'error',
         use.flag,

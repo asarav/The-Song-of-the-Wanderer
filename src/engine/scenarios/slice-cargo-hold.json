@@ -62,6 +62,12 @@
     },
     {
       "type": "chooseChoice",
+      "choiceId": "go-below-as-the",
+      "dialogue": "dlg.travel.quiet-night",
+      "node": "watched"
+    },
+    {
+      "type": "chooseChoice",
       "choiceId": "say-nothing-and-let",
       "dialogue": "dlg.travel.checkpoint",
       "node": "hail"

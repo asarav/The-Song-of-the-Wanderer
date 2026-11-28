@@ -248,6 +248,7 @@ const cases: { name: string; condition: Condition; expected: boolean; mutate?: (
         id: 'promise.test',
         character: 'char.ugarit.amnit',
         kind: 'promise',
+        owedBy: 'player',
         text: 'A test promise',
         openedDay: 0,
         status: 'open',

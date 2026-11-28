@@ -30,7 +30,14 @@ export type DomainEvent =
     }
   /** The readable band moved, so a notice can say who noticed and how. */
   | { type: 'RegardChanged'; character: string; from: string; to: string }
-  | { type: 'PromiseOpened'; id: string; character: string; kind: string; dueDay?: number }
+  | {
+      type: 'PromiseOpened'
+      id: string
+      character: string
+      kind: string
+      owedBy: 'player' | 'character'
+      dueDay?: number
+    }
   | { type: 'PromiseSettled'; id: string; character: string; status: string }
   | { type: 'TopicMarked'; character: string; topic: string }
   | { type: 'FactionChanged'; faction: string; dimension: string; delta: number; value: number }

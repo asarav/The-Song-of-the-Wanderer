@@ -80,6 +80,37 @@ const ANACHRONISMS = [
 
 const QUOTED = /"[^"]*"|“[^”]*”|‘[^’]*’/g
 
+/** Player-facing British spellings, kept as errors so the interface stays in one dialect. */
+const BRITISH_SPELLINGS = [
+  'harbour',
+  'colour',
+  'favour',
+  'honour',
+  'neighbour',
+  'centre',
+  'theatre',
+  'defence',
+  'offence',
+  'practise',
+  'travelled',
+  'travelling',
+  'realise',
+  'recognise',
+  'organise',
+  'apologise',
+  'grey',
+  'programme',
+  'cheque',
+  'draught',
+  'plough',
+  'smoulder',
+  'storey',
+  'licence',
+]
+
+/** A time word in a return node is stale unless the node checks the calendar. */
+const TIME_ANCHORS = /\b(yesterday|tomorrow|tonight|this morning|last night)\b/i
+
 /** Statements that answer the protagonist's mystery instead of leaving it open. */
 const MYSTERY_ASSERTIONS = [
   /\byou are (?:a |the )?(?:god|goddess|divine|immortal|deity|ninshubur|messenger)\b/i,
@@ -177,6 +208,20 @@ export function lintProse(index: ContentIndex): ProseIssue[] {
       if (new RegExp(`\\b${word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`).test(lower)) {
         add('error', entity, `modern word "${word}" in period prose`, node, source)
       }
+    }
+    for (const word of BRITISH_SPELLINGS) {
+      if (new RegExp(`\\b${word}\\b`).test(lower)) {
+        add('error', entity, `British spelling "${word}" in player-facing copy`, node, source)
+      }
+    }
+    if (node?.startsWith('again') && TIME_ANCHORS.test(text)) {
+      add(
+        'error',
+        entity,
+        'return node anchors the scene to a day it does not check (yesterday/tomorrow/tonight)',
+        node,
+        source,
+      )
     }
     for (const beat of splitBeats(text)) {
       const count = words(beat)

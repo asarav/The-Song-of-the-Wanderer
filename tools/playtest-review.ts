@@ -695,8 +695,24 @@ export function contentFindings(index: ContentIndex): ReviewFinding[] {
 
   for (const dialogue of index.dialogues.values()) {
     const source = entityPath(index, dialogue.id)
+    const entryNodes = new Set((dialogue.entries ?? []).map((entry) => entry.node))
+    const openings = new Map<string, string[]>()
     for (const [nodeId, node] of Object.entries(dialogue.nodes)) {
       const where = `${dialogue.id}:${nodeId}`
+      if (entryNodes.has(nodeId)) {
+        const opening = splitBeats(node.text)[0]?.split(/\s+/).slice(0, 8).join(' ')
+        if (opening) openings.set(opening, [...(openings.get(opening) ?? []), nodeId])
+      }
+      if (node.nextDialogue && splitBeats(node.text).length < 2) {
+        findings.push({
+          category: 'confusion',
+          level: 'note',
+          title: 'Abrupt scene handoff',
+          where,
+          evidence: 'The scene leaves for another dialogue without a closing beat; the exit card must carry it.',
+          ...(source ? { source } : {}),
+        })
+      }
       const hiddenConditions = node.choices.filter(
         (choice) => hasCondition(choice) && !choice.unavailableNote,
       )
@@ -753,6 +769,17 @@ export function contentFindings(index: ContentIndex): ReviewFinding[] {
           })
         }
       }
+    }
+    for (const [opening, nodes] of openings) {
+      if (nodes.length < 2) continue
+      findings.push({
+        category: 'character',
+        level: 'warn',
+        title: 'Repeated opening in one dialogue',
+        where: `${dialogue.id}:${nodes.join(', ')}`,
+        evidence: `Entry nodes begin with the same words: "${opening}…"`,
+        ...(source ? { source } : {}),
+      })
     }
   }
 

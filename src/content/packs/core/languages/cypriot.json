@@ -2,11 +2,13 @@
   "id": "lang.cypriot",
   "pack": "pack.core",
   "contentVersion": 1,
-  "name": "The island tongue",
-  "notes": "A local speech the traveler hears but cannot place. Its scripts remain undeciphered, and no one here can read them.",
+  "name": "Cypriot",
+  "notes": "The language spoken on the island. Its own name is not recorded, and its undeciphered script is not read aloud in play.",
   "provenance": {
     "confidence": "unresolved",
-    "sources": ["Cypro-Minoan corpus, general"],
-    "notes": "Deliberately unnamed and untranslated in play: the writing is attested, the reading is not."
+    "sources": [
+      "Cypro-Minoan corpus, general"
+    ],
+    "notes": "The language and its Cypro-Minoan script are attested; neither the language’s own name nor a reading of the script survives. The name Cypriot is a modern label used by the interface."
   }
 }

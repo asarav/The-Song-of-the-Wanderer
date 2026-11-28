@@ -78,7 +78,8 @@
           "id": "leave-her-to-it",
           "intent": "deflect"
         }
-      ]
+      ],
+      "art": "art.ugarit.temple"
     },
     "again-hymn": {
       "text": "\"You again.\" She is folding a cloth that has already been folded. \"I have not found another verse, if that is what you came for. I have found three versions of the same line and none of them sing.\"",
@@ -183,7 +184,7 @@
       ]
     },
     "after-mystery": {
-      "text": "She does not sing now. The doorway is the same and the stillness in it is not.\n\n\"You came back. Good. I have stopped singing it at strangers, and the temple has noticed.\" She looks at the lamp. \"They have asked me to sing the palace version at the feast. The short one.\"",
+      "text": "She does not sing now. The doorway is the same and the stillness in it is not.\n\n\"You came back. Good. I have stopped singing it at strangers, and the temple has noticed.\" She looks at the lamp. \"They have asked me to sing the palace version at the feast — the third evening after the next market. The short one.\"",
       "choices": [
         {
           "text": "Ask what changed.",

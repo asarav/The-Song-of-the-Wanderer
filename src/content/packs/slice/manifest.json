@@ -1,13 +1,28 @@
 {
   "id": "pack.slice",
   "contentVersion": 1,
-  "requires": ["pack.core"],
+  "requires": [
+    "pack.core"
+  ],
   "entities": {
-    "regions": ["region.levant", "region.cyprus"],
-    "destinations": ["dest.ugarit", "dest.cyprus"],
-    "routes": ["route.ugarit-cyprus"],
-    "goods": ["good.sibtu-cloth"],
-    "factions": ["faction.ugarit.palace", "faction.ugarit.merchants"],
+    "regions": [
+      "region.levant",
+      "region.cyprus"
+    ],
+    "destinations": [
+      "dest.ugarit",
+      "dest.cyprus"
+    ],
+    "routes": [
+      "route.ugarit-cyprus"
+    ],
+    "goods": [
+      "good.sibtu-cloth"
+    ],
+    "factions": [
+      "faction.ugarit.palace",
+      "faction.ugarit.merchants"
+    ],
     "characters": [
       "char.ugarit.amnit",
       "char.ugarit.hannu",
@@ -48,7 +63,8 @@
       "evt.cyprus.amnit-arrives",
       "evt.ugarit.night-watch",
       "evt.cyprus.night-kiln",
-      "evt.ugarit.yada-archive"
+      "evt.ugarit.yada-archive",
+      "evt.cyprus.amnit-departs"
     ],
     "dialogues": [
       "dlg.slice.opening",
@@ -108,7 +124,8 @@
       "journal.slice.copper-deal",
       "journal.slice.quiet-night",
       "journal.slice.letter",
-      "journal.slice.rumour"
+      "journal.slice.rumour",
+      "journal.slice.amnit-departed"
     ],
     "codex": [
       "codex.ugarit",
@@ -119,7 +136,8 @@
       "codex.names",
       "codex.shekel",
       "codex.mina",
-      "codex.year"
+      "codex.year",
+      "codex.cypriot"
     ]
   }
 }

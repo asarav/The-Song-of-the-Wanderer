@@ -49,6 +49,26 @@ describe('interface copy', () => {
     expect(shipped).toContain('says “unknown”')
   })
 
+  it('defines the reserve and names what each day control costs', () => {
+    expect(shipped).toContain('One number for sleep, food, water and nerve.')
+    expect(shipped).toContain('Reserve</strong> is your stamina')
+    expect(shipped).toContain('Pass a day (errands, no recovery)')
+    expect(shipped).toContain('Rest three days (restores reserve)')
+  })
+
+  it('labels the passage terms instead of hiding them in a sentence', () => {
+    for (const term of ['Fare', 'Days', 'Cargo', 'Reserve', 'Grain', 'Risk']) {
+      expect(shipped).toContain(`<dt>${term}</dt>`)
+    }
+    expect(shipped).toContain('Take passage to {route.toName}')
+  })
+
+  it('draws fog as unknown ground and names the local shapes', () => {
+    expect(shipped).toContain('map-fog-hatch')
+    expect(shipped).toContain('unexplored · no account')
+    expect(shipped).toContain('Shapes: market canopy')
+  })
+
   it('never prints a raw content id', () => {
     expect(shipped).not.toMatch(
       /['"`](dest|route|good|char|faction|lang|dlg|evt|journal|name|transport)\.[a-z0-9]/,

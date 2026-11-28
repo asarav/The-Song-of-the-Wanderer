@@ -99,8 +99,8 @@ describe('deriveSelf', () => {
     const view = deriveSelf(state, index)
 
     expect(view.obligations).toEqual([
-      { id: 'char.ugarit.amnit', name: 'Amnit', amount: 2, kind: 'person' },
-      { id: 'faction.ugarit.palace', name: 'The palace', amount: -1, kind: 'faction' },
+      { id: 'char.ugarit.amnit', name: 'Amnit', amount: 2, kind: 'person', direction: 'owes-you' },
+      { id: 'faction.ugarit.palace', name: 'The palace', amount: -1, kind: 'faction', direction: 'faction' },
     ])
   })
 

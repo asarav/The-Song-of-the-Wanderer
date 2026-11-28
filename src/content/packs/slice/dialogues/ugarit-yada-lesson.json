@@ -7,6 +7,19 @@
   "entries": [
     {
       "when": {
+        "all": [
+          {
+            "flag": "yada.paid-lesson"
+          },
+          {
+            "flag": "yada.practised"
+          }
+        ]
+      },
+      "node": "practised-done"
+    },
+    {
+      "when": {
         "flag": "yada.paid-lesson"
       },
       "node": "practised"
@@ -211,7 +224,7 @@
       ]
     },
     "practised": {
-      "text": "\"You again.\" He pushes the board across without being asked. \"Copy the line you know. Then copy it smaller. A tablet is expensive and your hand is not.\" He watches your hand, and when it shakes he does not mention it.",
+      "text": "\"You again.\" He pushes the board across without being asked. \"Copy the line you know. Then copy it smaller. A tablet is expensive and your hand is not.\" He watches your hand, and when it shakes he does not mention it.\n\nThe reed is already in your hand. The board waits.",
       "choices": [
         {
           "text": "Copy until the signs are small and even.",
@@ -221,12 +234,19 @@
                 "language": "lang.ugaritic",
                 "amount": 3
               }
+            },
+            {
+              "flag": "yada.practised"
             }
           ],
           "next": null,
           "id": "copy-until-the-signs",
           "intent": "reveal"
         }
+      ],
+      "beatArt": [
+        "art.ugarit.yada",
+        "art.ugarit.archive"
       ]
     },
     "who": {
@@ -249,6 +269,21 @@
           "id": "remember-it",
           "intent": "reveal"
         }
+      ]
+    },
+    "practised-done": {
+      "text": "“That is enough for one hand in one afternoon.” He takes the tablet before you can copy the line again. “A sign you make a hundred times without thinking is a sign you will make wrong forever. Come back when the hand has forgotten the lesson.”\n\nHe sets the reed down beside the board, which is as near as he comes to inviting you back.",
+      "choices": [
+        {
+          "text": "Leave him to the board.",
+          "next": null,
+          "id": "leave-after-practice",
+          "intent": "deflect"
+        }
+      ],
+      "beatArt": [
+        "art.ugarit.archive",
+        "art.ugarit.yada"
       ]
     }
   },

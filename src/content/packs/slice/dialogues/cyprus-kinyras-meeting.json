@@ -251,7 +251,7 @@
       ]
     },
     "offer": {
-      "text": "\"Copper is nine the ingot at the yard. Ten to a stranger who has not learned to ask. Tomorrow it is whatever the boats say.\" He taps the board. \"Come back when you have decided, and bring something worth weighing. I do not weigh opinions.\"",
+      "text": "\"Copper is nine the ingot at the yard. Ten to a stranger who has not learned to ask. Tomorrow it is whatever the boats say.\" He taps the board. \"Come back when you have decided, and bring something worth weighing. I do not weigh opinions.\"\n\nHe turns back to the board, and the harbor fills the silence.",
       "choices": [
         {
           "text": "Leave him to the count.",
@@ -267,6 +267,10 @@
           "id": "leave-him-to-the",
           "intent": "deflect"
         }
+      ],
+      "beatArt": [
+        "art.cyprus.kinyras",
+        "art.cyprus.arrival"
       ]
     }
   },

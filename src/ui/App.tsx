@@ -30,7 +30,7 @@ import {
 } from '@engine/views'
 import type { LocalMapView, LocalMarkView, MapFeatureView, MapPlaceView } from '@engine/views'
 import { deriveJourney } from '@engine/views'
-import { deriveMarket } from '@engine/economy'
+import { deriveMarket, deriveMarketComparison } from '@engine/economy'
 import { deriveKnownRoutes, exertionOf, PASSAGE_PROVISION } from '@engine/world'
 import { deriveScene } from '@engine/narrative'
 import type { SceneChoiceCost } from '@engine/narrative'
@@ -264,6 +264,7 @@ export function App() {
         {screen === 'settings' ? <Settings /> : null}
         {screen === 'save' ? <SavePanel /> : null}
       </main>
+      <SceneExitCard />
       <Feedback />
       <DayNote change={timePassed} />
     </div>
@@ -576,7 +577,8 @@ function NewGame() {
       >
         <p className="note">
           The name is already written. You come ashore at Ugarit with two jars of oil and a past
-          that people will read for themselves.
+          that people will read for themselves. <strong>Reserve</strong> is your stamina: sleep,
+          food, water and nerve in one number. A passage spends it, and rest restores it.
         </p>
 
         <label>
@@ -694,7 +696,8 @@ function Sidebar({
         <p className="place">{place}</p>
         <p className="purse">{shekels(state.player.money)}</p>
         <p className="vitals" aria-label="Reserve and grain">
-          Reserve {state.player.stamina}/{STAMINA_MAX} · Grain {grain}
+          Reserve {state.player.stamina}/{STAMINA_MAX} (sleep, food, water, nerve; Rest restores
+          it) · Grain {grain}
         </p>
         {pending ? (
           <p className="flag scene-waiting">
@@ -739,6 +742,42 @@ function Feedback() {
     <p className="feedback" role="status">
       {feedback}
     </p>
+  )
+}
+
+/**
+ * The breath after a scene: a named speaker, their last line, and a deliberate choice to
+ * go on. It sits over whatever the reducer opened next, so no authored transition is a cut.
+ */
+function SceneExitCard() {
+  const exit = useGameStore((s) => s.sceneExit)
+  const dismiss = useGameStore((s) => s.dismissSceneExit)
+  if (!exit) return null
+
+  return (
+    <div className="scene-exit-backdrop">
+      <section
+        className="scene-exit"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby={`scene-exit-title-${exit.id}`}
+      >
+        <p className="eyebrow">The moment closes</p>
+        <h2 id={`scene-exit-title-${exit.id}`}>{exit.speaker ?? 'The road'}</h2>
+        <p className="scene-exit-line">“{exit.line}”</p>
+        {exit.destination ? (
+          <p className="note scene-exit-next">Next: {exit.destination}</p>
+        ) : null}
+        {exit.night ? (
+          <p className="note scene-exit-night">
+            Night has fallen. The day is not lost; it waits beyond this card.
+          </p>
+        ) : null}
+        <button type="button" className="btn primary" autoFocus onClick={dismiss}>
+          Continue
+        </button>
+      </section>
+    </div>
   )
 }
 
@@ -1282,19 +1321,20 @@ function Destination() {
               className="btn"
               onClick={() => dispatch({ type: 'advanceTime', days: 1 })}
             >
-              Spend the day
+              Pass a day (errands, no recovery)
             </button>
             <button
               type="button"
               className="btn"
               onClick={() => dispatch({ type: 'rest', days: 3 })}
             >
-              Rest three days
+              Rest three days (restores reserve)
             </button>
           </div>
           <p className="note">
-            Resting three days restores your reserve; the days are spent either way. Spending a
-            single day at the port only passes time, and does not restore it.
+            Both choices advance the calendar and can bring an event. Passing a day is for errands
+            and waiting; it does not restore reserve. Resting three days does. Reserve is sleep,
+            food, water and nerve in one number.
           </p>
         </>
       ) : null}
@@ -1650,8 +1690,13 @@ function Status() {
             <li key={`${obligation.kind}-${obligation.id}`}>
               <strong>{obligation.name}</strong>
               <span>
-                {obligation.kind === 'person' ? 'Obligation' : 'Faction obligation'}{' '}
-                {obligation.amount > 0 ? `+${obligation.amount}` : obligation.amount}
+                {obligation.direction === 'owes-you'
+                  ? `Owes you ${obligation.amount}`
+                  : obligation.direction === 'you-owe'
+                    ? `You owe ${Math.abs(obligation.amount)}`
+                    : obligation.direction === 'faction-owes-you'
+                      ? `Faction obligation to you ${obligation.amount}`
+                      : `Faction obligation ${Math.abs(obligation.amount)}`}
               </span>
             </li>
           ))}
@@ -1751,8 +1796,9 @@ function Sketch({
             <path d="M 10 0 L 0 0 0 10" className="map-grid-line" />
           </pattern>
           <pattern id="map-fog" width="12" height="12" patternUnits="userSpaceOnUse">
-            <circle cx="3" cy="3" r="2.6" className="map-fog-dot" />
-            <circle cx="9" cy="8" r="2" className="map-fog-dot" />
+            <path d="M -3 3 L 3 -3 M 0 6 L 6 0 M 3 9 L 9 3 M 6 12 L 12 6" className="map-fog-line" />
+            <path d="M -3 9 L 3 15 M 3 3 L 9 9 M 9 0 L 15 6" className="map-fog-line" />
+            <path d="M 0 0 L 12 12 M -6 6 L 6 18 M 6 -6 L 18 6" className="map-fog-line" />
           </pattern>
           <pattern id="map-water" width="14" height="10" patternUnits="userSpaceOnUse">
             <path d="M 0 5 Q 3.5 2.8 7 5 T 14 5" className="map-sea-line" />
@@ -1787,13 +1833,16 @@ function Sketch({
                   region.known ? `map-region region-tone-${regionIndex % 4}` : 'map-region fog'
                 }
               />
+              {region.known ? null : (
+                <path d={coast} fill="url(#map-fog)" className="map-fog-hatch" />
+              )}
               {region.known ? <path d={coast} className="map-region-hatch" /> : null}
               <text
                 x={region.x}
                 y={region.y - region.radius * 0.72 - 2.5}
                 className={region.known ? 'map-region-label' : 'map-fog-label'}
               >
-                {region.name ?? 'unexplored'}
+                {region.name ?? 'unexplored · no account'}
               </text>
             </g>
           )
@@ -1913,6 +1962,95 @@ function MapCompass() {
 }
 
 /** A place mark on the quarter sketch, clickable by pointer and keyboard. */
+function LocalBuildingGlyph({
+  kind,
+  x,
+  y,
+  width,
+  height,
+}: {
+  kind: LocalMarkView['kind']
+  x: number
+  y: number
+  width: number
+  height: number
+}) {
+  const left = x - width / 2
+  const right = x + width / 2
+  const top = y - height / 2
+  const bottom = top + height
+  const className = `map-building ${kind}`
+
+  switch (kind) {
+    case 'market':
+      return (
+        <g className={className}>
+          <path d={`M ${left} ${top + 3.4} L ${left + 1.2} ${top} L ${right - 1.2} ${top} L ${right} ${top + 3.4} Z`} />
+          <line x1={left + 1} y1={top + 3.4} x2={left + 1} y2={bottom} className="map-building-line" />
+          <line x1={right - 1} y1={top + 3.4} x2={right - 1} y2={bottom} className="map-building-line" />
+          <path d={`M ${left + 2.6} ${bottom - 2.4} L ${right - 2.6} ${bottom - 2.4} L ${right - 2.6} ${bottom} L ${left + 2.6} ${bottom} Z`} />
+        </g>
+      )
+    case 'harbour':
+      return (
+        <g className={className}>
+          <path d={`M ${left} ${top + 1.4} L ${right} ${top + 1.4} L ${right - 2.4} ${bottom} L ${left + 2.4} ${bottom} Z`} />
+          <line x1={left + 3} y1={top} x2={left + 3} y2={top + 4.5} className="map-building-line" />
+          <line x1={right - 3} y1={top} x2={right - 3} y2={top + 4.5} className="map-building-line" />
+          <path d={`M ${left + 5} ${bottom - 2.2} Q ${x} ${bottom - 4.2} ${right - 5} ${bottom - 2.2}`} className="map-building-line" />
+        </g>
+      )
+    case 'palace':
+      return (
+        <g className={className}>
+          <path d={`M ${left} ${top + 4} L ${right} ${top + 4} L ${right} ${bottom} L ${left} ${bottom} Z`} />
+          <path d={`M ${left + width * 0.28} ${top} L ${right - width * 0.28} ${top} L ${right - width * 0.28} ${top + 4} L ${left + width * 0.28} ${top + 4} Z`} />
+          <path d={`M ${left + width * 0.22} ${top + 4} L ${left + width * 0.32} ${top + 4} L ${left + width * 0.32} ${top + 6.2} L ${left + width * 0.22} ${top + 6.2} Z M ${right - width * 0.32} ${top + 4} L ${right - width * 0.22} ${top + 4} L ${right - width * 0.22} ${top + 6.2} L ${right - width * 0.32} ${top + 6.2} Z`} />
+          <path d={`M ${x - 1.4} ${bottom} L ${x - 1.4} ${bottom - 3} L ${x + 1.4} ${bottom - 3} L ${x + 1.4} ${bottom} Z`} className="map-building-door-shape" />
+        </g>
+      )
+    case 'temple':
+      return (
+        <g className={className}>
+          <path d={`M ${left} ${top + 2.4} L ${left + 3} ${top + 2.4} L ${left + 3} ${bottom} L ${left} ${bottom} Z M ${right - 3} ${top + 2.4} L ${right} ${top + 2.4} L ${right} ${bottom} L ${right - 3} ${bottom} Z`} />
+          <path d={`M ${left + 4} ${bottom - 3} L ${right - 4} ${bottom - 3} L ${right - 4} ${bottom} L ${left + 4} ${bottom} Z`} />
+          <line x1={x} y1={top + 3.6} x2={x} y2={bottom - 4.5} className="map-building-line" />
+        </g>
+      )
+    case 'archive':
+      return (
+        <g className={className}>
+          <path d={`M ${left} ${top + 1.6} L ${right} ${top + 1.6} L ${right} ${bottom} L ${left} ${bottom} Z`} />
+          <path d={`M ${left + 2} ${top + 4} L ${right - 2} ${top + 4} M ${left + 2} ${top + 6.6} L ${right - 2} ${top + 6.6}`} className="map-building-line" />
+          <path d={`M ${x - 1} ${bottom} L ${x - 1} ${bottom - 2.2} L ${x + 1} ${bottom - 2.2} L ${x + 1} ${bottom} Z`} />
+        </g>
+      )
+    case 'workshop':
+      return (
+        <g className={className}>
+          <path d={`M ${left} ${top + 3} L ${x - 2} ${top} L ${right - 1} ${top + 3} L ${right - 1} ${bottom} L ${left} ${bottom} Z`} />
+          <path d={`M ${right - 4} ${top - 2} L ${right - 4} ${top + 1.2} L ${right - 2.2} ${top + 1.2} L ${right - 2.2} ${top - 2} Z`} />
+          <path d={`M ${x - 1.2} ${bottom} L ${x - 1.2} ${bottom - 2.5} L ${x + 1.2} ${bottom - 2.5} L ${x + 1.2} ${bottom} Z`} />
+        </g>
+      )
+    case 'quarter':
+      return (
+        <g className={className}>
+          <path d={`M ${left} ${top + 3.5} L ${left + 5.2} ${top + 3.5} L ${left + 5.2} ${bottom} L ${left} ${bottom} Z`} />
+          <path d={`M ${left + 6} ${top + 1.5} L ${x + 2} ${top + 1.5} L ${x + 2} ${bottom - 1.5} L ${left + 6} ${bottom - 1.5} Z`} />
+          <path d={`M ${x + 3} ${top + 4.5} L ${right} ${top + 4.5} L ${right} ${bottom} L ${x + 3} ${bottom} Z`} />
+        </g>
+      )
+    default:
+      return (
+        <g className={className}>
+          <path d={`M ${left} ${top} L ${right} ${top} L ${right} ${bottom} L ${left} ${bottom} Z`} />
+        </g>
+      )
+  }
+}
+
+/** A place mark on the quarter sketch, clickable by pointer and keyboard. */
 function LocalBuilding({
   mark,
   building,
@@ -1951,32 +2089,7 @@ function LocalBuilding({
         rx="0.9"
         className="map-building-shadow"
       />
-      <rect
-        x={mark.x - width / 2}
-        y={top}
-        width={width}
-        height={height}
-        rx="0.9"
-        className={`map-building ${mark.kind}`}
-      />
-      <path
-        d={`M ${mark.x - width / 2 + 1} ${top + height * 0.32} L ${mark.x + width / 2 - 1} ${top + height * 0.32} L ${mark.x} ${top + height * 0.58} Z`}
-        className="map-building-roof"
-      />
-      <line
-        x1={mark.x - width / 2 + 1}
-        y1={top + height * 0.72}
-        x2={mark.x + width / 2 - 1}
-        y2={top + height * 0.72}
-        className="map-building-ridge"
-      />
-      <line
-        x1={mark.x}
-        y1={top + height * 0.78}
-        x2={mark.x}
-        y2={top + height - 1}
-        className="map-building-door"
-      />
+      <LocalBuildingGlyph kind={mark.kind} x={mark.x} y={mark.y} width={width} height={height} />
       <circle cx={mark.x} cy={mark.y} r="3" className="map-mark-badge" />
       <text x={mark.x} y={mark.y + 1} className="map-mark-index" textAnchor="middle">
         {index + 1}
@@ -2180,6 +2293,12 @@ function Map() {
         {scale === 'world' ? (
           <span>
             <i className="map-key-fog" /> unexplored
+          </span>
+        ) : null}
+        {scale === 'local' ? (
+          <span className="map-kind-legend">
+            Shapes: market canopy · harbor mole · palace tower · temple pair · archive shelves ·
+            workshop chimney · quarter cluster
           </span>
         ) : null}
       </div>
@@ -2528,8 +2647,9 @@ function Roads() {
       <PlaceBack />
       <p className="note">
         A passage spends its fare, the grain it eats and the reserve it asks of you. Grain is food
-        for the crossing, not cargo for sale: buy it at any market. Your reserve is {state.player.stamina}{' '}
-        of {STAMINA_MAX} now, and rest restores it.
+        for the crossing, not cargo for sale: buy it at any market. <strong>Reserve</strong> is sleep,
+        food, water and nerve in one number; your reserve is {state.player.stamina} of {STAMINA_MAX}{' '}
+        now, and Rest restores it.
       </p>
       {routes.map((route) => (
         <article key={route.id} className="route">
@@ -2560,18 +2680,38 @@ function Roads() {
               const unfed = grain < provisions
               const hazard = route.hazards[mode.id]
               return (
-                <li key={mode.id}>
+                <li key={mode.id} className="passage-card">
                   <strong>{mode.name}</strong>
-                  <span>
-                    {mode.days} days · {shekels(mode.baseCost)} · carries {mode.capacity} minas
-                    {' · '}
-                    {exertion} reserve
-                    {provisions > 0 ? ` · ${provisions} grain` : ''}
-                  </span>
+                  <dl className="passage-facts">
+                    <div>
+                      <dt>Fare</dt>
+                      <dd>{shekels(mode.baseCost)}</dd>
+                    </div>
+                    <div>
+                      <dt>Days</dt>
+                      <dd>{mode.days}</dd>
+                    </div>
+                    <div>
+                      <dt>Cargo</dt>
+                      <dd>{mode.capacity} minas</dd>
+                    </div>
+                    <div>
+                      <dt>Reserve</dt>
+                      <dd>{exertion}</dd>
+                    </div>
+                    <div>
+                      <dt>Grain</dt>
+                      <dd>{provisions > 0 ? provisions : 'none'}</dd>
+                    </div>
+                    <div>
+                      <dt>Risk</dt>
+                      <dd>{hazard ? `${hazard.chance}% ${hazard.band}` : 'none known'}</dd>
+                    </div>
+                  </dl>
                   <span className="note">{mode.description}</span>
                   {hazard ? (
                     <span className="note">
-                      Road risk {hazard.chance}% · {hazard.band}
+                      Road risk
                       {hazard.factors.length > 0
                         ? ` · ${hazard.factors
                             .map(
@@ -2604,7 +2744,7 @@ function Roads() {
                     }
                     onClick={() => dispatch({ type: 'travel', route: route.id, mode: mode.id })}
                   >
-                    Take passage
+                    Take passage to {route.toName}
                   </button>
                 </li>
               )
@@ -2612,6 +2752,14 @@ function Roads() {
           </ul>
         </article>
       ))}
+      <aside className="closed-road" aria-label="Closed road">
+        <h3>Inland road</h3>
+        <p>
+          The inland road is closed to you. The gate scribes will not write a pass for a stranger,
+          and no master here will take silver for a road he cannot guarantee. This is a closed door,
+          not a crossing you have failed to find.
+        </p>
+      </aside>
     </section>
   )
 }
@@ -2929,6 +3077,7 @@ function Cargo() {
     (total, entry) => total + entry.quantity * itemWeight(index, entry.item),
     0,
   )
+  const comparisons = deriveMarketComparison(state, index)
 
   return (
     <section className="panel">
@@ -2965,6 +3114,40 @@ function Cargo() {
           )
         })}
       </ul>
+
+      <h3>What this cargo could fetch</h3>
+      <p className="note">
+        Only markets you have actually visited. “Here asks” is what this harbor charges for a
+        unit; “here pays” is what it gives. The difference compares the best known sale with the
+        better of those two local prices, so it is a likely unit gain, not a promise.
+      </p>
+      {comparisons.length === 0 ? (
+        <p className="empty">There is no market here to compare.</p>
+      ) : (
+        <ul className="list cargo-comparison">
+          {comparisons.map((entry) => (
+            <li key={entry.item}>
+              <strong>
+                {entry.name} × {entry.quantity}
+              </strong>
+              <span>
+                {entry.currentBuy === null ? 'This market does not sell it' : `Here asks ${entry.currentBuy}`}
+                {entry.currentSell === null ? '' : ` · here pays ${entry.currentSell}`}
+              </span>
+              {entry.bestSale === null || entry.bestMarket === null ? (
+                <span className="note">No visited market has offered a price for it yet.</span>
+              ) : (
+                <span className="note">
+                  Best known sale: {entry.bestMarket} at {entry.bestSale}
+                  {entry.difference === null
+                    ? ''
+                    : ` · ${entry.difference > 0 ? '+' : ''}${entry.difference} a unit against the local price`}
+                </span>
+              )}
+            </li>
+          ))}
+        </ul>
+      )}
     </section>
   )
 }

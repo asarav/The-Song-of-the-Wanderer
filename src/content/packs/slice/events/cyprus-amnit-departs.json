@@ -1,0 +1,46 @@
+{
+  "id": "evt.cyprus.amnit-departs",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "kind": "local",
+  "title": "Amnit takes the morning boat",
+  "scope": {
+    "destinations": [
+      "dest.cyprus"
+    ]
+  },
+  "conditions": {
+    "all": [
+      {
+        "flag": "amnit.cyprus"
+      },
+      {
+        "characterAt": {
+          "character": "char.ugarit.amnit",
+          "destination": "dest.cyprus"
+        }
+      }
+    ]
+  },
+  "priority": 40,
+  "major": false,
+  "once": true,
+  "effects": [
+    {
+      "moveCharacter": {
+        "character": "char.ugarit.amnit",
+        "to": "dest.ugarit"
+      }
+    },
+    {
+      "journal": {
+        "entry": "journal.slice.amnit-departed"
+      }
+    }
+  ],
+  "provenance": {
+    "confidence": "fictional",
+    "sources": [],
+    "notes": "Amnit finishes her business and leaves on her own schedule, whether or not the traveller is watching."
+  }
+}

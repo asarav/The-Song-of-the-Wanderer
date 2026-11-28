@@ -7,6 +7,12 @@
   "entries": [
     {
       "when": {
+        "flag": "ada.watched-blade"
+      },
+      "node": "again-work"
+    },
+    {
+      "when": {
         "flag": "ada.tin"
       },
       "node": "again-tin"
@@ -203,11 +209,20 @@
                 "language": "lang.cypriot",
                 "amount": 2
               }
+            },
+            {
+              "flag": "ada.watched-blade"
             }
           ],
-          "next": null,
+          "next": "watched",
           "id": "watch-the-blade-until",
-          "intent": "reveal"
+          "intent": "reveal",
+          "conditions": {
+            "not": {
+              "flag": "ada.watched-blade"
+            }
+          },
+          "unavailableNote": "You have already watched one blade cool. She will not make a second performance of it."
         },
         {
           "text": "Leave her to it.",
@@ -293,6 +308,21 @@
           "next": null,
           "id": "try-to-remember-it",
           "intent": "reveal"
+        }
+      ]
+    },
+    "watched": {
+      "text": "The blade goes from yellow to straw to a dull gray that is not a color so much as a decision. Ada turns it once, tests the edge against her thumb, and sets it in the rack.\n\n“There,” she says. “Now you have seen the whole of it. The rest is the same work, and the same hands, and nobody watches twice.” She takes up the next blank. “Go and sell something.”",
+      "beatArt": [
+        "art.cyprus.smithy",
+        "art.cyprus.ada"
+      ],
+      "choices": [
+        {
+          "text": "Leave her to the next piece.",
+          "next": null,
+          "id": "leave-after-watching",
+          "intent": "deflect"
         }
       ]
     }

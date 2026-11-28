@@ -1813,3 +1813,79 @@ smithy illustration showed a man, contradicting Ada's dialogue and portrait.
   scenarios and all three personas. No human or browser session was fabricated.
 - Still open: the external T02 fresh-reader session. This entry records a checkpoint after
   the user asked for the work to be committed and pushed.
+
+## 2026-11-28 — M4b playtest revision — Direction, aftermath and the reading surface
+
+- Promises now carry `owedBy` (`player` or `character`) through the save schema, DSL effect,
+  event and all views. Save format 7 migrates every v6 promise to `player`, the only
+  direction the old data supports; ADR-0019 records the reasoning. Status reads “Owes you”
+  or “You owe” from the field, and faction obligations keep a faction label.
+- Corrected the continuity failures: Shipti's promise opens on taking the letter, Amnit's
+  return greeting is day-neutral and she leaves Cyprus on her own schedule, Hannu no longer
+  claims to have waived a fee and recognizes the night walk, Yada's practice is a concrete
+  action that cannot raise Ugaritic indefinitely, Ada's blade watch has one use and a result,
+  and the Cypriot language carries its lost-name note. The letter follow-up is gated on
+  carrying the letter and names the Ugarit gate, second hour, as the next lead.
+- Scene endings now have an aftermath: a presentation-only exit card names the speaker,
+  their last line and the destination; terminal actions have result nodes; a day spent in a
+  scene is held and shown as night when the scene closes. The hunt names what was caught,
+  cooked and eaten before the crossing. Guard warnings cover terminal nodes without a
+  closing beat and repeated entry openings.
+- UI comprehension: Reserve defined on New Game, the rail, Status and the passage screen;
+  day controls named by cost; passage cards split into Fare / Days / Cargo / Reserve /
+  Grain / Risk with destination-named actions; secret seal choice hidden when absent; the
+  cargo answer says “declare your two jars of oil”; feedback toast centered on the reading
+  stage; wider reading column and larger beat plates; local building silhouettes and legend;
+  fog as crosshatch parchment distinct from known ground and sea; known-market comparison.
+- World and art: prologue and world note rewritten for courts, fleets, divine claims and an
+  open past; a gods/divination beat added; passage to Cyprus stated at the harbor. Regenerated
+  the three wide plates and added five interior/high-view plates. Two generated religious
+  interiors were rejected for a Buddha-like figure rather than shipped; the existing temple
+  courtyard carries those beats.
+- Guards: `model:check` validates promise direction and closing beats; `prose:lint` rejects
+  British spellings and stale time anchors; `playtest:review` reports abrupt handoffs and
+  repeated openings; UI copy tests pin Reserve, passage terms, fog and local shapes. The
+  flag reader now sees entry conditions and event conditions, clearing a false “unread flag”
+  and stale terminal declarations.
+- Verification: `pnpm check` green (57 files / 1139 tests, 12/12 gates); `pnpm build` green
+  with the existing chunk warning; `pnpm playtest:review -- --strict` green for trader,
+  curious and helper with 0 open findings; `art:ledger` 0 missing, 0 stale, 243 legacy
+  borrowings. Browser pass at 320/768/1280/1920: title, prologue, New Game, opening scene,
+  market, local/region/world maps and the Belet exit card. The exit card was not re-checked
+  at every width; the map was inspected at 320 and 1280.
+- No commit, push, PR or merge was made.
+
+## 2026-11-28 — Visual close-out of the playtest revision
+
+- Harnessed the installed Chrome headless at 320, 768, 1280 and 1920 to inspect the
+  current build rather than relying on geometry alone. Every screen reported
+  `scrollWidth === innerWidth`; no page-level horizontal overflow at any width.
+- Exit card: corrected the closing line to quote the speaker's last speech instead of a
+  trailing sentence of narration (Shipti's card had mixed the two). The card now also
+  says when a spent day has become night, and its scrolls inside the viewport on short
+  screens. Seen at all four widths with the speaker, full line, destination, night note
+  and Continue; no clipping or overlap.
+- Maps: local silhouettes and shape key, region known ground against the sea, and world
+  crosshatch fog against single-hatched known ground all read as distinct at every width.
+  The fog's second diagonal was added so it no longer shared the known ground's hatch.
+- Passage: at 320 the disabled "Take passage to Ugarit" action sat in the list's second
+  column over the Fare/Days/Cargo grid. Narrow passage cards now stack the action under
+  the facts. Disabled buttons were given a solid parchment-compatible ink instead of
+  `opacity: 0.45`, so the themed disabled Continue and locked passage action stay
+  legible. Fare, Days, Cargo, Reserve, Grain, Risk and the destination-named action were
+  then checked at all four widths.
+- `pnpm check` and `pnpm build` rerun on the cleaned worktree after these edits.
+
+## 2026-11-28 — CI runs the build and the strict playtest pre-pass
+
+- Updated `.github/workflows/check.yml` to exact published action releases
+  (`checkout@v7.0.1`, `setup-node@v7.1.0`, `pnpm/action-setup@v6.1.1`) with read-only
+  repository permissions,
+  grouped cancel-in-progress runs, a 15-minute timeout and manual dispatch.
+- CI now installs with the frozen lockfile, runs the 12-gate `pnpm check`, builds the
+  production bundle, and runs `playtest:review --strict` for the trader, curious and
+  helper personas on pull requests and pushes to `main`.
+- Verification: the GitHub release API shows every pinned tag published and non-prerelease;
+  actionlint v1.7.12 reports no errors; `pnpm check` 12/12, `pnpm build` green (existing
+  chunk warning), and the exact strict persona commands exit 0 and report the selected
+  persona, confirming pnpm forwards the arguments after `--`.

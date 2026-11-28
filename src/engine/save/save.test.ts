@@ -5,7 +5,8 @@ import { SAVE_FORMAT_VERSION } from '../version'
 import { deserialize, inspectSave, serialize, type SaveErrorCode } from './serialize'
 import { MIGRATIONS, migrateOnce, migrationFrom } from './migrations'
 import roundTripV5Fixture from './__fixtures__/round-trip-v5.json'
-import roundTripFixture from './__fixtures__/round-trip-v6.json'
+import roundTripV6Fixture from './__fixtures__/round-trip-v6.json'
+import roundTripFixture from './__fixtures__/round-trip-v7.json'
 import roundTripV4Fixture from './__fixtures__/round-trip-v4.json'
 import roundTripV3Fixture from './__fixtures__/round-trip-v3.json'
 import roundTripV1Fixture from './__fixtures__/round-trip-v1.json'
@@ -85,13 +86,13 @@ describe('serialize / deserialize', () => {
     expect(loaded.state.player.location).toBe('dest.cyprus')
     expect(loaded.state.player.money).toBe(55)
     expect(loaded.state.meta.seed).toBe('old-run')
-    expect(loaded.state.meta.saveVersion).toBe(6)
+    expect(loaded.state.meta.saveVersion).toBe(7)
   })
 
   it('reports a missing migration rather than guessing', () => {
     const envelope = { saveVersion: 0, seed: 'x' }
     expect(migrateOnce(envelope, 0)).not.toBeNull()
-    expect(Object.keys(MIGRATIONS)).toEqual(['0', '1', '2', '3', '4', '5'])
+    expect(Object.keys(MIGRATIONS)).toEqual(['0', '1', '2', '3', '4', '5', '6'])
     expect(migrateOnce(envelope, 42)).toBeNull()
   })
 
@@ -101,7 +102,7 @@ describe('serialize / deserialize', () => {
     expect(loaded.ok).toBe(true)
     if (!loaded.ok) return
     expect(loaded.migratedFrom).toBe(3)
-    expect(loaded.state.meta.saveVersion).toBe(6)
+    expect(loaded.state.meta.saveVersion).toBe(7)
     expect(loaded.state.player.afflictions).toEqual([])
   })
 
@@ -111,7 +112,7 @@ describe('serialize / deserialize', () => {
     expect(loaded.ok).toBe(true)
     if (!loaded.ok) return
     expect(loaded.migratedFrom).toBe(4)
-    expect(loaded.state.meta.saveVersion).toBe(6)
+    expect(loaded.state.meta.saveVersion).toBe(7)
     expect(loaded.state.meta.difficulty).toBe('wanderer')
   })
 })
@@ -263,7 +264,17 @@ describe('checked-in fixtures', () => {
     expect(loaded.migratedFrom).toBe(5)
     expect(loaded.state.narrative.promises).toEqual([])
     expect(loaded.state.narrative.characterStates['char.ugarit.amnit']?.topics).toEqual([])
-    expect(loaded.state.meta.saveVersion).toBe(6)
+    expect(loaded.state.meta.saveVersion).toBe(7)
+  })
+
+  it('migrates a v6 save by giving every existing promise the player as debtor', () => {
+    const loaded = deserialize(roundTripV6Fixture)
+
+    expect(loaded.ok).toBe(true)
+    if (!loaded.ok) return
+    expect(loaded.migratedFrom).toBe(6)
+    expect(loaded.state.narrative.promises).toEqual([])
+    expect(loaded.state.meta.saveVersion).toBe(7)
   })
 
   it('restores the real round-trip save deep-equal, counter and calendar included', () => {
@@ -292,7 +303,7 @@ describe('checked-in fixtures', () => {
 describe('inspectSave', () => {
   it('prints the parts of a save a human needs', () => {
     const dump = inspectSave(stateB())
-    expect(dump).toContain('save      v6')
+    expect(dump).toContain('save      v7')
     expect(dump).toContain('road      wanderer')
     expect(dump).toContain('location  dest.cyprus')
     expect(dump).toContain('good.copper x2')

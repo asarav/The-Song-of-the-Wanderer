@@ -334,14 +334,14 @@ describe('deeds and knowledge', () => {
 
   it('opens a promise once and settles it once', () => {
     const opened = run([
-      { promise: { id: 'promise.test', character: 'char.ugarit.amnit', kind: 'debt', text: 'Five shekels' } },
-      { promise: { id: 'promise.test', character: 'char.ugarit.amnit', kind: 'debt', text: 'Five shekels' } },
+      { promise: { id: 'promise.test', character: 'char.ugarit.amnit', kind: 'debt', owedBy: 'player', text: 'Five shekels' } },
+      { promise: { id: 'promise.test', character: 'char.ugarit.amnit', kind: 'debt', owedBy: 'player', text: 'Five shekels' } },
     ])
     expect(opened.state.narrative.promises).toHaveLength(1)
     expect(opened.state.narrative.promises[0]).toMatchObject({ id: 'promise.test', status: 'open' })
 
     const settled = run([
-      { promise: { id: 'promise.test', character: 'char.ugarit.amnit', kind: 'debt', text: 'Five shekels' } },
+      { promise: { id: 'promise.test', character: 'char.ugarit.amnit', kind: 'debt', owedBy: 'player', text: 'Five shekels' } },
       { settlePromise: { id: 'promise.test' } },
     ])
     expect(settled.state.narrative.promises[0]).toMatchObject({ status: 'settled', closedDay: 0 })
@@ -492,6 +492,7 @@ function sampleEffect(name: string): unknown {
       id: 'promise.x',
       character: 'char.ugarit.amnit',
       kind: 'promise',
+      owedBy: 'player',
       text: 'A test promise',
     },
     settlePromise: { id: 'promise.x' },

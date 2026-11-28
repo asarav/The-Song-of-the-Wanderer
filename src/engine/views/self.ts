@@ -26,6 +26,8 @@ export interface SelfObligationView {
   name: string
   amount: number
   kind: 'person' | 'faction'
+  /** Who carries the obligation, written for the Status screen. */
+  direction: 'owes-you' | 'you-owe' | 'faction' | 'faction-owes-you'
 }
 
 export interface SelfDeedView {
@@ -107,6 +109,7 @@ export function deriveSelf(state: GameState, index: ContentIndex): SelfView {
         name: subjectName(index, id),
         amount: relationship.obligation,
         kind: 'person' as const,
+        direction: relationship.obligation > 0 ? ('owes-you' as const) : ('you-owe' as const),
       })),
     ...Object.entries(state.narrative.factions)
       .filter(([, faction]) => faction.obligation !== 0)
@@ -115,6 +118,8 @@ export function deriveSelf(state: GameState, index: ContentIndex): SelfView {
         name: subjectName(index, id),
         amount: faction.obligation,
         kind: 'faction' as const,
+        direction:
+          faction.obligation > 0 ? ('faction-owes-you' as const) : ('faction' as const),
       })),
   ]
 

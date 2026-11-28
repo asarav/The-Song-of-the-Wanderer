@@ -57,7 +57,7 @@ export const MENU = {
   world: 'The world in 1230 BCE',
   worldPlaces: 'Ten places named at quays and in courtyards',
   worldNote:
-    'Ten places named at quays and in temple courtyards: cities older than any kingdom now standing, courts raising their own monuments, and one city already a ruin. You will not sail to all of them. They are what the world you enter is measured against. The world is not one desert: reed marsh, irrigated barley, oak and pine hills, olive terraces and dry steppe lie within a few days of one another.',
+    'Ten places named at quays and in temple courtyards: cities older than any kingdom now standing, courts raising their own monuments, fleets loading at dawn, caravans crossing the dry ground between rivers, and one city already a ruin. Every court keeps its own gods, every road has a divine claim on it, and every horizon belongs to somebody. You will not sail to all of them. They are the scale against which the world you enter is measured. The world is not one desert: reed marsh, irrigated barley, oak and pine hills, olive terraces and dry steppe lie within a few days of one another.',
   prologueEyebrow: 'Before you',
   prologueTitle: 'The world you step into',
 } as const
@@ -204,6 +204,10 @@ export const PROLOGUE_BEATS = [
     text: '**Bronze** is what holds it together. **Copper** comes from Cyprus and **tin** from the ends of the earth, and every palace on the coast counts the ingots as carefully as it counts its people. The chariots, the scribes, the harbors and the gods rest on that one arrangement. No one alive has seen it fail.',
   },
   {
+    art: 'art.ugarit.temple',
+    text: 'Every city keeps its gods at the center of the account. A household sets bread and oil before its own small figures; a temple feeds a god who owns the fields around it; a king asks a diviner to read the liver of a sheep or the cracks in a heated bone before he moves an army. The names change at every headland. A goddess who is a mother in one city is a warrior in the next, and a traveler is wise to learn which one is listening before he swears by her.',
+  },
+  {
     art: 'art.world.karnak',
     text: '**Egypt** is the oldest thing you know. At **Thebes** the temple of Amun grows a forest of painted columns and obelisks; downriver, the pyramids at **Giza** have stood for more than a thousand years, and farmers still time their fields to the **Nile** flood. Between the desert and the river lies a green ribbon of fields, palms and canals, and priests, scribes and grain-sellers live off the temple’s stores.',
   },
@@ -216,7 +220,7 @@ export const PROLOGUE_BEATS = [
     text: 'North, the **Hittite** king rules from **Hattusa** — a hillside of cyclopean walls, a Lion Gate, temples and tablet rooms, above oak and pine woodland, pasture and streams. His chariots and grain feed a court that writes in cuneiform, keeps its treaties, and treats with Egypt as an equal.',
   },
   {
-    art: 'art.world.mycenae',
+    art: 'art.mycenae.megaron',
     text: 'Across the Aegean, **Mycenae** is a hill of walls and gold: the Lion Gate, shaft graves, beehive tombs, above a plain of barley and olive groves. Its ships carry oil, cloth and painted pots to every coast, and its kings are lately more interested in trade than in tribute.',
   },
   {
@@ -241,7 +245,7 @@ export const PROLOGUE_BEATS = [
   },
   {
     art: 'art.prologue.purse',
-    text: 'You are a **trader** with two jars of oil, a little Akkadian, and no one waiting for you. Buy low, carry it across the water, sell it, and find out who remembers you when you come back.',
+    text: 'The name on the tablet is yours, though the harbor may write it differently. You come ashore as a **trader** with two jars of oil and a little Akkadian: courier, translator, and creditor, in whatever order the day asks. Buy low, carry the goods across the water, sell them, and find out who remembers you when you come back. What you were before this shore is yours to keep or to spend.',
   },
 ] as const satisfies readonly [PrologueBeat, ...PrologueBeat[]]
 

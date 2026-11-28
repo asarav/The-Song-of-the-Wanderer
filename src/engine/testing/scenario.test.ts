@@ -178,7 +178,7 @@ describe('a new run', () => {
       { path: 'player.capacity', equals: 20 },
       { path: 'player.inventory', length: 1 },
       { path: 'knowledge.journalEntries', length: 0 },
-      { path: 'meta.saveVersion', equals: 6 },
+      { path: 'meta.saveVersion', equals: 7 },
       { path: 'narrative.pending.dialogue', equals: 'dlg.test.arrival' },
       { path: 'narrative.pending.node', equals: 'gate' },
       { path: 'narrative.storyletCooldowns.evt.test.arrival', equals: 90 },

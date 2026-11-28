@@ -1,7 +1,7 @@
 # Status
 
 **Updated:** 2026-11-28 · **Phase:** M4b — slice revision (M4 closed, ADR-0017)
-**Health:** `pnpm check` green (57 files / 1122 tests, all content gates) · `pnpm build` green (existing chunk warning) · `playtest:review` clean (0 open findings)
+**Health:** `pnpm check` green (57 files / 1139 tests, all content gates) · `pnpm build` green (existing chunk warning) · `playtest:review --strict` clean for trader, curious and helper (0 open findings)
 **Active task:** M4b-T02 — the fresh-reader session (external evidence)
 
 This file is the shared memory between sessions. Rewrite it at the end of a work
@@ -41,8 +41,12 @@ The model is now data, and the data is mandatory:
 - **Scene contract** — goal, obstacle, turn, stakes, optional callback; 274 answers carry
   stable ids and intents.
 - **Interaction memory** — first meeting day, last scene, topics already discussed.
-- **Promises** — one record with creditor, kind, due day and status; Sibtu's five shekels
-  open and settle, Amnit's debt and Shipti's brother are recorded.
+- **Promises** — one record with creditor, explicit `owedBy` direction, kind, due day and
+  status; Sibtu's five shekels open and settle, Amnit's debt and Shipti's brother are
+  recorded. The UI reads “You owe” or “Owes you” from the field, never from `kind`.
+- **Scene exits** — a conversation that ends holds a presentation-only card with the
+  speaker, its last line and the next destination before the next scene or journey. A
+  calendar day swallowed by a scene is held and shown as night when the scene closes.
 - **Regard bands** — derived from the five dimensions, never stored; `RegardChanged`
   becomes a standing notice in the same channel as the language notice.
 - **Playtest pre-pass** — `pnpm playtest:review` replays every checked-in scenario and
@@ -67,7 +71,7 @@ Commands in `docs/TOOLING.md`: `task:brief`, `ask`, `entity`, `flag`, `impact`,
   `findings.md`, mark M4b done, and open M5.
 - **Prose is clean.** `prose:lint` reports 0 errors and 0 warnings; the ceilings are
   unchanged and the audit records what changed.
-- **Art debt.** `pnpm art:ledger` reports 0 missing, 0 stale, 253 legacy borrowings
+- **Art debt.** `pnpm art:ledger` reports 0 missing, 0 stale, 243 legacy borrowings
   (cap 257). Debt must keep shrinking; a new beat cannot borrow.
 - **Audio stays M18.** The exploratory beds are unchanged.
 - **No new branches were invented.** The character/scene migration changed data and

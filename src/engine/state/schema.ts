@@ -351,11 +351,15 @@ export const CharacterStateSchema = z
  */
 export const PromiseKindSchema = z.enum(['promise', 'debt'])
 export const PromiseStatusSchema = z.enum(['open', 'settled', 'broken'])
+/** Who carries the duty: the traveller, or the named character. */
+export const PromiseOwedBySchema = z.enum(['player', 'character'])
 export const PromiseSchema = z
   .object({
     id: IdSchema,
     character: IdSchema,
     kind: PromiseKindSchema,
+    /** `player` means the traveller owes the character; `character` means the reverse. */
+    owedBy: PromiseOwedBySchema,
     text: z.string().min(1),
     openedDay: DaySchema,
     dueDay: DaySchema.optional(),

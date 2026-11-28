@@ -551,6 +551,8 @@ export const DialogueChoiceSchema = z
     journal: z.string().optional(),
     /** Why this answer is unavailable, written for the player. */
     unavailableNote: z.string().min(1).optional(),
+    /** Hide a secret answer entirely when its conditions fail; public locks stay visible. */
+    hiddenWhenUnavailable: z.boolean().optional(),
   })
   .strict()
 

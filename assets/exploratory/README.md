@@ -138,12 +138,32 @@ not roads the journey takes; they are the world it is measured against.
 | `world-giza.jpg` | `art.world.giza` | Pyramids and Sphinx on the ochre plateau, green flood plain of barley, canals, palms and a village below | reviewed — the field plots read a little modern; the plateau-to-valley contrast is the point |
 | `world-hattusa.jpg` | `art.world.hattusa` | Cyclopean gate with lion reliefs, Hittite guards and an ox cart; oak and pine woodland, pasture, a stream, the citadel above | reviewed — the citadel reads slightly castle-like; the lions are roundels rather than true reliefs |
 | `world-chogha-zanbil.jpg` | `art.world.chogha-zanbil` | Five-terraced ziggurat with glazed banding, walled enclosure, priests and servants; irrigated barley, palms, a canal and the Zagros beyond | reviewed — glazed banding is heavier than the evidence and the summit shrine is simplified |
-| `world-mycenae.jpg` | `art.world.mycenae` | Lion Gate and cyclopean wall, warrior and woman with a child; green Argive plain, barley, olive groves, cypress, mountains | reviewed — the woman's dress reads folk-medieval and the helmet is generic |
+| `world-mycenae.jpg` | `art.world.mycenae` | The citadel on its rocky hill above the Argive plain: cyclopean walls and Lion Gate small in the middle distance, palace and terraced town on the summit, barley, olives and distant mountains | regenerated 2026-11-28 — the citadel now has scale and the gate is a detail, not the whole subject; the walls still read a little regular |
 | `world-abu-simbel.jpg` | `art.world.abu-simbel` | Rock-cut temple with colossi and winged disk; narrow green Nile bank with palms, reeds, barley, a village, a boat and cattle | reviewed — only three colossi read clearly, and the winged disk carries a face; fix in the M18 brief |
-| `world-dur-kurigalzu.jpg` | `art.world.dur-kurigalzu` | Mud-brick ziggurat and shrine, flat-roofed houses, workers and a scribe; canal, shaduf, reed boat, barley, date palms, marsh birds | reviewed — some door and window joinery reads modern |
+| `world-dur-kurigalzu.jpg` | `art.world.dur-kurigalzu` | The ziggurat dominating its temple and palace precinct, irrigated barley, canals, date palms, a reed boat and tiny workers; dry steppe beyond | regenerated 2026-11-28 — the ziggurat is the subject and the figures are subordinate; the temple porches read a little classical |
 | `world-enkomi.jpg` | `art.world.enkomi` | Copper town behind a beach: kiln smoke, charcoal, oxhide ingots on a beam balance with clay pans, Cypriot pots; pine and oak hills, olives, vines, blue sea | reviewed — the house has a stovepipe chimney and a glazed window, and the ship's rig is too tall; fix in M18 |
-| `world-anyang.jpg` | `art.world.anyang` | Rammed-earth platform and thatched hall on posts, bronze tripods, oracle-bone divination, chariot; millet fields, river reeds and wetland, wooded hills | reviewed — the chariot reads as a cart and the bronze vessels are plain |
+| `world-anyang.jpg` | `art.world.anyang` | A royal precinct of broad rammed-earth platforms and thatched halls, bronze foundry smoke, chariots and workshops, small figures at the walls; millet, reed marsh and river beyond | regenerated 2026-11-28 — it reads as a court complex rather than a village hall; one chimney reads industrial and the chariots are carts |
 | `world-mohenjo-daro.jpg` | `art.world.mohenjo-daro` | Abandoned brick streets, drains and great bath; green riverine grass, the Indus with reeds and a boat, goats and herders | reviewed — the walls read a little too intact for a ruin |
+
+## Scale and interior pass — 2026-11-28
+
+The wide plates now put the settlement, fields and water around the monument, and the
+interiors give the palace, archive, inn and megaron a room rather than a backdrop. The
+same horizon-A rule applies: painted plaster where the building supports it, no classical
+orders, no later furniture.
+
+| File | Art ID | Subject | Status |
+| --- | --- | --- | --- |
+| `ugarit-high.jpg` | `art.ugarit.high` | Ugarit from the acropolis: flat roofs and streets, palace and temple precincts, harbor mole and ships, vineyards, hills and sea | reviewed — the ships' rig is later than the period; the city scale is the point |
+| `ugarit-palace-hall.jpg` | `art.ugarit.palace-hall` | Palace hall: ashlar walls, faded painted bands with Egyptianising figures, timber beams, stone column bases, low dais and a few officials | reviewed — the frieze is more Egyptian than the surviving Ugaritic evidence; keep as exploratory |
+| `ugarit-archive.jpg` | `art.ugarit.archive` | Archive: baskets and shelves of tablets, a scribe writing by an oil lamp, sealed jars, painted wall band | reviewed — the rolled papers on the floor are a later convention; tablets are the point |
+| `cyprus-inn-interior.jpg` | `art.cyprus.inn-interior` | Inn common room at dusk: red and mauve wall bands, timber beams, plank table, wine bowls, storage jar, brazier and travelers | reviewed — the wall lamp reads a little modern; the room and its wear are right |
+| `mycenae-megaron.jpg` | `art.mycenae.megaron` | Megaron: round hearth, four painted columns, low throne, flat red/blue/yellow wall bands, king and attendants small in the room | reviewed — the column capitals are more classical than Mycenaean; the hearth and plan are right |
+
+Two generated candidates were rejected rather than wired: a temple cella whose divine
+figure read as a Buddha, and a household shrine whose gods did the same. The existing
+`art.ugarit.temple` courtyard plate carries those beats; a corrected interior remains M18
+work.
 
 ## Colour pass — 2026-11-27
 

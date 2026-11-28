@@ -97,7 +97,7 @@ const authoredBeatArt = [
 
 describe('art catalog', () => {
   it('covers every place, person and beat the slice shows', () => {
-    expect(referenced.length).toBe(45)
+    expect(referenced.length).toBe(51)
   })
 
   it('illustrates the menu and every prologue beat', () => {

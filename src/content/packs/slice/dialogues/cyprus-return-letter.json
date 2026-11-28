@@ -25,6 +25,15 @@
                 "source": "witnessed",
                 "reliability": 0.9
               }
+            },
+            {
+              "promise": {
+                "id": "promise.shipti.brother",
+                "character": "char.cyprus.shipti",
+                "kind": "promise",
+                "owedBy": "player",
+                "text": "Tell Shipti’s brother in Ugarit that she has not forgiven him"
+              }
             }
           ],
           "next": "read",

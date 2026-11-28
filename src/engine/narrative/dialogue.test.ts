@@ -97,6 +97,30 @@ describe('dialogue openings', () => {
       reason: 'You cannot afford the lesson.',
     })
   })
+
+  it('hides a secret answer only while its condition is unmet', () => {
+    const secretIndex = testContent()
+    const dialogue = secretIndex.dialogues.get('dlg.test.memory')
+    dialogue?.nodes.first?.choices.push({
+      id: 'secret',
+      text: 'Show the seal.',
+      conditions: { flag: 'test.secret' },
+      hiddenWhenUnavailable: true,
+      next: 'again',
+      intent: 'probe',
+    } as never)
+    const ctx = context()
+    ctx.index = secretIndex
+    ctx.content = createDslContent(secretIndex)
+    startDialogue(ctx, 'dlg.test.memory')
+
+    const locked = deriveScene(ctx.state, secretIndex, ctx.content)
+    expect(locked?.choices.map((choice) => choice.id)).not.toContain('secret')
+
+    ctx.state.player.flags['test.secret'] = true
+    const open = deriveScene(ctx.state, secretIndex, ctx.content)
+    expect(open?.choices.map((choice) => choice.id)).toContain('secret')
+  })
 })
 
 describe('choice costs', () => {

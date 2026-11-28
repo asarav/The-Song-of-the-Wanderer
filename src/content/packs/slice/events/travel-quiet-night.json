@@ -5,12 +5,33 @@
   "kind": "storylet",
   "title": "A quiet night",
   "description": "The boat is anchored in the lee of a headland and everyone is asleep but you.",
-  "scope": { "routes": ["route.ugarit-cyprus"] },
-  "conditions": { "all": [] },
+  "scope": {
+    "routes": [
+      "route.ugarit-cyprus"
+    ]
+  },
+  "conditions": {
+    "all": [
+      {
+        "not": {
+          "flag": "travel.quiet-night-seen"
+        }
+      }
+    ]
+  },
   "priority": 5,
   "major": false,
   "scene": "dlg.travel.quiet-night",
-  "effects": [{ "journal": { "entry": "journal.slice.quiet-night" } }],
+  "effects": [
+    {
+      "journal": {
+        "entry": "journal.slice.quiet-night"
+      }
+    },
+    {
+      "flag": "travel.quiet-night-seen"
+    }
+  ],
   "provenance": {
     "confidence": "plausible",
     "sources": [],

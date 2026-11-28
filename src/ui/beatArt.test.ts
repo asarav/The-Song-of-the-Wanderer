@@ -132,7 +132,7 @@ describe('beat art', () => {
     expect(opening.map((beat) => beat.art)).toEqual([
       'art.opening.unloading',
       'art.opening.oil',
-      'art.land.levant',
+      'art.ugarit.high',
       'art.ugarit.yada',
       'art.ugarit.palace-gate',
       'art.ugarit.market',

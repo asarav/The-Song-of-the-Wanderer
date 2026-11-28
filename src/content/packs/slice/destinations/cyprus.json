@@ -6,59 +6,110 @@
   "kind": "port",
   "art": "art.cyprus.arrival",
   "region": "region.cyprus",
-  "beatArt": ["art.cyprus.arrival", "art.cyprus.yard", "art.cyprus.shipti", "art.cyprus.smithy"],
+  "beatArt": [
+    "art.cyprus.arrival",
+    "art.cyprus.yard",
+    "art.cyprus.shipti",
+    "art.cyprus.smithy"
+  ],
   "intro": "The harbor is smaller than Ugarit's and busier in a different way. Nobody is writing anything down.\n\nCopper sits in the yard in stacks, dull where it has cooled. A woman splits ingots with a wedge and a boy carries the pieces. The houses are stone at the base and mud above, roofs of reed and earth, and the light off the white walls is a physical thing you have to turn away from.\n\nPeople speak to each other in a tongue you cannot follow. They speak to you in Akkadian, slowly, and then in gestures, and then — a clay tablet held up, a mark traced with a thumb — in a kind of writing that is not cuneiform and that nobody here will read aloud for you.\n\nThe wind is steady. Everything smells of the workshop and the sea at once.",
-  "cultures": ["culture.cyprus.harbour"],
-  "languages": ["lang.cypriot", "lang.akkadian"],
+  "cultures": [
+    "culture.cyprus.harbour"
+  ],
+  "languages": [
+    "lang.cypriot",
+    "lang.akkadian"
+  ],
   "currency": "weighed copper and silver",
-  "mapPosition": { "x": 28, "y": 42 },
-  "institutions": ["faction.ugarit.merchants"],
-  "cast": ["char.cyprus.kinyras", "char.cyprus.ada", "char.cyprus.shipti", "char.ugarit.amnit"],
+  "mapPosition": {
+    "x": 28,
+    "y": 42
+  },
+  "institutions": [
+    "faction.ugarit.merchants"
+  ],
+  "cast": [
+    "char.cyprus.kinyras",
+    "char.cyprus.ada",
+    "char.cyprus.shipti",
+    "char.ugarit.amnit"
+  ],
   "places": [
     {
       "id": "act.cyprus.market",
       "art": "art.cyprus.yard",
-      "mapPosition": { "x": 54, "y": 40 },
+      "mapPosition": {
+        "x": 54,
+        "y": 40
+      },
       "name": "The copper yard",
       "kind": "market",
       "description": "Ingots by weight, and a broker who will tell you what they are worth elsewhere before you ask.",
-      "cast": ["char.cyprus.kinyras"],
-      "actions": ["trade"]
+      "cast": [
+        "char.cyprus.kinyras"
+      ],
+      "actions": [
+        "trade"
+      ]
     },
     {
       "id": "act.cyprus.harbour",
       "art": "art.cyprus.landing",
-      "mapPosition": { "x": 28, "y": 76 },
+      "mapPosition": {
+        "x": 28,
+        "y": 76
+      },
       "name": "The landing",
       "kind": "harbour",
       "description": "Boats drawn up on the shingle, nets mended in the shade, and a passage back to the mainland to arrange.",
-      "cast": ["char.ugarit.amnit"],
-      "actions": ["passage"]
+      "cast": [
+        "char.ugarit.amnit"
+      ],
+      "actions": [
+        "passage"
+      ]
     },
     {
       "id": "act.cyprus.smithy",
       "art": "art.cyprus.smithy",
-      "mapPosition": { "x": 76, "y": 50 },
+      "mapPosition": {
+        "x": 76,
+        "y": 50
+      },
       "name": "The smithy",
       "kind": "workshop",
       "description": "A workshop open on one side to the yard, where a girl of nine sorts charcoal by size while her mother works the bronze.",
-      "cast": ["char.cyprus.ada"]
+      "cast": [
+        "char.cyprus.ada"
+      ]
     },
     {
       "id": "act.cyprus.inn",
       "art": "art.cyprus.inn",
-      "mapPosition": { "x": 62, "y": 14 },
+      "mapPosition": {
+        "x": 62,
+        "y": 14
+      },
       "name": "The inn",
       "kind": "quarter",
       "description": "Two rooms and a courtyard where travelers are fed and quietly assessed.",
-      "cast": ["char.cyprus.shipti"]
+      "cast": [
+        "char.cyprus.shipti"
+      ]
     }
   ],
   "night": {
     "art": "art.cyprus.night",
-    "beatArt": ["art.cyprus.night"],
+    "beatArt": [
+      "art.cyprus.night"
+    ],
     "text": "The yard is quiet. A kiln still glows at the edge of the town, frogs keep at the cistern, and the sea is louder at night than it has any right to be.",
-    "events": [{ "event": "evt.cyprus.night-kiln", "weight": 1 }]
+    "events": [
+      {
+        "event": "evt.cyprus.night-kiln",
+        "weight": 1
+      }
+    ]
   },
   "market": {
     "priceModifier": 1.1,
@@ -72,24 +123,58 @@
       "good.incense": "art.cyprus.good-incense"
     },
     "goods": [
-      { "item": "good.copper", "basePrice": 9, "stock": 12 },
-      { "item": "good.grain", "basePrice": 6, "stock": 12 },
-      { "item": "good.pottery", "basePrice": 4, "stock": 14 },
-      { "item": "good.olive-oil", "basePrice": 10, "stock": 6 },
-      { "item": "good.tin", "basePrice": 20, "stock": 2 },
-      { "item": "good.textile", "basePrice": 7, "stock": 6 },
-      { "item": "good.incense", "basePrice": 15, "stock": 3 }
+      {
+        "item": "good.copper",
+        "basePrice": 9,
+        "stock": 12
+      },
+      {
+        "item": "good.grain",
+        "basePrice": 6,
+        "stock": 12
+      },
+      {
+        "item": "good.pottery",
+        "basePrice": 4,
+        "stock": 14
+      },
+      {
+        "item": "good.olive-oil",
+        "basePrice": 10,
+        "stock": 6
+      },
+      {
+        "item": "good.tin",
+        "basePrice": 20,
+        "stock": 2
+      },
+      {
+        "item": "good.textile",
+        "basePrice": 7,
+        "stock": 6
+      },
+      {
+        "item": "good.incense",
+        "basePrice": 15,
+        "stock": 3
+      }
     ]
   },
   "onArrival": "evt.cyprus.arrival",
-  "states": ["busy"],
+  "states": [
+    "busy"
+  ],
   "stateNotes": {
     "busy": "The yard is working at full tilt; everyone here has somewhere else to be."
   },
-  "routes": ["route.ugarit-cyprus"],
+  "routes": [
+    "route.ugarit-cyprus"
+  ],
   "provenance": {
     "confidence": "strongly-supported",
-    "sources": ["Late Cypriot copper production and harbor settlements, general"],
+    "sources": [
+      "Late Cypriot copper production and harbor settlements, general"
+    ],
     "notes": "Copper working and maritime exchange are well attested. The settlement, its people, and its prices are a composite invented for play."
   }
 }

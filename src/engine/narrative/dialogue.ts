@@ -162,7 +162,7 @@ export function deriveScene(
     art: node.art,
     beatArt: node.beatArt,
     event: pending.event,
-    choices: node.choices.map((choice, choiceIndex) => {
+    choices: node.choices.flatMap((choice, choiceIndex) => {
       const available = choice.conditions
         ? evaluateCondition(choice.conditions, {
             state,
@@ -170,7 +170,8 @@ export function deriveScene(
             rng: new RngCursor(state.rng),
           })
         : true
-      return {
+      if (!available && choice.hiddenWhenUnavailable) return []
+      return [{
         index: choiceIndex,
         ...(choice.id ? { id: choice.id } : {}),
         ...(choice.intent ? { intent: choice.intent } : {}),
@@ -180,7 +181,7 @@ export function deriveScene(
           ? undefined
           : (choice.unavailableNote ?? 'You cannot follow where this would lead.'),
         cost: choiceCost(choice.effects, index),
-      }
+      }]
     }),
   }
 }

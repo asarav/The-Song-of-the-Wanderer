@@ -102,6 +102,12 @@
     },
     {
       "type": "chooseChoice",
+      "choiceId": "go-below-as-the",
+      "dialogue": "dlg.travel.quiet-night",
+      "node": "watched"
+    },
+    {
+      "type": "chooseChoice",
       "choiceId": "take-the-rope",
       "dialogue": "dlg.travel.wreckage",
       "node": "sight"

@@ -1,20 +1,42 @@
-name: Check
+name: CI
 
 on:
   push:
     branches: [main]
   pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   check:
+    name: Gates, build and playtest pre-pass
     runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      CI: true
     steps:
-      - uses: actions/checkout@v5
-      - uses: pnpm/action-setup@v5.0.0
-      - uses: actions/setup-node@v5
+      - uses: actions/checkout@v7.0.1
+      - uses: pnpm/action-setup@v6.1.1
+      - uses: actions/setup-node@v7.1.0
         with:
           node-version: 22
           cache: pnpm
           cache-dependency-path: pnpm-lock.yaml
-      - run: pnpm install --frozen-lockfile
-      - run: pnpm check
+      - name: Install
+        run: pnpm install --frozen-lockfile
+      - name: Gates
+        run: pnpm check
+      - name: Build
+        run: pnpm build
+      - name: Playtest pre-pass — trader
+        run: pnpm playtest:review -- --persona trader --strict
+      - name: Playtest pre-pass — curious
+        run: pnpm playtest:review -- --persona curious --strict
+      - name: Playtest pre-pass — helper
+        run: pnpm playtest:review -- --persona helper --strict

@@ -4,55 +4,7 @@
     "reason": "Terminal slice flag: records a state the journal and scenes can describe; no later condition branches on it yet."
   },
   {
-    "flag": "amnit.harbour",
-    "reason": "Terminal slice flag: records a state the journal and scenes can describe; no later condition branches on it yet."
-  },
-  {
-    "flag": "ada.tin",
-    "reason": "Terminal slice flag: records a state the journal and scenes can describe; no later condition branches on it yet."
-  },
-  {
-    "flag": "ada.work",
-    "reason": "Terminal slice flag: records a state the journal and scenes can describe; no later condition branches on it yet."
-  },
-  {
-    "flag": "ada.asked-word",
-    "reason": "Terminal slice flag: records a state the journal and scenes can describe; no later condition branches on it yet."
-  },
-  {
-    "flag": "ada.tripod-done",
-    "reason": "Terminal slice flag: records a state the journal and scenes can describe; no later condition branches on it yet."
-  },
-  {
-    "flag": "amnit.cyprus",
-    "reason": "Terminal slice flag: records a state the journal and scenes can describe; no later condition branches on it yet."
-  },
-  {
     "flag": "cyprus.sleeps-outside",
-    "reason": "Terminal slice flag: records a state the journal and scenes can describe; no later condition branches on it yet."
-  },
-  {
-    "flag": "kinyras.met",
-    "reason": "Terminal slice flag: records a state the journal and scenes can describe; no later condition branches on it yet."
-  },
-  {
-    "flag": "ada.night-met",
-    "reason": "Terminal slice flag: records a state the journal and scenes can describe; no later condition branches on it yet."
-  },
-  {
-    "flag": "carries.palace-letter",
-    "reason": "Terminal slice flag: records a state the journal and scenes can describe; no later condition branches on it yet."
-  },
-  {
-    "flag": "left.palace-letter",
-    "reason": "Terminal slice flag: records a state the journal and scenes can describe; no later condition branches on it yet."
-  },
-  {
-    "flag": "shipti.who",
-    "reason": "Terminal slice flag: records a state the journal and scenes can describe; no later condition branches on it yet."
-  },
-  {
-    "flag": "shipti.letters",
     "reason": "Terminal slice flag: records a state the journal and scenes can describe; no later condition branches on it yet."
   },
   {
@@ -108,63 +60,11 @@
     "reason": "Terminal slice flag: records a state the journal and scenes can describe; no later condition branches on it yet."
   },
   {
-    "flag": "belet.hymn",
-    "reason": "Terminal slice flag: records a state the journal and scenes can describe; no later condition branches on it yet."
-  },
-  {
-    "flag": "belet.oil",
-    "reason": "Terminal slice flag: records a state the journal and scenes can describe; no later condition branches on it yet."
-  },
-  {
-    "flag": "hannu.errand",
-    "reason": "Terminal slice flag: records a state the journal and scenes can describe; no later condition branches on it yet."
-  },
-  {
-    "flag": "palace.letter.answered",
-    "reason": "Terminal slice flag: records a state the journal and scenes can describe; no later condition branches on it yet."
-  },
-  {
-    "flag": "palace.letter.burned",
-    "reason": "Terminal slice flag: records a state the journal and scenes can describe; no later condition branches on it yet."
-  },
-  {
-    "flag": "hannu.night-met",
-    "reason": "Terminal slice flag: records a state the journal and scenes can describe; no later condition branches on it yet."
-  },
-  {
-    "flag": "hannu.night-sleepless",
-    "reason": "Terminal slice flag: records a state the journal and scenes can describe; no later condition branches on it yet."
-  },
-  {
     "flag": "refugee.helped",
     "reason": "Terminal slice flag: records a state the journal and scenes can describe; no later condition branches on it yet."
   },
   {
     "flag": "refugee.refused",
-    "reason": "Terminal slice flag: records a state the journal and scenes can describe; no later condition branches on it yet."
-  },
-  {
-    "flag": "carries.sibtu-cloth",
-    "reason": "Terminal slice flag: records a state the journal and scenes can describe; no later condition branches on it yet."
-  },
-  {
-    "flag": "sibtu.cloth-taken",
-    "reason": "Terminal slice flag: records a state the journal and scenes can describe; no later condition branches on it yet."
-  },
-  {
-    "flag": "sibtu.met",
-    "reason": "Terminal slice flag: records a state the journal and scenes can describe; no later condition branches on it yet."
-  },
-  {
-    "flag": "sibtu.cloth-settled",
-    "reason": "Terminal slice flag: records a state the journal and scenes can describe; no later condition branches on it yet."
-  },
-  {
-    "flag": "met.tiro",
-    "reason": "Terminal slice flag: records a state the journal and scenes can describe; no later condition branches on it yet."
-  },
-  {
-    "flag": "tiro.passage",
     "reason": "Terminal slice flag: records a state the journal and scenes can describe; no later condition branches on it yet."
   }
 ]

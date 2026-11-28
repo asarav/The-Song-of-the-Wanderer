@@ -73,6 +73,21 @@ export interface MarketView {
   hagglingDiscount: number
 }
 
+export interface MarketComparisonView {
+  item: string
+  name: string
+  quantity: number
+  /** What this market asks for one unit, when it sells the good. */
+  currentBuy: number | null
+  /** What this market pays for one unit, when it buys the good. */
+  currentSell: number | null
+  /** The best sale price among markets the traveller has actually visited. */
+  bestSale: number | null
+  bestMarket: string | null
+  /** Best sale price minus buying here, or minus selling here when it buys. */
+  difference: number | null
+}
+
 /** The best tier the player holds among the languages spoken here. */
 export function hagglingTier(state: GameState, destination: DestinationDef): LanguageTier {
   let best: LanguageTier = 'unfamiliar'
@@ -195,6 +210,57 @@ export function deriveMarket(
     hagglingTier: tier,
     hagglingDiscount: HAGGLE_DISCOUNT[tier],
   }
+}
+
+/** Markets the traveller has actually stood in: the current port plus every arrival deed. */
+function visitedDestinations(state: GameState): string[] {
+  const visited = state.player.deeds
+    .filter((deed) => deed.kind === 'travelled')
+    .map((deed) => deed.place)
+  return [...new Set([state.player.location, ...visited])]
+}
+
+/**
+ * A cargo comparison built only from prices already visible in markets the traveller has
+ * visited. It does not reveal a port they have not stood in, and it does not invent a
+ * future price: it says what the same good would fetch today.
+ */
+export function deriveMarketComparison(
+  state: GameState,
+  index: ContentIndex,
+): MarketComparisonView[] {
+  const current = deriveMarket(state, state.player.location, index)
+  if (!current) return []
+
+  const visited = visitedDestinations(state)
+    .map((id) => deriveMarket(state, id, index))
+    .filter((market): market is MarketView => Boolean(market))
+
+  return state.player.inventory.map((entry) => {
+    const good = index.goods.get(entry.item)
+    const here = current.offers.find((offer) => offer.item === entry.item)
+    const sales = visited
+      .map((market) => {
+        const offer = market.offers.find((candidate) => candidate.item === entry.item)
+        return offer ? { market: market.destinationName, price: offer.sellUnitPrice } : null
+      })
+      .filter((sale): sale is { market: string; price: number } => Boolean(sale))
+    const best = sales.sort((a, b) => b.price - a.price)[0] ?? null
+    const currentBuy = here?.unitPrice ?? null
+    const currentSell = here?.sellUnitPrice ?? null
+    const baseline = currentSell ?? currentBuy
+
+    return {
+      item: entry.item,
+      name: good?.name ?? entry.item,
+      quantity: entry.quantity,
+      currentBuy,
+      currentSell,
+      bestSale: best?.price ?? null,
+      bestMarket: best?.market ?? null,
+      difference: best && baseline !== null ? best.price - baseline : null,
+    }
+  })
 }
 
 export interface TradeQuote {

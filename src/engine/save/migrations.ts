@@ -5,7 +5,8 @@
  * function of the raw envelope and never mutates its input. `v0` is a hypothetical
  * pre-release shape used to prove the chain works and to keep the checked-in fixture
  * honest; v1 introduced the partitioned state, v2 added the cargo cost basis, v3 the
- * reserve, v4 afflictions plus the hazard RNG stream, and v5 the chosen road.
+ * reserve, v4 afflictions plus the hazard RNG stream, v5 the chosen road, v6 remembered
+ * topics, and v7 the direction of every promise.
  */
 
 import { createInitialState, DEFAULT_DIFFICULTY, STAMINA_MAX } from '../state'
@@ -202,6 +203,37 @@ function migrateV5ToV6(input: RawSave): RawSave {
   }
 }
 
+/**
+ * v6 → v7.
+ *
+ * A promise now records who carries the duty. Every v6 record was written by the old
+ * narrator as something the traveller owed, so that is the only safe default; a save
+ * cannot reconstruct a direction it never stored.
+ */
+function migrateV6ToV7(input: RawSave): RawSave {
+  const state = asRecord(input.state)
+  if (!state) return { ...input, saveVersion: 7 }
+
+  const meta = asRecord(state.meta)
+  const narrative = asRecord(state.narrative)
+  const promises = Array.isArray(narrative?.promises) ? narrative.promises : []
+  const migratedPromises = promises.map((entry) => {
+    const promise = asRecord(entry)
+    if (!promise) return entry
+    return { ...promise, owedBy: promise.owedBy === 'character' ? 'character' : 'player' }
+  })
+
+  return {
+    ...input,
+    saveVersion: 7,
+    state: {
+      ...state,
+      ...(meta ? { meta: { ...meta, saveVersion: 7 } } : {}),
+      ...(narrative ? { narrative: { ...narrative, promises: migratedPromises } } : {}),
+    },
+  }
+}
+
 /** Keyed by the version it reads, so a lookup is one line and a new version one entry. */
 export const MIGRATIONS: Record<number, Migration> = {
   0: { from: 0, to: 1, migrate: migrateV0ToV1 },
@@ -210,6 +242,7 @@ export const MIGRATIONS: Record<number, Migration> = {
   3: { from: 3, to: 4, migrate: migrateV3ToV4 },
   4: { from: 4, to: 5, migrate: migrateV4ToV5 },
   5: { from: 5, to: 6, migrate: migrateV5ToV6 },
+  6: { from: 6, to: 7, migrate: migrateV6ToV7 },
 }
 
 /**

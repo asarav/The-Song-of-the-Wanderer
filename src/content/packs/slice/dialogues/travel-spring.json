@@ -21,7 +21,7 @@
               "treatment": "water"
             }
           ],
-          "next": null,
+          "next": "watered",
           "id": "fill-every-skin-at",
           "intent": "cost"
         },
@@ -35,17 +35,65 @@
               "treatment": "food"
             }
           ],
-          "next": null,
+          "next": "hunted",
           "id": "hunt-the-reeds-with",
           "intent": "cost"
         },
         {
           "text": "Keep watch on the boat.",
           "effects": [],
-          "next": null,
+          "next": "watched",
           "id": "keep-watch-on-the",
           "intent": "reveal"
         }
+      ]
+    },
+    "watered": {
+      "art": "art.prologue.arrival",
+      "text": "The skins fill slowly, one held under the seep while another is stoppered and passed back to the boat. The water tastes of stone and is colder than the sea.\n\nBy the time the last skin is full, the master has the oars out. You carry the hour aboard with you: a small, ordinary thing done well.",
+      "choices": [
+        {
+          "text": "Push off with the boat.",
+          "next": null,
+          "id": "push-off-with-the",
+          "intent": "reveal"
+        }
+      ],
+      "beatArt": [
+        "art.prologue.arrival",
+        "art.cyprus.landing"
+      ]
+    },
+    "hunted": {
+      "art": "art.cyprus.landing",
+      "text": "The reeds are waist-high and full of small noise. The man with the net takes two fat marsh birds and a clutch of eggs, and you take a grazed knuckle from the stones.\n\nThe birds are plucked and cooked on the shingle before the wind turns. There is enough for the boat and a little left over; the master eats the last piece and says nothing, which is thanks enough.",
+      "choices": [
+        {
+          "text": "Carry the rest aboard.",
+          "next": null,
+          "id": "carry-the-rest",
+          "intent": "reveal"
+        }
+      ],
+      "beatArt": [
+        "art.land.levant",
+        "art.cyprus.landing"
+      ]
+    },
+    "watched": {
+      "art": "art.land.levant",
+      "text": "You sit on the bow with the rope in your hand and watch the track of birds and the empty track beside it. Nobody comes down to the water. The boat waits, the wind turns, and the hour is neither lost nor spent.\n\nWhen the sail goes up, the cove is already behind you.",
+      "choices": [
+        {
+          "text": "Let the cove go.",
+          "next": null,
+          "id": "let-the-cove-go",
+          "intent": "reveal"
+        }
+      ],
+      "beatArt": [
+        "art.land.levant",
+        "art.cyprus.landing"
       ]
     }
   },

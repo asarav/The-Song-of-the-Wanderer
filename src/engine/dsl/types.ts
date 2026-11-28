@@ -99,6 +99,7 @@ export type Effect =
         id: string
         character: string
         kind: 'promise' | 'debt'
+        owedBy: 'player' | 'character'
         text: string
         dueDay?: number
       }

@@ -77,6 +77,16 @@ export interface TimePassed {
   report: DayReport | null
 }
 
+/** Presentation only: the breath between one authored scene and whatever comes next. */
+export interface SceneExit {
+  id: number
+  speaker: string | null
+  line: string
+  destination: string | null
+  /** True when the scene spent a day and the night is waiting behind the card. */
+  night: boolean
+}
+
 /**
  * A one-shot cue for the audio layer. Presentation only: rejected commands leave it
  * untouched, and it never enters a save.
@@ -95,6 +105,10 @@ interface GameStore {
   timePassed: TimePassed | null
   /** The last accepted command, so the UI can play its one-shot sound. */
   sfx: SoundCue | null
+  /** A scene has closed; show its exit card before the next screen asks anything. */
+  sceneExit: SceneExit | null
+  /** A passing was swallowed by a scene; show the night when that scene closes. */
+  nightPending: boolean
   /** What has been said this session; cleared by a new run or a load. */
   dialogueLog: DialogueLogEntry[]
   /** Paced passages already read this session, so they are not paced twice. */
@@ -107,6 +121,7 @@ interface GameStore {
   start: (options: StartOptions) => void
   noteDialogue: (entry: DialogueLogEntry) => void
   markPassageRead: (passage: string) => void
+  dismissSceneExit: () => void
   setScreen: (screen: GameScreen) => void
   visitPlace: (placeId: string) => void
   dispatch: (command: Command) => void
@@ -296,13 +311,62 @@ function promiseConfirmation(
   const opened = eventsOfType(events, 'PromiseOpened')[0]
   if (!opened) return null
   const name = characterName(index, opened.character)
-  return opened.kind === 'debt'
-    ? `You now owe ${name}. It is written in the journal.`
-    : `You have promised ${name}. It is written in the journal.`
+  return opened.owedBy === 'player'
+    ? `You owe ${name}: ${opened.kind === 'debt' ? 'a debt' : 'a promise'}. It is written in the journal.`
+    : `${name} owes you. It is written in the journal.`
 }
 
 let passages = 0
 let soundCues = 0
+let exits = 0
+
+/**
+ * The last spoken line of a scene, without markdown emphasis. A scene often closes on a
+ * line of narration after the speaker has stopped; quoting that sentence would put the
+ * narrator's description in the speaker's mouth.
+ */
+function closingLine(text: string): string {
+  const plain = text.replace(/\*\*/g, '').replace(/\n+/g, ' ').trim()
+  const spoken = [...plain.matchAll(/["“]([^"”]+)["”]/g)]
+  if (spoken.length > 0) return spoken.at(-1)?.[1]?.trim() ?? plain
+  const sentences = plain.split(/(?<=[.!?])\s+/).filter(Boolean)
+  const line = sentences.at(-1) ?? plain
+  // The card supplies its own quotation marks; do not double them when the line already
+  // ends inside a character's speech.
+  return line.replace(/^["“]/, '').replace(/["”]$/, '')
+}
+
+/**
+ * A scene that ends is a moment, not a cut. The card names who was speaking and keeps
+ * their last line in front of the reader until they choose to go on.
+ */
+function sceneExitAfter(
+  before: GameState,
+  after: GameState,
+  index: ContentIndex,
+  previousScreen: GameScreen,
+  overnight: boolean,
+): SceneExit | null {
+  if (previousScreen !== 'scene') return null
+  const pending = before.narrative.pending
+  if (!pending) return null
+  const next = after.narrative.pending
+  if (next && next.dialogue === pending.dialogue) return null
+
+  const dialogue = index.dialogues.get(pending.dialogue)
+  const node = dialogue?.nodes[pending.node]
+  if (!dialogue || !node) return null
+  const speaker = dialogue.speaker ? characterName(index, dialogue.speaker) : null
+  const destinationId = after.narrative.journey?.destination ?? after.player.location
+  const destination = index.destinations.get(destinationId)?.name ?? null
+  return {
+    id: (exits += 1),
+    speaker,
+    line: closingLine(node.text),
+    destination,
+    night: overnight,
+  }
+}
 
 export const useGameStore = create<GameStore>((set, get) => ({
   index: loadContentIndex(),
@@ -311,6 +375,8 @@ export const useGameStore = create<GameStore>((set, get) => ({
   feedback: null,
   timePassed: null,
   sfx: null,
+  sceneExit: null,
+  nightPending: false,
   dialogueLog: [],
   readPassages: [],
   placeId: null,
@@ -338,6 +404,8 @@ export const useGameStore = create<GameStore>((set, get) => ({
       feedback: null,
       timePassed: null,
       sfx: null,
+      sceneExit: null,
+      nightPending: false,
       dialogueLog: [],
       readPassages: [],
       placeId: null,
@@ -353,6 +421,8 @@ export const useGameStore = create<GameStore>((set, get) => ({
         ? store
         : { readPassages: [...store.readPassages, passage] },
     ),
+
+  dismissSceneExit: () => set({ sceneExit: null }),
 
   setScreen: (screen) => {
     // A scene stays in front of you until it is answered: walking away from it used to
@@ -383,6 +453,7 @@ export const useGameStore = create<GameStore>((set, get) => ({
   dispatch: (command) => {
     const { state, index } = get()
     if (!state) return
+    const previousScreen = get().screen
 
     const result = reduce(state, command, index)
     if (result.rejected) {
@@ -408,12 +479,21 @@ export const useGameStore = create<GameStore>((set, get) => ({
      * encounter) stays in front; otherwise the night itself is the screen, and morning is
      * one button away. Presentation only: nothing about the night is saved.
      */
-    const nightFalls =
-      to > from && !result.state.narrative.pending && !result.state.narrative.journey
+    const pending = Boolean(result.state.narrative.pending)
+    const journey = Boolean(result.state.narrative.journey)
+    const nightPending = !journey && (to > from || get().nightPending) && pending
+    const nightFalls = !pending && !journey && (to > from || get().nightPending)
 
     // A place belongs to the port; changing where the player is ends that visit.
     const placeId = result.state.player.location === state.player.location ? get().placeId : null
     const screen = nightFalls ? 'night' : screenAfter(result.state, get().screen, placeId)
+    const sceneExit = sceneExitAfter(
+      state,
+      result.state,
+      index,
+      previousScreen,
+      get().nightPending || to > from,
+    )
     const confirmation = [
       tradeConfirmation(command, result.events, index),
       languageConfirmation(result.events, index),
@@ -426,6 +506,8 @@ export const useGameStore = create<GameStore>((set, get) => ({
       state: result.state,
       screen,
       placeId,
+      sceneExit: sceneExit ?? get().sceneExit,
+      nightPending,
       feedback: confirmation.length > 0 ? confirmation.join(' ') : null,
       sfx: { id: (soundCues += 1), command: command.type },
       // Only a command that actually moved the clock reports a passing; a load does not.
@@ -461,6 +543,8 @@ export const useGameStore = create<GameStore>((set, get) => ({
       feedback: null,
       timePassed: null,
       sfx: null,
+      sceneExit: null,
+      nightPending: false,
       dialogueLog: [],
       readPassages: [],
       placeId: null,
@@ -474,6 +558,8 @@ export const useGameStore = create<GameStore>((set, get) => ({
       feedback: null,
       timePassed: null,
       sfx: null,
+      sceneExit: null,
+      nightPending: false,
       dialogueLog: [],
       readPassages: [],
       placeId: null,

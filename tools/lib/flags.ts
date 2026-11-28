@@ -51,7 +51,7 @@ export function flagUses(index: ContentIndex): Map<string, FlagUse> {
   }
 
   for (const dialogue of index.dialogues.values()) {
-    scan(dialogue.id, undefined, dialogue.entries?.map((entry) => entry.when))
+    for (const entry of dialogue.entries ?? []) scan(dialogue.id, undefined, entry.when)
     for (const [nodeId, node] of Object.entries(dialogue.nodes)) {
       for (const choice of node.choices) {
         scan(`${dialogue.id}:${nodeId}`, choice.effects, choice.conditions)
