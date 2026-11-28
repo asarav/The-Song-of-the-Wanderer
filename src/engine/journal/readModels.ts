@@ -25,6 +25,10 @@ export interface JournalEntryView {
   beatArt?: string[]
 }
 
+/**
+ * The journal, newest entry first: the last thing written is the thing you opened the
+ * book to read. The conversation log keeps its own oldest-first order.
+ */
 export function deriveJournal(state: GameState, index: ContentIndex): JournalEntryView[] {
   return state.knowledge.journalEntries
     .map((id) => index.journal.get(id))
@@ -35,6 +39,7 @@ export function deriveJournal(state: GameState, index: ContentIndex): JournalEnt
       text: entry.text,
       beatArt: entry.beatArt,
     }))
+    .reverse()
 }
 
 /** One recorded dimension, shown so a favour never reads as nothing happened. */

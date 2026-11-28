@@ -10,6 +10,7 @@ import { z } from 'zod'
 
 import { conditionSchema } from '../dsl'
 import { effectSchema, TREATMENT_TAGS } from '../dsl'
+import { splitBeats } from '../text/beats'
 
 export const PROVENANCE_CONFIDENCES = [
   'documented',
@@ -131,6 +132,11 @@ export const DestinationMarketSchema = z
     /** Multiplied into every base price. Authored band, not a simulation. */
     priceModifier: z.number().min(0.1).max(10),
     goods: z.array(MarketEntrySchema),
+    /**
+     * This harbour's own picture for a good, where the local craft looks different.
+     * A good without an override keeps its general picture from the pack.
+     */
+    art: z.record(z.string().min(1), z.string().min(1)).optional(),
   })
   .strict()
 
@@ -219,6 +225,11 @@ export const DestinationSchema = z
     /** Fired when the player first steps ashore here (and at the start of a new game). */
     onArrival: z.string().min(1).optional(),
     states: z.array(z.string()).optional(),
+    /**
+     * What an active local state means for the traveller, in plain language. A tag such
+     * as "tense" is a mood, not an explanation; this is the sentence under it.
+     */
+    stateNotes: z.record(z.string().min(1), z.string().min(1)).optional(),
     /** Authored price pressure while a local state is active. */
     stateModifiers: z
       .array(
@@ -384,6 +395,47 @@ export const AfflictionSchema = z
 
 // --- people ---------------------------------------------------------------
 
+/**
+ * A character's want is a scene hook, not a mood. `scene` names the dialogue that puts
+ * the want under pressure; `stake` says what it costs them to lose it. The slice's
+ * recurring cast must use this shape, and `pnpm model:check` proves the scene exists.
+ */
+export const CharacterWantSchema = z
+  .object({
+    id: z.string().min(1),
+    text: z.string().min(1),
+    stake: z.string().min(1),
+    scene: z.string().min(1),
+  })
+  .strict()
+
+/** How a character sounds, in rules a linter can read. */
+export const CharacterVoiceSchema = z
+  .object({
+    register: z.string().min(1),
+    address: z.array(z.string()).optional(),
+    tics: z.array(z.string()).optional(),
+    avoid: z.array(z.string()).optional(),
+    /** The longest sentence this character would say, in words. Checked by `prose:lint`. */
+    maxSentenceWords: z.int().min(6).max(80).optional(),
+    sampleLines: z.array(z.string().min(1)).min(3).max(3),
+  })
+  .strict()
+
+export const CharacterTieSchema = z
+  .object({
+    character: z.string().min(1),
+    kind: z.enum(['kin', 'patron', 'debtor', 'rival', 'neighbor']),
+  })
+  .strict()
+
+export const CharacterKnowledgeSchema = z
+  .object({
+    fact: z.string().min(1),
+    belief: z.enum(['believed', 'doubted', 'disbelieved']).optional(),
+  })
+  .strict()
+
 export const CharacterSchema = z
   .object({
     ...envelope,
@@ -399,9 +451,15 @@ export const CharacterSchema = z
     dialogue: z.string().optional(),
     /** A different conversation in a given destination, for characters who travel. */
     dialogueByDestination: z.record(z.string(), z.string()).optional(),
-    wants: z.array(z.string()).optional(),
+    /** Object wants for the recurring cast; plain strings remain valid for walk-ons. */
+    wants: z.array(z.union([z.string().min(1), CharacterWantSchema])).optional(),
     fears: z.array(z.string()).optional(),
     contradiction: z.string().optional(),
+    voice: CharacterVoiceSchema.optional(),
+    ties: z.array(CharacterTieSchema).optional(),
+    knowledge: z.array(CharacterKnowledgeSchema).optional(),
+    /** Scenes this character appears in, for coverage; checked by `model:check`. */
+    appearances: z.array(z.string()).optional(),
     /** Destinations where this character can be met. */
     presence: z.array(z.string()).optional(),
   })
@@ -444,8 +502,46 @@ export const EventSchema = z
   })
   .strict()
 
+/**
+ * What an answer does dramatically. A scene of pure probing reads as an interview; the
+ * model check requires at least one answer that reveals, bargains, helps, refuses, costs
+ * or deflects. The tag is authored, never inferred from the text.
+ */
+export const CHOICE_INTENTS = [
+  'probe',
+  'reveal',
+  'bargain',
+  'help',
+  'refuse',
+  'deflect',
+  'cost',
+] as const
+export type ChoiceIntent = (typeof CHOICE_INTENTS)[number]
+
+/**
+ * The scene's dramatic contract. Prose cannot be checked for quality, but a scene that
+ * cannot name its goal, obstacle, turn and stakes is structurally shallow. Required on
+ * recurring and major graphs; the editor can still show a walk-on without one.
+ */
+export const SceneContractSchema = z
+  .object({
+    goal: z.string().min(1),
+    obstacle: z.string().min(1),
+    turn: z.string().min(1),
+    stakes: z.string().min(1),
+    /** The character want this scene puts under pressure, by id. */
+    want: z.string().min(1).optional(),
+    /** The earlier fact this scene answers: `flag:`, `journal:`, `deed:` or `relationship:`. */
+    callback: z.string().min(1).optional(),
+  })
+  .strict()
+
 export const DialogueChoiceSchema = z
   .object({
+    /** Stable, human-readable id within the node. Scenarios address choices by it. */
+    id: z.string().min(1).optional(),
+    /** Dramatic function, used by `model:check` to reject interview-only scenes. */
+    intent: z.enum(CHOICE_INTENTS).optional(),
     text: z.string().min(1),
     conditions: conditionSchema.optional(),
     effects: z.array(effectSchema).optional(),
@@ -471,12 +567,43 @@ export const DialogueNodeSchema = z
     nextDialogue: z.string().optional(),
   })
   .strict()
+  .superRefine((node, ctx) => {
+    if (node.beatArt) {
+      const beats = splitBeats(node.text).length
+      if (node.beatArt.length !== beats) {
+        ctx.addIssue({
+          code: 'custom',
+          message: `beatArt has ${node.beatArt.length} plates for ${beats} prose beats`,
+          path: ['beatArt'],
+        })
+      }
+    }
+    for (const [language, variants] of Object.entries(node.textByLanguage ?? {})) {
+      for (const [tier, text] of Object.entries(variants)) {
+        const beats = splitBeats(text).length
+        const plates = node.beatArt?.length ?? 0
+        if (node.beatArt && plates !== beats) {
+          ctx.addIssue({
+            code: 'custom',
+            message: `beatArt has ${plates} plates for ${beats} beats in ${language}/${tier}`,
+            path: ['textByLanguage', language, tier],
+          })
+        }
+      }
+    }
+    const ids = node.choices.flatMap((choice) => (choice.id ? [choice.id] : []))
+    if (new Set(ids).size !== ids.length) {
+      ctx.addIssue({ code: 'custom', message: 'choice ids must be unique within a node' })
+    }
+  })
 
 export const DialogueSchema = z
   .object({
     ...envelope,
     speaker: z.string().optional(),
     start: z.string().min(1),
+    /** The scene's dramatic contract; required for recurring and major dialogue. */
+    scene: SceneContractSchema.optional(),
     /**
      * Alternate openings, first match wins. This is how a character remembers an earlier
      * scene: after the player has done something, the conversation opens elsewhere.

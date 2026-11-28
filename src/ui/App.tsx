@@ -14,6 +14,7 @@ import {
   DEFAULT_SELF_NAME,
   DIFFICULTIES,
   DIFFICULTY_CONFIG,
+  STAMINA_MAX,
   type Difficulty,
   type GameState,
 } from '@engine/state'
@@ -77,8 +78,8 @@ interface NavGroup {
 const NAV_GROUPS: NavGroup[] = [
   {
     id: 'place',
-    label: 'Place',
-    screens: [{ id: 'destination', label: 'Place' }],
+    label: 'Port',
+    screens: [{ id: 'destination', label: 'Port' }],
   },
   {
     id: 'trade',
@@ -677,6 +678,8 @@ function Sidebar({
     index.destinations.get(state.player.location)?.name ??
     index.routes.get(state.player.location)?.name ??
     state.player.location
+  const grain =
+    state.player.inventory.find((entry) => entry.item === PASSAGE_PROVISION)?.quantity ?? 0
 
   const pending = state.narrative.pending
   const pendingSpeakerId = pending ? index.dialogues.get(pending.dialogue)?.speaker : undefined
@@ -687,7 +690,6 @@ function Sidebar({
 
   return (
     <aside className="sidebar">
-      <p className="wordmark">The Song of the Wanderer</p>
       <div className="where">
         {/* A new day remounts the clock, so the change is visible where the date lives. */}
         <p key={timePassed?.id ?? 'clock'} className={timePassed ? 'eyebrow day-tick' : 'eyebrow'}>
@@ -695,6 +697,9 @@ function Sidebar({
         </p>
         <p className="place">{place}</p>
         <p className="purse">{shekels(state.player.money)}</p>
+        <p className="vitals" aria-label="Reserve and grain">
+          Reserve {state.player.stamina}/{STAMINA_MAX} · Grain {grain}
+        </p>
         {pending ? (
           <p className="flag scene-waiting">
             {pendingSpeaker ? `${pendingSpeaker} is waiting for an answer.` : 'A scene is waiting.'}{' '}
@@ -1108,13 +1113,14 @@ function FirstSteps() {
       'Buy here, sell there. Gain compares the sale with what you paid; language changes the bargain, not whether you can trade.'
   } else if (screen === 'routes' || (screen === 'place' && place?.kind === 'harbour')) {
     hint = routeKnown
-      ? 'Book passage. The fare, grain and reserve are spent when you sail; keep a little silver back for the sea’s tolls.'
+      ? 'Book passage. The fare, grain and reserve are spent when you sail. Grain is food for the crossing — buy it at the market — and rest restores reserve. Keep a little silver back for the sea’s tolls.'
       : 'Ask the harbor master about a crossing. You need to know a route before Roads will offer it.'
   } else if (screen === 'place') {
     hint =
       'This place has its own people and work. Go back to the port to choose another place.'
   } else if (screen === 'cargo') {
-    hint = 'Cargo is what you carry. The crossing eats grain, and the hold has a weight limit.'
+    hint =
+      'Cargo is what you carry. The crossing eats grain, and the hold has a weight limit. Reserve is your strength for the road; it is shown under the purse.'
   }
 
   if (!hint) return null
@@ -1159,13 +1165,22 @@ function Destination() {
         </p>
       ) : null}
       {view.states.length > 0 ? (
-        <p className="tags">
-          {view.states.map((label) => (
-            <span key={label} className="tag">
-              {label}
-            </span>
-          ))}
-        </p>
+        <>
+          <p className="tags">
+            {view.states.map((label) => (
+              <span key={label} className="tag">
+                {label}
+              </span>
+            ))}
+          </p>
+          {view.states.map((label) =>
+            view.stateNotes[label] ? (
+              <p key={`${label}-note`} className="note state-note">
+                <strong>{label}:</strong> {view.stateNotes[label]}
+              </p>
+            ) : null,
+          )}
+        </>
       ) : null}
 
       {hero && story.done ? (
@@ -1281,7 +1296,10 @@ function Destination() {
               Rest three days
             </button>
           </div>
-          <p className="note">Rest restores your reserve. Ordinary days at port do not.</p>
+          <p className="note">
+            Resting three days restores your reserve; the days are spent either way. Spending a
+            single day at the port only passes time, and does not restore it.
+          </p>
         </>
       ) : null}
     </section>
@@ -1606,6 +1624,10 @@ function Status() {
       )}
 
       <h3>Standing</h3>
+      <p className="note">
+        Factions remember what you do for them and against them; a band changes only when
+        someone has reason to notice.
+      </p>
       {view.factions.length === 0 && view.reputation.length === 0 ? (
         <p className="empty">No faction has noticed you yet.</p>
       ) : (
@@ -2230,9 +2252,10 @@ function Map() {
             />
             <SketchPlaces places={regional.places} />
             <p className="note">
-              Only this region, and only the places, crossings and ground you know. Ridges, rivers
-              and border lines are drawn from the region's sketch, not a survey; a border is the
-              edge of what you know, not a treaty line. The coast beyond your knowledge stays blank.
+              This is the region you are standing in: only its places, crossings and known ground.
+              The world sketch places it among the regions you have heard of. Ridges, rivers and
+              border lines are drawn from the region's sketch, not a survey; a border is the edge of
+              what you know, not a treaty line. Blank ground is knowledge you do not have yet.
             </p>
             {regional.places.length === 1 ? (
               <p className="note">
@@ -2258,9 +2281,16 @@ function Map() {
           />
           <SketchPlaces places={world.places} />
           <p className="note map-fog-note">
-            Fog gathers where you know nothing. A region keeps the name “unexplored” until you learn
-            of a place in it; its ridges, rivers and border lines appear then too, and not before.
+            Blank ground is ground you have not learned. A region keeps the name “unexplored” until
+            you learn of a place in it; its ridges, rivers and border lines appear then too, and not
+            before.
           </p>
+          {world.regions.filter((region) => region.known).length < 2 ? (
+            <p className="note">
+              You know one region, so the world sketch shows the same ground as the regional one.
+              It will differ once you learn of another coast.
+            </p>
+          ) : null}
         </>
       ) : null}
 
@@ -2320,6 +2350,8 @@ function Market() {
   const state = useGameStore((s) => s.state)
   const index = useGameStore((s) => s.index)
   const dispatch = useGameStore((s) => s.dispatch)
+  // One chosen quantity per good, shared by its Buy and Sell buttons. Presentation only.
+  const [quantities, setQuantities] = useState<Record<string, number>>({})
 
   if (!state) return null
   const view = deriveMarket(state, state.player.location, index)
@@ -2349,17 +2381,21 @@ function Market() {
             <th>Gain / loss</th>
             <th>Stock</th>
             <th>Carried</th>
-            <th />
+            <th>Quantity</th>
           </tr>
         </thead>
         <tbody>
           {view.offers
             .filter((offer) => offer.stock > 0 || offer.owned > 0)
             .map((offer) => {
-              const thumb = artFor(index.goods.get(offer.item)?.art)
+              const thumb = artFor(offer.art)
+              const cap = Math.max(1, offer.maxBuy, offer.maxSell)
+              const quantity = Math.min(Math.max(quantities[offer.item] ?? 1, 1), cap)
+              const setQuantity = (value: number) =>
+                setQuantities((current) => ({ ...current, [offer.item]: value }))
               return (
                 <tr key={offer.item}>
-                  <td className="goods-cell">
+                  <td className="goods-cell" data-label="Good">
                     {thumb ? (
                       <img className="good-thumb" src={thumb.src} alt={thumb.alt} loading="lazy" />
                     ) : null}
@@ -2369,17 +2405,15 @@ function Market() {
                         {offer.category} · {minas(offer.weight)}
                         {offer.stock <= 0
                           ? ' · none left to buy'
-                          : !offer.affordable
-                            ? ' · not enough shekels to buy'
-                            : !offer.fitsCapacity
-                              ? ' · not enough room to buy'
-                              : ''}
+                          : offer.maxBuy <= 0
+                            ? ' · nothing your purse or hold could buy'
+                            : ''}
                       </small>
                     </div>
                   </td>
-                  <td>{shekels(offer.unitPrice)}</td>
-                  <td>{shekels(offer.sellUnitPrice)}</td>
-                  <td className="market-gain">
+                  <td data-label="Buy">{shekels(offer.unitPrice)}</td>
+                  <td data-label="Sell">{shekels(offer.sellUnitPrice)}</td>
+                  <td className="market-gain" data-label="Gain / loss">
                     {offer.owned <= 0 ? (
                       <span className="note">—</span>
                     ) : offer.profit === null || offer.costBasis === null ? (
@@ -2398,25 +2432,49 @@ function Market() {
                       </>
                     )}
                   </td>
-                  <td>{offer.stock}</td>
-                  <td>{offer.owned}</td>
-                  <td className="row-actions">
-                    <button
-                      type="button"
-                      className="btn small"
-                      disabled={!offer.affordable || !offer.fitsCapacity || offer.stock <= 0}
-                      onClick={() => dispatch({ type: 'buy', item: offer.item, quantity: 1 })}
-                    >
-                      Buy
-                    </button>
-                    <button
-                      type="button"
-                      className="btn small"
-                      disabled={offer.owned <= 0}
-                      onClick={() => dispatch({ type: 'sell', item: offer.item, quantity: 1 })}
-                    >
-                      Sell
-                    </button>
+                  <td data-label="Stock">{offer.stock}</td>
+                  <td data-label="Carried">{offer.owned}</td>
+                  <td className="row-actions" data-label="Quantity">
+                    <div className="trade-controls">
+                      <input
+                        className="trade-qty"
+                        type="number"
+                        min={1}
+                        max={cap}
+                        step={1}
+                        value={quantity}
+                        aria-label={`Quantity of ${offer.name}`}
+                        onChange={(event) =>
+                          setQuantity(Math.min(cap, Math.max(1, Number(event.target.value) || 1)))
+                        }
+                      />
+                      <button
+                        type="button"
+                        className="btn small"
+                        disabled={offer.maxBuy < 1 || quantity > offer.maxBuy}
+                        title={
+                          quantity > offer.maxBuy
+                            ? `Your purse or hold allows only ${offer.maxBuy}.`
+                            : undefined
+                        }
+                        onClick={() => dispatch({ type: 'buy', item: offer.item, quantity })}
+                      >
+                        Buy
+                      </button>
+                      <button
+                        type="button"
+                        className="btn small"
+                        disabled={offer.maxSell < 1 || quantity > offer.maxSell}
+                        title={
+                          quantity > offer.maxSell
+                            ? `You carry only ${offer.maxSell}.`
+                            : undefined
+                        }
+                        onClick={() => dispatch({ type: 'sell', item: offer.item, quantity })}
+                      >
+                        Sell
+                      </button>
+                    </div>
                   </td>
                 </tr>
               )
@@ -2429,8 +2487,8 @@ function Market() {
           you still carry. Cargo from a gift has no purchase cost. A save from before cost tracking
           says “unknown” rather than pretending the goods were free.
         </InfoTip>{' '}
-        Gain is a comparison with what you paid, not a promise about the next sale. The Sell button
-        sells one unit; the row updates with the cost of what remains.
+        Gain is a comparison with what you paid, not a promise about the next sale. Set a quantity,
+        then buy or sell that many; the row updates with the cost of what remains.
       </p>
     </section>
   )
@@ -2477,6 +2535,11 @@ function Roads() {
     <section className="panel">
       <h2>Roads you know</h2>
       <PlaceBack />
+      <p className="note">
+        A passage spends its fare, the grain it eats and the reserve it asks of you. Grain is food
+        for the crossing, not cargo for sale: buy it at any market. Your reserve is {state.player.stamina}{' '}
+        of {STAMINA_MAX} now, and rest restores it.
+      </p>
       {routes.map((route) => (
         <article key={route.id} className="route">
           <h3>{route.name}</h3>
@@ -2536,7 +2599,12 @@ function Roads() {
                       You do not have the strength for this passage. Rest first.
                     </span>
                   ) : null}
-                  {unfed ? <span className="note">You need grain for the passage.</span> : null}
+                  {unfed ? (
+                    <span className="note">
+                      You need {provisions} grain for this passage and carry {grain}. Buy grain at the
+                      market.
+                    </span>
+                  ) : null}
                   <button
                     type="button"
                     className="btn small"
@@ -2616,6 +2684,7 @@ function Journal() {
   return (
     <section className="panel">
       <h2>Journal</h2>
+      <p className="note">Newest first: the last thing written is at the top.</p>
       {entries.length === 0 ? <p className="empty">Nothing written yet.</p> : null}
       {entries.map((entry) => (
         <article key={entry.id} className="entry">

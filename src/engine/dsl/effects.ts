@@ -23,6 +23,7 @@ import {
   BELIEFS,
   RELATIONSHIP_DIMENSIONS,
   STAMINA_MAX,
+  regardBand,
   type CharacterRuntimeState,
   type FactionState,
   type GameState,
@@ -352,6 +353,7 @@ export const EFFECT_ATOMS: Record<string, EffectAtom> = {
       const key = dimension ?? 'trust'
       const relationship = ensureRelationship(ctx, character)
       const before = relationship[key]
+      const beforeBand = regardBand(relationship)
       const after = clampDimension(before + delta)
       relationship[key] = after
       ctx.events.push({
@@ -361,6 +363,15 @@ export const EFFECT_ATOMS: Record<string, EffectAtom> = {
         delta: after - before,
         value: after,
       })
+      const afterBand = regardBand(relationship)
+      if (afterBand !== beforeBand) {
+        ctx.events.push({
+          type: 'RegardChanged',
+          character,
+          from: beforeBand,
+          to: afterBand,
+        })
+      }
       if (after - before !== delta) {
         ctx.events.push(clampEvent(`relationship.${key}`, delta, after - before, 'dimension capped'))
       }
@@ -396,6 +407,78 @@ export const EFFECT_ATOMS: Record<string, EffectAtom> = {
       if (after - before !== delta) {
         ctx.events.push(clampEvent(`faction.${key}`, delta, after - before, 'dimension capped'))
       }
+    },
+  },
+
+  promise: {
+    schema: z
+      .object({
+        id: z.string().min(1),
+        character: z.string().min(1),
+        kind: z.enum(['promise', 'debt']),
+        text: z.string().min(1),
+        dueDay: z.int().min(0).optional(),
+      })
+      .strict(),
+    apply: (payload, ctx) => {
+      const { id, character, kind, text, dueDay } = payload as {
+        id: string
+        character: string
+        kind: 'promise' | 'debt'
+        text: string
+        dueDay?: number
+      }
+      if (ctx.state.narrative.promises.some((entry) => entry.id === id)) return
+      ctx.state.narrative.promises.push({
+        id,
+        character,
+        kind,
+        text,
+        openedDay: ctx.state.calendar.day,
+        ...(dueDay === undefined ? {} : { dueDay }),
+        status: 'open',
+      })
+      ctx.events.push({
+        type: 'PromiseOpened',
+        id,
+        character,
+        kind,
+        ...(dueDay === undefined ? {} : { dueDay }),
+      })
+    },
+  },
+
+  settlePromise: {
+    schema: z
+      .object({ id: z.string().min(1), status: z.enum(['settled', 'broken']).optional() })
+      .strict(),
+    apply: (payload, ctx) => {
+      const { id, status = 'settled' } = payload as {
+        id: string
+        status?: 'settled' | 'broken'
+      }
+      const promise = ctx.state.narrative.promises.find((entry) => entry.id === id)
+      if (!promise || promise.status !== 'open') return
+      promise.status = status
+      promise.closedDay = ctx.state.calendar.day
+      ctx.events.push({
+        type: 'PromiseSettled',
+        id,
+        character: promise.character,
+        status,
+      })
+    },
+  },
+
+  markTopic: {
+    schema: z.object({ character: z.string().min(1), topic: z.string().min(1) }).strict(),
+    apply: (payload, ctx) => {
+      const { character, topic } = payload as { character: string; topic: string }
+      const state = ensureCharacter(ctx, character)
+      state.topics = state.topics ?? []
+      if (state.topics.includes(topic)) return
+      state.topics.push(topic)
+      ctx.events.push({ type: 'TopicMarked', character, topic })
     },
   },
 

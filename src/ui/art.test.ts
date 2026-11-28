@@ -60,6 +60,18 @@ const referenced: { kind: string; id: string; art?: string }[] = [
 ]
 
 /**
+ * A port may give a good its own picture, because the local craft looks different. These
+ * are content references too and must resolve like any other.
+ */
+const marketArt = [...index.destinations.values()].flatMap((destination) =>
+  Object.entries(destination.market.art ?? {}).map(([item, art]) => ({
+    kind: 'market',
+    id: `${destination.id}:${item}`,
+    art,
+  })),
+)
+
+/**
  * Pictures the interface shows before a journey has a save: the menu screen and the
  * prologue screen. A place may appear on both — the menu and the prologue are different
  * screens — but never twice on the same one.
@@ -95,7 +107,7 @@ describe('art catalog', () => {
     for (const id of menuArt) expect(artFor(id), `${id} has no picture`).not.toBeNull()
   })
 
-  it.each(referenced)('resolves $kind $id', ({ art }) => {
+  it.each([...referenced, ...marketArt])('resolves $kind $id', ({ art }) => {
     expect(art, 'authored entity has no art ID').toBeTruthy()
     expect(artFor(art)).not.toBeNull()
   })
@@ -120,7 +132,12 @@ describe('art catalog', () => {
   })
 
   it('has no catalog entry that nothing references', () => {
-    const used = new Set([...referenced.map((entry) => entry.art), ...menuArt, ...authoredBeatArt])
+    const used = new Set([
+      ...referenced.map((entry) => entry.art),
+      ...marketArt.map((entry) => entry.art),
+      ...menuArt,
+      ...authoredBeatArt,
+    ])
     const orphans = Object.keys(ART).filter((id) => !used.has(id))
     expect(orphans).toEqual([])
   })

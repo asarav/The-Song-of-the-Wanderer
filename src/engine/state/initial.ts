@@ -111,6 +111,7 @@ export function createInitialState(input: NewGameInput): GameState {
       characterStates: {},
       relationships: {},
       factions: {},
+      promises: [],
       pending: null,
       journey: null,
       storyletCooldowns: {},

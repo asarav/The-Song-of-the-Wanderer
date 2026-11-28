@@ -1,6 +1,6 @@
 {
   "meta": {
-    "saveVersion": 5,
+    "saveVersion": 6,
     "engineVersion": "0.1.0",
     "contentVersions": {},
     "seed": "v0-golden",
@@ -50,7 +50,8 @@
     "factions": {},
     "pending": null,
     "journey": null,
-    "storyletCooldowns": {}
+    "storyletCooldowns": {},
+    "promises": []
   },
   "rng": {
     "market": 331463759,

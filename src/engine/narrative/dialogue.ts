@@ -37,6 +37,8 @@ export interface SceneChoiceCost {
 
 export interface SceneChoiceView {
   index: number
+  id?: string
+  intent?: string
   text: string
   available: boolean
   reason?: string
@@ -165,6 +167,8 @@ export function deriveScene(
         : true
       return {
         index: choiceIndex,
+        ...(choice.id ? { id: choice.id } : {}),
+        ...(choice.intent ? { intent: choice.intent } : {}),
         text: choice.text,
         available,
         reason: available
@@ -200,12 +204,12 @@ export function startDialogue(ctx: KernelContext, dialogueId: string): string | 
   if (!dialogue.nodes[node]) return `"${node}" is missing from the conversation.`
 
   ctx.state.narrative.pending = { kind: 'dialogue', dialogue: dialogue.id, node }
-  rememberSpeaker(ctx, dialogue)
+  rememberSpeaker(ctx, dialogue, node)
   ctx.events.push({ type: 'DialoguePresented', dialogue: dialogue.id, node })
   return null
 }
 
-function rememberSpeaker(ctx: KernelContext, dialogue: DialogueDef): void {
+function rememberSpeaker(ctx: KernelContext, dialogue: DialogueDef, node: string): void {
   const speakerId = dialogue.speaker
   if (!speakerId) return
   const character = ctx.index.characters.get(speakerId)
@@ -228,9 +232,14 @@ function rememberSpeaker(ctx: KernelContext, dialogue: DialogueDef): void {
       relationships: {},
       flags: {},
       lastSeenByPlayer: { day: ctx.state.calendar.day, location: ctx.state.player.location },
+      metDay: ctx.state.calendar.day,
+      lastScene: node,
+      topics: [],
     }
   } else {
     runtime.lastSeenByPlayer = { day: ctx.state.calendar.day, location: ctx.state.player.location }
+    runtime.metDay ??= ctx.state.calendar.day
+    runtime.lastScene = node
   }
 }
 
@@ -264,6 +273,17 @@ export function resolveChoice(ctx: KernelContext, choiceIndex: number): string |
   }
 
   if (choice.effects) applyEffects(choice.effects, ctx)
+
+  // A character remembers what was already discussed. `topicAsked` can then open a
+  // shorter second meeting instead of repeating the first one word for word.
+  if (dialogue.speaker) {
+    const runtime = ctx.state.narrative.characterStates[dialogue.speaker]
+    if (runtime) {
+      runtime.topics ??= []
+      if (!runtime.topics.includes(pending.node)) runtime.topics.push(pending.node)
+      runtime.lastScene = pending.node
+    }
+  }
 
   if (choice.journal && !ctx.state.knowledge.journalEntries.includes(choice.journal)) {
     ctx.state.knowledge.journalEntries.push(choice.journal)

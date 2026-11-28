@@ -450,6 +450,7 @@ describe('the persisted shape', () => {
         factions: {},
         pending: null,
         journey: null,
+        promises: [],
         storyletCooldowns: {},
       },
       world: { destinationStates: {}, routeStates: {}, migrations: [], scheduled: [] },

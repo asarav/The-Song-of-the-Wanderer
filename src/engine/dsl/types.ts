@@ -17,6 +17,7 @@ import type {
   GameState,
   KnowledgeSource,
   LanguageTier,
+  RegardBand,
   RelationshipDimension,
 } from '../state'
 import type { DomainEvent } from '../kernel'
@@ -67,6 +68,16 @@ export type Condition =
   | { characterAt: { character: string; destination: string } }
   | { hasJournalEntry: string }
   | { hasAffliction: string }
+  /** A deed the traveller has actually done, optionally narrowed by kind or subject. */
+  | { deed: { id?: string; kind?: DeedKind; subject?: string } }
+  /** A topic this character has already been asked about. */
+  | { topicAsked: { character: string; topic: string } }
+  /** Something the traveller has learned, regardless of who told them. */
+  | { knowsFact: string }
+  /** The readable band a character's regard currently falls into. */
+  | { regardBand: { character: string; band: RegardBand } }
+  /** An explicit promise or debt that is still open. */
+  | { promiseOpen: string }
   | { chance: { p: number; stream?: RngStream } }
 
 export type Effect =
@@ -83,6 +94,17 @@ export type Effect =
   | { advanceTime: { days: number } }
   | { relationship: { character: string; dimension?: RelationshipDimension; delta: number } }
   | { faction: { faction: string; dimension?: FactionDimension; delta: number } }
+  | {
+      promise: {
+        id: string
+        character: string
+        kind: 'promise' | 'debt'
+        text: string
+        dueDay?: number
+      }
+    }
+  | { settlePromise: { id: string; status?: 'settled' | 'broken' } }
+  | { markTopic: { character: string; topic: string } }
   | { flag: string | { name: string; value: boolean | number | string } }
   | { schedule: { event: string; inDays: number } }
   | { journal: { entry: string } }

@@ -24,13 +24,7 @@ export const passageKey = {
 } as const
 
 /** Split authored prose into the beats a reader advances through. */
-export function splitBeats(text: string): string[] {
-  const beats = text
-    .split(/\n{2,}/)
-    .map((beat) => beat.trim())
-    .filter((beat) => beat.length > 0)
-  return beats.length > 0 ? beats : [text]
-}
+export { splitBeats } from '@engine/text/beats'
 
 /**
  * The beat a reader is on. `shown` is how many beats have been revealed; the result is

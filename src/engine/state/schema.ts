@@ -102,6 +102,25 @@ export type ArcVisibility = (typeof ARC_VISIBILITIES)[number]
 export const DIMENSION_MIN = -5
 export const DIMENSION_MAX = 5
 
+/**
+ * The readable band a character's regard falls into. Derived, never stored: the five
+ * dimensions remain the source of truth, and a view or event can name the band without
+ * inventing a sixth meter. Fear pulls a regard down; obligation is a debt, not affection.
+ */
+export const REGARD_BANDS = ['hostile', 'cold', 'wary', 'neutral', 'warm', 'close'] as const
+export type RegardBand = (typeof REGARD_BANDS)[number]
+
+export function regardBand(relationship: Relationship): RegardBand {
+  const score =
+    relationship.trust + relationship.affection + relationship.respect - relationship.fear
+  if (score <= -8) return 'hostile'
+  if (score <= -4) return 'cold'
+  if (score < 0) return 'wary'
+  if (score <= 1) return 'neutral'
+  if (score <= 5) return 'warm'
+  return 'close'
+}
+
 /** The one light-survival track. It is not hunger, thirst and fatigue separately. */
 export const STAMINA_MAX = 8
 
@@ -316,6 +335,32 @@ export const CharacterStateSchema = z
     flags: z.record(z.string(), z.union([z.boolean(), z.int(), z.string()])),
     lastSeenByPlayer: z.object({ day: DaySchema, location: IdSchema }).strict().optional(),
     nameUsedByPlayer: z.array(z.string()).optional(),
+    /** The first day the traveller met this character. */
+    metDay: DaySchema.optional(),
+    /** The node of the last scene this character played with the traveller. */
+    lastScene: IdSchema.optional(),
+    /** Topics already raised, so a conversation does not ask the same thing twice. */
+    topics: z.array(IdSchema).optional(),
+  })
+  .strict()
+
+/**
+ * A promise or a debt with a named person. The slice uses one record for Sibtu's five
+ * shekels, Amnit's outstanding debt and Shipti's brother: an obligation is something one
+ * person owes another, with an optional day it falls due.
+ */
+export const PromiseKindSchema = z.enum(['promise', 'debt'])
+export const PromiseStatusSchema = z.enum(['open', 'settled', 'broken'])
+export const PromiseSchema = z
+  .object({
+    id: IdSchema,
+    character: IdSchema,
+    kind: PromiseKindSchema,
+    text: z.string().min(1),
+    openedDay: DaySchema,
+    dueDay: DaySchema.optional(),
+    status: PromiseStatusSchema,
+    closedDay: DaySchema.optional(),
   })
   .strict()
 
@@ -355,6 +400,8 @@ export const NarrativeSchema = z
     characterStates: z.record(z.string(), CharacterStateSchema),
     relationships: z.record(z.string(), RelationshipSchema),
     factions: z.record(z.string(), FactionStateSchema),
+    /** Explicit promises and debts, owned by the character who is owed. */
+    promises: z.array(PromiseSchema),
     pending: PendingSceneSchema.nullable(),
     journey: JourneySchema.nullable(),
     storyletCooldowns: z.record(z.string(), DaySchema),
@@ -411,6 +458,7 @@ export type Relationship = z.infer<typeof RelationshipSchema>
 export type FactionState = z.infer<typeof FactionStateSchema>
 export type ArcState = z.infer<typeof ArcStateSchema>
 export type CharacterRuntimeState = z.infer<typeof CharacterStateSchema>
+export type PromiseRecord = z.infer<typeof PromiseSchema>
 export type PendingScene = z.infer<typeof PendingSceneSchema>
 export type JourneySlot = z.infer<typeof JourneySlotSchema>
 export type Journey = z.infer<typeof JourneySchema>

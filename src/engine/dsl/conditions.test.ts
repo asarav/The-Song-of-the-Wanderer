@@ -180,6 +180,80 @@ const cases: { name: string; condition: Condition; expected: boolean; mutate?: (
     mutate: (s) => s.player.afflictions.push({ id: 'aff.wound', sinceDay: 0 }),
   },
   { name: 'affliction absent', condition: { hasAffliction: 'aff.wound' }, expected: false },
+  {
+    name: 'deed recorded',
+    condition: { deed: { kind: 'helped', subject: 'char.ugarit.amnit' } },
+    expected: true,
+    mutate: (s) =>
+      s.player.deeds.push({
+        id: 'deed.test',
+        kind: 'helped',
+        day: 0,
+        place: 'dest.ugarit',
+        subject: 'char.ugarit.amnit',
+        witnesses: [],
+        knowledge: [],
+      }),
+  },
+  { name: 'deed absent', condition: { deed: { kind: 'helped' } }, expected: false },
+  {
+    name: 'topic already asked',
+    condition: { topicAsked: { character: 'char.ugarit.amnit', topic: 'greet' } },
+    expected: true,
+    mutate: (s) =>
+      (s.narrative.characterStates['char.ugarit.amnit'] = {
+        status: 'alive',
+        location: 'dest.ugarit',
+        age: 40,
+        relationships: {},
+        flags: {},
+        topics: ['greet'],
+      }),
+  },
+  { name: 'topic not asked', condition: { topicAsked: { character: 'char.ugarit.amnit', topic: 'debt' } }, expected: false },
+  {
+    name: 'fact known',
+    condition: { knowsFact: 'ugarit.harbor-tax' },
+    expected: true,
+    mutate: (s) =>
+      s.knowledge.entries.push({
+        fact: 'ugarit.harbor-tax',
+        learnedAt: 0,
+        source: 'told',
+        reliability: 1,
+        belief: 'believed',
+      }),
+  },
+  { name: 'fact unknown', condition: { knowsFact: 'fact.missing' }, expected: false },
+  {
+    name: 'regard band from dimensions',
+    condition: { regardBand: { character: 'char.ugarit.amnit', band: 'warm' } },
+    expected: true,
+    mutate: (s) =>
+      (s.narrative.relationships['char.ugarit.amnit'] = {
+        trust: 3,
+        affection: 0,
+        obligation: 0,
+        fear: 0,
+        respect: 0,
+      }),
+  },
+  { name: 'regard band without a relationship', condition: { regardBand: { character: 'char.ugarit.amnit', band: 'neutral' } }, expected: true },
+  {
+    name: 'promise open',
+    condition: { promiseOpen: 'promise.test' },
+    expected: true,
+    mutate: (s) =>
+      s.narrative.promises.push({
+        id: 'promise.test',
+        character: 'char.ugarit.amnit',
+        kind: 'promise',
+        text: 'A test promise',
+        openedDay: 0,
+        status: 'open',
+      }),
+  },
+  { name: 'promise absent', condition: { promiseOpen: 'promise.test' }, expected: false },
   { name: 'chance certain', condition: { chance: { p: 1 } }, expected: true },
   { name: 'chance impossible', condition: { chance: { p: 0 } }, expected: false },
 ]
@@ -197,15 +271,20 @@ describe('condition atoms', () => {
         'characterAt',
         'dateAfter',
         'dateBefore',
+        'deed',
         'factionStanding',
         'flag',
         'hasAffliction',
         'hasJournalEntry',
         'itemAtLeast',
+        'knowsFact',
         'languageAtLeast',
         'moneyAtLeast',
+        'promiseOpen',
+        'regardBand',
         'relationship',
         'routeOpen',
+        'topicAsked',
       ].sort(),
     )
   })
@@ -235,6 +314,11 @@ function samplePayload(name: string): unknown {
     characterAt: { character: 'char.ugarit.amnit', destination: 'dest.ugarit' },
     hasJournalEntry: 'journal.x',
     hasAffliction: 'aff.wound',
+    deed: { kind: 'helped' },
+    topicAsked: { character: 'char.ugarit.amnit', topic: 'greet' },
+    knowsFact: 'ugarit.harbor-tax',
+    regardBand: { character: 'char.ugarit.amnit', band: 'warm' },
+    promiseOpen: 'promise.test',
     chance: { p: 0.5 },
   }
   return samples[name]
@@ -334,6 +418,11 @@ const invalidPayloads: Record<string, unknown> = {
   characterAt: { character: 'char.ugarit.amnit' },
   hasJournalEntry: 5,
   hasAffliction: '',
+  deed: { kind: 'stole' },
+  topicAsked: { character: 'char.ugarit.amnit' },
+  knowsFact: '',
+  regardBand: { character: 'char.ugarit.amnit', band: 'fond' },
+  promiseOpen: '',
   chance: { p: 2 },
 }
 

@@ -9,10 +9,15 @@ import { z } from 'zod'
 
 import { RNG_STREAMS } from '../rng'
 import {
+  DEED_KINDS,
   FACTION_DIMENSIONS,
   LANGUAGE_TIERS,
+  REGARD_BANDS,
   RELATIONSHIP_DIMENSIONS,
+  regardBand,
+  type DeedKind,
   type FactionDimension,
+  type RegardBand,
   type RelationshipDimension,
 } from '../state'
 import { tryParseDate } from '../time'
@@ -156,6 +161,60 @@ export const CONDITION_ATOMS: Record<string, ConditionAtom> = {
     schema: z.string().min(1),
     evaluate: (payload, ctx) =>
       ctx.state.player.afflictions.some((affliction) => affliction.id === payload),
+  },
+
+  deed: {
+    schema: z
+      .object({
+        id: z.string().min(1).optional(),
+        kind: z.enum(DEED_KINDS).optional(),
+        subject: z.string().min(1).optional(),
+      })
+      .strict(),
+    evaluate: (payload, ctx) => {
+      const { id, kind, subject } = payload as {
+        id?: string
+        kind?: DeedKind
+        subject?: string
+      }
+      return ctx.state.player.deeds.some(
+        (deed) =>
+          (id === undefined || deed.id === id) &&
+          (kind === undefined || deed.kind === kind) &&
+          (subject === undefined || deed.subject === subject),
+      )
+    },
+  },
+
+  topicAsked: {
+    schema: z.object({ character: z.string().min(1), topic: z.string().min(1) }).strict(),
+    evaluate: (payload, ctx) => {
+      const { character, topic } = payload as { character: string; topic: string }
+      return Boolean(ctx.state.narrative.characterStates[character]?.topics?.includes(topic))
+    },
+  },
+
+  knowsFact: {
+    schema: z.string().min(1),
+    evaluate: (payload, ctx) =>
+      ctx.state.knowledge.entries.some((entry) => entry.fact === payload),
+  },
+
+  regardBand: {
+    schema: z.object({ character: z.string().min(1), band: z.enum(REGARD_BANDS) }).strict(),
+    evaluate: (payload, ctx) => {
+      const { character, band } = payload as { character: string; band: RegardBand }
+      const relationship = ctx.state.narrative.relationships[character]
+      return relationship ? regardBand(relationship) === band : band === 'neutral'
+    },
+  },
+
+  promiseOpen: {
+    schema: z.string().min(1),
+    evaluate: (payload, ctx) =>
+      ctx.state.narrative.promises.some(
+        (promise) => promise.id === payload && promise.status === 'open',
+      ),
   },
 
   chance: {

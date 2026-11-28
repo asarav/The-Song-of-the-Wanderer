@@ -23,6 +23,7 @@ export type Command =
   | { type: 'talkTo'; character: string }
   | { type: 'resolveEncounter'; choice: number }
   | { type: 'chooseDialogue'; choice: number }
+  | { type: 'chooseChoice'; choiceId: string; dialogue?: string; node?: string }
   | { type: 'rest'; days: number }
   | { type: 'work'; days: number }
 
@@ -44,6 +45,14 @@ export const COMMAND_SCHEMAS: Record<CommandType, ZodType<Command>> = {
   talkTo: z.object({ type: z.literal('talkTo'), character: z.string().min(1) }).strict(),
   resolveEncounter: z.object({ type: z.literal('resolveEncounter'), choice: z.int() }).strict(),
   chooseDialogue: z.object({ type: z.literal('chooseDialogue'), choice: z.int() }).strict(),
+  chooseChoice: z
+    .object({
+      type: z.literal('chooseChoice'),
+      choiceId: z.string().min(1),
+      dialogue: z.string().min(1).optional(),
+      node: z.string().min(1).optional(),
+    })
+    .strict(),
 }
 
 /** A handler returns a reason to reject, or `null` when the intent was carried out. */

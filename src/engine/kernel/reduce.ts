@@ -229,6 +229,36 @@ const chooseDialogue: Handler = (ctx, command) =>
   command.type === 'chooseDialogue' ? resolvePending(ctx, command.choice) : 'Wrong command.'
 
 /**
+ * Address an answer by its stable id instead of its position. A prose edit may reorder
+ * answers; a scenario that names the answer it means must not silently start testing a
+ * different one.
+ */
+const chooseChoice: Handler = (ctx, command) => {
+  if (command.type !== 'chooseChoice') return 'Wrong command.'
+  const pending = ctx.state.narrative.pending
+  if (!pending) return 'There is nothing to answer.'
+  if (command.dialogue && command.dialogue !== pending.dialogue) {
+    return `The scene in front of you is ${pending.dialogue}, not ${command.dialogue}.`
+  }
+  if (command.node && command.node !== pending.node) {
+    return `The scene is at ${pending.node}, not ${command.node}.`
+  }
+
+  const dialogue = ctx.index.dialogues.get(pending.dialogue)
+  const node = dialogue?.nodes[pending.node]
+  if (!node) return 'That part of the conversation has gone missing.'
+
+  const index = node.choices.findIndex((choice) => choice.id === command.choiceId)
+  if (index < 0) {
+    const available = node.choices.flatMap((choice) => (choice.id ? [choice.id] : []))
+    return `No answer "${command.choiceId}" at ${pending.dialogue}:${pending.node}. Available: ${
+      available.length > 0 ? available.join(', ') : '(none have ids)'
+    }`
+  }
+  return resolveChoice(ctx, index)
+}
+
+/**
  * The command registry. Adding a command is one union member, one schema, one entry here
  * — never a new branch in `reduce`.
  */
@@ -242,6 +272,7 @@ export const COMMAND_REGISTRY: Record<CommandType, CommandDefinition> = {
   talkTo: { schema: COMMAND_SCHEMAS.talkTo, run: talkTo },
   resolveEncounter: { schema: COMMAND_SCHEMAS.resolveEncounter, run: resolveEncounter },
   chooseDialogue: { schema: COMMAND_SCHEMAS.chooseDialogue, run: chooseDialogue },
+  chooseChoice: { schema: COMMAND_SCHEMAS.chooseChoice, run: chooseChoice },
 }
 
 function rejection(state: GameState, reason: string): CommandResult {

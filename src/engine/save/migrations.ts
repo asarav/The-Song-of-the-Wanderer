@@ -161,6 +161,47 @@ function migrateV4ToV5(input: RawSave): RawSave {
   }
 }
 
+/**
+ * v5 → v6.
+ *
+ * Characters gained a memory of topics and the day they met the traveller, and obligations
+ * became explicit promises with a creditor. A v5 run has no such history to restore, so
+ * it opens with an empty list and no remembered topics.
+ */
+function migrateV5ToV6(input: RawSave): RawSave {
+  const state = asRecord(input.state)
+  if (!state) return { ...input, saveVersion: 6 }
+
+  const meta = asRecord(state.meta)
+  const narrative = asRecord(state.narrative)
+  const characterStates = asRecord(narrative?.characterStates) ?? {}
+  const migratedCharacters = Object.fromEntries(
+    Object.entries(characterStates).map(([id, value]) => {
+      const character = asRecord(value)
+      if (!character) return [id, value]
+      return [id, { ...character, topics: Array.isArray(character.topics) ? character.topics : [] }]
+    }),
+  )
+
+  return {
+    ...input,
+    saveVersion: 6,
+    state: {
+      ...state,
+      ...(meta ? { meta: { ...meta, saveVersion: 6 } } : {}),
+      ...(narrative
+        ? {
+            narrative: {
+              ...narrative,
+              promises: Array.isArray(narrative.promises) ? narrative.promises : [],
+              characterStates: migratedCharacters,
+            },
+          }
+        : {}),
+    },
+  }
+}
+
 /** Keyed by the version it reads, so a lookup is one line and a new version one entry. */
 export const MIGRATIONS: Record<number, Migration> = {
   0: { from: 0, to: 1, migrate: migrateV0ToV1 },
@@ -168,6 +209,7 @@ export const MIGRATIONS: Record<number, Migration> = {
   2: { from: 2, to: 3, migrate: migrateV2ToV3 },
   3: { from: 3, to: 4, migrate: migrateV3ToV4 },
   4: { from: 4, to: 5, migrate: migrateV4ToV5 },
+  5: { from: 5, to: 6, migrate: migrateV5ToV6 },
 }
 
 /**

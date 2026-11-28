@@ -58,8 +58,8 @@ describe('dsl module public surface', () => {
   it('publishes both vocabularies as { schema, run } registries', () => {
     expect(conditionAtomNames()).toEqual(Object.keys(CONDITION_ATOMS).sort())
     expect(effectAtomNames()).toEqual(Object.keys(EFFECT_ATOMS).sort())
-    expect(conditionAtomNames()).toHaveLength(14)
-    expect(effectAtomNames()).toHaveLength(22)
+    expect(conditionAtomNames()).toHaveLength(19)
+    expect(effectAtomNames()).toHaveLength(25)
 
     for (const atom of Object.values(CONDITION_ATOMS)) {
       expect(typeof atom.schema.safeParse).toBe('function')

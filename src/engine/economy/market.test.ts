@@ -77,6 +77,36 @@ describe('deriveMarket', () => {
     expect(sellPrice(state(), ugarit, ugaritCopper, 'metal')).toBe(12)
   })
 
+  it('says how much one trade can move, from the purse, the stock and the hold', () => {
+    const view = deriveMarket(state({ money: 20 }), 'dest.ugarit', index)
+    const grain = view?.offers.find((offer) => offer.item === 'good.grain')
+    if (!grain) throw new Error('grain fixture missing')
+
+    expect(grain.maxBuy).toBe(
+      Math.min(grain.stock, Math.floor(20 / grain.weight), Math.floor(20 / grain.unitPrice)),
+    )
+    expect(grain.maxSell).toBe(0)
+
+    const carrying = state({ inventory: [{ item: 'good.grain', quantity: 2 }] })
+    const carried = deriveMarket(carrying, 'dest.ugarit', index)?.offers.find(
+      (offer) => offer.item === 'good.grain',
+    )
+    expect(carried?.maxSell).toBe(2)
+  })
+
+  it('shows a harbour-specific picture for a good when one is authored', () => {
+    const market = ugarit.market as { art?: Record<string, string> }
+    market.art = { 'good.grain': 'art.ugarit.market' }
+    try {
+      const grain = deriveMarket(state(), 'dest.ugarit', index)?.offers.find(
+        (offer) => offer.item === 'good.grain',
+      )
+      expect(grain?.art).toBe('art.ugarit.market')
+    } finally {
+      delete market.art
+    }
+  })
+
   it('is deterministic for the same state', () => {
     expect(deriveMarket(state(), 'dest.ugarit', index)).toEqual(
       deriveMarket(state(), 'dest.ugarit', index),

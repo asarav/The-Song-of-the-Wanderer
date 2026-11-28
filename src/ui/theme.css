@@ -1683,9 +1683,9 @@ code {
 }
 
 .map-key-fog {
-  border-radius: 50%;
-  background: rgba(110, 116, 106, 0.28);
-  border: 1px dashed rgba(110, 116, 106, 0.45);
+  border-radius: 2px;
+  background: #e7dec9;
+  border: 1px dashed rgba(92, 74, 48, 0.5);
 }
 
 .map-place-list {
@@ -2105,9 +2105,11 @@ code {
   fill: rgba(211, 181, 164, 0.86);
 }
 
+/* Unknown ground is blank paper with a dashed edge, not water. The sea keeps the blue
+   wash and the wave lines; fog keeps neither, so the two no longer read alike. */
 .map-region.fog {
-  fill: url(#map-fog);
-  stroke: rgba(29, 26, 22, 0.18);
+  fill: #e7dec9;
+  stroke: rgba(92, 74, 48, 0.42);
   stroke-dasharray: 1.6 2;
 }
 
@@ -2404,7 +2406,7 @@ code {
 }
 
 .map-fog-dot {
-  fill: rgba(110, 116, 106, 0.34);
+  fill: rgba(132, 112, 80, 0.22);
 }
 
 @media (max-width: 56rem) {
@@ -3200,18 +3202,6 @@ body {
   backdrop-filter: blur(12px) saturate(1.05);
 }
 
-.wordmark {
-  margin: 0 0 1.6rem;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid rgba(196, 154, 74, 0.22);
-  font-family: 'Trebuchet MS', system-ui, sans-serif;
-  font-size: 0.62rem;
-  letter-spacing: 0.28em;
-  line-height: 1.7;
-  text-transform: uppercase;
-  color: rgba(196, 154, 74, 0.86);
-}
-
 .sidebar .eyebrow {
   color: var(--gold);
 }
@@ -3223,6 +3213,16 @@ body {
 
 .sidebar .where .purse {
   color: rgba(246, 236, 215, 0.66);
+}
+
+/* Reserve and grain sit under the purse, because both are spent by the same passage. */
+.sidebar .where .vitals {
+  margin: 0.15rem 0 0;
+  font-family: 'Trebuchet MS', system-ui, sans-serif;
+  font-size: 0.64rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(246, 236, 215, 0.5);
 }
 
 .sidebar .where .flag {
@@ -3681,8 +3681,14 @@ select {
   }
 }
 
-/* On a phone the price list becomes one card per good. */
-@media (max-width: 46rem) {
+/* When the reading column is narrow — a phone, or the stage beside the rail — the
+   price list becomes one card per good. The query is on the column, not the window, so
+   the table never asks for a horizontal scroll. */
+@container (max-width: 46rem) {
+  .market-table {
+    display: block;
+  }
+
   .market-table thead {
     display: none;
   }
@@ -3736,7 +3742,17 @@ select {
 
   .market-table td:nth-child(7) {
     grid-area: actions;
-    justify-self: end;
+    justify-self: stretch;
+  }
+
+  .market-table td.market-gain {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .market-table .trade-controls {
+    justify-content: flex-end;
+    flex-wrap: wrap;
   }
 
   .market-table td:nth-child(2)::before {
@@ -3774,7 +3790,7 @@ select {
 
 /* Under 368 px the five-column row cannot hold its own labels. Move the count and
    the actions to their own line instead of letting the headers collide. */
-@media (max-width: 23rem) {
+@container (max-width: 23rem) {
   .market-table tr {
     grid-template-columns: auto auto minmax(0, 1fr) auto;
     grid-template-areas:
@@ -3816,7 +3832,8 @@ select {
     grid-row: 2;
   }
 
-  .sidebar .where .flag {
+  .sidebar .where .flag,
+  .sidebar .where .vitals {
     grid-column: 1 / -1;
   }
 }
@@ -3849,4 +3866,75 @@ html {
   .stage > div.panel {
     animation: none !important;
   }
+
+  .scene .story-next,
+  .prologue-actions {
+    scroll-behavior: auto;
+  }
+}
+
+/* --- reading controls that stay put -------------------------------------- */
+
+/* A beat of different length used to move Continue up and down the card, so the
+   reader had to chase it with the mouse. The card keeps a page's height and the
+   control sits at its foot, sticking to the viewport while a long beat scrolls. */
+.scene {
+  display: flex;
+  flex-direction: column;
+  /* Tall enough that a short beat cannot drag the Continue row upward; a long beat
+     scrolls under the sticky row instead of pushing it. */
+  min-height: calc(100dvh - 8rem);
+}
+
+.scene .story {
+  flex: 1 1 auto;
+}
+
+.scene .story-next {
+  position: sticky;
+  bottom: 0.75rem;
+  z-index: 2;
+  margin-top: auto;
+  padding: 0.8rem 0.2rem 0.35rem;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.92) 32%);
+}
+
+.prologue-panel {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100dvh - 9rem);
+}
+
+.prologue-actions {
+  position: sticky;
+  bottom: 0.75rem;
+  z-index: 2;
+  margin-top: auto;
+  padding-top: 0.8rem;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.92) 32%);
+}
+
+/* A plain sentence under a state tag: "tense" alone explains nothing. */
+.state-note {
+  margin: -0.35rem 0 1rem;
+}
+
+/* Quantity, then the two trades, in one row that wraps instead of scrolling. */
+.trade-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+
+.trade-qty {
+  width: 3.6rem;
+  font: inherit;
+  font-size: 0.9rem;
+  padding: 0.3rem 0.35rem;
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.72);
+  font-variant-numeric: tabular-nums;
 }

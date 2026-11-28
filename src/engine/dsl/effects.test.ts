@@ -332,6 +332,44 @@ describe('deeds and knowledge', () => {
     })
   })
 
+  it('opens a promise once and settles it once', () => {
+    const opened = run([
+      { promise: { id: 'promise.test', character: 'char.ugarit.amnit', kind: 'debt', text: 'Five shekels' } },
+      { promise: { id: 'promise.test', character: 'char.ugarit.amnit', kind: 'debt', text: 'Five shekels' } },
+    ])
+    expect(opened.state.narrative.promises).toHaveLength(1)
+    expect(opened.state.narrative.promises[0]).toMatchObject({ id: 'promise.test', status: 'open' })
+
+    const settled = run([
+      { promise: { id: 'promise.test', character: 'char.ugarit.amnit', kind: 'debt', text: 'Five shekels' } },
+      { settlePromise: { id: 'promise.test' } },
+    ])
+    expect(settled.state.narrative.promises[0]).toMatchObject({ status: 'settled', closedDay: 0 })
+    expect(settled.events.filter((event) => event.type === 'PromiseOpened')).toHaveLength(1)
+    expect(settled.events.filter((event) => event.type === 'PromiseSettled')).toHaveLength(1)
+  })
+
+  it('remembers a topic once per character', () => {
+    const result = run([
+      { markTopic: { character: 'char.ugarit.amnit', topic: 'greet' } },
+      { markTopic: { character: 'char.ugarit.amnit', topic: 'greet' } },
+    ])
+    expect(result.state.narrative.characterStates['char.ugarit.amnit']?.topics).toEqual(['greet'])
+  })
+
+  it('emits RegardChanged only when the readable band moves', () => {
+    const quiet = run([{ relationship: { character: 'char.ugarit.amnit', delta: 1 } }])
+    expect(quiet.events.some((event) => event.type === 'RegardChanged')).toBe(false)
+
+    const moved = run([{ relationship: { character: 'char.ugarit.amnit', delta: 3 } }])
+    expect(moved.events).toContainEqual({
+      type: 'RegardChanged',
+      character: 'char.ugarit.amnit',
+      from: 'neutral',
+      to: 'warm',
+    })
+  })
+
   it('records knowledge with a source and belief', () => {
     const result = run([
       { knowledge: { fact: 'fact.ugarit.grain-shortage', source: 'rumor', reliability: 0.4, belief: 'doubted' } },
@@ -402,8 +440,11 @@ describe('effect application rules', () => {
         'migration',
         'money',
         'moveCharacter',
+        'markTopic',
+        'promise',
         'relationship',
         'schedule',
+        'settlePromise',
         'stamina',
         'treatment',
         'unlockRoute',
@@ -447,6 +488,14 @@ function sampleEffect(name: string): unknown {
     arc: { arc: 'arc.x', beat: 'beat.x', owner: 'char.ugarit.amnit' },
     deed: { id: 'deed.x', kind: 'helped', subject: 'char.ugarit.amnit' },
     knowledge: { fact: 'fact.x' },
+    promise: {
+      id: 'promise.x',
+      character: 'char.ugarit.amnit',
+      kind: 'promise',
+      text: 'A test promise',
+    },
+    settlePromise: { id: 'promise.x' },
+    markTopic: { character: 'char.ugarit.amnit', topic: 'greet' },
   }
   return samples[name]
 }
@@ -528,6 +577,9 @@ const invalidPayloads: Record<string, unknown> = {
   arc: { arc: 'arc.x', beat: 'beat.x' },
   deed: { id: 'deed.x', kind: 'stole', subject: 'char.ugarit.amnit' },
   knowledge: { fact: 'fact.x', reliability: 2 },
+  promise: { id: 'promise.x', character: 'char.ugarit.amnit', kind: 'gift', text: '' },
+  settlePromise: { id: '' },
+  markTopic: { character: '', topic: '' },
 }
 
 describe('effect rejections', () => {

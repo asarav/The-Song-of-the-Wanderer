@@ -384,8 +384,9 @@ export function testPackEntities(): RawEntityFile[] {
         gate: {
           text: 'Name, and what you carry.',
           choices: [
-            { text: 'Both, if you have the time.', next: null },
+            { id: 'both', text: 'Both, if you have the time.', next: null },
             {
+              id: 'declare',
               text: 'Two jars of oil, and a count the palace can check.',
               effects: [
                 {
@@ -408,6 +409,7 @@ export function testPackEntities(): RawEntityFile[] {
               next: null,
             },
             {
+              id: 'ask',
               text: 'Then ask what the palace is counting.',
               // Deliberately larger than the dimension cap, so the runner has a real clamp
               // to record: the effect clamps and emits `EffectClamped`.

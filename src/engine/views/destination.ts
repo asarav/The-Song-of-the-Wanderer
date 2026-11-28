@@ -42,6 +42,8 @@ export interface DestinationView {
   intro: string
   introBeatArt?: string[]
   states: string[]
+  /** Plain-language meaning of each active local state, keyed by state name. */
+  stateNotes: Record<string, string>
   places: PlaceView[]
   /** Present at the destination but assigned to no place, so nobody vanishes. */
   elsewhere: PresentCharacter[]
@@ -99,6 +101,7 @@ export function deriveDestination(
 
   const present = presentCharacters(state, destination.id, index)
   const assigned = new Set(destination.places.flatMap((place) => place.cast ?? []))
+  const states = state.world.destinationStates[destination.id] ?? []
 
   return {
     id: destination.id,
@@ -106,7 +109,13 @@ export function deriveDestination(
     kind: destination.kind,
     intro: destination.intro,
     introBeatArt: destination.beatArt,
-    states: state.world.destinationStates[destination.id] ?? [],
+    states,
+    stateNotes: Object.fromEntries(
+      states.flatMap((name) => {
+        const note = destination.stateNotes?.[name]
+        return note ? [[name, note] as const] : []
+      }),
+    ),
     places: destination.places.map((place) => placeView(place, present)),
     elsewhere: present.filter((character) => !assigned.has(character.id)),
     // A road the traveller has not learned of is not theirs to see yet: naming it on the

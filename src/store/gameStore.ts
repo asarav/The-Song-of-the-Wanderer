@@ -214,6 +214,67 @@ function tradeConfirmation(
   return `${command.type === 'buy' ? 'Bought' : 'Sold'} ${Math.abs(item.delta)} ${name.toLowerCase()} for ${silver} shekels.`
 }
 
+/**
+ * Say what a conversation taught the traveller. Language growth used to happen in the
+ * Languages screen and nowhere else, so a lesson read as no change at all.
+ */
+function languageConfirmation(
+  events: SequencedEvent[],
+  index: ReturnType<typeof loadContentIndex>,
+): string | null {
+  const parts: string[] = []
+  for (const entry of events) {
+    if (entry.event.type !== 'LanguageXpGained') continue
+    if (entry.event.amount <= 0) continue
+    const name = index.languages.get(entry.event.language)?.name ?? entry.event.language
+    parts.push(
+      entry.event.tierChanged
+        ? `Your ${name} is now ${entry.event.tier}.`
+        : `Your ${name} improves (+${entry.event.amount} xp).`,
+    )
+  }
+  return parts.length > 0 ? parts.join(' ') : null
+}
+
+/**
+ * Say when someone's regard has crossed into a readable band. The dimensions changed
+ * silently before this: the number moved, the player had no way to notice.
+ */
+function regardConfirmation(
+  events: SequencedEvent[],
+  index: ReturnType<typeof loadContentIndex>,
+): string | null {
+  const phrases: Record<string, string> = {
+    hostile: 'has turned against you',
+    cold: 'is cold with you now',
+    wary: 'is wary of you',
+    neutral: 'is neutral toward you again',
+    warm: 'is warmer with you',
+    close: 'is close to you now',
+  }
+  for (const entry of events) {
+    if (entry.event.type !== 'RegardChanged') continue
+    const name = index.characters.get(entry.event.character)?.name ?? entry.event.character
+    return `${name} ${phrases[entry.event.to] ?? 'has noticed you'}.`
+  }
+  return null
+}
+
+/** A promise or debt is a standing record, so it is announced when it is opened. */
+function promiseConfirmation(
+  events: SequencedEvent[],
+  index: ReturnType<typeof loadContentIndex>,
+): string | null {
+  for (const entry of events) {
+    if (entry.event.type !== 'PromiseOpened') continue
+    const name = index.characters.get(entry.event.character)?.name ?? entry.event.character
+    return entry.event.kind === 'debt'
+      ? `You now owe ${name}. It is written in the journal.`
+      : `You have promised ${name}. It is written in the journal.`
+  }
+  return null
+}
+
 let passages = 0
 let soundCues = 0
 
@@ -327,12 +388,18 @@ export const useGameStore = create<GameStore>((set, get) => ({
     // A place belongs to the port; changing where the player is ends that visit.
     const placeId = result.state.player.location === state.player.location ? get().placeId : null
     const screen = nightFalls ? 'night' : screenAfter(result.state, get().screen, placeId)
+    const confirmation = [
+      tradeConfirmation(command, result.events, index),
+      languageConfirmation(result.events, index),
+      regardConfirmation(result.events, index),
+      promiseConfirmation(result.events, index),
+    ].filter((line): line is string => Boolean(line))
 
     set({
       state: result.state,
       screen,
       placeId,
-      feedback: tradeConfirmation(command, result.events, index),
+      feedback: confirmation.length > 0 ? confirmation.join(' ') : null,
       sfx: { id: (soundCues += 1), command: command.type },
       // Only a command that actually moved the clock reports a passing; a load does not.
       timePassed:

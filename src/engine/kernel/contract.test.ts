@@ -45,6 +45,7 @@ const intents: Command[] = [
   { type: 'talkTo', character: 'char.ugarit.amnit' },
   { type: 'resolveEncounter', choice: 0 },
   { type: 'chooseDialogue', choice: 0 },
+  { type: 'chooseChoice', choiceId: 'go-up-the-hill' },
 ]
 
 describe('kernel module public surface', () => {
@@ -52,6 +53,7 @@ describe('kernel module public surface', () => {
     expect(commandNames()).toEqual([
       'advanceTime',
       'buy',
+      'chooseChoice',
       'chooseDialogue',
       'resolveEncounter',
       'rest',

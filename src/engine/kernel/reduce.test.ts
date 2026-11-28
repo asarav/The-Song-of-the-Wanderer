@@ -482,6 +482,21 @@ const commandTable: {
   reason: string
 }[] = [
   {
+    type: 'chooseChoice',
+    state: () => {
+      const state = start()
+      state.narrative.pending = {
+        kind: 'dialogue',
+        dialogue: 'dlg.test.arrival',
+        node: 'gate',
+      }
+      return state
+    },
+    accepted: { type: 'chooseChoice', choiceId: 'declare' },
+    rejected: { type: 'chooseChoice', choiceId: 'missing' },
+    reason: 'There is nothing to answer.',
+  },
+  {
     type: 'advanceTime',
     state: () => start(),
     accepted: { type: 'advanceTime', days: 2 },
@@ -641,6 +656,7 @@ describe('the command registry', () => {
     expect(commandNames()).toEqual([
       'advanceTime',
       'buy',
+      'chooseChoice',
       'chooseDialogue',
       'resolveEncounter',
       'rest',

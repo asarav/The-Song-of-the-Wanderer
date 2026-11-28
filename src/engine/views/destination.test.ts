@@ -43,6 +43,20 @@ describe('deriveDestination', () => {
     ])
   })
 
+  it('explains an active state instead of leaving a bare tag', () => {
+    const localIndex = testContent()
+    const destination = localIndex.destinations.get('dest.ugarit')
+    if (!destination) throw new Error('test destination missing')
+    destination.stateNotes = { tense: 'Food is dear and the road inland is watched.' }
+
+    const game = state()
+    game.world.destinationStates['dest.ugarit'] = ['tense']
+
+    const view = deriveDestination(game, 'dest.ugarit', localIndex)
+    expect(view?.states).toEqual(['tense'])
+    expect(view?.stateNotes).toEqual({ tense: 'Food is dear and the road inland is watched.' })
+  })
+
   it('scopes present people to the place they are assigned to', () => {
     const view = deriveDestination(state(), 'dest.ugarit', index)
 

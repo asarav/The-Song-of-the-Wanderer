@@ -1,0 +1,26 @@
+[
+  {
+    "place": "dlg.ugarit.hannu.gate:greet",
+    "reason": "Hannu quotes the harbor tax; the payment happens at the arrival ledger, not this conversation."
+  },
+  {
+    "place": "dlg.ugarit.arrival:ledger",
+    "reason": "The three shekels were paid on the gate choice that led here; this node records the tax."
+  },
+  {
+    "place": "dlg.travel.wreckage:rope",
+    "reason": "The four shekels were paid on the sight choice that led here; this node narrates the sale."
+  },
+  {
+    "place": "dlg.travel.checkpoint:argued",
+    "reason": "The four-shekel toll was paid on the arguing choice; this node narrates the result."
+  },
+  {
+    "place": "dlg.ugarit.sibtu.ask:settled",
+    "reason": "The five shekels were paid on the choice that led here; this node narrates the counting."
+  },
+  {
+    "place": "dlg.ugarit.sibtu.ask:after-cloth-kept",
+    "reason": "The five shekels were deliberately not paid on the choice that led here."
+  }
+]

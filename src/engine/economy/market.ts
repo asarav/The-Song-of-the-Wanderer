@@ -55,6 +55,12 @@ export interface MarketOffer {
   profitPerUnit: number | null
   affordable: boolean
   fitsCapacity: boolean
+  /** This harbour's own picture for the good, when it has one. Presentation only. */
+  art?: string
+  /** The largest quantity the purse, the stock and the hold allow in one purchase. */
+  maxBuy: number
+  /** Everything the traveller can sell here in one go. */
+  maxSell: number
 }
 
 export interface MarketView {
@@ -158,6 +164,8 @@ export function deriveMarket(
           : (cargo.costBasis ?? 0)
         : null
     const profit = costBasis === null ? null : sale * owned - costBasis
+    const fitsByWeight = weight <= 0 ? entry.stock : Math.floor(free / weight)
+    const maxBuy = Math.min(entry.stock, Math.max(0, fitsByWeight), Math.floor(state.player.money / price))
 
     return {
       item: entry.item,
@@ -168,6 +176,9 @@ export function deriveMarket(
       sellUnitPrice: sale,
       stock: entry.stock,
       owned,
+      art: destination.market.art?.[entry.item] ?? good?.art,
+      maxBuy,
+      maxSell: owned,
       costBasis,
       profit,
       profitPerUnit: profit === null ? null : profit / owned,

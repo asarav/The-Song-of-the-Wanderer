@@ -2,7 +2,13 @@ import { describe, expect, it } from 'vitest'
 
 import { createInitialState } from '../state'
 import { testContent } from '../testing'
-import { deriveCharacterIndex, deriveCodex, deriveFactions, formatRegard } from './readModels'
+import {
+  deriveCharacterIndex,
+  deriveCodex,
+  deriveFactions,
+  deriveJournal,
+  formatRegard,
+} from './readModels'
 
 const index = testContent()
 
@@ -69,6 +75,17 @@ describe('faction standing', () => {
     const [merchants] = deriveFactions(game, index)
     expect(merchants?.regard).toEqual([])
     expect(formatRegard(merchants?.regard ?? [])).toBe('')
+  })
+})
+
+describe('journal order', () => {
+  it('puts the newest entry first, where the reader opens the book', () => {
+    const game = state()
+    const ids = [...index.journal.keys()].slice(0, 2)
+    if (ids.length < 2) throw new Error('test journal needs two entries')
+    game.knowledge.journalEntries = [...ids]
+
+    expect(deriveJournal(game, index).map((entry) => entry.id)).toEqual([...ids].reverse())
   })
 })
 

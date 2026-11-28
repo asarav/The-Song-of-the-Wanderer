@@ -88,7 +88,7 @@ describe('save module public surface', () => {
   })
 
   it('registers migrations by version and reaches the current format', () => {
-    expect(Object.keys(MIGRATIONS)).toEqual(['0', '1', '2', '3', '4'])
+    expect(Object.keys(MIGRATIONS)).toEqual(['0', '1', '2', '3', '4', '5'])
     expect(MIGRATIONS[0]).toMatchObject({ from: 0, to: 1 })
     expect(MIGRATIONS[1]).toMatchObject({ from: 1, to: 2 })
     expect(MIGRATIONS[2]).toMatchObject({ from: 2, to: 3 })
@@ -97,7 +97,7 @@ describe('save module public surface', () => {
     expect(loaded.ok).toBe(true)
     if (!loaded.ok) return
     expect(loaded.migratedFrom).toBe(0)
-    expect(loaded.state.meta.saveVersion).toBe(5)
+    expect(loaded.state.meta.saveVersion).toBe(6)
     expect(loaded.state.calendar.day).toBe(10)
   })
 

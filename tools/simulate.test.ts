@@ -63,9 +63,9 @@ describe('the day-and-save fixture scenario', () => {
     ])
     const commands = result.steps.map((step) => step.command?.type ?? step.kind)
     expect(commands).toEqual([
-      'chooseDialogue',
-      'chooseDialogue',
-      'chooseDialogue',
+      'chooseChoice',
+      'chooseChoice',
+      'chooseChoice',
       'advanceTime',
       'buy',
       'save',
