@@ -151,7 +151,7 @@
       ]
     },
     "price": {
-      "text": "\"Eight if we hug the shore and sleep on the boat. Fourteen if we go straight across and sleep when we get there. Neither price includes your cargo, and both include my opinion.\" He names the sums the way a man names his children, in order, without affection.",
+      "text": "\"**Eight if we hug the shore** and sleep on the boat. **Fourteen if we go straight across** and sleep when we get there. Neither price includes your cargo, and both include my opinion.\" He names the sums the way a man names his children, in order, without affection.",
       "choices": [
         {
           "text": "I would sooner work aboard than sit idle.",
@@ -198,7 +198,7 @@
       ]
     },
     "work": {
-      "text": "\"Then be at the mole before the gulls. Do not bring more than you can carry up a gangplank in the dark. It will not pay your passage; the fare is still the fare. But a man who works is easier to take than one who does not.\"\n\nHe turns away before you can agree, which is how a bargain is closed here. Then, because he cannot help it: \"And bring your own bread. The crew is owed wages and I will not have them watching you eat.\"",
+      "text": "\"Then be at **the mole before the gulls**. Do not bring more than you can carry up a gangplank in the dark. It will not pay your passage; the fare is still the fare. But a man who works is easier to take than one who does not.\"\n\nHe turns away before you can agree, which is how a bargain is closed here. Then, because he cannot help it: \"And **bring your own bread**. The crew is owed wages and I will not have them watching you eat.\"",
       "choices": [
         {
           "text": "Be there before the gulls.",

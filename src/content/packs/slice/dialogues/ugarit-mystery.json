@@ -6,7 +6,7 @@
   "start": "recognize",
   "nodes": {
     "recognize": {
-      "text": "She is waiting in the doorway of the temple with her hands still.\n\n\"I have been singing the same line for three days. Ninshubur. And then you come in from the harbor with that face, and I stop being able to sing it.\" She does not step aside. \"Tell me what you know, and tell me plainly. I have had enough of people being careful with me.\"",
+      "text": "She is waiting in the doorway of the temple with her hands still.\n\n\"I have been singing the same line for **three days**. Ninshubur. And then you come in from the harbor with that face, and I stop being able to sing it.\" She does not step aside. \"Tell me what you know, and tell me plainly. I have had enough of people being careful with me.\"",
       "choices": [
         {
           "text": "It is a name from the east. A messenger's name.",
@@ -45,7 +45,7 @@
       ]
     },
     "east": {
-      "text": "\"A servant of the lady of the evening. A messenger.\" She says it slowly, testing it. \"That is what the trader said, and then he would not say more, and I have been singing it at strangers ever since.\" She looks at her hands. \"My sister would have liked you. She liked people who answered.\"",
+      "text": "\"**A servant of the lady of the evening**. A messenger.\" She says it slowly, testing it. \"That is what the trader said, and then he would not say more, and I have been singing it at strangers ever since.\" She looks at her hands. \"My sister would have liked you. She liked people who answered.\"",
       "choices": [
         {
           "text": "Ask what she expects.",

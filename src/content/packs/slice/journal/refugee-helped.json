@@ -3,6 +3,13 @@
   "pack": "pack.slice",
   "contentVersion": 1,
   "title": "Three more pairs of hands",
-  "text": "Sibtu asked me to sell her cloth at the yard, because she could not go herself. The price is hers, not mine, and I mean to see it back to her.",
-  "provenance": { "confidence": "fictional", "sources": [], "notes": "The refugee thread, helped." }
+  "text": "Sibtu asked me to sell her cloth at the Ugarit market, because she could not go herself. **The price is hers**, not mine, and I mean to see it back to her.",
+  "provenance": {
+    "confidence": "fictional",
+    "sources": [],
+    "notes": "The refugee thread, helped."
+  },
+  "beatArt": [
+    "art.ugarit.cloth-table"
+  ]
 }

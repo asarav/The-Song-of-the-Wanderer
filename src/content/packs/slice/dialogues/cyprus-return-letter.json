@@ -6,7 +6,7 @@
   "start": "letter",
   "nodes": {
     "letter": {
-      "text": "She puts the tablet on the table between you and does not sit down.\n\n\"The letter. It is addressed to a name I cannot read and a house I do not know. Take it or leave it, but do not leave it here another month.\"",
+      "text": "She puts the tablet on the table between you and does not sit down.\n\n\"The letter. It is addressed to a name I cannot read and a house I do not know. Take it or leave it, but **do not leave it here another month**.\"",
       "choices": [
         {
           "text": "Take it.",
@@ -54,7 +54,7 @@
       ]
     },
     "read": {
-      "text": "The seal is Ugarit's. The hand is Hannu's, and the signs are cramped as if written quickly. It says: come back. It does not say why.\n\nShipti has already turned back to the net.",
+      "text": "The seal is Ugarit's. The hand is Hannu's, and the signs are cramped as if written quickly. It says: **come back**. It does not say why.\n\nShipti has already turned back to the net.",
       "choices": [
         {
           "text": "Put it inside your tunic.",

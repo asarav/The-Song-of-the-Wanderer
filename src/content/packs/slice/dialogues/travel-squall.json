@@ -6,6 +6,10 @@
   "nodes": {
     "weather": {
       "text": "The wind turns in the afternoon. It is not a storm, but the boat starts to work at the water instead of over it, and a water jar gets loose and is caught by a boy who has done this before.\n\nThe master shouts something that is half Akkadian and half weather.",
+      "beatArt": [
+        "art.travel.squall",
+        "art.travel.water-jar-caught"
+      ],
       "choices": [
         {
           "text": "Take a bucket and bail.",
@@ -42,6 +46,9 @@
     },
     "after": {
       "text": "By dark the wind has gone around and the sea is merely tired. The boy who caught the water jar sits down beside you and holds out a corner of bread without meeting your eye. The master says nothing, but he stops shouting your name as though it were a job. The boat goes on.",
+      "beatArt": [
+        "art.travel.bread-boy"
+      ],
       "choices": [
         {
           "text": "Sleep when it is your turn.",

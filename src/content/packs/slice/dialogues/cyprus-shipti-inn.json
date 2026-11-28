@@ -32,6 +32,7 @@
   ],
   "nodes": {
     "courtyard": {
+      "beatArt": ["art.cyprus.shipti-mend-net", "art.cyprus.shipti-stools"],
       "text": "The courtyard is empty except for Shipti, who is mending a net she does not own and listening to everything.\n\n\"The yard is honest and the harbor is not. I said that already, did I?\" She does not look up. \"Sit. The bench is free, and the wine is not, but I am in a good mood and it is early.\"",
       "choices": [
         {
@@ -70,7 +71,8 @@
       ]
     },
     "again-who": {
-      "text": "\"Kinyras, and the nameless man from Alashiya.\" She bites the thread. \"I have not changed my mind about either of them, and neither has the yard. If the nameless man offers you a price, take it and do not ask him to repeat it.\"",
+      "beatArt": ["art.cyprus.shipti-thread"],
+      "text": "\"Kinyras, and the nameless man from Alashiya.\" She bites the thread. \"I have not changed my mind about either of them, and neither has the yard. If the nameless man offers you a price, **take it and do not ask him to repeat it**.\"",
       "choices": [
         {
           "text": "Any letters from the mainland?",
@@ -93,6 +95,7 @@
       ]
     },
     "again-letters": {
+      "beatArt": ["art.cyprus.shipti-shelf", "art.cyprus.shipti-shelf-cloth"],
       "text": "\"The shelf is empty of letters and full of other people's business.\"\n\nShe nods at the shelf anyway. \"My brother in Ugarit owes me a letter. He has owed me money for three years, so I do not expect the letter either.\"",
       "choices": [
         {
@@ -116,7 +119,8 @@
       ]
     },
     "again-carried": {
-      "text": "She looks at your tunic where the tablet is, and then at the door, and then at her net.\n\n\"Still carrying it. Good. Wear it where it does not show, and do not read it in the yard.\" She pulls a knot tight. \"If a man asks what you are carrying, say a debt. It is true often enough.\"",
+      "beatArt": ["art.cyprus.shipti-net-knot", "art.cyprus.shipti-door"],
+      "text": "She looks at your tunic where the tablet is, and then at the door, and then at her net.\n\n\"Still carrying it. Good. Wear it where it does not show, and **do not read it in the yard**.\" She pulls a knot tight. \"If a man asks what you are carrying, say a debt. It is true often enough.\"",
       "choices": [
         {
           "text": "Who buys copper here?",
@@ -139,6 +143,7 @@
       ]
     },
     "again-left": {
+      "beatArt": ["art.cyprus.shipti-net-lap"],
       "text": "\"The letter is still on the shelf, face down, where you left it.\" She does not look up from the net. \"I am not its keeper, and I am not yours.\" The net comes through her hands, and she finds a tear she has already mended. \"But if you leave it another month, someone will decide it is mine.\"",
       "choices": [
         {
@@ -158,7 +163,8 @@
       ]
     },
     "late-letter": {
-      "text": "She puts the tablet on the table between you and goes back to the net.\n\n\"Take it or leave it. But do not leave it here another month.\" She works a knot, then adds, \"And when you reach Ugarit, tell my brother I have not forgiven him. He will know what for. That is the whole of what I ask.\"",
+      "beatArt": ["art.cyprus.shipti-tablet-bench", "art.cyprus.shipti-cord"],
+      "text": "She puts the tablet on the table between you and goes back to the net.\n\n\"Take it or leave it. But do not leave it here another month.\" She works a knot, then adds, \"And when you reach Ugarit, **tell my brother I have not forgiven him**. He will know what for. That is the whole of what I ask.\"",
       "choices": [
         {
           "text": "Take it.",
@@ -202,6 +208,7 @@
       ]
     },
     "read": {
+      "beatArt": ["art.cyprus.shipti-sealed", "art.cyprus.shipti-net-idle"],
       "text": "The seal is Ugarit's. The hand is Hannu's, and the signs are cramped as if written quickly. It says: come back. It does not say why.\n\nShipti has already turned back to the net, but her hands have stopped moving. \"If it is about my brother,\" she says, \"do not tell me yet. Tell me after I have had something to drink.\"",
       "choices": [
         {
@@ -214,7 +221,7 @@
       ]
     },
     "who": {
-      "text": "\"Kinyras. And a man from Alashiya who does not give a name, which is not the same as not having one.\" She bites the thread. \"Kinyras will cheat you by the letter of the count. The nameless man will cheat you by the spirit. Choose which you can live with.\"\n\nShe turns the shirt inside out and begins again.",
+      "text": "\"Kinyras. And a man from Alashiya who does not give a name, which is not the same as not having one.\" She bites the thread. \"**Kinyras will cheat you by the letter of the count**. The nameless man will cheat you by the spirit. Choose which you can live with.\"\n\nShe turns the shirt inside out and begins again.",
       "choices": [
         {
           "text": "Remember the warning.",
@@ -238,7 +245,8 @@
       ]
     },
     "letters": {
-      "text": "\"One. It has been on the shelf for a month and the seal is not for me.\" She nods at a shelf. \"Ugarit's mark. If you are going back, it is yours to carry. If you are not, it is mine to worry about.\"",
+      "beatArt": ["art.cyprus.shipti-shelf-seal"],
+      "text": "\"One. It has been on the shelf for a month and the seal is not for me.\" She nods at a shelf. \"Ugarit's mark. If you are going back, **it is yours to carry**. If you are not, it is mine to worry about.\"",
       "choices": [
         {
           "text": "Look at the shelf.",
@@ -260,7 +268,7 @@
       ]
     },
     "shelf": {
-      "text": "You look. It is a tablet the length of your hand, face down, with a lump of clay pressed over the cord.\n\n\"Not here,\" she says, and puts a hand flat on the shelf. \"The yard is watched and the seal is not mine to break. Come to the courtyard tomorrow, when the boats are out, and I will put it in your hand myself. And bring something to wrap it in. Clay cracks in the cold.\"",
+      "text": "You look. It is a tablet the length of your hand, face down, with a lump of clay pressed over the cord.\n\n\"Not here,\" she says, and puts a hand flat on the shelf. \"The yard is watched and the seal is not mine to break. **Come to the courtyard tomorrow**, when the boats are out, and I will put it in your hand myself. And bring something to wrap it in. Clay cracks in the cold.\"",
       "beatArt": [
         "art.cyprus.inn",
         "art.cyprus.shipti"
@@ -276,6 +284,7 @@
       ]
     },
     "quiet": {
+      "beatArt": ["art.cyprus.shipti-pour"],
       "text": "She pours something that is not water and does not charge you for it, and the two of you listen to the yard until the light goes. Once, when a door bangs, she says a name under her breath, and does not repeat it.",
       "choices": [
         {

@@ -6,7 +6,11 @@
   "start": "letter",
   "nodes": {
     "letter": {
-      "text": "A tablet has been left at the gate with your name on the outside and Hannu's hand on the inside.\n\nIt says: the seal was opened before it reached the island. Say nothing. Come to the gate at the second hour, and if I am not there, do not come again.",
+      "text": "A tablet has been left at the gate with your name on the outside and Hannu's hand on the inside.\n\nIt says: the seal was opened before it reached the island. **Say nothing**. Come to the gate at the second hour, and if I am not there, do not come again.",
+      "beatArt": [
+        "art.good.palace-seal",
+        "art.ugarit.palace-gate"
+      ],
       "choices": [
         {
           "text": "Go to the gate.",
@@ -48,6 +52,9 @@
     },
     "gate": {
       "text": "He is not there. The wall is in shadow and the second hour comes and goes, and a scribe you do not know watches you from the gate and writes nothing down.",
+      "beatArt": [
+        "art.ugarit.palace-gate"
+      ],
       "choices": [
         {
           "text": "Walk back down to the harbor.",
@@ -59,6 +66,9 @@
     },
     "burn": {
       "text": "The tablet does not burn well. It cracks, and the pieces go into the water, and the harbor keeps its own accounts.",
+      "beatArt": [
+        "art.ugarit.harbour"
+      ],
       "choices": [
         {
           "text": "Walk away.",

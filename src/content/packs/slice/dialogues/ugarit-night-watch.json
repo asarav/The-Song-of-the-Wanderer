@@ -60,7 +60,7 @@
       ]
     },
     "watch": {
-      "text": "\"Rope,\" he says. \"Tar. A hull sitting too low. The sea takes a boat quietly, and the harbor is blamed in the morning.\"\n\nHe moves the lamp along the next mooring. \"The jars you landed with are on the second shelf in the warehouse. The harbor stores what the tide would take. The fee is a shekel a night. I have not waived it, whatever the porter told you. Do not make me count them again.\" He coughs. \"Go to bed. One of us should.\"",
+      "text": "\"Rope,\" he says. \"Tar. A hull sitting too low. The sea takes a boat quietly, and the harbor is blamed in the morning.\"\n\nHe moves the lamp along the next mooring. \"The jars you landed with are **on the second shelf in the warehouse**. The harbor stores what the tide would take. The fee is **a shekel a night**. I have not waived it, whatever the porter told you. Do not make me count them again.\" He coughs. \"Go to bed. One of us should.\"",
       "choices": [
         {
           "text": "Thank him and go.",

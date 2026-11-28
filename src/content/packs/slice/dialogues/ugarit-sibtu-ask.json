@@ -94,7 +94,11 @@
   ],
   "nodes": {
     "greet": {
-      "text": "You are the one from the harbor. Sit, if you can sit without being asked twice.\n\nThe loom takes up most of the room. Two children are sorting wool by color, badly, and one of them is winning. The smaller one coughs into the fleece and does not stop working. \"Three more pairs of hands and no flax to spin,\" Sibtu says, to the shuttle. \"That is the whole of my news.\"",
+      "text": "You are the one from the harbor. Sit, if you can sit without being asked twice.\n\nThe loom takes up most of the room. Two children are sorting wool by color, badly, and one of them is winning. The smaller one coughs into the fleece and does not stop working. \"Three more pairs of hands and **no flax to spin**,\" Sibtu says, to the shuttle. \"That is the whole of my news.\"",
+      "beatArt": [
+        "art.ugarit.sibtu-greet-loom",
+        "art.ugarit.cloth-refused"
+      ],
       "choices": [
         {
           "text": "You are not from the city.",
@@ -135,6 +139,10 @@
     },
     "again": {
       "text": "\"You again.\" She does not stop the loom, and one of the children has learned to sort by color since the last time.\n\n\"Sit if you are staying. The light is better on that side, and the stool does not bite.\" The shuttle goes through and comes back. \"If you have come to look at a poor woman's room, you have seen it.\"",
+      "beatArt": [
+        "art.ugarit.sibtu-again-loom",
+        "art.ugarit.sibtu-again-stool"
+      ],
       "choices": [
         {
           "text": "Do you need anything?",
@@ -158,6 +166,10 @@
     },
     "after-help": {
       "text": "The table is clearer than it was, and she does not mention it.\n\n\"Sit, if you are staying. The loom does not mind an audience.\" She cuts a thread with her teeth. \"My cousin says I should not have given it to you. My cousin has never had to ask.\"",
+      "beatArt": [
+        "art.ugarit.cloth-tied",
+        "art.ugarit.sibtu-help-cord"
+      ],
       "choices": [
         {
           "text": "Ask nothing more.",
@@ -175,9 +187,13 @@
     },
     "after-refusal": {
       "text": "\"You again.\" She does not stop the loom. The cloth on the table is folded and tied, and she works around it.\n\n\"If you have come to look at it, look. It does not need an opinion.\" The child who was winning at sorting has stopped pretending to sort, and is watching you.",
+      "beatArt": [
+        "art.ugarit.cloth-table",
+        "art.ugarit.sibtu-refusal-lap"
+      ],
       "choices": [
         {
-          "text": "I was wrong. I will take it to the yard.",
+          "text": "I was wrong. I will take it to the market.",
           "effects": [
             {
               "flag": "refugee.helped"
@@ -221,8 +237,11 @@
       ]
     },
     "amends": {
-      "art": "art.ugarit.cloth-amends",
       "text": "\"Then you are owed.\" She ties the cord tighter and does not look up.\n\n\"I will not forget it, and I will not mention it again.\" She pushes the bundle across the table with two fingers, as if it might be refused a second time.",
+      "beatArt": [
+        "art.ugarit.cloth-amends",
+        "art.ugarit.sibtu-amends-hand"
+      ],
       "choices": [
         {
           "text": "Take the bundle.",
@@ -259,11 +278,15 @@
           "id": "take-the-bundle",
           "intent": "cost"
         }
-      ]
+      ],
+      "art": "art.ugarit.cloth-amends"
     },
     "bundle-missing": {
-      "art": "art.ugarit.cloth-missing",
-      "text": "She looks at your hands, then at the table where the bundle was.\n\n\"You did not take it,\" she says. \"Take it now, and do not make me ask twice. The children have already asked where it went.\"",
+      "text": "She looks at your hands, then at the table where the bundle was.\n\n\"You did not take it,\" she says. \"**Take it now**, and do not make me ask twice. The children have already asked where it went.\"",
+      "beatArt": [
+        "art.ugarit.cloth-missing",
+        "art.ugarit.sibtu-missing-table"
+      ],
       "choices": [
         {
           "text": "Take the bundle.",
@@ -291,11 +314,14 @@
           "id": "take-the-bundle",
           "intent": "cost"
         }
-      ]
+      ],
+      "art": "art.ugarit.cloth-missing"
     },
     "settle": {
-      "art": "art.ugarit.cloth-settle",
-      "text": "\"You sold it, then.\" She sets the shuttle down and holds out her hand, palm up, as if the price were a weight she could check. \"Five. The yard gives five, and I am not asking for the yard's price.\"",
+      "text": "\"You sold it, then.\" She sets the shuttle down and holds out her hand, palm up, as if the price were a weight she could check. \"Five. **The market gives five**, and I am not asking for more than the market.\"",
+      "beatArt": [
+        "art.ugarit.cloth-settle"
+      ],
       "choices": [
         {
           "text": "Give her the five shekels.",
@@ -361,11 +387,15 @@
           "id": "i-cannot-give-it",
           "intent": "help"
         }
-      ]
+      ],
+      "art": "art.ugarit.cloth-settle"
     },
     "settled": {
-      "art": "art.ugarit.cloth-settled",
-      "text": "She counts the five shekels twice, then puts them in the chest without a word. The loom starts again.\n\n\"Three more pairs of hands,\" she says, to the cloth. \"That is all it ever was.\" Then, quieter: \"If you are in the quarter at dark, come back. I will not have you sleeping on the mole.\"",
+      "text": "She counts the **five shekels** twice, then puts them in the chest without a word. The loom starts again.\n\n\"Three more pairs of hands,\" she says, to the cloth. \"That is all it ever was.\" Then, quieter: \"If you are in the quarter at dark, come back. I will not have you sleeping on the mole.\"",
+      "beatArt": [
+        "art.ugarit.cloth-settled",
+        "art.ugarit.sibtu-settled-silver"
+      ],
       "choices": [
         {
           "text": "Leave her to it.",
@@ -373,11 +403,15 @@
           "id": "leave-her-to-it",
           "intent": "deflect"
         }
-      ]
+      ],
+      "art": "art.ugarit.cloth-settled"
     },
     "kept": {
-      "art": "art.ugarit.cloth-kept",
       "text": "She does not ask why. \"No,\" she says, and takes up the shuttle. \"You are not the first.\"\n\nThe loom fills the room again, and the children have stopped pretending to sort wool. \"Close the door behind you,\" she says. \"The draft is bad for the little one.\"",
+      "beatArt": [
+        "art.ugarit.cloth-kept",
+        "art.ugarit.sibtu-kept-door"
+      ],
       "choices": [
         {
           "text": "Leave.",
@@ -385,11 +419,15 @@
           "id": "leave",
           "intent": "deflect"
         }
-      ]
+      ],
+      "art": "art.ugarit.cloth-kept"
     },
     "after-cloth": {
-      "art": "art.ugarit.cloth-after",
       "text": "The chest is shut and the loom is going. She does not mention the cloth, and neither do you.\n\n\"Sit, if you are staying,\" she says. \"The light is still better on that side. And do not look at the chest. It is not a shrine.\"",
+      "beatArt": [
+        "art.ugarit.cloth-after",
+        "art.ugarit.sibtu-after-chest"
+      ],
       "choices": [
         {
           "text": "Ask whether she has heard from inland.",
@@ -403,13 +441,14 @@
           "id": "ask-nothing-more",
           "intent": "deflect"
         }
-      ]
+      ],
+      "art": "art.ugarit.cloth-after"
     },
     "after-cloth-kept": {
-      "text": "The five shekels sit between you and the loom, and neither of you moves them. She does not ask about the five shekels, and you do not offer them.\n\n\"You know where the door is,\" she says, and turns the shuttle. The children do not look up, which is worse than if they had.",
+      "text": "The **five shekels** sit between you and the loom, and neither of you moves them. She does not ask about the five shekels, and you do not offer them.\n\n\"You know where the door is,\" she says, and turns the shuttle. The children do not look up, which is worse than if they had.",
       "beatArt": [
-        "art.ugarit.cloth-kept",
-        "art.ugarit.sibtu"
+        "art.ugarit.sibtu-after-loom",
+        "art.ugarit.sibtu-after-room"
       ],
       "choices": [
         {
@@ -421,7 +460,11 @@
       ]
     },
     "news": {
-      "text": "\"No. News comes to the harbor before it comes to the workshop quarter.\"\n\nShe turns the shuttle. \"If you hear anything, you will tell me before you tell the yard. Not for nothing. I will owe you, and I pay what I owe.\"",
+      "text": "\"No. News comes to the harbor before it comes to the workshop quarter.\"\n\nShe turns the shuttle. \"If you hear anything, you will tell me **before you tell the market**. Not for nothing. I will owe you, and I pay what I owe.\"",
+      "beatArt": [
+        "art.ugarit.sibtu-news-shuttle",
+        "art.ugarit.sibtu-news-wall"
+      ],
       "choices": [
         {
           "text": "Say you will.",
@@ -433,6 +476,9 @@
     },
     "story": {
       "text": "\"Inland. A bad year, then a worse one, and a cousin with a roof and a mouth.\" She does not stop working. \"My husband stayed to bring the last of it. That was two months ago.\" The shuttle goes through, comes back. \"He is not dead. I would know. I would have been told, and the person who told me would have enjoyed it.\"",
+      "beatArt": [
+        "art.ugarit.sibtu-story-warp"
+      ],
       "choices": [
         {
           "text": "Ask nothing more.",
@@ -452,7 +498,11 @@
       ]
     },
     "need": {
-      "text": "\"Tomorrow. Ask me tomorrow, when the children are out and I can say it without them hearing.\" She looks at the loom, not at you. \"And come in the morning, when I have not yet decided to be proud.\"\n\nShe lifts the shuttle, and the conversation is over.",
+      "text": "\"Tomorrow. **Ask me tomorrow**, when the children are out and I can say it without them hearing.\" She looks at the loom, not at you. \"And come in the morning, when I have not yet decided to be proud.\"\n\nShe lifts the shuttle, and the conversation is over.",
+      "beatArt": [
+        "art.ugarit.sibtu-need-loom",
+        "art.ugarit.sibtu-need-warp"
+      ],
       "choices": [
         {
           "text": "Tomorrow, then.",
@@ -468,10 +518,6 @@
           "id": "tomorrow-then",
           "intent": "reveal"
         }
-      ],
-      "beatArt": [
-        "art.ugarit.sibtu",
-        "art.ugarit.workshops"
       ]
     }
   },
@@ -482,7 +528,7 @@
   },
   "scene": {
     "goal": "Get the cloth sold without being seen as merchandise",
-    "obstacle": "The yard and her pride",
+    "obstacle": "The market and her pride",
     "turn": "She asks plainly and hates asking",
     "stakes": "Four children and a husband inland",
     "want": "work-for-hands",

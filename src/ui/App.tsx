@@ -20,6 +20,7 @@ import {
 } from '@engine/state'
 import { itemWeight } from '@engine/economy'
 import {
+  deriveAmbient,
   deriveDestination,
   deriveLocalMap,
   derivePlace,
@@ -27,6 +28,7 @@ import {
   deriveSelf,
   deriveWorldMap,
   presentCharacters,
+  type AmbientView,
 } from '@engine/views'
 import type { LocalMapView, LocalMarkView, MapFeatureView, MapPlaceView } from '@engine/views'
 import { deriveJourney } from '@engine/views'
@@ -49,7 +51,8 @@ import { AudioPlayer, playGateSfx } from './audioPlayer'
 import { Backdrop, TitleBackdrop, backdropFor } from './backdrop'
 import { InfoTip } from './InfoTip'
 import { groupCodex } from './codex'
-import { groupLogByDay } from './log'
+import { filterJournalEntries } from './journal'
+import { filterLogLines, groupLogByDay, logDays } from './log'
 import { cityPath, coastPath, localStreetPath, peakPath, polylinePath } from './sketch'
 import { placeActionFor } from './place'
 import { beatAt, parseRuns, passageKey, splitBeats } from './story'
@@ -58,12 +61,15 @@ import { writtenFor, writtenForDisplay } from './written'
 import { CREDITS, MENU, MENU_LANDS, PROLOGUE_BEATS, WORLD_WONDERS, prologueBeatAt } from './title'
 import {
   DEFAULT_TEXT_SIZE,
+  NAME_TONE_KEY,
   normalizeTextSize,
+  readNameTone,
   readTextSize,
   TEXT_SIZE_KEY,
   TEXT_SIZES,
   type TextSize,
 } from './comfort'
+import { nameTerms } from './terms'
 
 interface NavGroup {
   id: string
@@ -147,6 +153,13 @@ export function App() {
   const index = useGameStore((s) => s.index)
   const placeId = useGameStore((s) => s.placeId)
   const timePassed = useGameStore((s) => s.timePassed)
+
+  // Comfort: the name tone applies from the first screen, not only once Settings is opened.
+  useEffect(() => {
+    document.documentElement.dataset.nameTone = readNameTone(window.localStorage)
+      ? 'on'
+      : 'off'
+  }, [])
 
   // A new screen starts at its heading, not wherever the last one was left.
   useEffect(() => {
@@ -517,6 +530,40 @@ function TextSizeControl() {
   )
 }
 
+/**
+ * The name tone: whether places and people are coloured in the prose. Stored on the device
+ * beside the text size, and applied as an attribute the stylesheet reads.
+ */
+function NameToneControl() {
+  const [coloured, setColoured] = useState<boolean>(() => {
+    try {
+      return readNameTone(typeof window === 'undefined' ? null : window.localStorage)
+    } catch {
+      return true
+    }
+  })
+
+  useEffect(() => {
+    document.documentElement.dataset.nameTone = coloured ? 'on' : 'off'
+    try {
+      window.localStorage.setItem(NAME_TONE_KEY, coloured ? 'on' : 'off')
+    } catch {
+      // A blocked store must not break the control.
+    }
+  }, [coloured])
+
+  return (
+    <label className="comfort">
+      <span>Colour names</span>
+      <input
+        type="checkbox"
+        checked={coloured}
+        onChange={(event) => setColoured(event.target.checked)}
+      />
+    </label>
+  )
+}
+
 /** Renders the tablet spelling with its subscript reading as a subscript in every font. */
 function Subscripted({ text }: { text: string }) {
   const hasSubscript = text.endsWith('₂')
@@ -827,12 +874,27 @@ function DayNote({ change }: { change: TimePassed | null }) {
   )
 }
 
-/** One run of prose, with `**key words**` set in bold instead of shown as markers. */
+/**
+ * One run of prose. `**key words**` are set in bold instead of shown as markers, and the
+ * proper names the slice uses are toned: places in the bronze of the maps, people in the
+ * cool of the ink. The tone is a comfort preference, not content.
+ */
 function Rich({ text }: { text: string }) {
+  const index = useGameStore((s) => s.index)
+  const runs = useMemo(() => parseRuns(text, nameTerms(index)), [text, index])
+
   return (
     <>
-      {parseRuns(text).map((run, index) =>
-        run.bold ? <strong key={index}>{run.text}</strong> : run.text,
+      {runs.map((run, key) =>
+        run.bold ? (
+          <strong key={key}>{run.text}</strong>
+        ) : run.tone ? (
+          <span key={key} className={`name name-${run.tone}`}>
+            {run.text}
+          </span>
+        ) : (
+          run.text
+        ),
       )}
     </>
   )
@@ -852,7 +914,14 @@ function PacedPassage({
   const markRead = useGameStore((s) => s.markPassageRead)
   const story = useBeats(text, read)
 
-  return <Story story={story} beatArts={beatArt} onDone={() => markRead(passage)} />
+  return (
+    <Story
+      story={story}
+      beatArts={beatArt}
+      doneArt={artFor(beatArt?.at(-1))}
+      onDone={() => markRead(passage)}
+    />
+  )
 }
 
 /**
@@ -1042,7 +1111,7 @@ function Scene() {
         nextFocus={choices}
         beatArt={beatArt}
         beatArts={scene.beatArt}
-        doneArt={sceneArt ?? finalBeatArt}
+        doneArt={finalBeatArt ?? sceneArt}
         onDone={() => {
           if (scene) markPassageRead(passageKey.scene(scene.dialogue, scene.node))
         }}
@@ -1223,6 +1292,8 @@ function Destination() {
           <img src={hero.src} alt={hero.alt} />
         </figure>
       ) : null}
+
+      <AmbientPassage entry={deriveAmbient(state, index, 'day')} label="Today" />
 
       {introWasRead ? (
         <details className="destination-recap">
@@ -1416,6 +1487,8 @@ function Place() {
 
       <p className="place-description">{view.description}</p>
 
+      <AmbientPassage entry={deriveAmbient(state, index, 'day')} label="Today" />
+
       {view.actions.length > 0 ? (
         <>
           <h3>Actions here</h3>
@@ -1485,6 +1558,37 @@ function Place() {
  * The place after dark, shown when a day ends without a scene. It is not a second place
  * screen: a picture, the night passage authored for this location, and morning.
  */
+function AmbientPassage({
+  entry,
+  label,
+  showArt = true,
+}: {
+  entry: AmbientView | null
+  label: string
+  showArt?: boolean
+}) {
+  if (!entry) return null
+  const art = showArt ? artFor(entry.beatArt[0]) : null
+
+  return (
+    <aside className="ambient-passage" aria-label={label}>
+      <p className="eyebrow">{label}</p>
+      {art ? (
+        <figure className="ambient-art">
+          <img src={art.src} alt={art.alt} loading="lazy" />
+        </figure>
+      ) : null}
+      <div className="ambient-copy">
+        {entry.text.split(/\n\s*\n/).map((beat, index) => (
+          <p key={index}>
+            <Rich text={beat} />
+          </p>
+        ))}
+      </div>
+    </aside>
+  )
+}
+
 function Night() {
   const state = useGameStore((s) => s.state)
   const index = useGameStore((s) => s.index)
@@ -1495,6 +1599,8 @@ function Night() {
   const destination = index.destinations.get(state.player.location)
   const night = destination?.night
   const hero = artFor(night?.art ?? destination?.art)
+  const dayAmbient = deriveAmbient(state, index, 'day')
+  const nightAmbient = deriveAmbient(state, index, 'night')
 
   return (
     <section className="panel night-panel">
@@ -1505,13 +1611,16 @@ function Night() {
           <img src={hero.src} alt={hero.alt} />
         </figure>
       ) : null}
-      {night ? (
+      <AmbientPassage entry={dayAmbient} label="The day" showArt={false} />
+      <AmbientPassage entry={nightAmbient} label="After dark" showArt={false} />
+      {!nightAmbient && night ? (
         <p className="night-passage">
           <Rich text={night.text} />
         </p>
-      ) : (
+      ) : null}
+      {!nightAmbient && !night ? (
         <p className="note">You sleep where you can. Morning comes anyway.</p>
-      )}
+      ) : null}
       <div className="actions">
         <button type="button" className="btn primary" onClick={() => setScreen('destination')}>
           Sleep until morning
@@ -2789,6 +2898,8 @@ function Journey() {
           <dd>{view.stopsRemaining}</dd>
         </div>
       </dl>
+      <AmbientPassage entry={deriveAmbient(state, index, 'travel')} label="On the water" />
+
       <p className="note">
         The crossing pauses when something happens. Answer the scene and the boat goes on.
       </p>
@@ -2816,59 +2927,151 @@ function Journal() {
   const state = useGameStore((s) => s.state)
   const index = useGameStore((s) => s.index)
   const log = useGameStore((s) => s.dialogueLog)
+  const [tab, setTab] = useState<'entries' | 'log'>('entries')
+  const [selected, setSelected] = useState<string | null>(null)
+  const [query, setQuery] = useState('')
+  const [logQuery, setLogQuery] = useState('')
+  const [logDay, setLogDay] = useState('all')
 
   if (!state) return null
+
   const entries = deriveJournal(state, index)
+  const shown = filterJournalEntries(entries, query)
+  // Keep the open entry if the filter still holds it; otherwise fall back to the newest.
+  const active = shown.find((entry) => entry.id === selected) ?? shown[0]
+
+  const said = filterLogLines(log, logQuery)
+  const dates = logDays(log)
+  const days = groupLogByDay(said).filter((day) => logDay === 'all' || day.date === logDay)
 
   return (
     <section className="panel">
       <h2>Journal</h2>
-      <p className="note">Newest first: the last thing written is at the top.</p>
-      {entries.length === 0 ? <p className="empty">Nothing written yet.</p> : null}
-      {entries.map((entry) => (
-        <article key={entry.id} className="entry">
-          <h3>{entry.title}</h3>
-          <PacedPassage
-            text={entry.text}
-            passage={passageKey.journal(entry.id)}
-            beatArt={entry.beatArt}
-          />
-        </article>
-      ))}
+      <p className="note">
+        What the traveler wrote, newest first, and everything said since coming ashore.
+      </p>
 
-      <details className="journal-log">
-        <summary>Conversation log</summary>
-        <p className="note">
-          Everything said since you came ashore, oldest first. It clears when you leave the page and
-          is not kept in your saved journey.
-        </p>
-        {log.length === 0 ? (
-          <p className="empty">Nothing has been said yet.</p>
+      <div className="tabs" role="group" aria-label="Journal views">
+        <button type="button" aria-pressed={tab === 'entries'} onClick={() => setTab('entries')}>
+          Entries <span className="tab-count">{entries.length}</span>
+        </button>
+        <button type="button" aria-pressed={tab === 'log'} onClick={() => setTab('log')}>
+          Conversation log <span className="tab-count">{log.length}</span>
+        </button>
+      </div>
+
+      {tab === 'entries' ? (
+        entries.length === 0 ? (
+          <p className="empty">Nothing written yet.</p>
         ) : (
-          groupLogByDay(log).map((day) => (
-            <div key={`${day.date}-${day.lines[0]?.key ?? ''}`}>
-              <h4 className="log-day">{day.date}</h4>
-              <ul className="list log">
-                {day.lines.map((line, lineIndex) => {
-                  const node = index.dialogues.get(line.dialogue)?.nodes[line.node]
-                  return (
+          <div className="codex-layout journal-layout">
+            <nav className="codex-nav" aria-label="Journal entries">
+              <p className="codex-count">
+                {shown.length === entries.length
+                  ? `${entries.length} ${entries.length === 1 ? 'entry' : 'entries'}`
+                  : `${shown.length} of ${entries.length} entries`}
+              </p>
+              <label className="index-filter">
+                <span className="index-filter-label">Find an entry</span>
+                <input
+                  type="search"
+                  value={query}
+                  aria-label="Filter journal entries"
+                  onChange={(event) => setQuery(event.target.value)}
+                />
+              </label>
+              {shown.length === 0 ? (
+                <p className="empty">No entry matches that.</p>
+              ) : (
+                <ul>
+                  {shown.map((entry) => (
+                    <li key={entry.id}>
+                      <button
+                        type="button"
+                        className={entry.id === active?.id ? 'codex-link active' : 'codex-link'}
+                        aria-current={entry.id === active?.id ? 'true' : undefined}
+                        onClick={() => setSelected(entry.id)}
+                      >
+                        {entry.title}
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </nav>
+
+            {active ? (
+              <article key={active.id} className="entry codex-entry" aria-live="polite">
+                <h3>{active.title}</h3>
+                <PacedPassage
+                  text={active.text}
+                  passage={passageKey.journal(active.id)}
+                  beatArt={active.beatArt}
+                />
+              </article>
+            ) : null}
+          </div>
+        )
+      ) : (
+        <div className="journal-log-panel">
+          <div className="log-controls">
+            <label className="index-filter">
+              <span className="index-filter-label">Find a line</span>
+              <input
+                type="search"
+                value={logQuery}
+                aria-label="Find in the conversation log"
+                onChange={(event) => setLogQuery(event.target.value)}
+              />
+            </label>
+            <label className="log-day-select">
+              <span>Day</span>
+              <select value={logDay} onChange={(event) => setLogDay(event.target.value)}>
+                <option value="all">All days</option>
+                {dates.map((date) => (
+                  <option key={date} value={date}>
+                    {date}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <p className="note">
+              {said.length} {said.length === 1 ? 'line' : 'lines'} over {dates.length}{' '}
+              {dates.length === 1 ? 'day' : 'days'}
+            </p>
+          </div>
+
+          <p className="note">
+            Oldest first. It clears when you leave the page and is not kept in your saved journey.
+          </p>
+
+          {log.length === 0 ? (
+            <p className="empty">Nothing has been said yet.</p>
+          ) : days.length === 0 ? (
+            <p className="empty">Nothing said in this log matches that.</p>
+          ) : (
+            days.map((day) => (
+              <section key={`${day.date}-${day.lines[0]?.key ?? ''}`} className="log-day-group">
+                <h3 className="log-day">{day.date}</h3>
+                <ul className="list log">
+                  {day.lines.map((line, lineIndex) => (
                     <li key={`${lineIndex}-${line.key}`}>
                       <strong>{line.speaker ?? 'Narration'}</strong>
                       <div className="log-text">
-                        <PacedPassage
-                          text={line.text}
-                          passage={passageKey.scene(line.dialogue, line.node)}
-                          beatArt={node?.beatArt}
-                        />
+                        {splitBeats(line.text).map((beat, beatIndex) => (
+                          <p key={beatIndex}>
+                            <Rich text={beat} />
+                          </p>
+                        ))}
                       </div>
                     </li>
-                  )
-                })}
-              </ul>
-            </div>
-          ))
-        )}
-      </details>
+                  ))}
+                </ul>
+              </section>
+            ))
+          )}
+        </div>
+      )}
     </section>
   )
 }
@@ -3162,6 +3365,11 @@ function Settings() {
       </p>
 
       <TextSizeControl />
+      <NameToneControl />
+      <p className="note">
+        Colour names sets places in bronze and people in ink-blue wherever they are named in
+        the prose. Turn it off for plain text.
+      </p>
 
       <h3>Play</h3>
       <dl className="facts">

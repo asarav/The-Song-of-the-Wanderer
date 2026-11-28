@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { groupLogByDay } from './log'
+import { filterLogLines, groupLogByDay, logDays } from './log'
 
 const line = (date: string, key: string) => ({ date, key })
 
@@ -20,5 +20,32 @@ describe('conversation log by day', () => {
 
   it('has nothing to show for an empty log', () => {
     expect(groupLogByDay([])).toEqual([])
+  })
+})
+
+describe('conversation log search', () => {
+  const said = [
+    { date: 'd1', speaker: 'Hannu', text: 'the market is up the hill' },
+    { date: 'd2', speaker: 'Shipti', text: 'the yard is honest and the harbor is not' },
+  ]
+
+  it('keeps the transcript in order when nothing is asked', () => {
+    expect(filterLogLines(said, '')).toEqual(said)
+  })
+
+  it('finds a line by its speaker', () => {
+    expect(filterLogLines(said, 'shipti')).toEqual([said[1]])
+  })
+
+  it('finds a line by a word that was said', () => {
+    expect(filterLogLines(said, 'harbor')).toEqual([said[1]])
+  })
+
+  it('treats a missing speaker as nobody rather than crashing', () => {
+    expect(filterLogLines([{ date: 'd1', text: 'narration only' }], 'hannu')).toEqual([])
+  })
+
+  it('lists each day once, in the order it was first spoken', () => {
+    expect(logDays([{ date: 'd1' }, { date: 'd2' }, { date: 'd1' }])).toEqual(['d1', 'd2'])
   })
 })

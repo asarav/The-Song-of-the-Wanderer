@@ -6,6 +6,10 @@
   "nodes": {
     "talk": {
       "text": "A man with too much luggage and too little sea-legs has decided that you are the most interesting person aboard.\n\n\"You are from the coast. You have the face. Is it true that the islanders pay in copper and not in silver?\"",
+      "beatArt": [
+        "art.travel.passenger",
+        "art.good.copper"
+      ],
       "choices": [
         {
           "text": "They weigh it and they argue about the weight.",
@@ -45,7 +49,10 @@
       ]
     },
     "news": {
-      "text": "\"There is a yard on the island that will take grain at a good price this month, and a broker there who will not. Kinyras. He buys at the yard price and sells at whatever the boats say.\"",
+      "text": "\"There is a yard on the island that **will take grain at a good price** this month, and a broker there who will not. Kinyras. He buys at the yard price and sells at whatever the boats say.\"",
+      "beatArt": [
+        "art.cyprus.kinyras"
+      ],
       "choices": [
         {
           "text": "Remember the name.",
@@ -66,6 +73,9 @@
     },
     "end": {
       "text": "He talks until the light goes, and then he is sick over the side and apologizes for it, and the night is easier after that.",
+      "beatArt": [
+        "art.travel.seasick"
+      ],
       "choices": [
         {
           "text": "Watch the water.",

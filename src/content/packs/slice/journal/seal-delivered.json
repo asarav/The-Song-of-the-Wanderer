@@ -3,8 +3,10 @@
   "pack": "pack.slice",
   "contentVersion": 1,
   "title": "The seal on the board",
-  "text": "I put the palace's seal on Kinyras's board and said nothing. He told me to tell the gate the count is short. I do not know what the count is, and he did not offer to explain.",
-  "beatArt": ["art.good.palace-seal"],
+  "text": "I put the palace's seal on Kinyras's board and said nothing. He told me to tell the gate **the count is short**. I do not know what the count is, and he did not offer to explain.",
+  "beatArt": [
+    "art.cyprus.yard"
+  ],
   "provenance": {
     "confidence": "fictional",
     "sources": [],

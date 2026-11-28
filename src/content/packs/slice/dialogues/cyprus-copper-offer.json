@@ -6,7 +6,10 @@
   "start": "offer",
   "nodes": {
     "offer": {
-      "text": "\"Grain, is it? The yard is short and the boats are late. I will give you twenty-four shekels for the measure and not ask where it came from. The copper stays mine; carry it home and you can argue with the harbor dues instead, and the dues will win.\" He does not smile. \"Well? My time is worth what the grain is worth, and neither of us is getting younger.\"",
+      "text": "\"Grain, is it? The yard is short and the boats are late. I will give you **twenty-four shekels** for the measure and not ask where it came from. The copper stays mine; carry it home and you can argue with the harbor dues instead, and the dues will win.\" He does not smile. \"Well? My time is worth what the grain is worth, and neither of us is getting younger.\"",
+      "beatArt": [
+        "art.cyprus.yard"
+      ],
       "choices": [
         {
           "text": "Agreed.",
@@ -105,7 +108,11 @@
       ]
     },
     "done": {
-      "text": "\"Then we are both richer and neither of us is happy. That is a good deal.\" He makes a mark on the board and does not offer to write anything else down. \"If the yard asks, you sold to me at the price I said. If your friend asks, you did better.\"\n\nHe turns the board face down and goes to the next seller.",
+      "text": "\"Then we are both richer and neither of us is happy. That is a good deal.\" He makes a mark on the board and does not offer to write anything else down. \"If the yard asks, **you sold to me at the price I said**. If your friend asks, you did better.\"\n\nHe turns the board face down and goes to the next seller.",
+      "beatArt": [
+        "art.cyprus.copper-board",
+        "art.prologue.purse"
+      ],
       "choices": [
         {
           "text": "Count the silver.",
@@ -128,14 +135,14 @@
           "id": "count-the-silver",
           "intent": "reveal"
         }
-      ],
-      "beatArt": [
-        "art.cyprus.kinyras",
-        "art.cyprus.arrival"
       ]
     },
     "hard": {
-      "text": "\"Thirty-six.\" He says it without heat, the way a man says a number he has already decided on. \"You argue like a man who has been cheated before. Good. Come back when you have more to sell, and bring the same face. I like a man whose face does not change.\"\n\nThe board goes down. The next man is already waiting.",
+      "text": "\"**Thirty-six**.\" He says it without heat, the way a man says a number he has already decided on. \"You argue like a man who has been cheated before. Good. Come back when you have more to sell, and bring the same face. I like a man whose face does not change.\"\n\nThe board goes down. The next man is already waiting.",
+      "beatArt": [
+        "art.cyprus.copper-ingots",
+        "art.good.silver"
+      ],
       "choices": [
         {
           "text": "Take the silver.",
@@ -180,10 +187,6 @@
           "id": "take-the-silver",
           "intent": "help"
         }
-      ],
-      "beatArt": [
-        "art.cyprus.kinyras",
-        "art.cyprus.arrival"
       ]
     }
   },

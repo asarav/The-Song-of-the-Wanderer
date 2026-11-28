@@ -7,7 +7,7 @@
   "entries": [],
   "nodes": {
     "greet": {
-      "text": "Yada is carrying a basket of tablets across the yard, a reed still between two fingers. \"Do not stand there,\" he says. \"Take the other handle. The archive is moving, and I have decided I am going with it.\"",
+      "text": "Yada is carrying a basket of tablets across the courtyard, a reed still between two fingers. \"Do not stand there,\" he says. \"Take the other handle. The archive is moving, and I have decided I am going with it.\"",
       "beatArt": [
         "art.ugarit.archive"
       ],
@@ -36,7 +36,7 @@
       ]
     },
     "thanks": {
-      "text": "Yada takes the other handle and does not slow down. At the far side of the yard he sets the basket down and taps the empty corner of the board. \"You did not ask what was in them. That is the whole of the test. Come back when the tablets are shelved and I will show you what a catalogue is.\"",
+      "text": "Yada takes the other handle and does not slow down. At the far side of the courtyard he sets the basket down and taps the empty corner of the board. \"You did not ask what was in them. That is the whole of the test. **Come back when the tablets are shelved** and I will show you what a catalogue is.\"",
       "beatArt": [
         "art.ugarit.yada"
       ],

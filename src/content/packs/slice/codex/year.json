@@ -4,7 +4,7 @@
   "contentVersion": 1,
   "title": "The year and its days",
   "category": "measure",
-  "text": "The year is counted as three hundred and sixty-five days: twelve months of thirty days, then five days that belong to no month. The count writes those five as a short thirteenth month, and a date reads year, then month, then day.\n\nA modern year holds 365 days too, but its months run 28, 30 or 31 days long and every fourth year takes an extra day. Here the months stay equal and no extra day is owed, so the count drifts against the seasons by a day every four years.\n\nDays are what a road costs. A crossing of eight days takes eight of them, and none of them comes back.",
+  "text": "The year is counted as three hundred and **sixty-five days**: twelve months of **thirty days**, then five days that belong to no month. The count writes those five as a short thirteenth month, and a date reads year, then month, then day.\n\nA modern year holds **365 days** too, but its months run 28, 30 or **31 days** long and every fourth year takes an extra day. Here the months stay equal and no extra day is owed, so the count drifts against the seasons by a day every four years.\n\nDays are what a road costs. A crossing of **eight days** takes eight of them, and none of them comes back.",
   "provenance": {
     "confidence": "documented",
     "sources": [
@@ -12,5 +12,10 @@
       "Late Bronze Age eastern Mediterranean calendrical practice, general"
     ],
     "notes": "The 365-day count without a leap day is documented for Egypt and used across the eastern Mediterranean; the drift is arithmetic, not a claim about observances. Ugarit's own calendars were lunar with intercalary months, so this entry describes the count the game's dates use (the Egyptian pattern, `docs/design/00-timeline.md`) rather than asserting that every scribe in the city kept it."
-  }
+  },
+  "beatArt": [
+    "art.ugarit.archive",
+    "art.ugarit.yada",
+    "art.travel.empty-sea"
+  ]
 }

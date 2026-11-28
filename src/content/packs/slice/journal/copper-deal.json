@@ -3,6 +3,13 @@
   "pack": "pack.slice",
   "contentVersion": 1,
   "title": "A price agreed",
-  "text": "Kinyras buys grain at the yard price and sells copper at whatever the boats say. He weighed my measure twice, both times in his favor, and paid in silver on the board. Neither of us was happy, which he says is the sign of a fair deal.",
-  "provenance": { "confidence": "fictional", "sources": [], "notes": "The trade beat." }
+  "text": "Kinyras buys grain at **the yard price** and sells copper at whatever the boats say. He weighed my measure twice, both times in his favor, and paid in silver on the board. Neither of us was happy, which he says is the sign of a fair deal.",
+  "provenance": {
+    "confidence": "fictional",
+    "sources": [],
+    "notes": "The trade beat."
+  },
+  "beatArt": [
+    "art.cyprus.kinyras"
+  ]
 }

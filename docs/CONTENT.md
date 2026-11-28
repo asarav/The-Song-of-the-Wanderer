@@ -16,6 +16,7 @@ Renaming an ID requires a save migration if it appears in existing saves.
 | Character | `char.` | `char.ugarit.amnit` |
 | Event / encounter | `evt.` | `evt.slice.recognition` |
 | Dialogue graph | `dlg.` | `dlg.ugarit.amnit.first-meeting` |
+| Ambient observation | `ambient.` | `ambient.levant.night.stars-anchorage` |
 | Journal entry | `journal.` | `journal.slice.first-crossing` |
 | Codex entry | `codex.` | `codex.ugarit` |
 | Faction | `faction.` | `faction.ugarit.palace` |
@@ -161,8 +162,32 @@ never handed a wall of text.
 `**Double asterisks**` set a key word or phrase in bold. Use them for the proper nouns a
 reader must keep and the mechanisms they must remember (the harbor tax, the market, the
 day). Two or three in a beat is plenty; a bolded sentence is a shout, not an emphasis.
+The cheapest place to spend them is a price the reader must weigh or a count of days they
+must keep, because that is the guidance the interface offers instead of a quest log. Do
+not bold a choice label: a button already stands out, and the label is part of the
+mechanics the content guard hashes.
+
+**Which sentence earns the bold.** Choose it by reading the beat, not by matching a
+pattern. Bold the one thing a reader would have to carry into the next screen: the person
+to see, the place to go, the object to bring, what it costs, what is owed, the hour or the
+day. One is usually enough; two only when a beat genuinely names two things a reader must
+keep, such as a shelf and a fee. A beat that sets a scene, shows a habit, or lands a joke
+stays plain — most beats should — and a beat where the only candidate is the speaker's name
+in a beat about that speaker is already served by the name tone. Never bold a clause for
+rhythm, never bold the same phrase twice in a beat, and never bold a choice label.
+
 Neither convention reaches the engine: both are presentation only, neither is stored in a
 save, and the prose still reads if the markers are stripped.
+
+**Names in the prose.** The interface colours the proper names the slice uses — a place in
+bronze, a person in ink-blue — wherever the name appears in prose. The lists are derived,
+not authored: destination names and character names come from the content index, and the
+neighbouring places the copy already names (Alashiya, Enkomi, Egypt, Thebes, Giza) are the
+only hand-kept additions (`src/ui/terms.ts`). Matching is case sensitive on purpose, so
+"the market", "the yard" and "the harbor" stay in the body colour while Ugarit, Cyprus
+and Hannu do not, and a name inside a bold phrase stays bold. Settings offers a "Colour
+names" switch, on by default, stored per device beside the text size; with it off the
+prose returns to one colour. Tone is never content: an author writes plain names.
 
 ### Words in their own script
 
@@ -298,6 +323,58 @@ pool of encounters.
 - Night scenes must respect the same prose, provenance and journal rules as any other
   event.
 
+### Daytime events
+
+A destination may author a `day` band beside `night`. It uses the same event envelope and
+the same `weight` shape; the only difference is when it is drawn.
+
+```jsonc
+"day": {
+  "events": [{ "event": "evt.ugarit.day-water-line", "weight": 1 }]
+}
+```
+
+- After **exactly one day** at the place, at most one eligible daytime event is drawn
+  before the night draw. Major events stay scheduled; a day event is not a replacement for
+  a main scene.
+- `conditions` and `cooldownDays` apply. The draw uses the seeded `encounters` stream.
+- A day event must earn its place: it is a scene or a change, not a second ambient layer.
+  If it only sets a mood, it belongs in `ambient/`.
+
+### Ambient observations
+
+Ambient observations are one or two beats of player-facing copy. They have no effects, no
+scene, no condition on world truth and no saved state. The view derives one from the seed,
+day, location and context.
+
+```jsonc
+{
+  "id": "ambient.levant.night.stars-anchorage",
+  "context": "night",
+  "cultures": ["culture.levant.coastal"],
+  "scope": { "destinations": ["dest.ugarit"] },
+  "conditions": { "all": [] },
+  "weight": 1,
+  "tags": ["stars", "omens"],
+  "text": "A sailor names the stars over the mole...",
+  "beatArt": ["art.ugarit.night"],
+  "provenance": { "confidence": "plausible", "sources": [], "notes": "..." }
+}
+```
+
+Rules:
+
+- `context` is `day`, `night` or `travel`. `cultures` and `scope` are filters; a travel
+  observation scopes to routes, a day/night one to destinations.
+- One or two beats, one `beatArt` per beat, existing plates only. Ambient cannot grow the
+  beat-art debt; a missing plate fails the art tests.
+- The selector avoids the previous day's tag when another eligible observation exists,
+  and night falls back to the destination's `night.text` when nothing matches.
+- Divine or astrological statements are **reported belief**, never a metaphysical fact.
+  Every historical claim carries provenance like any other content.
+- A culture needs four day and four night observations before `ambient:check` passes; a
+  route needs six travel observations.
+
 ## 6. Dialogue graphs
 
 ```jsonc
@@ -368,11 +445,14 @@ Rules:
 ## 8. Workflow
 
 1. Create or update the dossier in `docs/design/dossiers/` (template provided).
-2. Add entities to `src/content/`.
-3. Run `pnpm content:lint` until clean.
-4. Add or extend a scenario in `src/engine/scenarios/` that reaches the new content.
-5. Run `pnpm check`.
-6. Update the destination's section in `docs/design/01-regions.md` if scope changed.
+2. Plan the matrix with `pnpm factory -- audit`; scaffold with `pnpm factory -- new` or
+   expand an authored recipe with `pnpm factory -- variants`. Fill every `TODO:` before
+   running a gate.
+3. Add entities to `src/content/`.
+4. Run `pnpm content:lint` and `pnpm ambient:check` until clean.
+5. Add or extend a scenario in `src/engine/scenarios/` that reaches the new content.
+6. Run `pnpm check`.
+7. Update the destination's section in `docs/design/01-regions.md` if scope changed.
 
 ## 9. Localisation readiness
 

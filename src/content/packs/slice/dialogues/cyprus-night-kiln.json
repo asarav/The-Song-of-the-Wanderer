@@ -78,7 +78,7 @@
       ]
     },
     "why": {
-      "text": "\"Because the tin came late, and the mold will not wait for daylight,\" she says.\n\nShe turns a clay mold over in her hands. \"Tomorrow a man from Enkomi will tell me the price of copper has fallen. Tonight it is still worth what it is worth.\" She sets the mold down. \"My father sold this yard for a debt. I am not going to sell it for a price some man decides on his way to lunch.\"",
+      "text": "\"Because the tin came late, and the mold will not wait for daylight,\" she says.\n\nShe turns a clay mold over in her hands. \"Tomorrow a man from Enkomi will tell me **the price of copper has fallen**. Tonight it is still worth what it is worth.\" She sets the mold down. \"My father sold this yard for a debt. I am not going to sell it for a price some man decides on his way to lunch.\"",
       "choices": [
         {
           "text": "Ask what she thinks it will be worth tomorrow.",

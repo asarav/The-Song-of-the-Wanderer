@@ -225,7 +225,7 @@
     },
     "seal": {
       "art": "art.good.palace-seal",
-      "text": "You put the seal on the board between you and say nothing.\n\nHe looks at it for exactly as long as it takes to decide not to look at it. \"Tell the gate the count is short. They will know what it means.\" Then, because the boy is listening: \"And tell them Kinyras counted it himself. Twice.\"",
+      "text": "You put the seal on the board between you and say nothing.\n\nHe looks at it for exactly as long as it takes to decide not to look at it. \"Tell the gate **the count is short**. They will know what it means.\" Then, because the boy is listening: \"And tell them Kinyras counted it himself. Twice.\"",
       "beatArt": [
         "art.good.palace-seal",
         "art.cyprus.kinyras"
@@ -240,7 +240,7 @@
       ]
     },
     "grain": {
-      "text": "\"The yard buys whatever the boats cannot eat. Grain is not copper; it does not wait to be sold.\"\n\nHe says it as a fact about grain, not about you. Then he adds, \"If you have grain, bring it at first light. The price is better before the harbor wakes up and starts lying.\"",
+      "text": "\"The yard buys whatever the boats cannot eat. Grain is not copper; it does not wait to be sold.\"\n\nHe says it as a fact about grain, not about you. Then he adds, \"If you have grain, **bring it at first light**. The price is better before the harbor wakes up and starts lying.\"",
       "choices": [
         {
           "text": "Remember it.",
@@ -251,7 +251,7 @@
       ]
     },
     "offer": {
-      "text": "\"Copper is nine the ingot at the yard. Ten to a stranger who has not learned to ask. Tomorrow it is whatever the boats say.\" He taps the board. \"Come back when you have decided, and bring something worth weighing. I do not weigh opinions.\"\n\nHe turns back to the board, and the harbor fills the silence.",
+      "text": "\"Copper is **nine the ingot at the yard**. Ten to a stranger who has not learned to ask. Tomorrow it is whatever the boats say.\" He taps the board. \"Come back when you have decided, and bring something worth weighing. I do not weigh opinions.\"\n\nHe turns back to the board, and the harbor fills the silence.",
       "choices": [
         {
           "text": "Leave him to the count.",

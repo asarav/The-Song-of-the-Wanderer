@@ -6,6 +6,10 @@
   "nodes": {
     "boat": {
       "text": "A fishing hull, low in the water, carrying a household and what it could lift. A woman at the stern has a child asleep against her shoulder and a bundle of tools at her feet.\n\nThey are not in distress. They are simply going somewhere, slowly, with too much weight.",
+      "beatArt": [
+        "art.travel.fishing-hull",
+        "art.travel.child-stern"
+      ],
       "choices": [
         {
           "text": "Pass them water.",
@@ -41,6 +45,9 @@
     },
     "water": {
       "text": "The water goes into a jar that is already half full of something else. The woman says a word you do not know and touches her forehead, and the boats drift apart.",
+      "beatArt": [
+        "art.travel.water-jar"
+      ],
       "choices": [
         {
           "text": "Watch them until they are small.",
@@ -51,7 +58,11 @@
       ]
     },
     "bound": {
-      "text": "\"Ugarit. My cousin has a roof.\" She says it as a fact she has rehearsed. \"Inland is finished for us this year.\"\n\nThe master says nothing until they are out of earshot. \"There will be more of them by the autumn.\"",
+      "text": "\"Ugarit. **My cousin has a roof**.\" She says it as a fact she has rehearsed. \"Inland is finished for us this year.\"\n\nThe master says nothing until they are out of earshot. \"There will be **more of them by the autumn**.\"",
+      "beatArt": [
+        "art.travel.fishing-hull",
+        "art.ugarit.tiro"
+      ],
       "choices": [
         {
           "text": "Say nothing.",
@@ -72,6 +83,9 @@
     },
     "away": {
       "text": "You look at the water instead. The master looks at you, and then at the sail, and then at the water, and the boat goes on.",
+      "beatArt": [
+        "art.travel.two-boats"
+      ],
       "choices": [
         {
           "text": "Keep looking at the water.",

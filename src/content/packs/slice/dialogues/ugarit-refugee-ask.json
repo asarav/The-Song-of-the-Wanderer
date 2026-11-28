@@ -7,10 +7,15 @@
   "nodes": {
     "ask": {
       "art": "art.ugarit.cloth-table",
-      "text": "The children are out. She has a bundle of cloth on the table, folded twice and tied with cord.\n\n\"Three more pairs of hands and no flax to spin. I need a buyer who will not cheat me on the weight. I cannot go to the yard myself. Someone would decide I am for sale.\"\n\nShe says the last part plainly, as a fact about the yard and not about herself.",
+      "text": "The children are out. She has a bundle of cloth on the table, folded twice and tied with cord.\n\n\"Three more pairs of hands and no flax to spin. I need **a buyer who will not cheat me on the weight**. I cannot go to the market here myself. Someone would decide I am for sale.\"\n\nShe says the last part plainly, as a fact about the market and not about herself.",
+      "beatArt": [
+        "art.ugarit.cloth-table",
+        "art.ugarit.sibtu-help-cord",
+        "art.ugarit.sibtu-missing-table"
+      ],
       "choices": [
         {
-          "text": "I will take it to the yard and sell it at what it is worth.",
+          "text": "I will take it to the market and sell it at what it is worth.",
           "effects": [
             {
               "flag": "refugee.helped"
@@ -99,6 +104,10 @@
     "thanks": {
       "art": "art.ugarit.cloth-tied",
       "text": "\"Then you are owed.\" She ties the cord tighter and does not look up. \"I will not forget it, and I will not mention it again.\"\n\nThe loom takes her back, and the street keeps its noise.",
+      "beatArt": [
+        "art.ugarit.cloth-tied",
+        "art.ugarit.sibtu-again-loom"
+      ],
       "choices": [
         {
           "text": "Take the bundle.",
@@ -135,15 +144,14 @@
           "id": "take-the-bundle",
           "intent": "cost"
         }
-      ],
-      "beatArt": [
-        "art.ugarit.sibtu",
-        "art.ugarit.market"
       ]
     },
     "refused": {
       "art": "art.ugarit.cloth-refused",
       "text": "\"No. Of course not.\" She cuts the cord with her thumbnail and starts folding the cloth back into the chest, and the room is very quiet.",
+      "beatArt": [
+        "art.ugarit.cloth-refused"
+      ],
       "choices": [
         {
           "text": "Leave.",
@@ -160,7 +168,7 @@
     "notes": "The refugee thread's request. Invented."
   },
   "scene": {
-    "goal": "Find a buyer without going to the yard",
+    "goal": "Find a buyer without going to the market",
     "obstacle": "No flax, no protector, and a cousin with a roof",
     "turn": "She hands over the cloth",
     "stakes": "The household",

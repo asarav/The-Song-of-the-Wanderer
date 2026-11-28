@@ -3,10 +3,13 @@
   "pack": "pack.slice",
   "contentVersion": 1,
   "title": "A letter with a seal",
-  "text": "A sealed tablet with Ugarit's mark and Hannu's hand. It says: come back. It does not say why, and the seal has been opened and closed again. The next step is the palace gate at Ugarit, at the second hour.",
+  "text": "A sealed tablet with Ugarit's mark and Hannu's hand. It says: come back. It does not say why, and the seal has been opened and closed again. The next step is **the palace gate at Ugarit**, at the second hour.",
   "provenance": {
     "confidence": "fictional",
     "sources": [],
     "notes": "The closing hook."
-  }
+  },
+  "beatArt": [
+    "art.good.palace-seal"
+  ]
 }

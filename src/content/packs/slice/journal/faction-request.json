@@ -3,6 +3,13 @@
   "pack": "pack.slice",
   "contentVersion": 1,
   "title": "The gate's errand",
-  "text": "The palace wants a seal carried to Cyprus and not written down. I am to show it to Kinyras and say nothing else. If anyone asks, I never had it.",
-  "provenance": { "confidence": "fictional", "sources": [], "notes": "The palace errand." }
+  "text": "The palace wants a seal carried to Cyprus and not written down. I am to **show it to Kinyras** and say nothing else. If anyone asks, I never had it.",
+  "provenance": {
+    "confidence": "fictional",
+    "sources": [],
+    "notes": "The palace errand."
+  },
+  "beatArt": [
+    "art.good.palace-seal"
+  ]
 }

@@ -6,6 +6,10 @@
   "nodes": {
     "bow": {
       "text": "The crew talks over your head in a language that is almost familiar. Not Akkadian. Not the Ugaritic of the market. Something with a different rhythm, and words that come back around.\n\nOne of them notices you listening and says a word clearly, twice, and waits.",
+      "beatArt": [
+        "art.travel.crew-bow",
+        "art.travel.words"
+      ],
       "choices": [
         {
           "text": "Say the word back.",
@@ -52,6 +56,9 @@
     },
     "word": {
       "text": "They laugh, but not at you. The word is repeated, and then another, and by the end of the watch you have four words and no idea how to put them together.",
+      "beatArt": [
+        "art.travel.words"
+      ],
       "choices": [
         {
           "text": "Keep the four words.",
@@ -63,6 +70,9 @@
     },
     "ask": {
       "text": "\"Wind,\" the man says in Akkadian, and then makes a gesture that means the wind is wrong. \"Also a name. Maybe a man's name. Maybe the wind's.\"",
+      "beatArt": [
+        "art.travel.wind-gesture"
+      ],
       "choices": [
         {
           "text": "Nod as if that settles it.",

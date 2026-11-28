@@ -117,6 +117,12 @@
       ]
     }
   ],
+  "day": {
+    "events": [
+      { "event": "evt.ugarit.day-water-line", "weight": 2 },
+      { "event": "evt.ugarit.day-gate-queue", "weight": 1 }
+    ]
+  },
   "night": {
     "art": "art.ugarit.night",
     "beatArt": [

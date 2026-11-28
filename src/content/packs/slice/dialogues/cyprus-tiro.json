@@ -14,7 +14,7 @@
   ],
   "nodes": {
     "greet": {
-      "text": "Tiro is on the Cypriot quay with a coil of rope over one shoulder and the same flat look he wore at Ugarit. \"You again,\" he says. \"The island has not sunk, and the boat has not learned to fly. If you want the return tide, be at the mole before the light.\"",
+      "text": "Tiro is on the Cypriot quay with a coil of rope over one shoulder and the same flat look he wore at Ugarit. \"You again,\" he says. \"The island has not sunk, and the boat has not learned to fly. If you want the return tide, **be at the mole before the light**.\"",
       "beatArt": [
         "art.ugarit.tiro"
       ],

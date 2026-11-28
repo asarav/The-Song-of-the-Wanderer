@@ -44,7 +44,7 @@
   ],
   "nodes": {
     "light": {
-      "text": "You are standing in the light.\n\nShe does not stop working. The hammer comes down, the piece turns, the hammer comes down. A girl of about nine — her daughter — is sorting charcoal by size and watching you instead. \"If you are buying, the price is on the wall. If you are selling, put it on the scale. If you are admiring, admire from the door; the sparks have opinions.\"",
+      "text": "You are standing in the light.\n\nShe does not stop working. The hammer comes down, the piece turns, the hammer comes down. A girl of about nine — her daughter — is sorting charcoal by size and watching you instead. \"If you are buying, **the price is on the wall**. If you are selling, put it on the scale. If you are admiring, admire from the door; the sparks have opinions.\"",
       "choices": [
         {
           "text": "I have tin.",
@@ -100,7 +100,7 @@
       ]
     },
     "again-tin": {
-      "text": "She remembers the weight before she remembers your face.\n\n\"More tin? Put it on the scale. Do not tell me it is good; the scale decides.\" The girl has stopped sorting and is watching the pan, and Ada does not tell her to look away. \"You can watch,\" she says, to the girl. \"You will be weighing it yourself soon enough.\"",
+      "text": "She remembers the weight before she remembers your face.\n\n\"More tin? **Put it on the scale**. Do not tell me it is good; the scale decides.\" The girl has stopped sorting and is watching the pan, and Ada does not tell her to look away. \"You can watch,\" she says, to the girl. \"You will be weighing it yourself soon enough.\"",
       "choices": [
         {
           "text": "I have tin.",
@@ -248,7 +248,7 @@
       ]
     },
     "tin": {
-      "text": "She weighs it in her hand, then on the scale, then in her hand again. \"Good tin. Not the gray stuff.\" The silver comes out of a jar and not from under the floor, which is a courtesy. \"Tell the yard you sold to Ada. They will not believe you, but it will make them ask.\"",
+      "text": "She weighs it in her hand, then on the scale, then in her hand again. \"Good tin. Not the gray stuff.\" The silver comes out of a jar and not from under the floor, which is a courtesy. \"**Tell the yard you sold to Ada**. They will not believe you, but it will make them ask.\"",
       "choices": [
         {
           "text": "Take the silver.",

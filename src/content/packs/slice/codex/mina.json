@@ -4,7 +4,7 @@
   "contentVersion": 1,
   "title": "The mina, and what a back carries",
   "category": "measure",
-  "text": "A **mina** is fifty shekels: about half a kilogram of silver, near enough to a bag of sugar held in one hand. Sixty minas make a **talent**, some twenty-eight kilograms — a load for two people and a carrying pole, not for one.\n\nGoods are weighed in the same minas. A copper ingot is four minas, about two kilograms; a jar of oil is three; a porter's full load is twenty, about nine kilos. A traveler on foot carries no more than a porter does.\n\nThose numbers are how the goods in this market are counted against one another. They are not a record of what any yard charged.",
+  "text": "A **mina** is fifty shekels: about half a kilogram of silver, near enough to a bag of sugar held in one hand. Sixty minas make a **talent**, some twenty-eight kilograms — a load for two people and a carrying pole, not for one.\n\nGoods are weighed in the same minas. A copper ingot is **four minas**, about two kilograms; a jar of oil is three; a porter's full load is twenty, about nine kilos. A traveler on foot carries no more than a porter does.\n\nThose numbers are how the goods in this market are counted against one another. They are not a record of what any yard charged.",
   "provenance": {
     "confidence": "documented",
     "sources": [
@@ -12,5 +12,10 @@
       "Ras Shamra economic tablets on weighed commodities, general"
     ],
     "notes": "The mina and talent ratios are attested for the Syrian system, and a mina of the order of 470 g. The exact standard varied by city and period (plausible for Ugarit). The weights of goods in play are game figures, not a metrological table; the kilogram gloss is the reader's."
-  }
+  },
+  "beatArt": [
+    "art.good.silver",
+    "art.cyprus.yard",
+    "art.ugarit.market"
+  ]
 }

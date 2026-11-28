@@ -3,6 +3,13 @@
   "pack": "pack.slice",
   "contentVersion": 1,
   "title": "Amnit of the harbor",
-  "text": "Amnit trades grain and oil and remembers who paid late. She asked where I slept and did not laugh at the answer. If I need a name vouched for at the harbor, hers is the one to ask.",
-  "provenance": { "confidence": "fictional", "sources": [], "notes": "A note about a character met." }
+  "text": "Amnit trades grain and oil and remembers who paid late. She asked where I slept and did not laugh at the answer. If I need a name **vouched for at the harbor**, hers is the one to ask.",
+  "provenance": {
+    "confidence": "fictional",
+    "sources": [],
+    "notes": "A note about a character met."
+  },
+  "beatArt": [
+    "art.ugarit.amnit"
+  ]
 }

@@ -4,7 +4,7 @@
   "contentVersion": 1,
   "title": "Akkadian, the language of the ledger",
   "category": "language",
-  "text": "A merchant from the Levant and a merchant from the Euphrates may share no household tongue, and still write to each other in Akkadian. It is the language of diplomacy and of the account tablet: the language in which a favor becomes a debt with a number attached.\n\nIn play, Akkadian opens conversations that would otherwise be gestures, and it improves the price you are offered, because a seller who can explain himself does not need to be cheated.",
+  "text": "A merchant from the Levant and a merchant from the Euphrates may share no household tongue, and still write to each other in Akkadian. It is the language of diplomacy and of the account tablet: the language in which **a favor becomes a debt** with a number attached.\n\nIn play, Akkadian opens conversations that would otherwise be gestures, and it **improves the price you are offered**, because a seller who can explain himself does not need to be cheated.",
   "provenance": {
     "confidence": "documented",
     "sources": [
@@ -12,5 +12,9 @@
       "Ugaritic Akkadian texts, general"
     ],
     "notes": "Akkadian's use as a diplomatic and commercial lingua franca in this period is well attested."
-  }
+  },
+  "beatArt": [
+    "art.ugarit.archive",
+    "art.ugarit.yada"
+  ]
 }

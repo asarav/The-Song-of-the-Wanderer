@@ -20,7 +20,7 @@
   ],
   "nodes": {
     "greet": {
-      "text": "The woman at the scale does not look up. She has a scoop of emmer in one hand, a weight in the other, and she watches the beam the way a mother watches a child on a roof. A boy waits beside her with a tally board and the patience of someone paid by the day. \"You have the look of someone who slept on a boat,\" she says, to the grain. \"Stand at the end of the mat. Not that end. The end where I can see your hands.\"",
+      "text": "The woman at the scale does not look up. She has a scoop of emmer in one hand, a weight in the other, and she watches the beam the way a mother watches a child on a roof. A boy waits beside her with a tally board and the patience of someone paid by the day. \"You have the look of someone who slept on a boat,\" she says, to the grain. \"**Stand at the end of the mat**. Not that end. The end where I can see your hands.\"",
       "choices": [
         {
           "text": "Only the last three nights.",
@@ -246,7 +246,7 @@
       ]
     },
     "copper": {
-      "text": "\"Copper goes to the island and comes back as copper, which is the only honest thing about it.\" She names the yard's price without looking at the ingot, then looks at you instead. \"That is what it is worth. The price for you is the same, because I have decided to like you. Do not make me regret the arithmetic.\"\n\nThe scale settles. She is already turning to the next load.",
+      "text": "\"Copper goes to the island and comes back as copper, which is the only honest thing about it.\" She names the yard's price without looking at the ingot, then looks at you instead. \"That is what it is worth. **The price for you is the same**, because I have decided to like you. Do not make me regret the arithmetic.\"\n\nThe scale settles. She is already turning to the next load.",
       "choices": [
         {
           "text": "That is a fair price.",
@@ -276,7 +276,7 @@
       ]
     },
     "harbour": {
-      "text": "\"Grain is dear. The inland road is worse. Two households came down to the coast this month and my cousin has taken in one of them.\"\n\nShe says it the way people say a thing they have already decided not to be frightened of. Then she moves the weight on the scale a finger's width, because the sentence has cost her something and she would rather you looked at that.",
+      "text": "\"Grain is dear. **The inland road is worse**. Two households came down to the coast this month and my cousin has taken in one of them.\"\n\nShe says it the way people say a thing they have already decided not to be frightened of. Then she moves the weight on the scale a finger's width, because the sentence has cost her something and she would rather you looked at that.",
       "choices": [
         {
           "text": "Ask which household.",
@@ -287,7 +287,7 @@
       ]
     },
     "sibtu": {
-      "text": "\"A weaver called Sibtu. She is in the workshop quarter. She will not ask you for anything, which is how you will know she needs it.\" Amnit sets the weight down. \"If you go, go because you want to. I have already done my part, and my part has a limit.\"\n\nShe takes up the next weight, and the yard closes around the sound.",
+      "text": "\"**A weaver called Sibtu**. She is in the workshop quarter. She will not ask you for anything, which is how you will know she needs it.\" Amnit sets the weight down. \"If you go, go because you want to. I have already done my part, and my part has a limit.\"\n\nShe takes up the next weight, and the yard closes around the sound.",
       "choices": [
         {
           "text": "Remember the name.",

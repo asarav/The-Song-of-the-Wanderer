@@ -3,6 +3,13 @@
   "pack": "pack.slice",
   "contentVersion": 1,
   "title": "The crossing",
-  "text": "Five days if you hug the shore, three if you do not. The crew spoke Akkadian to me and something else to each other. I understood one word in twenty and none of the jokes.",
-  "provenance": { "confidence": "fictional", "sources": [], "notes": "Written after the first sea crossing." }
+  "text": "**Five days** if you hug the shore, three if you do not. The crew spoke Akkadian to me and something else to each other. I understood one word in twenty and none of the jokes.",
+  "provenance": {
+    "confidence": "fictional",
+    "sources": [],
+    "notes": "Written after the first sea crossing."
+  },
+  "beatArt": [
+    "art.cyprus.landing"
+  ]
 }

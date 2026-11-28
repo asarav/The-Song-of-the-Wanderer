@@ -6,6 +6,10 @@
   "nodes": {
     "hail": {
       "text": "A low hull with too many men in it comes alongside without hurrying, which is its own kind of threat.\n\n\"Bound where, carrying what, and by whose leave?\" The speaker's Akkadian is careful and bad.",
+      "beatArt": [
+        "art.travel.patrol-hail",
+        "art.travel.patrol-speaker"
+      ],
       "choices": [
         {
           "text": "Say nothing and let the master handle it.",
@@ -99,7 +103,11 @@
       ]
     },
     "seal": {
-      "text": "The seal is looked at, handed back, and not mentioned again. The patrol boat peels away toward the shore.\n\n\"That was worth more than the toll,\" the master says. \"Try not to spend it all at once.\"",
+      "text": "The seal is looked at, handed back, and not mentioned again. The patrol boat peels away toward the shore.\n\n\"That was **worth more than the toll**,\" the master says. \"Try not to spend it all at once.\"",
+      "beatArt": [
+        "art.good.palace-seal",
+        "art.travel.patrol-leaving"
+      ],
       "choices": [
         {
           "text": "Watch them go.",
@@ -110,7 +118,10 @@
       ]
     },
     "settled": {
-      "text": "The master speaks for you, briefly and without warmth, and takes his fee out of your purse for the trouble. The patrol boat turns away without ceremony.",
+      "text": "The master speaks for you, briefly and without warmth, and takes his fee **out of your purse** for the trouble. The patrol boat turns away without ceremony.",
+      "beatArt": [
+        "art.travel.master-pays"
+      ],
       "choices": [
         {
           "text": "Count what is left.",
@@ -122,6 +133,9 @@
     },
     "paid": {
       "text": "The silver goes into a bag that is already full. Nobody writes a receipt. The patrol boat turns away without ceremony.",
+      "beatArt": [
+        "art.travel.toll-silver"
+      ],
       "choices": [
         {
           "text": "Count what is left.",
@@ -132,7 +146,10 @@
       ]
     },
     "argued": {
-      "text": "You argue the toll down to four shekels and pay it, and the patrol boat leaves before you can be asked to repeat the argument.",
+      "text": "You argue the toll down to **four shekels** and pay it, and the patrol boat leaves before you can be asked to repeat the argument.",
+      "beatArt": [
+        "art.travel.patrol-leaving"
+      ],
       "choices": [
         {
           "text": "Let it go.",
@@ -143,9 +160,9 @@
       ]
     },
     "worked": {
-      "text": "The master speaks for you and then puts you to work: bailing, hauling, and holding a steering oar until your hands stop being yours. The patrol boat turns away without ceremony. You keep your silver and lose a day.",
+      "text": "The master speaks for you and then puts you to work: bailing, hauling, and holding a steering oar until your hands stop being yours. The patrol boat turns away without ceremony. You keep your silver and **lose a day**.",
       "beatArt": [
-        "art.ugarit.harbour"
+        "art.travel.work-passage"
       ],
       "choices": [
         {

@@ -9,7 +9,7 @@
         "art.cyprus.landing",
         "art.ugarit.mole"
       ],
-      "text": "The sound is not a wave. It is a long grinding, the kind that travels up through the deck and into your teeth. The boat turns broadside. Somebody is shouting a name that is not yours. {cargo} shifts once, all together, and then the water comes over the side.\n\nThere is a light on the shore. It is a long way off.",
+      "text": "The sound is not a wave. It is a long grinding, the kind that travels up through the deck and into your teeth. The boat turns broadside. Somebody is shouting a name that is not yours. {cargo} shifts once, all together, and then the water comes over the side.\n\nThere is **a light on the shore**. It is a long way off.",
       "choices": [
         {
           "text": "Hold to the cargo and shout for help.",

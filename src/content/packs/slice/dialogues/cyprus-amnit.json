@@ -14,7 +14,7 @@
   ],
   "nodes": {
     "yard": {
-      "text": "She is already in the yard with her sleeves tied back, arguing about the weight of somebody else's copper, and she sees you before you decide whether to interrupt.\n\n\"You took the fast boat and I took the cheap one, and here we both are.\" She does not smile until the argument is finished, and then she smiles at you and not at the copper. \"Do not tell the yard we know each other. I am here to collect a debt, and a friendly face makes a debtor brave.\"",
+      "text": "She is already in the yard with her sleeves tied back, arguing about the weight of somebody else's copper, and she sees you before you decide whether to interrupt.\n\n\"You took the fast boat and I took the cheap one, and here we both are.\" She does not smile until the argument is finished, and then she smiles at you and not at the copper. \"**Do not tell the yard we know each other**. I am here to collect a debt, and a friendly face makes a debtor brave.\"",
       "choices": [
         {
           "text": "You did not say you were crossing.",
@@ -110,7 +110,7 @@
       ]
     },
     "debt": {
-      "text": "\"In person, or it does not get collected. A man who pays a messenger has decided not to pay you.\"\n\nShe says it without heat, the way she says weights. Then she looks at you. \"You are a stranger here. If I need a witness, will you stand? It is not dangerous. It is only standing where he can see you.\"",
+      "text": "\"In person, or it does not get collected. A man who pays a messenger has decided not to pay you.\"\n\nShe says it without heat, the way she says weights. Then she looks at you. \"You are a stranger here. **If I need a witness**, will you stand? It is not dangerous. It is only standing where he can see you.\"",
       "choices": [
         {
           "text": "Stand as her witness when the time comes.",

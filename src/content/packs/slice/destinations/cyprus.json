@@ -98,6 +98,12 @@
       ]
     }
   ],
+  "day": {
+    "events": [
+      { "event": "evt.cyprus.day-charcoal", "weight": 2 },
+      { "event": "evt.cyprus.day-enkomi-news", "weight": 1 }
+    ]
+  },
   "night": {
     "art": "art.cyprus.night",
     "beatArt": [

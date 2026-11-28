@@ -26,7 +26,8 @@
   ],
   "nodes": {
     "greet": {
-      "text": "The gate remembers faces better than names. Yours is familiar and he cannot place it, which is the worst of both. He has a board in front of him and a lamp that smokes, and he turns the board a little as you stop. \"If you are selling, the market is up the hill. If you are complaining, I am the wrong desk.\"",
+      "beatArt": ["art.ugarit.hannu-gate"],
+      "text": "The gate remembers faces better than names. Yours is familiar and he cannot place it, which is the worst of both. He has a board in front of him and a lamp that smokes, and he turns the board a little as you stop. \"If you are selling, **the market is up the hill**. If you are complaining, I am the wrong desk.\"",
       "choices": [
         {
           "text": "I need the palace's ear.",
@@ -86,7 +87,8 @@
       ]
     },
     "again": {
-      "text": "\"Second hour. You know where the shadow is.\" He turns the board so you cannot read it. \"Or have you come to tell me you have forgotten?\" The lamp smokes between you. He does not move it. \"Men forget. The board does not.\"",
+      "beatArt": ["art.ugarit.hannu-lamp"],
+      "text": "\"**Second hour**. You know where the shadow is.\" He turns the board so you cannot read it. \"Or have you come to tell me you have forgotten?\" The lamp smokes between you. He does not move it. \"Men forget. The board does not.\"",
       "choices": [
         {
           "text": "I need the palace's ear.",
@@ -125,7 +127,8 @@
       ]
     },
     "after-answered": {
-      "text": "He does not mention the tablet.\n\n\"You went to the shadow and I was not there. You did as you were told, which is not the same as being trusted.\" He looks at the gate behind you. \"Do not come back with a story. Come back with the thing itself, or do not come back.\"",
+      "beatArt": ["art.ugarit.hannu-tablet", "art.ugarit.hannu-shadow"],
+      "text": "He does not mention the tablet.\n\n\"You went to the shadow and I was not there. You did as you were told, which is not the same as being trusted.\" He looks at the gate behind you. \"Do not come back with a story. Come back with **the thing itself**, or do not come back.\"",
       "choices": [
         {
           "text": "Ask whether the errand is finished.",
@@ -142,7 +145,8 @@
       ]
     },
     "after-burned": {
-      "text": "He does not mention the tablet either. He looks at your hands, then at the gate, and writes nothing.\n\n\"You smell of smoke. The gate keeps its own accounts.\" He wets the stylus, then puts it down. \"My son asked me once why the gate keeps two ledgers. I told him one is for the palace. He is at the harbor school now, learning to keep the other.\"",
+      "beatArt": ["art.ugarit.hannu-board-down", "art.ugarit.hannu-signs"],
+      "text": "He does not mention the tablet either. He looks at your hands, then at the gate, and writes nothing.\n\n\"You smell of smoke. The gate keeps its own accounts.\" He wets the stylus, then puts it down. \"My son asked me once why the gate keeps **two ledgers**. I told him one is for the palace. He is at the harbor school now, learning to keep the other.\"",
       "choices": [
         {
           "text": "Leave him to his board.",
@@ -153,7 +157,8 @@
       ]
     },
     "wants": {
-      "text": "\"A man who can carry a thing from one gate to another without opening it.\"\n\nHe wets the stylus at last. \"That is all I will say at this gate. If you repeat it I will say I said nothing. The wall has ears and the wall does not pay for them.\"",
+      "beatArt": ["art.ugarit.hannu-seal", "art.ugarit.hannu-reed"],
+      "text": "\"A man who can carry a thing from one gate to another **without opening it**.\"\n\nHe wets the stylus at last. \"That is all I will say at this gate. If you repeat it I will say I said nothing. The wall has ears and the wall does not pay for them.\"",
       "choices": [
         {
           "text": "Remember it.",
@@ -164,7 +169,8 @@
       ]
     },
     "finished": {
-      "text": "\"It was finished before you went.\"\n\nHe says it without apology, and goes back to the board. Then, because he is not a cruel man: \"You did not open it. That is the part that mattered.\"",
+      "beatArt": ["art.ugarit.hannu-board", "art.ugarit.hannu-sealed"],
+      "text": "\"It was finished before you went.\"\n\nHe says it without apology, and goes back to the board. Then, because he is not a cruel man: \"**You did not open it**. That is the part that mattered.\"",
       "choices": [
         {
           "text": "Leave him to it.",
@@ -175,7 +181,8 @@
       ]
     },
     "errand": {
-      "text": "\"Not here.\" He does not look up. \"Come back at the second hour and stand where the wall is in shadow. If I am not there, I was never asked.\" He pushes the bread along the wall toward you, an inch. \"Eat something. You look like a man who has been sleeping on the mole. The palace does not bargain with the tired.\"",
+      "beatArt": ["art.ugarit.hannu-bread"],
+      "text": "\"Not here.\" He does not look up. \"Come back **at the second hour** and stand where the wall is in shadow. If I am not there, I was never asked.\" He pushes the bread along the wall toward you, an inch. \"Eat something. You look like a man who has been sleeping on the mole. The palace does not bargain with the tired.\"",
       "choices": [
         {
           "text": "I will come.",
@@ -186,6 +193,7 @@
       ]
     },
     "passing": {
+      "beatArt": ["art.ugarit.hannu-baskets"],
       "text": "\"Everyone is passing. Some of them are passing through my ledger.\" He turns the board a little, and the lamp smokes.",
       "choices": [
         {

@@ -3,6 +3,13 @@
   "pack": "pack.slice",
   "contentVersion": 1,
   "title": "The name in the hymn",
-  "text": "Belet sings a line with a name in it: Ninshubur. She says it came from a trader who would not explain it. She looked at my face while she said it, and then looked away, which is worse.",
-  "provenance": { "confidence": "fictional", "sources": [], "notes": "The mystery beat." }
+  "text": "Belet sings a line with a name in it: **Ninshubur**. She says it came from a trader who would not explain it. She looked at my face while she said it, and then looked away, which is worse.",
+  "provenance": {
+    "confidence": "fictional",
+    "sources": [],
+    "notes": "The mystery beat."
+  },
+  "beatArt": [
+    "art.ugarit.belet"
+  ]
 }

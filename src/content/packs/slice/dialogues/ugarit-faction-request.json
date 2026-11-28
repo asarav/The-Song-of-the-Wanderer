@@ -6,7 +6,11 @@
   "start": "ask",
   "nodes": {
     "ask": {
-      "text": "The wall is in shadow and Hannu is there, which means he was always going to be.\n\n\"The palace needs a thing carried to the island and not written down. A seal. You will show it to Kinyras and say nothing else. If it is asked for, you never had it.\"",
+      "text": "The wall is in shadow and Hannu is there, which means he was always going to be.\n\n\"The palace needs a thing carried to the island and not written down. A seal. You will **show it to Kinyras** and say nothing else. If it is asked for, you never had it.\"",
+      "beatArt": [
+        "art.ugarit.palace-hall",
+        "art.good.palace-seal"
+      ],
       "choices": [
         {
           "text": "What is it for?",
@@ -49,6 +53,10 @@
     },
     "what": {
       "text": "\"For a man to know that the palace remembers him.\" He holds out a small pouch without quite touching it. \"That is all you need, and more than you want.\"\n\nThe pouch stays in his hand until you take it.",
+      "beatArt": [
+        "art.ugarit.palace-hall",
+        "art.prologue.purse"
+      ],
       "choices": [
         {
           "text": "Take the pouch.",
@@ -69,14 +77,13 @@
           "id": "take-the-pouch",
           "intent": "cost"
         }
-      ],
-      "beatArt": [
-        "art.ugarit.hannu",
-        "art.ugarit.palace-gate"
       ]
     },
     "refuse": {
-      "text": "\"Then forget the gate, and the gate will forget you.\" He is already walking away. \"Do not come back at the second hour.\"",
+      "text": "\"Then forget the gate, and the gate will forget you.\" He is already walking away. \"**Do not come back at the second hour**.\"",
+      "beatArt": [
+        "art.ugarit.palace-gate"
+      ],
       "choices": [
         {
           "text": "Let him go.",

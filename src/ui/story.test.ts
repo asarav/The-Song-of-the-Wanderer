@@ -77,3 +77,49 @@ describe('parseRuns', () => {
     expect(runs.map((run) => run.text).join('')).toBe('a b c')
   })
 })
+
+describe('name tones', () => {
+  const terms = { places: ['Ugarit', 'Cyprus', 'Alashiya'], people: ['Hannu', 'Sibtu'] }
+
+  it('tones a place and a person differently and leaves the rest alone', () => {
+    const runs = parseRuns('Hannu keeps the gate at Ugarit', terms)
+    expect(runs.map((run) => [run.text, run.tone])).toEqual([
+      ['Hannu', 'person'],
+      [' keeps the gate at ', undefined],
+      ['Ugarit', 'place'],
+    ])
+  })
+
+  it('does not tone a common noun that is written in lower case', () => {
+    const runs = parseRuns('the market in ugarit', terms)
+    expect(runs).toEqual([{ text: 'the market in ugarit', bold: false }])
+  })
+
+  it('leaves a bold name bold and has no tone inside it', () => {
+    const runs = parseRuns('**Ugarit** first, then Hannu', terms)
+    expect(runs).toEqual([
+      { text: 'Ugarit', bold: true },
+      { text: ' first, then ', bold: false },
+      { text: 'Hannu', bold: false, tone: 'person' },
+    ])
+  })
+
+  it('does not match a name inside a longer word', () => {
+    const runs = parseRuns('the Ugaritic tablet', terms)
+    expect(runs).toEqual([{ text: 'the Ugaritic tablet', bold: false }])
+  })
+
+  it('reads a possessive as the name it belongs to', () => {
+    const runs = parseRuns("Sibtu's loom", terms)
+    expect(runs[0]).toEqual({ text: 'Sibtu', bold: false, tone: 'person' })
+  })
+
+  it('changes nothing when no names are supplied', () => {
+    expect(parseRuns('Hannu at Ugarit')).toEqual([{ text: 'Hannu at Ugarit', bold: false }])
+  })
+
+  it('rebuilds the passage exactly, tones or not', () => {
+    const text = 'Hannu waits at the gate in Ugarit, and Sibtu does not.'
+    expect(parseRuns(text, terms).map((run) => run.text).join('')).toBe(text)
+  })
+})

@@ -12,5 +12,9 @@
       "Alashiya in Late Bronze Age correspondence, general"
     ],
     "notes": "Copper and the name Alashiya are attested; the identification of Alashiya with Cyprus is widely accepted but not universally settled."
-  }
+  },
+  "beatArt": [
+    "art.cyprus.yard",
+    "art.cyprus.inn"
+  ]
 }

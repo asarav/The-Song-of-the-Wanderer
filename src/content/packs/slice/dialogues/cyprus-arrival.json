@@ -49,7 +49,11 @@
     },
     "room": {
       "art": "art.cyprus.inn-interior",
-      "text": "\"A night, and keep your cargo where you can see it. The yard is honest. The harbor is not.\"\n\nShe says it the way a woman says a thing she has said many times and still means.",
+      "text": "\"A night, and **keep your cargo where you can see it**. The yard is honest. The harbor is not.\"\n\nShe says it the way a woman says a thing she has said many times and still means.",
+      "beatArt": [
+        "art.cyprus.inn-interior",
+        "art.cyprus.inn-room"
+      ],
       "choices": [
         {
           "text": "Take the room.",
@@ -90,7 +94,10 @@
       ]
     },
     "outside": {
-      "text": "\"Then sleep behind the smithy. Ada will not mind, and the dogs will tell you if anyone does.\"",
+      "text": "\"Then **sleep behind the smithy**. Ada will not mind, and the dogs will tell you if anyone does.\"",
+      "beatArt": [
+        "art.cyprus.smithy"
+      ],
       "choices": [
         {
           "text": "Remember the smithy.",

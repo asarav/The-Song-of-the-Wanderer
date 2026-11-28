@@ -11,5 +11,9 @@
       "Amarna letters referring to Alashiya, general"
     ],
     "notes": "The name and its copper are attested; the identification with Cyprus is the standard reading, not a certainty."
-  }
+  },
+  "beatArt": [
+    "art.good.copper",
+    "art.cyprus.arrival"
+  ]
 }
