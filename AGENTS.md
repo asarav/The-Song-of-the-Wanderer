@@ -107,10 +107,18 @@ tools/                linters, simulators, generators, save tools
 
 ```
 pnpm dev           # run the app
-pnpm check         # typecheck + lint + tests + content lint  (the gate)
+pnpm check         # typecheck + lint + tests + every content gate  (the gate)
 pnpm test          # vitest
 pnpm content:lint  # validate authored content
+pnpm model:check   # wants, scene contracts, choice ids, callbacks, ties, terminal flags
+pnpm prose:lint    # POV, anachronism, beat length, voice ceilings, probe-only nodes
+pnpm price:check   # every named price matches a money effect, or is allowlisted
+pnpm content:guard # mechanics fingerprint; use --update --reason when mechanics change
 ```
+
+Session start: `pnpm task:brief`. Look something up with `pnpm ask`, `pnpm entity`,
+`pnpm flag` or `pnpm impact` instead of re-reading the tree. Rewrite one graph with
+`pnpm content:workbench <id>` and read it with `pnpm manuscript`.
 
 From M1: `pnpm simulate`, `pnpm save:inspect`, `pnpm save:migrate`.
 From M8: `pnpm studio`, `pnpm content:coverage`, `pnpm content:continuity`,

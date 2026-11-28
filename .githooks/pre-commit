@@ -1,0 +1,5 @@
+#!/bin/sh
+# Fast authoring gates. Prose is free; mechanics need a reason.
+set -e
+pnpm content:guard
+pnpm prose:lint

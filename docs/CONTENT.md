@@ -343,6 +343,11 @@ Rules:
 - Every entry node and `start` resolves; a node reachable from no opening is a warning.
 - A recurring character should use `entries` once they can remember the player. Repeating
   the same opening after a scene has changed something reads as a bug, not as reserve.
+- Separate what is repeatable from what is not. A greeting, a price, or a view can repeat;
+  a finished commission, a handed-over letter, or a night that has already happened cannot.
+  The node that finishes such a scene sets a flag, and a later opening reads that flag.
+- A nightly event with no `entries` replays its first scene every night. Gate it on a flag
+  set by its own answers, and author a second, shorter opening for later nights.
 - Every graph is reachable from at least one event, destination place, or place action.
 - A choice that can be locked should carry `unavailableNote`, written in the character's
   situation, not in system language.

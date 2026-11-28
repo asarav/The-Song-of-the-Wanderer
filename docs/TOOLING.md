@@ -37,7 +37,24 @@ acceptance tests, not side projects.
 | `pnpm simulate:personas` | Auto-play trader, curious, helper | M8 | Planned |
 | `pnpm balance` | Monte Carlo markets, travel durations, language pacing | M8 | Planned |
 | `pnpm new:pack` / `new:destination` / `new:character` / `new:arc` / `new:event` | Scaffold from templates | M8 | Planned |
-| `pnpm prose:lint` | Anachronisms, banned terms, repetition, readability | M8 | Planned |
+| `pnpm model:check` | Wants reach scenes, contracts, choice ids, callbacks, ties, terminal flags | M4b | **Done** |
+| `pnpm prose:lint` | First person in narration, anachronisms, beat length, voice ceilings, probe-only nodes | M4b | **Done** |
+| `pnpm price:check` | Every named price matches a money effect, or is allowlisted with a reason | M4b | **Done** |
+| `pnpm content:guard` | Mechanics fingerprint; prose edits free, mechanics need `--update --reason` | M4b | **Done** |
+| `pnpm invariant:check` | Gate tax, room, lesson, cloth, toll, rope and route unlock by choice id | M4b | **Done** |
+| `pnpm task:brief` | Active task, acceptance, tree, recent changes, gates, scenarios | M4b | **Done** |
+| `pnpm ask "words"` | Full-text over content, scenarios and docs with file:line | M4b | **Done** |
+| `pnpm entity <id>` | Definition, source file, wants, ties, scenes, node ids | M4b | **Done** |
+| `pnpm flag <flag>` / `pnpm impact <id>` | Writers and readers; reverse dependencies by area | M4b | **Done** |
+| `pnpm content:workbench <id>` | Mechanics, ids, flags, scenarios, prose and guard in one view | M4b | **Done** |
+| `pnpm scene:preview <id>` | Visible text and answers with flags, regard and language forced | M4b | **Done** |
+| `pnpm manuscript [character]` | Read every scene as a script, no save or browser | M4b | **Done** |
+| `pnpm coverage:choices` | Nodes and answers no checked-in scenario touches | M4b | **Done** |
+| `pnpm affected` | Changed files → exact checks to run | M4b | **Done** |
+| `pnpm docs:sync` / `docs:check` | Generated cast, facts, flags, scenes and prices; verified, not remembered | M4b | **Done** |
+| `pnpm new:dialogue <id> <speaker>` | Contract skeleton that fails the model gate until filled | M4b | **Done** |
+| `pnpm art:ledger` | Beat plates missing, stale ledger keys, debt total | M4b | **Done** |
+| `pnpm task:finish` | check, build, content gates and docs, then the close-out checklist | M4b | **Done** |
 | `pnpm locale:extract` / `locale:check` | String catalog and placeholder validation | M8 | Planned |
 | `pnpm assets:check` | Missing asset IDs, fallback coverage | M8 | Planned |
 | `pnpm audio:build` | Download/cache CC0 beds, generate original cues, normalize, write the audio manifest | M4 exploratory / M18 final | **Done (exploratory)** |
@@ -159,8 +176,10 @@ A scenario is a JSON file:
 
 Paths are read against the state with dotted segments. A key may itself contain dots
 (`narrative.relationships` is keyed by character id), so the resolver matches the longest
-key at each step instead of splitting blindly. Choices are **indices**, not labels: the
-engine never matches on display text.
+key at each step instead of splitting blindly. Choices are addressed by **stable id** (`chooseChoice {choiceId, dialogue, node}`).
+Numeric `chooseDialogue` remains for compatibility, but a scenario that names an answer
+must not start testing a different one when prose reorders the list. A missing id is
+rejected with the pending node and the available ids.
 
 The runner prints a trace on failure and supports snapshot assertions on state and events.
 `pnpm simulate -- slice-crossing` runs `src/engine/scenarios/slice-crossing.json` against

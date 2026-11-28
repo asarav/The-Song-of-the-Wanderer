@@ -1,0 +1,58 @@
+[
+  {
+    "id": "gate-tax-3",
+    "description": "The gate announces three shekels and charges three.",
+    "dialogue": "dlg.ugarit.arrival",
+    "node": "gate",
+    "choice": "give-your-name-and",
+    "money": -3
+  },
+  {
+    "id": "room-3",
+    "description": "Shipti's room costs the three shekels she names.",
+    "dialogue": "dlg.cyprus.arrival",
+    "node": "room",
+    "choice": "take-the-room",
+    "money": -3
+  },
+  {
+    "id": "lesson-5",
+    "description": "Yada's paid lesson costs five shekels.",
+    "dialogue": "dlg.ugarit.yada.lesson",
+    "node": "greet",
+    "choice": "teach-me-the-alphabet",
+    "money": -5
+  },
+  {
+    "id": "cloth-5",
+    "description": "Sibtu's cloth is settled for five shekels.",
+    "dialogue": "dlg.ugarit.sibtu.ask",
+    "node": "settle",
+    "choice": "give-her-the-five",
+    "money": -5
+  },
+  {
+    "id": "checkpoint-4",
+    "description": "The argued crossing toll is four shekels.",
+    "dialogue": "dlg.travel.checkpoint",
+    "node": "hail",
+    "choice": "argue-the-toll-in",
+    "money": -4
+  },
+  {
+    "id": "rope-4",
+    "description": "The wreck rope is sold for four shekels.",
+    "dialogue": "dlg.travel.wreckage",
+    "node": "sight",
+    "choice": "take-the-rope",
+    "money": 4
+  },
+  {
+    "id": "route-unlock",
+    "description": "Tiro's booking unlocks the Ugarit-Cyprus route.",
+    "dialogue": "dlg.ugarit.tiro.passage",
+    "node": "price",
+    "choice": "i-would-sooner-work",
+    "unlockRoute": "route.ugarit-cyprus"
+  }
+]

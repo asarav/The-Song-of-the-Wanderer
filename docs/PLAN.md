@@ -39,16 +39,17 @@ feature must first be proven by re-expressing existing slice content through it.
 | M1 | Engine spine | Deterministic state, time, RNG, DSL, registry, saves, scenarios | **Done** |
 | M2 | Slice systems + graybox UI | Market, travel, dialogue, journal, language, relationships | **Done** |
 | M3 | Slice content | Ugarit and Cyprus authored end to end | **Done** |
-| M4 | Playtest and evaluation | Evidence for the seven slice questions; go/no-go | **In progress — human sessions blocked** |
+| M4 | Playtest and evaluation | Evidence for the seven slice questions; go/no-go | **Done — decision: revise (ADR-0017)** |
+| M4b | Slice revision | Cast through-lines, the first twenty minutes, standing legibility | **In progress** |
 
 ### Wave 1 — Build for scale (M5–M8)
 
 | ID | Milestone | Outcome | Status |
 |---|---|---|---|
-| M5 | World model and timeline | Eras, regional phases, world/regional/local events, propagation, truth vs knowledge | Blocked by Gate A |
-| M6 | Characters, arcs, lineages | Lives that continue off-screen; recurring cast; generations | Blocked by Gate A |
-| M7 | Society, culture, economy | Factions, obligations, languages, customs, trade networks at scale | Blocked by Gate A |
-| M8 | Authoring and QA utilities | Content studio, coverage, continuity, long-run simulation, prose/locale tools | Blocked by Gate A |
+| M5 | World model and timeline | Eras, regional phases, world/regional/local events, propagation, truth vs knowledge | Blocked by M4b |
+| M6 | Characters, arcs, lineages | Lives that continue off-screen; recurring cast; generations | Blocked by M4b |
+| M7 | Society, culture, economy | Factions, obligations, languages, customs, trade networks at scale | Blocked by M4b |
+| M8 | Authoring and QA utilities | Content studio, coverage, continuity, long-run simulation, prose/locale tools | Blocked by M4b |
 
 ### Wave 2 — Fill the world (M9–M14)
 
@@ -165,6 +166,11 @@ Rules: `CONTENT.md`, `HISTORY.md`, `WORLD_MODEL.md`, `NARRATIVE_SYSTEMS.md`.
 
 The seven questions in spec §22.1 have evidence. If the loop is not enjoyable, revise
 before Wave 1. Do not start regional expansion.
+
+**Outcome (2026-11-27):** passed on design-owner evidence under ADR-0017. The decision is
+**revise**: the world and the loop are kept, and M4b fixes the cast's through-lines, the
+first twenty minutes and standing legibility before M5. The original three-persona protocol
+was not met; the missing fresh-reader session is an M4b acceptance condition.
 
 ### Gate B — scale (end of M8)
 

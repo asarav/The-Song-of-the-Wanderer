@@ -1,0 +1,190 @@
+{
+  "version": 1,
+  "dialogues": {
+    "dlg.ugarit.amnit.meeting": {
+      "hash": "5d0b1da8756cb480",
+      "reason": "M4b model migration: stable choice ids, intents and scene contracts",
+      "updatedAt": "2026-11-28T00:46:40.339Z"
+    },
+    "dlg.cyprus.ada.smithy": {
+      "hash": "af8052824e1df5f0",
+      "reason": "M4b model migration: stable choice ids, intents and scene contracts",
+      "updatedAt": "2026-11-28T00:46:40.339Z"
+    },
+    "dlg.cyprus.amnit": {
+      "hash": "b6996d90df04c625",
+      "reason": "Obligations: Sibtu cloth, Amnit debt and Shipti brother now open and settle promise records",
+      "updatedAt": "2026-11-28T00:58:48.866Z"
+    },
+    "dlg.cyprus.arrival": {
+      "hash": "15df805012e4b336",
+      "reason": "M4b model migration: stable choice ids, intents and scene contracts",
+      "updatedAt": "2026-11-28T00:46:40.339Z"
+    },
+    "dlg.cyprus.copper-offer": {
+      "hash": "b4887a34a614a7c6",
+      "reason": "M4b model migration: stable choice ids, intents and scene contracts",
+      "updatedAt": "2026-11-28T00:46:40.339Z"
+    },
+    "dlg.cyprus.kinyras.meeting": {
+      "hash": "36e2373da89ee1d9",
+      "reason": "M4b model migration: stable choice ids, intents and scene contracts",
+      "updatedAt": "2026-11-28T00:46:40.339Z"
+    },
+    "dlg.cyprus.night-kiln": {
+      "hash": "c5d0469f7dfd9a17",
+      "reason": "M4b model migration: stable choice ids, intents and scene contracts",
+      "updatedAt": "2026-11-28T00:46:40.339Z"
+    },
+    "dlg.cyprus.return-letter": {
+      "hash": "6ff80bd4229ff934",
+      "reason": "M4b model migration: stable choice ids, intents and scene contracts",
+      "updatedAt": "2026-11-28T00:46:40.339Z"
+    },
+    "dlg.cyprus.shipti.inn": {
+      "hash": "173ce1cdb3c2421d",
+      "reason": "Obligations: Sibtu cloth, Amnit debt and Shipti brother now open and settle promise records",
+      "updatedAt": "2026-11-28T00:58:48.866Z"
+    },
+    "dlg.slice.opening": {
+      "hash": "4e49cbb066ccd1fc",
+      "reason": "M4b model migration: stable choice ids, intents and scene contracts",
+      "updatedAt": "2026-11-28T00:46:40.339Z"
+    },
+    "dlg.travel.cargo-shift": {
+      "hash": "e83df8bc650f9151",
+      "reason": "M4b model migration: stable choice ids, intents and scene contracts",
+      "updatedAt": "2026-11-28T00:46:40.339Z"
+    },
+    "dlg.travel.checkpoint": {
+      "hash": "3a7d8db097b7dd3f",
+      "reason": "M4b model migration: stable choice ids, intents and scene contracts",
+      "updatedAt": "2026-11-28T00:46:40.339Z"
+    },
+    "dlg.travel.exhaustion": {
+      "hash": "8eaccc4632616522",
+      "reason": "M4b model migration: stable choice ids, intents and scene contracts",
+      "updatedAt": "2026-11-28T00:46:40.339Z"
+    },
+    "dlg.travel.fellow-sailor": {
+      "hash": "8c618730830c6939",
+      "reason": "M4b model migration: stable choice ids, intents and scene contracts",
+      "updatedAt": "2026-11-28T00:46:40.339Z"
+    },
+    "dlg.travel.harbour-talk": {
+      "hash": "5bd48165b166913a",
+      "reason": "M4b model migration: stable choice ids, intents and scene contracts",
+      "updatedAt": "2026-11-28T00:46:40.339Z"
+    },
+    "dlg.travel.peril-fever": {
+      "hash": "e572d10be9215aaf",
+      "reason": "M4b model migration: stable choice ids, intents and scene contracts",
+      "updatedAt": "2026-11-28T00:46:40.339Z"
+    },
+    "dlg.travel.peril-thirst": {
+      "hash": "536d03c9d69541ac",
+      "reason": "M4b model migration: stable choice ids, intents and scene contracts",
+      "updatedAt": "2026-11-28T00:46:40.339Z"
+    },
+    "dlg.travel.peril-wreck": {
+      "hash": "6c03f6ad6e28feaa",
+      "reason": "M4b model migration: stable choice ids, intents and scene contracts",
+      "updatedAt": "2026-11-28T00:46:40.339Z"
+    },
+    "dlg.travel.quiet-night": {
+      "hash": "fb9b66c8c9bb173e",
+      "reason": "M4b model migration: stable choice ids, intents and scene contracts",
+      "updatedAt": "2026-11-28T00:46:40.339Z"
+    },
+    "dlg.travel.refugees": {
+      "hash": "8230fb9bbdc29ac5",
+      "reason": "M4b model migration: stable choice ids, intents and scene contracts",
+      "updatedAt": "2026-11-28T00:46:40.339Z"
+    },
+    "dlg.travel.rescue-caravan": {
+      "hash": "0d1e1b9afb961e6f",
+      "reason": "M4b model migration: stable choice ids, intents and scene contracts",
+      "updatedAt": "2026-11-28T00:46:40.339Z"
+    },
+    "dlg.travel.rescue-healer": {
+      "hash": "2128f3f30d23c72e",
+      "reason": "M4b model migration: stable choice ids, intents and scene contracts",
+      "updatedAt": "2026-11-28T00:46:40.339Z"
+    },
+    "dlg.travel.rescue-patrol": {
+      "hash": "f9d1c5c769523cd5",
+      "reason": "M4b model migration: stable choice ids, intents and scene contracts",
+      "updatedAt": "2026-11-28T00:46:40.339Z"
+    },
+    "dlg.travel.spring": {
+      "hash": "02d5aff5924fe804",
+      "reason": "M4b model migration: stable choice ids, intents and scene contracts",
+      "updatedAt": "2026-11-28T00:46:40.339Z"
+    },
+    "dlg.travel.squall": {
+      "hash": "2628c1452f215ebc",
+      "reason": "M4b model migration: stable choice ids, intents and scene contracts",
+      "updatedAt": "2026-11-28T00:46:40.339Z"
+    },
+    "dlg.travel.wreckage": {
+      "hash": "18012ad6225bd1b6",
+      "reason": "M4b model migration: stable choice ids, intents and scene contracts",
+      "updatedAt": "2026-11-28T00:46:40.339Z"
+    },
+    "dlg.ugarit.arrival": {
+      "hash": "5aa191d08470f296",
+      "reason": "M4b model migration: stable choice ids, intents and scene contracts",
+      "updatedAt": "2026-11-28T00:46:40.339Z"
+    },
+    "dlg.ugarit.belet.temple": {
+      "hash": "3f60e80d61c072dc",
+      "reason": "M4b model migration: stable choice ids, intents and scene contracts",
+      "updatedAt": "2026-11-28T00:46:40.339Z"
+    },
+    "dlg.ugarit.faction-request": {
+      "hash": "e811448511b4e744",
+      "reason": "M4b model migration: stable choice ids, intents and scene contracts",
+      "updatedAt": "2026-11-28T00:46:40.339Z"
+    },
+    "dlg.ugarit.hannu.gate": {
+      "hash": "ae882772460d03c7",
+      "reason": "M4b model migration: stable choice ids, intents and scene contracts",
+      "updatedAt": "2026-11-28T00:46:40.339Z"
+    },
+    "dlg.ugarit.letter": {
+      "hash": "57dfd570b6e8effe",
+      "reason": "M4b model migration: stable choice ids, intents and scene contracts",
+      "updatedAt": "2026-11-28T00:46:40.339Z"
+    },
+    "dlg.ugarit.mystery": {
+      "hash": "4d03b1f0eec167a5",
+      "reason": "M4b model migration: stable choice ids, intents and scene contracts",
+      "updatedAt": "2026-11-28T00:46:40.339Z"
+    },
+    "dlg.ugarit.night-watch": {
+      "hash": "90eb83ad01675bc6",
+      "reason": "M4b model migration: stable choice ids, intents and scene contracts",
+      "updatedAt": "2026-11-28T00:46:40.339Z"
+    },
+    "dlg.ugarit.refugee-ask": {
+      "hash": "32235b1d8d9e7d08",
+      "reason": "Obligations: Sibtu cloth, Amnit debt and Shipti brother now open and settle promise records",
+      "updatedAt": "2026-11-28T00:58:48.866Z"
+    },
+    "dlg.ugarit.sibtu.ask": {
+      "hash": "55fc403940f3baf4",
+      "reason": "Obligations: Sibtu cloth, Amnit debt and Shipti brother now open and settle promise records",
+      "updatedAt": "2026-11-28T00:58:48.866Z"
+    },
+    "dlg.ugarit.tiro.passage": {
+      "hash": "08abf4678595323a",
+      "reason": "M4b model migration: stable choice ids, intents and scene contracts",
+      "updatedAt": "2026-11-28T00:46:40.339Z"
+    },
+    "dlg.ugarit.yada.lesson": {
+      "hash": "c20c224379d3e77c",
+      "reason": "M4b model migration: stable choice ids, intents and scene contracts",
+      "updatedAt": "2026-11-28T00:46:40.339Z"
+    }
+  }
+}

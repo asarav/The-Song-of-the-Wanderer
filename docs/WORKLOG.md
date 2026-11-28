@@ -1694,3 +1694,87 @@ smithy illustration showed a man, contradicting Ada's dialogue and portrait.
   assets for a single M4 handoff commit.
 - Verification: `pnpm check` green (54 files / 1035 tests); 13 checkpoints; no commit
   of the generated `public/playtests/` saves.
+
+## 2026-11-27 — M4 — Design-owner playtest pass: interface and dialogue fixes
+
+- Recorded the design owner's quick pass in
+  `docs/playtests/human/2026-11-27-design-owner-quick-pass.md` and created provisional
+  `docs/playtests/findings.md`. Neither counts toward M4-T01; both label the evidence
+  honestly.
+- Reading controls: scene and prologue passages keep a page's height, with the Continue
+  row at the card's foot and sticky while long beats scroll.
+- Market: per-row quantity, a card layout driven by the reading column's width, and
+  port-specific goods art. Added seven Cypriot variants for grain, pottery, wool, oil,
+  copper, tin and incense, with `market.art` overrides in the destination pack.
+- Clarity: sidebar shows reserve and grain; Roads explains grain, reserve and the fare;
+  rest copy says what an ordinary port day does; language gains produce an on-screen
+  notice; active destination states carry authored notes.
+- Navigation and records: Place renamed Port, the game title removed from the rail,
+  journal newest-first, fog redrawn as blank ground, and both map scales explain their
+  difference when only one region is known.
+- Dialogue: Hannu's warehouse line now explains the store and its fee; the crossing's
+  work-the-passage answer is always available; Belet's unanswered question replaced;
+  Yada's judgment is set up by copying a name; Shipti's shelf opens a scene and promises
+  the letter for the next day; Ada's finished tripod gives way to a votive blade; the
+  Ugarit night watch and Cypriot night kiln open on a second night; the squall ends with
+  a human acknowledgement.
+- Added the repeatable-scene rule to `docs/CONTENT.md`, and tests for trade limits,
+  port-specific art, destination state notes and journal order.
+- Verification: `pnpm check` green (54 files / 1053 tests); `pnpm build` green (existing
+  chunk warning); content lint 132 entities, 0 errors / 0 warnings; audio 16/16; skills
+  sync passed. Browser check at 720 px and 1100 px: no horizontal overflow in the market,
+  card layout at the narrow width, and the Continue row within 4 px across prologue and
+  opening-scene beats.
+
+## 2026-11-27 — M4 — Gate A closed; decision to revise
+
+- The design owner declared the playtest done and asked that the supplied evidence be
+  accepted. Recorded the shortfall in ADR-0017: Gate A passed on one design-owner notes
+  pass plus three agent sessions, not the three recorded persona sessions the milestone
+  asked for; the unmet M4-T01 items stay visible.
+- Closed M4 with the decision **revise**. Wrote the seven verdicts in
+  `docs/playtests/findings.md`: world strong; travel loop, trade and language promising;
+  characters, factions and mystery weak.
+- Authored `docs/milestones/M4b-slice-revision.md` with the top three blockers — cast wants
+  and through-lines, the first twenty minutes, standing and consequence legibility — and
+  made a fresh-reader session an acceptance condition rather than a dropped requirement.
+- Updated `PLAN.md`: M4 done, M4b in progress, M5–M8 blocked by M4b. Rewrote `STATUS.md` for
+  the M4b phase.
+- No code changes in this step. Verification: documentation only; `git diff --check` clean.
+
+## 2026-11-27 — M4b — cast voice pass
+
+- Wrote `docs/design/cast-threads.md`: the period social grammar (household, obligation,
+  patronage, hospitality, shame, craft) and, for each recurring character, a want, a
+  pressure and the later scene that answers an earlier one.
+- Rewrote the recurring graphs so each scene has a live want and physical business rather
+  than neutral answers: Amnit (market and Cyprus yard), Hannu (gate and night watch), Yada,
+  Tiro, Belet (temple and mystery), Sibtu, Kinyras (yard and grain offer), Ada (smithy and
+  night kiln), Shipti, and the gate arrival.
+- Gave the cast stakes the player can see: Amnit's debt and her cousin's household; Hannu's
+  empty house and his son at the harbor school; Yada's dead teacher and missing text;
+  Tiro's unpaid crew; Belet's sister and the funeral hymn; Sibtu's husband inland; Kinyras's
+  father's lost yard; Ada's father selling the yard; Shipti's brother in Ugarit.
+- Restored the gate's three-shekel tax and choice order after the prose pass changed the
+  arrival flow, and restored Yada's five-shekel lesson gates. Scenarios and the coherence
+  test caught both.
+- Verification: `pnpm check` green (54 files / 1053 tests; content lint 132 entities 0/0;
+  audio 16/16; skills check passed).
+- Still open in M4b-T01: the repeatable-scene audit in `docs/design/dialogue-audit.md`.
+  Travel vignettes and the prologue narration were not part of this pass.
+
+## 2026-11-28 — M4b-T00/T01/T03 — Character/scene model and the machine around it
+
+- Added Character v2 (wants with scenes, voice, ties, knowledge, appearances), scene
+  contracts, choice ids/intents, interaction memory, promises and derived regard bands;
+  save format v6 with a v5 migration fixture and ADR-0018.
+- Added the gates: `model:check`, `prose:lint` (POV, anachronism, beats, voice, probe-only
+  nodes), `price:check`, `content:guard`, `invariant:check`, `docs:check`.
+- Added the authoring layer: task brief, ask/entity/flag/impact, workbench, scene preview,
+  manuscript, choice coverage, affected, docs sync, new-dialogue, art ledger, task finish.
+- Migrated 9 characters, 37 graphs, 274 answers and 13 scenarios; added Ada's tin → blade
+  scenario; added standing notices and the Factions sentence.
+- Verification: `pnpm check` green (54 files / 1087 tests, content gates 0 errors,
+  `prose:lint` 14 warnings), `pnpm build` green (existing chunk warning).
+- Follow-up: the fresh-reader session (T02) is external; two probe-only Sibtu follow-ups
+  and a few sentence-ceiling warnings remain for the next prose pass.

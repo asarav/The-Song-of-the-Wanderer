@@ -1,0 +1,128 @@
+{
+  "facts": [
+    {
+      "id": "alashiya.nameless-buyer",
+      "taughtBy": [
+        "dlg.cyprus.shipti.inn:who"
+      ]
+    },
+    {
+      "id": "amnit.buys-copper-on-the-island",
+      "taughtBy": [
+        "dlg.cyprus.amnit:again",
+        "dlg.cyprus.amnit:yard"
+      ]
+    },
+    {
+      "id": "archive.being-moved",
+      "taughtBy": []
+    },
+    {
+      "id": "coast.lights-are-farmsteads",
+      "taughtBy": [
+        "dlg.travel.quiet-night:night"
+      ]
+    },
+    {
+      "id": "cyprus.ada.blade-for-a-votive",
+      "taughtBy": [
+        "dlg.cyprus.ada.smithy:again-work"
+      ]
+    },
+    {
+      "id": "cyprus.ada.father-sold-yard",
+      "taughtBy": []
+    },
+    {
+      "id": "cyprus.copper-by-weight",
+      "taughtBy": [
+        "dlg.travel.fellow-sailor:talk"
+      ]
+    },
+    {
+      "id": "cyprus.copper.mold-night",
+      "taughtBy": [
+        "dlg.cyprus.night-kiln:why"
+      ]
+    },
+    {
+      "id": "displacement.inland-to-coast",
+      "taughtBy": [
+        "dlg.travel.refugees:bound"
+      ]
+    },
+    {
+      "id": "kinyras.buys-at-yard-price",
+      "taughtBy": [
+        "dlg.cyprus.copper-offer:done",
+        "dlg.cyprus.copper-offer:hard",
+        "dlg.travel.fellow-sailor:news"
+      ]
+    },
+    {
+      "id": "letter.addressed-from-ugarit",
+      "taughtBy": [
+        "dlg.cyprus.return-letter:letter",
+        "dlg.cyprus.shipti.inn:late-letter"
+      ]
+    },
+    {
+      "id": "market.talk-of-the-road-inland",
+      "taughtBy": [
+        "evt.ugarit.market-rumour"
+      ]
+    },
+    {
+      "id": "ninshubur.a-messengers-name",
+      "taughtBy": [
+        "dlg.ugarit.mystery:recognize"
+      ]
+    },
+    {
+      "id": "ninshubur.in-the-hymn",
+      "taughtBy": []
+    },
+    {
+      "id": "refugees.moving-to-ugarit",
+      "taughtBy": [
+        "evt.travel.refugees"
+      ]
+    },
+    {
+      "id": "sibtu.household-settled",
+      "taughtBy": [
+        "evt.cyprus.arrival-news"
+      ]
+    },
+    {
+      "id": "sibtu.husband-stayed-inland",
+      "taughtBy": [
+        "dlg.ugarit.sibtu.ask:story"
+      ]
+    },
+    {
+      "id": "sibtu.lives-in-workshop-quarter",
+      "taughtBy": [
+        "dlg.ugarit.amnit.meeting:sibtu"
+      ]
+    },
+    {
+      "id": "ugarit.harbor-tax",
+      "taughtBy": [
+        "dlg.ugarit.arrival:gate"
+      ]
+    },
+    {
+      "id": "ugarit.mole.night-watch",
+      "taughtBy": [
+        "dlg.ugarit.night-watch:sleepless"
+      ]
+    },
+    {
+      "id": "ugarit.warehouse.stores-cargo",
+      "taughtBy": [
+        "dlg.ugarit.night-watch:watch"
+      ]
+    }
+  ]
+}
