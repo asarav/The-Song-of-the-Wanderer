@@ -1,0 +1,18 @@
+{
+  "id": "ambient.cyprus.day.charcoal-queue",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "context": "day",
+  "cultures": ["culture.cyprus.harbour"],
+  "scope": { "destinations": ["dest.cyprus"] },
+  "conditions": { "all": [] },
+  "weight": 1,
+  "tags": ["smithy", "work"],
+  "text": "Two baskets of charcoal wait outside the smithy, and a third is coming down the path on a girl’s shoulders. She sets it down without spilling a piece, then stands with her hands on her hips as if she has won something.",
+  "beatArt": ["art.cyprus.smithy"],
+  "provenance": {
+    "confidence": "plausible",
+    "sources": ["Late Cypriot bronze working, general"],
+    "notes": "Charcoal supply to a smithy is plausible; the girl is invented."
+  }
+}

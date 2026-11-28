@@ -1,0 +1,61 @@
+{
+  "id": "dlg.cyprus.charcoal",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "speaker": "char.cyprus.ada",
+  "start": "yard",
+  "scene": {
+    "goal": "Get the charcoal to the forge without spilling it.",
+    "obstacle": "The girl cannot see her feet and Ada will not stop working.",
+    "turn": "The traveler can steady the basket, take it, or let her manage.",
+    "stakes": "A child’s pride and a workshop’s fuel."
+  },
+  "nodes": {
+    "yard": {
+      "text": "The girl comes across the yard with the basket against her chest and her chin up. Ada watches from the forge without moving. \"She will drop it,\" Ada says, \"or she will not. It is her basket.\"",
+      "beatArt": ["art.cyprus.smithy"],
+      "choices": [
+        {
+          "id": "steady",
+          "intent": "help",
+          "text": "Steady the basket without taking it.",
+          "next": "steady-result",
+          "effects": [{ "relationship": { "character": "char.cyprus.ada", "delta": 1 } }]
+        },
+        {
+          "id": "take",
+          "intent": "help",
+          "text": "Take the basket from her.",
+          "next": "take-result",
+          "effects": [{ "relationship": { "character": "char.cyprus.ada", "delta": -1 } }]
+        },
+        {
+          "id": "watch",
+          "intent": "probe",
+          "text": "Watch and say nothing.",
+          "next": "watch-result"
+        }
+      ]
+    },
+    "steady-result": {
+      "text": "You put one hand under the basket and let her keep the weight. She reaches the forge, sets it down, and looks at Ada for approval. Ada says, \"Good. Now the next one.\" The girl goes back for it.",
+      "beatArt": ["art.cyprus.ada"],
+      "choices": [{ "id": "leave-steady", "intent": "probe", "text": "Go on.", "next": null }]
+    },
+    "take-result": {
+      "text": "The girl lets you take it, which is worse than if she had argued. Ada does not look up from the bronze. \"She will have to carry it tomorrow,\" she says. The basket is heavier than it looked.",
+      "beatArt": ["art.cyprus.yard"],
+      "choices": [{ "id": "leave-take", "intent": "deflect", "text": "Go on.", "next": null }]
+    },
+    "watch-result": {
+      "text": "The girl reaches the forge, sets the basket down, and spills one piece. Ada picks it up and puts it back in the basket. \"One,\" she says. \"You will remember the next one.\" The girl nods as if this were a promotion.",
+      "beatArt": ["art.cyprus.smithy"],
+      "choices": [{ "id": "leave-watch", "intent": "probe", "text": "Go on.", "next": null }]
+    }
+  },
+  "provenance": {
+    "confidence": "plausible",
+    "sources": ["Late Cypriot bronze working and household labor, general"],
+    "notes": "A child carrying charcoal is plausible; the exchange is invented."
+  }
+}

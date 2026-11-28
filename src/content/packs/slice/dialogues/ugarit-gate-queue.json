@@ -1,0 +1,58 @@
+{
+  "id": "dlg.ugarit.gate-queue",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "speaker": "char.ugarit.yada",
+  "start": "gate",
+  "scene": {
+    "goal": "Move the petitioner’s tablet through the gate.",
+    "obstacle": "Yada will not take an unsealed tablet from a man with no patron.",
+    "turn": "The traveler can vouch, pay, or leave him waiting.",
+    "stakes": "A stranger’s errand and Yada’s trust."
+  },
+  "nodes": {
+    "gate": {
+      "text": "The petitioner has dust on his knees and a tablet wrapped in cloth. Yada has not opened the gate. \"I can read it,\" she says, \"or I can read the seal. I cannot read what is not there.\"",
+      "beatArt": ["art.ugarit.yada"],
+      "choices": [
+        {
+          "id": "vouch",
+          "intent": "help",
+          "text": "Say you know the man’s household.",
+          "next": "accepted",
+          "effects": [{ "relationship": { "character": "char.ugarit.yada", "delta": 1 } }]
+        },
+        {
+          "id": "pay-fee",
+          "intent": "bargain",
+          "text": "Offer the gate fee yourself.",
+          "next": "accepted",
+          "conditions": { "moneyAtLeast": 2 },
+          "unavailableNote": "The gate fee is two shekels. You have less than that.",
+          "effects": [{ "money": -2 }]
+        },
+        {
+          "id": "leave-waiting",
+          "intent": "refuse",
+          "text": "Leave him to the gate.",
+          "next": "closed"
+        }
+      ]
+    },
+    "accepted": {
+      "text": "Yada turns the tablet over, reads the seal, and writes a mark on her board. \"He can wait inside,\" she says. \"That is not the same as being heard.\" The petitioner bows to her, then to you, and does not say which one he means.",
+      "beatArt": ["art.ugarit.palace-gate"],
+      "choices": [{ "id": "leave-accepted", "intent": "probe", "text": "Go on.", "next": null }]
+    },
+    "closed": {
+      "text": "Yada puts the board down. The petitioner folds his cloth more carefully than before and sits against the wall. The gate does not open. After a while he stops looking at it.",
+      "beatArt": ["art.ugarit.palace-gate"],
+      "choices": [{ "id": "leave-closed", "intent": "deflect", "text": "Go on.", "next": null }]
+    }
+  },
+  "provenance": {
+    "confidence": "plausible",
+    "sources": ["Ugaritic palace gate and scribal practice, general"],
+    "notes": "Sealed tablets and gate fees are plausible; the petitioner, Yada’s exchange and the fee are invented."
+  }
+}

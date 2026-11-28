@@ -1,0 +1,18 @@
+{
+  "id": "ambient.levant.day.temple-hymn",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "context": "day",
+  "cultures": ["culture.levant.coastal"],
+  "scope": { "destinations": ["dest.ugarit"] },
+  "conditions": { "all": [] },
+  "weight": 1,
+  "tags": ["temple", "gods"],
+  "text": "Behind the temple wall a singer practices the same line until it stops sounding like words. A boy carries in a jar of oil and comes out blinking, as if he had been in the dark a long time.",
+  "beatArt": ["art.ugarit.temple"],
+  "provenance": {
+    "confidence": "plausible",
+    "sources": ["Ugaritic liturgical texts and temple personnel, general"],
+    "notes": "Temple singers and oil offerings are attested in general terms; this singer is invented."
+  }
+}

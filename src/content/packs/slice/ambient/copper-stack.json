@@ -1,0 +1,18 @@
+{
+  "id": "ambient.cyprus.day.copper-stack",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "context": "day",
+  "cultures": ["culture.cyprus.harbour"],
+  "scope": { "destinations": ["dest.cyprus"] },
+  "conditions": { "all": [] },
+  "weight": 1,
+  "tags": ["copper", "work"],
+  "text": "A boy turns an ingot to find its stamp, then turns it back because the stamp is on the other face. The woman weighing it does not look up. The copper ticks against the scale like something patient.",
+  "beatArt": ["art.cyprus.yard"],
+  "provenance": {
+    "confidence": "plausible",
+    "sources": ["Late Cypriot copper production, general"],
+    "notes": "Ingot stamps and weighed copper are attested in general terms; this yard is invented."
+  }
+}

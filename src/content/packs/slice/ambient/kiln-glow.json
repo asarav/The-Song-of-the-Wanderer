@@ -1,0 +1,18 @@
+{
+  "id": "ambient.cyprus.night.kiln-glow",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "context": "night",
+  "cultures": ["culture.cyprus.harbour"],
+  "scope": { "destinations": ["dest.cyprus"] },
+  "conditions": { "all": [] },
+  "weight": 1,
+  "tags": ["kiln", "work"],
+  "text": "The kiln is a red eye at the edge of the yard. Someone is still awake to feed it, though you cannot see who. The frogs at the cistern keep on as if nothing were burning.",
+  "beatArt": ["art.cyprus.night"],
+  "provenance": {
+    "confidence": "plausible",
+    "sources": ["Late Cypriot pottery and copper working, general"],
+    "notes": "A night firing is plausible; the scene is invented."
+  }
+}

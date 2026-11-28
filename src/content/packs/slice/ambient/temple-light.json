@@ -1,0 +1,18 @@
+{
+  "id": "ambient.levant.night.temple-light",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "context": "night",
+  "cultures": ["culture.levant.coastal"],
+  "scope": { "destinations": ["dest.ugarit"] },
+  "conditions": { "all": [] },
+  "weight": 1,
+  "tags": ["temple", "gods"],
+  "text": "One lamp stays lit above the temple roof. The gate is shut, the market is empty, and the light looks less like a welcome than like someone keeping watch over a thing that must not go out.",
+  "beatArt": ["art.ugarit.temple"],
+  "provenance": {
+    "confidence": "plausible",
+    "sources": ["Ugaritic temple and ritual practice, general"],
+    "notes": "A kept temple lamp is plausible; the comparison is the traveller’s."
+  }
+}

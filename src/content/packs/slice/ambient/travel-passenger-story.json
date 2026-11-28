@@ -1,0 +1,18 @@
+{
+  "id": "ambient.travel.passenger-story",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "context": "travel",
+  "cultures": ["culture.levant.coastal", "culture.cyprus.harbour"],
+  "scope": { "routes": ["route.ugarit-cyprus"] },
+  "conditions": { "all": [] },
+  "weight": 1,
+  "tags": ["story", "travelers"],
+  "text": "A passenger with a good cloak and bad sandals tells a story about a city where the doors are all turned toward the sea. Everyone listens. When he finishes, the master asks whether he has actually been there, and the passenger says the story is better than the answer.",
+  "beatArt": ["art.world.enkomi"],
+  "provenance": {
+    "confidence": "fictional",
+    "sources": [],
+    "notes": "The passenger, the city and the story are invented; no historical claim is made."
+  }
+}

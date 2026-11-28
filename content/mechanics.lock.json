@@ -167,14 +167,14 @@
       "updatedAt": "2026-11-28T03:37:37.048Z"
     },
     "dlg.ugarit.refugee-ask": {
-      "hash": "d7e0758c196d55f0",
-      "reason": "Playtest revision: directional promises, result nodes, scene exits and corrected continuity",
-      "updatedAt": "2026-11-28T03:37:37.048Z"
+      "hash": "cf512ef6662159d0",
+      "reason": "Sibtu's cloth goes to the Ugarit market, not the island copper yard: scene goal and obstacle name the market",
+      "updatedAt": "2026-11-28T15:41:00.400Z"
     },
     "dlg.ugarit.sibtu.ask": {
-      "hash": "2760ad5f3513aa61",
-      "reason": "Playtest revision: directional promises, result nodes, scene exits and corrected continuity",
-      "updatedAt": "2026-11-28T03:37:37.048Z"
+      "hash": "721810165f8d6aac",
+      "reason": "Sibtu's cloth goes to the Ugarit market, not the island copper yard: scene goal and obstacle name the market",
+      "updatedAt": "2026-11-28T15:41:00.400Z"
     },
     "dlg.ugarit.tiro.passage": {
       "hash": "08abf4678595323a",
@@ -195,6 +195,26 @@
       "hash": "0f6e7869f5b01d96",
       "reason": "Add acknowledgement beats for Tiro and Yada help answers, and announce faction changes in the store",
       "updatedAt": "2026-11-28T01:53:27.819Z"
+    },
+    "dlg.cyprus.charcoal": {
+      "hash": "3a6b197508bc66d3",
+      "reason": "M4b-T05 adds four authored daytime storylets and their dialogues; existing mechanics are unchanged.",
+      "updatedAt": "2026-11-28T04:45:45.085Z"
+    },
+    "dlg.cyprus.enkomi-news": {
+      "hash": "bb5d0f013aa1fb86",
+      "reason": "M4b-T05 adds four authored daytime storylets and their dialogues; existing mechanics are unchanged.",
+      "updatedAt": "2026-11-28T04:45:45.085Z"
+    },
+    "dlg.ugarit.gate-queue": {
+      "hash": "8a2d9486865c1ac6",
+      "reason": "M4b-T05 adds four authored daytime storylets and their dialogues; existing mechanics are unchanged.",
+      "updatedAt": "2026-11-28T04:45:45.085Z"
+    },
+    "dlg.ugarit.water-line": {
+      "hash": "498bee9ff5c00c1d",
+      "reason": "M4b-T05 adds four authored daytime storylets and their dialogues; existing mechanics are unchanged.",
+      "updatedAt": "2026-11-28T04:45:45.085Z"
     }
   }
 }

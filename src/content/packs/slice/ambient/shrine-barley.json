@@ -1,0 +1,18 @@
+{
+  "id": "ambient.cyprus.day.shrine-barley",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "context": "day",
+  "cultures": ["culture.cyprus.harbour"],
+  "scope": { "destinations": ["dest.cyprus"] },
+  "conditions": { "all": [] },
+  "weight": 1,
+  "tags": ["gods", "harvest"],
+  "text": "Someone has left a handful of barley at the shrine by the yard, and someone else has swept it up. A woman puts down a second handful and says the goddess will understand about the sweeping. The barley stays this time.",
+  "beatArt": ["art.cyprus.inn"],
+  "provenance": {
+    "confidence": "plausible",
+    "sources": ["Late Cypriot ritual and agricultural practice, general"],
+    "notes": "Cereal offerings at small shrines are plausible; the exchange is invented and asserts no divine response."
+  }
+}

@@ -34,6 +34,30 @@
       "char.cyprus.ada",
       "char.cyprus.shipti"
     ],
+    "ambient": [
+      "ambient.levant.day.market-grain",
+      "ambient.levant.day.temple-hymn",
+      "ambient.levant.day.courier",
+      "ambient.levant.day.festival",
+      "ambient.levant.night.stars",
+      "ambient.levant.night.temple-light",
+      "ambient.levant.night.moon-ring",
+      "ambient.levant.night.harbor-watch",
+      "ambient.cyprus.day.copper-stack",
+      "ambient.cyprus.day.charcoal-queue",
+      "ambient.cyprus.day.enkomi-boat",
+      "ambient.cyprus.day.shrine-barley",
+      "ambient.cyprus.night.kiln-glow",
+      "ambient.cyprus.night.stars",
+      "ambient.cyprus.night.inn-lamp",
+      "ambient.cyprus.night.sea-goddess",
+      "ambient.travel.stars-anchorage",
+      "ambient.travel.landfall-gone",
+      "ambient.travel.kings-ships",
+      "ambient.travel.dolphins",
+      "ambient.travel.weather-sign",
+      "ambient.travel.passenger-story"
+    ],
     "events": [
       "evt.travel.squall",
       "evt.travel.fellow-sailor",
@@ -64,7 +88,11 @@
       "evt.ugarit.night-watch",
       "evt.cyprus.night-kiln",
       "evt.ugarit.yada-archive",
-      "evt.cyprus.amnit-departs"
+      "evt.cyprus.amnit-departs",
+      "evt.ugarit.day-water-line",
+      "evt.ugarit.day-gate-queue",
+      "evt.cyprus.day-charcoal",
+      "evt.cyprus.day-enkomi-news"
     ],
     "dialogues": [
       "dlg.slice.opening",
@@ -105,7 +133,11 @@
       "dlg.ugarit.night-watch",
       "dlg.cyprus.night-kiln",
       "dlg.cyprus.tiro",
-      "dlg.ugarit.yada.archive"
+      "dlg.ugarit.yada.archive",
+      "dlg.ugarit.water-line",
+      "dlg.ugarit.gate-queue",
+      "dlg.cyprus.charcoal",
+      "dlg.cyprus.enkomi-news"
     ],
     "journal": [
       "journal.slice.opening",

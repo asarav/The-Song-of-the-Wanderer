@@ -1,0 +1,18 @@
+{
+  "id": "ambient.cyprus.day.enkomi-boat",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "context": "day",
+  "cultures": ["culture.cyprus.harbour"],
+  "scope": { "destinations": ["dest.cyprus"] },
+  "conditions": { "all": [] },
+  "weight": 1,
+  "tags": ["harbor", "news"],
+  "text": "A boat comes in from Enkomi with a broken oar and a story about a seal on a door nobody would open. By the time the oar is mended, the story has a king in it, and then a god.",
+  "beatArt": ["art.cyprus.landing"],
+  "provenance": {
+    "confidence": "plausible",
+    "sources": ["Late Cypriot harbor settlements, general"],
+    "notes": "Enkomi is an attested Cypriot settlement; the boat, seal and story are invented."
+  }
+}

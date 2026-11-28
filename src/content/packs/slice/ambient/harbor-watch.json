@@ -1,0 +1,18 @@
+{
+  "id": "ambient.levant.night.harbor-watch",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "context": "night",
+  "cultures": ["culture.levant.coastal"],
+  "scope": { "destinations": ["dest.ugarit"] },
+  "conditions": { "all": [] },
+  "weight": 1,
+  "tags": ["harbor", "watch"],
+  "text": "A lamp moves along the harbor wall and stops where the roof of a warehouse has been repaired. The man carrying it checks the tie on a tarpaulin, then the next one, then stands still for a while looking at the water.",
+  "beatArt": ["art.ugarit.mole"],
+  "provenance": {
+    "confidence": "plausible",
+    "sources": ["Ugarit harbor administration, general"],
+    "notes": "A night watch on the moles is plausible; the watchman is invented."
+  }
+}

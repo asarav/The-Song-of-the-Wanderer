@@ -1,0 +1,18 @@
+{
+  "id": "ambient.cyprus.night.inn-lamp",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "context": "night",
+  "cultures": ["culture.cyprus.harbour"],
+  "scope": { "destinations": ["dest.cyprus"] },
+  "conditions": { "all": [] },
+  "weight": 1,
+  "tags": ["inn", "travelers"],
+  "text": "The inn lamp is turned low but not out. Two men are still talking in the courtyard, too quietly to follow, and one of them laughs at something that is not funny. A dog sleeps across the doorway and does not move for you.",
+  "beatArt": ["art.cyprus.inn"],
+  "provenance": {
+    "confidence": "plausible",
+    "sources": ["Late Cypriot domestic architecture, general"],
+    "notes": "A harbor inn and late conversation are invented; the setting is plausible."
+  }
+}

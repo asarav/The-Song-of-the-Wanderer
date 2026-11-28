@@ -1,0 +1,70 @@
+{
+  "id": "dlg.ugarit.water-line",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "speaker": "char.ugarit.sibtu",
+  "start": "queue",
+  "scene": {
+    "goal": "Get water home before the household wakes.",
+    "obstacle": "The well queue is long and a neighbor is short a jar.",
+    "turn": "The traveler can give up a place or make the neighbor wait.",
+    "stakes": "A household’s morning and a small obligation."
+  },
+  "nodes": {
+    "queue": {
+      "text": "Sibtu is three places from the well with a jar against her hip and a child asleep on her shoulder. The woman ahead of her has set down an empty jar and is arguing with the well keeper about whose turn it is.",
+      "beatArt": ["art.ugarit.sibtu"],
+      "choices": [
+        {
+          "id": "give-place",
+          "intent": "help",
+          "text": "Let the woman with the empty jar go ahead.",
+          "next": "settled",
+          "effects": [{ "relationship": { "character": "char.ugarit.sibtu", "delta": 1 } }]
+        },
+        {
+          "id": "keep-place",
+          "intent": "refuse",
+          "text": "Keep your place. The morning is yours too.",
+          "next": "settled",
+          "effects": [{ "relationship": { "character": "char.ugarit.sibtu", "delta": -1 } }]
+        },
+        {
+          "id": "ask-keeper",
+          "intent": "probe",
+          "text": "Ask the well keeper how the turns are counted.",
+          "next": "answer"
+        }
+      ]
+    },
+    "answer": {
+      "text": "\"By the mark on the rope,\" the keeper says, \"and by who complains loudest.\" Sibtu laughs once, without moving the child. The woman with the empty jar does not.",
+      "beatArt": ["art.ugarit.workshops"],
+      "choices": [
+        {
+          "id": "leave-answer",
+          "intent": "deflect",
+          "text": "Let the answer stand.",
+          "next": "settled"
+        }
+      ]
+    },
+    "settled": {
+      "text": "The line moves. Sibtu fills her jar, gives the child a drink first, and does not say whether she thinks you did well. The water is cold and tastes of stone.",
+      "beatArt": ["art.ugarit.workshops"],
+      "choices": [
+        {
+          "id": "go",
+          "intent": "probe",
+          "text": "Go on about the day.",
+          "next": null
+        }
+      ]
+    }
+  },
+  "provenance": {
+    "confidence": "plausible",
+    "sources": ["Ugaritic household water use, general"],
+    "notes": "A well queue is plausible; Sibtu, the keeper and the exchange are invented."
+  }
+}

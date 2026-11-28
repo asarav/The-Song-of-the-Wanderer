@@ -1,0 +1,63 @@
+{
+  "id": "dlg.cyprus.enkomi-news",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "speaker": "char.cyprus.kinyras",
+  "start": "news",
+  "scene": {
+    "goal": "Find out whether the Enkomi price is real.",
+    "obstacle": "Kinyras will not give the price without a trade of his own.",
+    "turn": "The traveler can trade a fact, refuse, or buy the answer.",
+    "stakes": "A copper margin and a broker’s attention."
+  },
+  "nodes": {
+    "news": {
+      "text": "Kinyras is weighing nothing in particular when you come into the yard. \"**Enkomi says copper is down**,\" he says. \"Enkomi always says copper is down when Enkomi wants to buy. What does Ugarit say?\"",
+      "beatArt": ["art.cyprus.kinyras"],
+      "choices": [
+        {
+          "id": "trade-news",
+          "intent": "bargain",
+          "text": "Tell him what the Ugarit market was paying.",
+          "next": "trade-result",
+          "effects": [{ "relationship": { "character": "char.cyprus.kinyras", "delta": 1 } }]
+        },
+        {
+          "id": "buy-answer",
+          "intent": "cost",
+          "text": "Pay him for the Enkomi price.",
+          "next": "buy-result",
+          "conditions": { "moneyAtLeast": 1 },
+          "unavailableNote": "He wants a shekel for the number. You have less than that.",
+          "effects": [{ "money": -1 }]
+        },
+        {
+          "id": "refuse-news",
+          "intent": "refuse",
+          "text": "Say you do not trade in rumors.",
+          "next": "refuse-result"
+        }
+      ]
+    },
+    "trade-result": {
+      "text": "Kinyras listens, then names a price **half a shekel above** Enkomi’s. \"That is not the market,\" he says. \"That is what I will pay before the market knows.\" He does not ask whether you are telling the truth. He has already decided.",
+      "beatArt": ["art.cyprus.yard"],
+      "choices": [{ "id": "leave-trade", "intent": "probe", "text": "Go on.", "next": null }]
+    },
+    "buy-result": {
+      "text": "The shekel disappears into his belt. \"**Down two**,\" he says, \"and they are not buying.\" He lets that sit. \"Of course, if they are not buying, the price will not stay down.\" He smiles at the scale, not at you.",
+      "beatArt": ["art.cyprus.kinyras"],
+      "choices": [{ "id": "leave-buy", "intent": "probe", "text": "Go on.", "next": null }]
+    },
+    "refuse-result": {
+      "text": "Kinyras puts the empty scale down. \"Then you will hear it from someone who does,\" he says, \"and pay more for the hearing.\" He turns to the next man in the yard. The copper sits where it was.",
+      "beatArt": ["art.cyprus.yard"],
+      "choices": [{ "id": "leave-refuse", "intent": "deflect", "text": "Go on.", "next": null }]
+    }
+  },
+  "provenance": {
+    "confidence": "plausible",
+    "sources": ["Late Cypriot copper exchange, general"],
+    "notes": "A broker trading on harbor news is plausible; the prices and exchange are invented."
+  }
+}

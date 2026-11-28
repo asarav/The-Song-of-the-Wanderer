@@ -1,0 +1,21 @@
+{
+  "id": "evt.ugarit.day-water-line",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "kind": "storylet",
+  "title": "The water line",
+  "description": "The well is crowded and a household is short a jar.",
+  "scope": { "destinations": ["dest.ugarit"] },
+  "conditions": { "all": [] },
+  "priority": 12,
+  "major": false,
+  "cooldownDays": 7,
+  "scene": "dlg.ugarit.water-line",
+  "cast": ["char.ugarit.sibtu"],
+  "effects": [],
+  "provenance": {
+    "confidence": "plausible",
+    "sources": ["Ugaritic household and water administration, general"],
+    "notes": "A crowded well and a short household are plausible; the scene is invented."
+  }
+}

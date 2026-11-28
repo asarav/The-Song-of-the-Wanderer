@@ -1,0 +1,18 @@
+{
+  "id": "ambient.travel.landfall-gone",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "context": "travel",
+  "cultures": ["culture.levant.coastal", "culture.cyprus.harbour"],
+  "scope": { "routes": ["route.ugarit-cyprus"] },
+  "conditions": { "all": [] },
+  "weight": 1,
+  "tags": ["sea", "distance"],
+  "text": "The last headland goes down behind the stern and does not come back. The sailors stop talking about the harbor and start talking about the weather, which is their way of saying that the land is no longer an answer.",
+  "beatArt": ["art.ugarit.mole"],
+  "provenance": {
+    "confidence": "plausible",
+    "sources": ["Late Bronze Age Mediterranean maritime exchange, general"],
+    "notes": "A coastal departure is plausible; the crew’s talk is invented."
+  }
+}

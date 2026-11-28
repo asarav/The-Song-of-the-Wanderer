@@ -1,0 +1,21 @@
+{
+  "id": "evt.cyprus.day-enkomi-news",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "kind": "storylet",
+  "title": "News from Enkomi",
+  "description": "A broker has a price from the other harbor and wants to know what you will do with it.",
+  "scope": { "destinations": ["dest.cyprus"] },
+  "conditions": { "all": [] },
+  "priority": 12,
+  "major": false,
+  "cooldownDays": 10,
+  "scene": "dlg.cyprus.enkomi-news",
+  "cast": ["char.cyprus.kinyras"],
+  "effects": [],
+  "provenance": {
+    "confidence": "plausible",
+    "sources": ["Late Cypriot copper exchange, general"],
+    "notes": "Inter-harbor price news is plausible; the broker and quote are invented."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "id": "ambient.cyprus.night.sea-goddess",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "context": "night",
+  "cultures": ["culture.cyprus.harbour"],
+  "scope": { "destinations": ["dest.cyprus"] },
+  "conditions": { "all": [] },
+  "weight": 1,
+  "tags": ["gods", "sea"],
+  "text": "A woman pours a little water onto the stones where the boats are drawn up and says a name you do not catch. The sea is louder than it was a moment ago, or you have only started listening.",
+  "beatArt": ["art.cyprus.landing"],
+  "provenance": {
+    "confidence": "plausible",
+    "sources": ["Late Cypriot cult practice, general"],
+    "notes": "Libations by a landing are plausible; the name is deliberately not supplied and no divine act is asserted."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "id": "ambient.levant.night.moon-ring",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "context": "night",
+  "cultures": ["culture.levant.coastal"],
+  "scope": { "destinations": ["dest.ugarit"] },
+  "conditions": { "all": [] },
+  "weight": 1,
+  "tags": ["weather", "omens"],
+  "text": "The moon has a ring around it. A porter says that means rain before the market opens; the harbor master says it means the moon has a ring around it, and goes back to his accounts.",
+  "beatArt": ["art.ugarit.mole"],
+  "provenance": {
+    "confidence": "plausible",
+    "sources": ["Mediterranean weather lore, general"],
+    "notes": "Moon haloes as rain signs are widespread; the exchange is invented and no forecast is asserted."
+  }
+}

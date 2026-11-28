@@ -1,0 +1,18 @@
+{
+  "id": "ambient.levant.night.stars",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "context": "night",
+  "cultures": ["culture.levant.coastal"],
+  "scope": { "destinations": ["dest.ugarit"] },
+  "conditions": { "all": [] },
+  "weight": 1,
+  "tags": ["stars", "omens"],
+  "text": "A sailor on the mole names the stars for you: a bull, a scorpion, a woman carrying water. He says the bright one at the mast’s shoulder means the grain ships will be late. He says it the way a man says the price of rope.",
+  "beatArt": ["art.ugarit.night"],
+  "provenance": {
+    "confidence": "plausible",
+    "sources": ["Late Bronze Age Mediterranean celestial lore, general"],
+    "notes": "Star groups and sailing lore are plausible; the specific names and prediction are invented and presented as belief."
+  }
+}

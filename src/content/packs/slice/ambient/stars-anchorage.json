@@ -1,0 +1,18 @@
+{
+  "id": "ambient.travel.stars-anchorage",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "context": "travel",
+  "cultures": ["culture.levant.coastal", "culture.cyprus.harbour"],
+  "scope": { "routes": ["route.ugarit-cyprus"] },
+  "conditions": { "all": [] },
+  "weight": 1,
+  "tags": ["stars", "night"],
+  "text": "The boat lies at anchor with the land a black line behind it. The master watches one star for a long time, then tells the boy at the tiller to keep the other one off the mast. Nobody explains which is which.",
+  "beatArt": ["art.ugarit.night"],
+  "provenance": {
+    "confidence": "plausible",
+    "sources": ["Late Bronze Age Mediterranean navigation, general"],
+    "notes": "Steering by stars is plausible in general terms; the named practice and crew are invented."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "id": "ambient.levant.day.festival",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "context": "day",
+  "cultures": ["culture.levant.coastal"],
+  "scope": { "destinations": ["dest.ugarit"] },
+  "conditions": { "all": [] },
+  "weight": 1,
+  "tags": ["festival", "gods"],
+  "text": "Someone has whitewashed the low wall by the gate, and someone else has already put a handprint in it. A woman selling figs says the feast is for the god of the storm, or perhaps for the king’s safe return; she is not certain, and the figs are dear either way.",
+  "beatArt": ["art.ugarit.high"],
+  "provenance": {
+    "confidence": "plausible",
+    "sources": ["Ugaritic ritual calendars and festival texts, general"],
+    "notes": "Whitewashing, handprints and a storm-god feast are plausible; the speaker and the uncertainty are invented."
+  }
+}

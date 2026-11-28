@@ -1,0 +1,18 @@
+{
+  "id": "ambient.travel.weather-sign",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "context": "travel",
+  "cultures": ["culture.levant.coastal", "culture.cyprus.harbour"],
+  "scope": { "routes": ["route.ugarit-cyprus"] },
+  "conditions": { "all": [] },
+  "weight": 1,
+  "tags": ["weather", "sea"],
+  "text": "The wind shifts before dawn and the sail goes slack. The master smells the air, looks at the water, and orders the oars out. Nobody asks why. By the time the rain reaches you, the oars are already pulling.",
+  "beatArt": ["art.cyprus.night"],
+  "provenance": {
+    "confidence": "plausible",
+    "sources": ["Mediterranean sailing weather, general"],
+    "notes": "Reading a wind shift is plausible; the particular squall is invented."
+  }
+}

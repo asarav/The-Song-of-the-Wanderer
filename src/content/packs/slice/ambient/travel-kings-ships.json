@@ -1,0 +1,18 @@
+{
+  "id": "ambient.travel.kings-ships",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "context": "travel",
+  "cultures": ["culture.levant.coastal", "culture.cyprus.harbour"],
+  "scope": { "routes": ["route.ugarit-cyprus"] },
+  "conditions": { "all": [] },
+  "weight": 1,
+  "tags": ["news", "kings"],
+  "text": "A passenger says the king’s ships have been seen off the southern cape, and that they are not carrying grain. The master says the king’s ships are always carrying grain, and asks whether the passenger has ever seen a ship that was not carrying something.",
+  "beatArt": ["art.cyprus.arrival"],
+  "provenance": {
+    "confidence": "fictional",
+    "sources": ["Late Bronze Age royal maritime activity, general"],
+    "notes": "Royal ships and cargo are plausible in general terms; this reported sighting is invented and is not world truth."
+  }
+}

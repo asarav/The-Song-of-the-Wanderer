@@ -1,0 +1,21 @@
+{
+  "id": "evt.cyprus.day-charcoal",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "kind": "storylet",
+  "title": "The charcoal basket",
+  "description": "A girl is carrying more charcoal than she can see over.",
+  "scope": { "destinations": ["dest.cyprus"] },
+  "conditions": { "all": [] },
+  "priority": 12,
+  "major": false,
+  "cooldownDays": 8,
+  "scene": "dlg.cyprus.charcoal",
+  "cast": ["char.cyprus.ada"],
+  "effects": [],
+  "provenance": {
+    "confidence": "plausible",
+    "sources": ["Late Cypriot bronze working, general"],
+    "notes": "Charcoal carrying at a smithy is plausible; the girl and scene are invented."
+  }
+}

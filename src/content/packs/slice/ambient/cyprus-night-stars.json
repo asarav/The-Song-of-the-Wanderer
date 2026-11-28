@@ -1,0 +1,18 @@
+{
+  "id": "ambient.cyprus.night.stars",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "context": "night",
+  "cultures": ["culture.cyprus.harbour"],
+  "scope": { "destinations": ["dest.cyprus"] },
+  "conditions": { "all": [] },
+  "weight": 1,
+  "tags": ["stars", "omens"],
+  "text": "The sky is so clear that the sea seems to hold a second, worse copy of it. A fisherman says the star low over the water is the one that brings the wind. He says it without looking up, as if the star already knew.",
+  "beatArt": ["art.cyprus.night"],
+  "provenance": {
+    "confidence": "plausible",
+    "sources": ["Mediterranean celestial and weather lore, general"],
+    "notes": "Star lore for weather is plausible; the star and the fisherman are invented, and the claim is his."
+  }
+}

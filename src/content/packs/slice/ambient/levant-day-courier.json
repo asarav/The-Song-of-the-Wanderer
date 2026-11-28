@@ -1,0 +1,18 @@
+{
+  "id": "ambient.levant.day.courier",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "context": "day",
+  "cultures": ["culture.levant.coastal"],
+  "scope": { "destinations": ["dest.ugarit"] },
+  "conditions": { "all": [] },
+  "weight": 1,
+  "tags": ["palace", "news"],
+  "text": "A courier comes down from the palace gate with dust to the knee and does not stop for water. The gate scribe watches him go, then writes something small on his board and covers it with his hand.",
+  "beatArt": ["art.ugarit.palace-gate"],
+  "provenance": {
+    "confidence": "plausible",
+    "sources": ["Ugaritic diplomatic and administrative tablets, general"],
+    "notes": "Court couriers and gate scribes are attested in general terms; this errand is invented."
+  }
+}

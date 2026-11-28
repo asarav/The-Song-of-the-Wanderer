@@ -1,0 +1,18 @@
+{
+  "id": "ambient.travel.dolphins",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "context": "travel",
+  "cultures": ["culture.levant.coastal", "culture.cyprus.harbour"],
+  "scope": { "routes": ["route.ugarit-cyprus"] },
+  "conditions": { "all": [] },
+  "weight": 1,
+  "tags": ["sea", "omens"],
+  "text": "Dolphins run beside the bow for a while, close enough to hear them breathe. The boy says it is a good sign. The master says it is a sign that there are fish, and that the boy should watch the sail.",
+  "beatArt": ["art.cyprus.landing"],
+  "provenance": {
+    "confidence": "plausible",
+    "sources": ["Mediterranean sailing and dolphin behavior, general"],
+    "notes": "Dolphins following boats is plausible; the exchange is invented."
+  }
+}

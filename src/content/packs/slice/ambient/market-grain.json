@@ -1,0 +1,18 @@
+{
+  "id": "ambient.levant.day.market-grain",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "context": "day",
+  "cultures": ["culture.levant.coastal"],
+  "scope": { "destinations": ["dest.ugarit"] },
+  "conditions": { "all": [] },
+  "weight": 1,
+  "tags": ["market", "grain"],
+  "text": "A woman weighs grain against a stone and does not like the answer. The porter says the inland road is slow, the clerk says the road is always slow, and neither of them lowers the price.",
+  "beatArt": ["art.ugarit.market"],
+  "provenance": {
+    "confidence": "plausible",
+    "sources": ["Ugaritic administrative texts, general"],
+    "notes": "A market dispute over weighed grain is plausible; the exchange is invented."
+  }
+}

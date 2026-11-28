@@ -1,0 +1,21 @@
+{
+  "id": "evt.ugarit.day-gate-queue",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "kind": "storylet",
+  "title": "A petitioner at the gate",
+  "description": "A man has been waiting at the palace gate since before the scribes arrived.",
+  "scope": { "destinations": ["dest.ugarit"] },
+  "conditions": { "all": [] },
+  "priority": 12,
+  "major": false,
+  "cooldownDays": 9,
+  "scene": "dlg.ugarit.gate-queue",
+  "cast": ["char.ugarit.yada"],
+  "effects": [],
+  "provenance": {
+    "confidence": "plausible",
+    "sources": ["Ugaritic palace gate administration, general"],
+    "notes": "Petitioners and gate scribes are plausible; the petitioner and scene are invented."
+  }
+}
