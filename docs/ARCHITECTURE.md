@@ -208,6 +208,7 @@ The UI never reads world truth directly. It reads derived, player-facing views:
 | Codex | phase-appropriate authored entries | deliberate ambiguity resolutions |
 | Market | derived destination state + player knowledge | hidden modifiers without an in-world reason |
 | Day context | calendar + phases + active events | events the protagonist has not learned of |
+| Ambient passage | seed + day + location + route/destination cultures + conditions | world truth the traveller has not learned; never saved or RNG-mutating |
 | Day report | afflictions before/after a calendar move + definitions | conditions the player does not have |
 | Route view | route def + route state + knowledge | unknown closures, waypoints, or dangers |
 

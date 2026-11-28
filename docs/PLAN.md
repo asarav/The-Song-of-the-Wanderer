@@ -40,16 +40,16 @@ feature must first be proven by re-expressing existing slice content through it.
 | M2 | Slice systems + graybox UI | Market, travel, dialogue, journal, language, relationships | **Done** |
 | M3 | Slice content | Ugarit and Cyprus authored end to end | **Done** |
 | M4 | Playtest and evaluation | Evidence for the seven slice questions; go/no-go | **Done — decision: revise (ADR-0017)** |
-| M4b | Slice revision | Cast through-lines, the first twenty minutes, standing legibility | **In progress** |
+| M4b | Slice revision | Cast through-lines, the first twenty minutes, standing legibility, factory, living time | **Done** |
 
 ### Wave 1 — Build for scale (M5–M8)
 
 | ID | Milestone | Outcome | Status |
 |---|---|---|---|
-| M5 | World model and timeline | Eras, regional phases, world/regional/local events, propagation, truth vs knowledge | Blocked by M4b |
-| M6 | Characters, arcs, lineages | Lives that continue off-screen; recurring cast; generations | Blocked by M4b |
-| M7 | Society, culture, economy | Factions, obligations, languages, customs, trade networks at scale | Blocked by M4b |
-| M8 | Authoring and QA utilities | Content studio, coverage, continuity, long-run simulation, prose/locale tools | Blocked by M4b |
+| M5 | World model and timeline | Eras, regional phases, world/regional/local events, propagation, truth vs knowledge | **In progress** |
+| M6 | Characters, arcs, lineages | Lives that continue off-screen; recurring cast; generations | Blocked by M5 |
+| M7 | Society, culture, economy | Factions, obligations, languages, customs, trade networks at scale | Blocked by M5 |
+| M8 | Authoring and QA utilities | Content studio, coverage, continuity, long-run simulation, prose/locale tools | Blocked by M5 |
 
 ### Wave 2 — Fill the world (M9–M14)
 

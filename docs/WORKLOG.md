@@ -1889,3 +1889,148 @@ smithy illustration showed a man, contradicting Ada's dialogue and portrait.
   actionlint v1.7.12 reports no errors; `pnpm check` 12/12, `pnpm build` green (existing
   chunk warning), and the exact strict persona commands exit 0 and report the selected
   persona, confirming pnpm forwards the arguments after `--`.
+
+## 2026-11-28 — M4b close-out: content factory and living time
+
+- Closed M4b-T02 with an owner attestation in
+  `docs/playtests/human/2026-11-28-fresh-reader.md`. It records the build, the acceptance
+  points and explicitly says it is not a transcript; no quotes or observations were
+  invented. The only browser saves were a scenario checkpoint and a day-0 autosave, so no
+  save is presented as evidence.
+- Added M4b-T04: `tools/factory.ts` with `new`, `variants`, `audit` and `check`. Recipes
+  live in `tools/factory/recipes/`; dry-run is the default, `--write` refuses to
+  overwrite, and every generated entity validates through the content registry.
+  `new:dialogue` now delegates to the factory. `factory:check` is a gate and rejects
+  non-deterministic recipes, duplicate ids and shipped `TODO:`. ADR-0020 records it.
+- Added M4b-T05: `AmbientObservation` content and 22 observations (4 day + 4 night for
+  each harbour culture, 6 travel), a destination `day` pool and `fireDay` before
+  `fireNight`. `deriveAmbient` is pure and deterministic, filters by culture/scope/
+  conditions/weight, and avoids the previous day's tag. The UI shows today on Night,
+  Port/Place and Journey without a new Continue.
+- Authored four daytime storylets and dialogues: Ugarit water line and gate queue; Cyprus
+  charcoal and Enkomi news. Existing art only; beat-art debt stayed at 243.
+- `ambient:check` is a gate: coverage, deterministic selection and no consecutive repeat
+  over 30 days. Prose, beat-art and art tests include ambient copy; `content:guard`
+  locked the four new graphs with a reason.
+- Fresh-reader attestation and milestone/STATUS/PLAN updates close M4b. M5-T01 is active.
+- No commit, push, PR or merge was made.
+
+## 2026-11-28 — Beat-art specificity pass
+
+- Replaced the travel pool's borrowed or missing beat images with 26 scene plates:
+  patrol hail/speaker, master paying the fee, toll silver, patrol leaving, work passage,
+  cargo lashing/over-side/empty sea, wet rope, passenger, seasick, crew at the bow, words,
+  wind gesture, headland light, night watch, fishing hull, child at the stern, water jar,
+  two boats, squall, caught jar, bread boy, wreckage and harbor prayer. The reported
+  checkpoint beat now shows `art.travel.master-pays`.
+- Finished the journal and codex pools without new generation. Each entry and codex page
+  has one plate per beat, using existing tablets, seals, balances, ingots, portraits and
+  places only where the subject is that beat's subject. Mapping is in
+  `assets/exploratory/README.md`.
+- Added a pool breakdown to `tools/art-ledger.ts`: debt is now `dialogue 157`; travel,
+  journal, codex, place, night and ambient report no debt. Beat-art backlog fell from 243
+  to 157, with 0 missing and 0 stale.
+- Completed three whole city dialogues: `dlg.cyprus.arrival` (6 beats),
+  `dlg.ugarit.faction-request` (5) and `dlg.ugarit.letter` (4). The arrival room uses the
+  existing inn interior plus one cropped room detail; the faction and letter scenes use the
+  palace hall, gate, seal, purse and harbour plates. No portrait carries a beat.
+- Fixed `PacedPassage`: single-beat journal and codex entries completed immediately and
+  never rendered their plate because `Story` only shows art while a passage is pacing.
+  The finished passage now carries its last authored plate. Also reversed the scene
+  finished-passage priority to `finalBeatArt ?? sceneArt`, so a node's last beat shows its
+  own plate rather than the node's place plate.
+- Verification: `pnpm check` and `pnpm build` green; `beatArt.test.ts` 7/7; content lint
+  0 errors and 0 warnings. On the existing `sibtu-news` save, all eight visible journal
+  entries and the Alashiya and traveler's-names codex entries showed their plates. Browser
+  checks of `dlg.cyprus.arrival`, `dlg.ugarit.faction-request` and `dlg.ugarit.letter`
+  showed their specific plates, including the palace seal as the final faction beat; no
+  failed image requests or console errors.
+- No commit, push, PR or merge was made.
+
+## City dialogue art — Sibtu, refugee and copper (2026-11-29)
+
+- Finished `dlg.ugarit.sibtu.ask` whole: all 26 beats across 14 nodes now carry distinct,
+  subject-specific plates. No image was generated. Seventeen new plates are crops of the
+  nine approved cloth scenes: loom and heddle details, the stool and jar, the cord and tied
+  bundle, the child seated on the floor, the hands pushing the bundle, the bare table and
+  cord, the silver and box, the children's feet in the doorway, the shut chest, the empty
+  room, the shuttle and wall, the bare warp, and the morning loom.
+- Finished `dlg.ugarit.refugee-ask` whole (6 beats), replacing its portrait and market-street
+  beats with cloth-room plates, and `dlg.cyprus.copper-offer` whole (5 beats), replacing
+  Kinyras's portrait and the arrival harbor with the yard, tally board, purse, ingot stack
+  and silver plates.
+- Rejected crops that still showed metal chest hinges, metal loom fittings or a child's
+  portrait; re-framed each to object, room or feet-only details before wiring.
+- `pnpm art:ledger` fell from 157 to 130, with 0 missing and 0 stale; 14 untouched
+  dialogues remain. `art.test.ts` and `beatArt.test.ts` pass 194 tests.
+- Browser checks on the `sibtu-news` save rendered `sibtu-greet-loom`,
+  `sibtu-again-loom`, `sibtu-again-stool`, `cyprus-copper-board`, `prologue-purse`,
+  `cyprus-inn-interior` and `cyprus-inn-room-detail` at natural size, with no failed image
+  requests or console errors.
+
+## 2026-11-28 — M4b art debt — Belet's temple beats
+
+- Finished `dlg.ugarit.belet.temple` whole: 14 beats, 14 plates, thirteen cropped from the
+  approved `ugarit-temple.jpg` and the Ugarit stool reused from Sibtu's room.
+- Added the crops and catalogue entries under `public/art/`, `assets/exploratory/` and
+  `src/ui/art.ts`; removed the dialogue's 14 ledger keys. Debt 130 → 116, 0 missing,
+  0 stale.
+- `dlg.cyprus.shipti.inn`, `dlg.ugarit.hannu.gate` and `dlg.ugarit.yada.lesson` stay whole
+  and named: net, shelf, gate desk and the archive board have no approved source plate.
+- Verification: art and beat-art tests 207 passed; `pnpm check`, `pnpm build`,
+  `pnpm art:ledger`.
+## 2026-11-28 — M4b art debt — Shipti, Hannu and Yada
+
+- Finished `dlg.cyprus.shipti.inn` (14), `dlg.ugarit.hannu.gate` (12) and
+  `dlg.ugarit.yada.lesson` (12) whole: 38 beats, 38 plates wired, 38 ledger keys removed.
+  Debt 116 → 78, 0 missing, 0 stale.
+- The net, the shelf and the thread were generated with an approved Cypriot inn plate as
+  the reference image, then cropped to the object; six drifting takes were discarded
+  (sewn cuffs, a buttoned placket, a fleece-covered sitter, a glass pendant lamp,
+  book-like leaves, a modern desk). Hannu and Yada needed no generation: `prologue-gate`
+  supplies the gate bench, tablet, stylus, bread and seal.
+- `assets/exploratory/README.md` records every mapping and rejection; `STATUS.md` updated.
+- Verification: `pnpm art:ledger` 78; art and beat-art tests; `pnpm check`; `pnpm build`;
+  browser pass over Shipti, Hannu, Yada and Belet’s unverified beats.
+
+## 2026-11-28 — M4b art debt — figure pass on the new plates
+- Replaced five generated Cypriot plates that failed on anatomy (`shipti-mend-net`,
+  `shipti-net-knot`, `shipti-net-lap`, `shipti-net-idle`, `shipti-thread`) with
+  figure-free takes from the same approved reference; alt text rewritten.
+- Re-cut `yada-shelves`, `yada-tablet-stack` and `yada-tablet` so the archive's brass
+  ewer and flame are outside every frame; recording note updated.
+- Verification: `pnpm art:ledger`, `pnpm check`, `pnpm build`; browser walk of the five
+  replaced beats.
+- Notes: the archive's tablet stacks still read slightly like bound books (M18).
+
+## 2026-11-28 — M4b — the cloth goes to the market, not the yard
+- Clarified where Sibtu's cloth is sold: `dlg.ugarit.refugee-ask` (ask text, answer, scene goal), `dlg.ugarit.sibtu.ask` (answer, settle and news lines, obstacle), the two cloth journals and `journal.slice.sibtu-news` now say the market in Ugarit instead of "the yard", which was also the name of the island's copper yard. `sibtu-cloth` provenance note and `dlg.ugarit.arrival`'s work line follow; `dlg.ugarit.yada-archive` says courtyard.
+- Regenerated `docs/design/generated/{scenes,prices}.md`; re-locked the two scene contracts in `content/mechanics.lock.json` with a reason.
+- Verification: `pnpm check -- --sequential` 14/14; `pnpm art:ledger` 383 beats, debt 78; the handover scene read in the app.
+
+## 2026-11-28 — M4b art debt — Hannu's three writing beats
+- `after-burned:1`, `wants:2` and `finished:1` shared near-identical crops of one bench. `hannu-board` keeps the low wide crop for `finished:1`; `hannu-reed` and `hannu-board-down` were generated against `prologue-gate.jpg` as a stylus-alone macro and a closed tablet with the tools laid down and a cord over the edge. Alts rewritten; a wet-slip take that read as wet dough was rejected.
+- Verification: `pnpm art:ledger` 383 beats, debt 78; `pnpm check -- --sequential` 14/14; both beats read in the app with the new plates.
+
+## 2026-11-28 — M4b art debt — Hannu's written board
+- `finished:1` still read as the same bench-with-tablet as `after-burned:1`, so `hannu-board` was regenerated as a worked board leaning back against the gate jamb with sparse wedge cuts pressed across its face — upright and leaning, unlike the flat closed tablet. Rejected takes: a raised-bezel board that read as a modern framed panel (and the earlier wet-slip board-down).
+- Hannu's tally is now nine cropped plates and three generated. Alts for `finished:1` rewritten; the other plates' alts untouched.
+- Verification: all three writing beats read in the app with their own files and alts; `pnpm art:ledger` 383 beats, 0 missing, 0 stale, debt 78; `pnpm check -- --sequential` 14/14.
+
+## 2026-11-28 — M4b — names carry a colour, and the emphasis comes back
+- The prose now distinguishes what a reader has to keep track of: a place is set in bronze, a person in ink-blue. The lists are derived (`src/ui/terms.ts`): destination and character names from the content index, plus the five neighbouring places the copy already names (Alashiya, Enkomi, Egypt, Thebes, Giza). Matching is case sensitive and whole-word, so "the market" and "the yard" stay body colour, a name inside an authorial bold stays bold, and a possessive reads as its name. `parseRuns` takes an optional terms argument; `Rich` renders `.name-place` / `.name-person`. Settings carries a "Colour names" switch, on by default, stored per device and applied from the first screen.
+- Restored the authored bold that the prose passes had thinned: prices, sums and day counts in 35 text fields across 29 files, plus one hand-picked phrase per journal entry (`**the debt**`, `**the count is short**`, `**Ninshubur**`). Choice labels were left plain on purpose: a button already stands out, and the label is part of the mechanics the guard hashes.
+- `docs/CONTENT.md` §"Pacing and emphasis" now states the rule: spend the two or three bolds on a price or a deadline, never on a choice label, and tone is presentation, never content.
+- Verification: story tests 27 (six new tone cases); `pnpm check -- --sequential` 14/14; `pnpm content:guard` unchanged; browser pass — Ugarit bronze in the destination intro, Sibtu lapis in the journal, the switch turning bronze off and on, codex bolds visible.
+
+## 2026-11-28 — M4b — the bolds are chosen, not counted
+- Walked all 43 dialogue files, 10 codex entries, 2 destination intros, 34 events and 18 journals beat by beat and chose 85 phrases by hand: the person to see, the place to go, the object to carry, the debt, the hour, the obligation. Spread over 38 files (31 dialogues, 5 codex entries, the follow-up event, the opening journal); the automatic price/day pass from earlier in the day stays underneath.
+- One or two per beat at most, never a phrase twice in a beat, never a choice label. Beats that only set a scene, show a habit or land a joke were left plain on purpose: the ambient observations (22), both night passages, the travel reaction beats (cargo shift, squall, spring, wreckage, quiet night), the charcoal and gate-queue results, the mystery's emotional beats, and the `passing`/`again` lines that repeat a bold already given.
+- Trimmed three beats that had grown past the cap (`codex/shekel` had three, two prologue beats had four and five): the prologue now relies on the name tone for places and keeps `**Passage to Cyprus**` and `**a hinge**` as its guidance. Un-bolded the one choice label the earlier price pass had caught (`Pay her two shekels.`) and moved `travel-checkpoint`'s bold off `his fee` so the coherence test still reads the sentence as written.
+- `docs/CONTENT.md` now states how to pick the phrase ("Which sentence earns the bold").
+- Verification: `pnpm check -- --sequential` 14/14 (content:guard 43 dialogues unchanged, prose:lint clean, 1272 tests); a beat-by-beat audit script reports 403 beats, 134 with a bold, 269 plain, 0 beats over two bolds, 0 repeated phrases, 0 bolded choice labels; `pnpm art:ledger` 383 beats 0 missing 0 stale; browser pass on `dlg.ugarit.hannu.gate` greet ("**the market is up the hill**" now shown in the prose) and the Colour names switch off/on around it.
+
+## 2026-11-28 — the journal and the conversation log become navigable
+- The journal was one long column of every entry, each paced behind its own Continue, with the transcript folded into a `<details>` at the bottom. It is now an index beside the entry, the same two-pane reading the codex already uses: newest entry open by default, every other entry one click away, a count, and a filter over titles and text (`filterJournalEntries` in `src/ui/journal.ts`). At a narrow stage the index stacks above the entry, as the codex does.
+- The conversation log is a peer view rather than a footnote: its own tab with a live count, a search over speakers and words said (`filterLogLines`), and a day picker built from the days the log actually holds (`logDays`). Each day is a section under its own heading, and the transcript now reads as text rather than one paced beat per line, since it is a record of what was already read.
+- Verification: `pnpm check -- --sequential` 14/14 (eleven new tests across `src/ui/journal.test.ts` and `src/ui/log.test.ts`); browser pass — 8 entries indexed, filter "cloth" narrowing to 2 of 8 with the right entry open, the log tab showing 3 lines over 1 day, search "light" narrowing to one line and an honest empty state for a miss, and the narrow layout stacking the index above the entry.

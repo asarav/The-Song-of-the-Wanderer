@@ -1,10 +1,10 @@
 # M4 findings
 
-**Status:** written 2026-11-27 from three agent sessions and one design-owner pass.
-Gate A accepted this evidence under ADR-0017; the missing persona sessions and fresh-reader
-session are recorded there and carried into M4b.
+**Status:** written 2026-11-27 from three agent sessions and one design-owner pass;
+updated 2026-11-28 when M4b closed. Gate A accepted the original evidence under ADR-0017.
 
-**Decision:** revise. M4b is defined in `docs/milestones/M4b-slice-revision.md`.
+**Decision:** revise. M4b is defined in `docs/milestones/M4b-slice-revision.md` and is
+complete as of 2026-11-28.
 
 ## Evidence in hand
 
@@ -14,6 +14,7 @@ session are recorded there and carried into M4b.
 | `agent/2026-11-27-trader.md` | agent session | no |
 | `agent/2026-11-27-helper.md` | agent session | no |
 | `human/2026-11-27-design-owner-quick-pass.md` | design-owner pass, notes only | no |
+| `human/2026-11-28-fresh-reader.md` | owner attestation, not a transcript | M4b condition |
 
 ## What the evidence agrees on
 
@@ -107,6 +108,23 @@ Confidence: medium.
 - Dialogue: Hannu's warehouse line, the crossing's work choice, Belet's answer, Yada's
   setup, Shipti's shelf, Ada's finished tripod, the two nightly events, the squall's ending.
 - The repeatable-scene rule in `docs/CONTENT.md`, with the two nightly events gated.
+
+## What M4b changed
+
+- **Cast through-lines.** Every recurring character now has an object want, a pressure and
+  a later scene that answers an earlier one (`docs/design/cast-threads.md`). The cloth,
+  copper, letter and faction-request threads leave a visible consequence.
+- **The first twenty minutes.** The opening is eight illustrated beats before the first
+  choice, the arrival intro names Tiro at the mole, and the fresh-reader attestation
+  records that the first crossing was reached and grain, reserve and fare were understood
+  afterwards.
+- **Standing legibility.** A regard or faction change produces a status line at the moment
+  it happens, in the same channel as the language notice.
+- **The machine that builds the machine.** `pnpm factory` scaffolds, expands authored
+  recipes and audits coverage. It is offline, deterministic and refuses to ship `TODO:`.
+- **Living time.** Day and travel now have authored observations; night varies by culture
+  and day instead of one static paragraph per port. Four daytime storylets give the ports
+  scenes in daylight rather than only at night. No new mechanic and no save change.
 
 ## The decision
 

@@ -1,6 +1,6 @@
 # M4b — Slice revision
 
-**Status:** In progress — T00a/T00b/T00c, T01 and T03 done; T02 open on the fresh reader
+**Status:** Done — T00–T05 complete; Gate A's carried-forward condition is recorded
 
 ## M4b-T00 — Model, enforcement, automation (done)
 
@@ -73,8 +73,10 @@ first crossing has to be discovered rather than taught.
       intro names **Tiro** at the mole, and the First step hint names the action.
 - [x] Keep the contextual First step hints, but let each one name the action, not the
       concept.
-- [ ] Record one session by a reader who has not seen the design docs, notes in
+- [x] Record one session by a reader who has not seen the design docs, notes in
       `docs/playtests/human/`. This is the external evidence ADR-0017 carried forward.
+      The record is `human/2026-11-28-fresh-reader.md`: an owner attestation, not a
+      transcript, with no invented quotes.
 
 **Acceptance:** the fresh reader reaches the first crossing and can explain grain, reserve
 and the fare afterwards, without being told.
@@ -93,6 +95,45 @@ A favor, refusal or bargain changes numbers the player never sees move.
 **Acceptance:** after a faction-relevant choice, the player can say who noticed and what
 changed without opening the Factions screen.
 
+### M4b-T04 — The content factory
+
+Authoring volume without a second scaffolder or a live generator.
+
+- [x] `pnpm factory -- new|variants|audit|check` in `tools/factory.ts`, with recipes in
+      `tools/factory/recipes/`. Dry-run by default; `--write` refuses to overwrite and
+      validates against the content registry.
+- [x] Kinds: `ambient`, `event`, `dialogue`, `journal`, `codex`, `character`,
+      `destination`, `route`, `arc-brief`. Arc briefs are markdown until M6.
+- [x] `new:dialogue` delegates to the factory; generated scaffolds carry `TODO:` and fail
+      `factory:check` until filled.
+- [x] `factory:check` is part of `pnpm check`: recipe validation, deterministic dry runs,
+      duplicate ids and shipped placeholders.
+- [x] `tools/factory.test.ts` covers dry-run, seed determinism, overwrite refusal, invalid
+      variants and TODO detection. ADR-0020 records the decision.
+
+**Acceptance:** a new ambient matrix or dialogue shape can be planned, validated and
+written from an authored recipe, and no generated placeholder can reach a pack.
+
+### M4b-T05 — Living time
+
+Day and travel have copy and scenes of their own, without slowing the loop.
+
+- [x] `AmbientObservation` schema and `ambient/` pack folder; destination `day` pool;
+      `fireDay` before `fireNight`. Ambient has no effects, scene or saved state.
+- [x] `deriveAmbient` filters by context, culture, scope, conditions and weight; uses the
+      seed, day and location; avoids the previous day's tag; falls back to `night.text`.
+- [x] Night shows the day observation above the night one; Journey shows one travel
+      observation; Port/Place show today's observation when no night card is active.
+- [x] 22 observations: 4 day and 4 night for each Levantine and Cypriot harbour culture,
+      plus 6 travel observations. Existing art only; no beat-art debt added.
+- [x] Four daytime storylets with scenes, stable choice ids, cooldowns and existing cast
+      voices: Ugarit water line and gate queue; Cyprus charcoal and Enkomi news.
+- [x] `ambient:check` in `pnpm check`: coverage, deterministic selection, no consecutive
+      repeat over 30 days. Prose, beat-art and art tests include ambient copy.
+
+**Acceptance:** a day and a crossing each have more than one plausible observation, the
+night is not one static paragraph, and the main loop keeps its one Continue.
+
 ## Definition of done
 
 - `pnpm check` green and `pnpm build` green.
@@ -100,3 +141,4 @@ changed without opening the Factions screen.
 - The fresh-reader session is recorded in `docs/playtests/human/`.
 - `docs/playtests/findings.md` is updated with what the revision changed.
 - `STATUS.md` names M5 as the active milestone and `PLAN.md` marks M4b done.
+- T04 and T05 are part of `pnpm check` and are recorded in ADR-0020.

@@ -259,6 +259,8 @@ type DestinationDef = {
   routes: RouteId[]
   /** The place after dark: presentation, plus an authored encounter pool. */
   night?: { art?: AssetId; text: string; events: EncounterEntry[] }
+  /** Daylight encounters, drawn once after exactly one day at the place. */
+  day?: { events: EncounterEntry[] }
   eventPools: EventPoolId[]
   phaseStates: DestinationPhaseState[]
   assets?: { art?: AssetId[]; audio?: AssetId[] }
@@ -269,6 +271,25 @@ type DestinationDef = {
 The profile list is how a city carries climate, culture, language, currency, architecture,
 art, religion, literature, and music without duplicating them. A local override is for a
 real difference, not a copy.
+
+Ambient observations are a separate content type, not destination truth and not a scene.
+They are selected by a pure view from the seed, day, location and context, and are never
+saved.
+
+```ts
+type AmbientObservationDef = {
+  id: AmbientId // ambient.<culture>.<context>.<slug>
+  context: 'day' | 'night' | 'travel'
+  cultures: CultureId[]
+  scope?: { destinations?: DestinationId[]; routes?: RouteId[] }
+  conditions: Condition
+  weight: number
+  tags: string[]
+  text: string // one or two beats
+  beatArt: AssetId[] // one per beat, existing plates only
+  provenance: Provenance
+}
+```
 
 A place is the unit of arrival and presence: its own hero picture, description, people,
 and actions. The destination owns the cast; a place's `cast` is an authored subset of it.

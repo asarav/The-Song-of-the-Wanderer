@@ -1,6 +1,6 @@
 # M5 — World model and timeline
 
-**Status:** Blocked by Gate A (M4 human playtests) · **Depends on:** M1–M4 · **Architecture:** `WORLD_MODEL.md`,
+**Status:** In progress — M5-T01 · **Depends on:** M1–M4b · **Architecture:** `WORLD_MODEL.md`,
 ADR-0004, ADR-0005
 **Goal:** the world can change across centuries through authored phases and events, with
 consequences propagating to places, people, prices, routes, and knowledge.
