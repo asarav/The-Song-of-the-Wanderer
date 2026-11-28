@@ -5,12 +5,14 @@
  * Usage: `pnpm task:brief`
  */
 
-import { execFileSync } from 'node:child_process'
+import { execSync } from 'node:child_process'
 import { readFile } from 'node:fs/promises'
+
+const PNPM = process.platform === 'win32' ? 'pnpm.cmd' : 'pnpm'
 
 function sh(command: string, args: readonly string[]): string {
   try {
-    return execFileSync(command, [...args], { encoding: 'utf8' }).trim()
+    return execSync([command, ...args].join(' '), { encoding: 'utf8' }).trim()
   } catch (error) {
     return `(${command} failed: ${error instanceof Error ? error.message.split('\n')[0] : String(error)})`
   }
@@ -41,9 +43,9 @@ async function main(): Promise<void> {
 
   process.stdout.write(`## Checks\n`)
   for (const [label, command, args] of [
-    ['guard', 'pnpm', ['content:guard']],
-    ['model', 'pnpm', ['model:check']],
-    ['prose', 'pnpm', ['prose:lint']],
+    ['guard', PNPM, ['content:guard']],
+    ['model', PNPM, ['model:check']],
+    ['prose', PNPM, ['prose:lint']],
   ] as const) {
     process.stdout.write(`${label}: ${sh(command, args).split('\n').slice(-1)[0]}\n`)
   }

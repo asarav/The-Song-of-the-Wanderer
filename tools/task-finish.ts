@@ -7,24 +7,24 @@
  * Usage: `pnpm task:finish`
  */
 
-import { execFileSync } from 'node:child_process'
+import { execSync } from 'node:child_process'
 
-const STEPS: [string, string, string[]][] = [
-  ['check', 'pnpm', ['check']],
-  ['build', 'pnpm', ['build']],
-  ['model', 'pnpm', ['model:check']],
-  ['prose', 'pnpm', ['prose:lint']],
-  ['price', 'pnpm', ['price:check']],
-  ['guard', 'pnpm', ['content:guard']],
-  ['invariants', 'pnpm', ['invariant:check']],
-  ['docs', 'pnpm', ['docs:check']],
+const STEPS: [string, string][] = [
+  ['check', 'pnpm check'],
+  ['build', 'pnpm build'],
+  ['model', 'pnpm model:check'],
+  ['prose', 'pnpm prose:lint'],
+  ['price', 'pnpm price:check'],
+  ['guard', 'pnpm content:guard'],
+  ['invariants', 'pnpm invariant:check'],
+  ['docs', 'pnpm docs:check'],
 ]
 
 function main(): void {
-  for (const [label, command, args] of STEPS) {
+  for (const [label, command] of STEPS) {
     process.stdout.write(`\n=== ${label} ===\n`)
     try {
-      execFileSync(command, args, { stdio: 'inherit' })
+      execSync(command, { stdio: 'inherit' })
     } catch {
       process.stderr.write(
         `\ntask:finish refused: ${label} failed. Fix it before updating STATUS/WORKLOG or committing.\n`,

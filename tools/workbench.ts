@@ -5,7 +5,7 @@
  * Usage: `pnpm content:workbench dlg.ugarit.sibtu.ask`
  */
 
-import { execFileSync } from 'node:child_process'
+import { execSync } from 'node:child_process'
 
 import { flagUses } from './lib/flags'
 import { search } from './lib/search'
@@ -77,7 +77,7 @@ async function main(): Promise<void> {
 
   process.stdout.write(`\n## guard\n`)
   try {
-    const output = execFileSync('pnpm', ['content:guard'], { encoding: 'utf8' })
+    const output = execSync('pnpm content:guard', { encoding: 'utf8' })
     process.stdout.write(`${output.trim().split('\n').slice(-1)[0]}\n`)
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error)
