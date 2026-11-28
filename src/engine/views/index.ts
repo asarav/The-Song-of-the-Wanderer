@@ -1,5 +1,6 @@
 /** Public surface of the derived-view module. */
 
+export * from './ambient'
 export * from './destination'
 export * from './day'
 export * from './journey'

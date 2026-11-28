@@ -158,6 +158,23 @@ export function selectEncounter(
 }
 
 /**
+ * The day a traveller spends at a destination.
+ *
+ * At most one authored encounter is drawn from the place's `day` band, before the night
+ * that follows it. It uses the same authored weights, cooldowns and seeded stream as any
+ * other encounter. Major events are never drawn here; they are scheduled.
+ */
+export function fireDay(ctx: SchedulerContext): void {
+  if (ctx.state.narrative.pending || ctx.state.narrative.journey) return
+  const destination = ctx.index.destinations.get(ctx.state.player.location)
+  if (!destination?.day || destination.day.events.length === 0) return
+
+  const event = selectEncounter(ctx, destination.day.events)
+  if (!event) return
+  applyEvent(ctx, event)
+}
+
+/**
  * The night that follows a day at a destination.
  *
  * At most one authored encounter is drawn from the place's `night` band, by authored

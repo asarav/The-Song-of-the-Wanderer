@@ -54,8 +54,10 @@ acceptance tests, not side projects.
 | `pnpm affected`                                                                 | Changed files → exact checks to run                                                    | M4b                        | **Done**               |
 | `pnpm docs:sync` / `docs:check`                                                 | Generated cast, facts, flags, scenes and prices; verified, not remembered              | M4b                        | **Done**               |
 | `pnpm new:dialogue <id> <speaker>`                                              | Contract skeleton that fails the model gate until filled                               | M4b                        | **Done**               |
-| `pnpm art:ledger`                                                               | Beat plates missing, stale ledger keys, debt total                                     | M4b                        | **Done**               |
+| `pnpm art:ledger`                                                               | Beat plates missing, stale ledger keys, debt total and debt by pool                   | M4b                        | **Done**               |
 | `pnpm task:finish`                                                              | check, build, content gates and docs, then the close-out checklist                     | M4b                        | **Done**               |
+| `pnpm factory -- new|variants|audit|check`                                      | Scaffold, expand authored recipes, audit coverage, gate placeholders                   | M4b                        | **Done**               |
+| `pnpm ambient:check`                                                           | Day/night/travel coverage, deterministic selection, no consecutive repeat              | M4b                        | **Done**               |
 | `pnpm locale:extract` / `locale:check`                                          | String catalog and placeholder validation                                              | M8                         | Planned                |
 | `pnpm assets:check`                                                             | Missing asset IDs, fallback coverage                                                   | M8                         | Planned                |
 | `pnpm audio:build`                                                              | Download/cache CC0 beds, generate original cues, normalize, write the audio manifest   | M4 exploratory / M18 final | **Done (exploratory)** |
@@ -243,18 +245,40 @@ Monte Carlo over seeds:
 
 ## 7. Authoring generators
 
-`pnpm new:*` creates files from templates with valid IDs, provenance stubs, and TODO
-markers that the linter recognizes:
+There is one scaffolder: `pnpm factory`. `pnpm new:dialogue` delegates to it.
 
-- `new:pack` — manifest, folders, README.
-- `new:destination` — entity, dossier stub, scenario stub, route placeholders.
-- `new:character` — brief, entity, itinerary stub.
-- `new:arc` — arc definition with three beats and a failure state.
-- `new:event` — event envelope, scene stub, scenario stub.
-- `new:region` — phase table stub, pack manifest, route joint placeholders.
+```
+pnpm factory -- new <kind> <id>                     # dry run; add --write to create
+pnpm factory -- variants <recipe> --count N --seed S
+pnpm factory -- audit [--json]                      # coverage and gaps
+pnpm factory -- check                               # the gate
+```
 
-Generators never invent canon. Every generated prose field is `TODO:` and fails a
-"no placeholders in shipped content" check.
+Kinds: `ambient`, `event`, `dialogue`, `journal`, `codex`, `character`, `destination`,
+`route`, `arc-brief`. An arc brief writes `docs/design/arcs/<id>.md`; there is no runtime
+`ArcDef` before M6.
+
+Rules:
+
+- **Authored fragments only.** A recipe in `tools/factory/recipes/*.json` declares the
+  kind, output pack, defaults and variant rows. A row may name a culture, an art ID and
+  tags; the factory copies the rest. It makes no model calls and invents no canon.
+- **Dry run by default.** `--write` refuses to overwrite an existing file. IDs come from
+  the recipe id plus the row slug, and the file name is the last segment, so the content
+  linter and the factory cannot disagree about a path.
+- **Validated before written.** Every generated entity is parsed by the same Zod registry
+  as `content:lint`. Variant order is deterministic for a seed.
+- **Placeholders fail.** Scaffolds and recipes contain `TODO:` until a person fills them;
+  `factory:check` rejects a shipped placeholder, a duplicate id and a non-deterministic
+  recipe. `check` also rejects TODO in any content JSON.
+- **Coverage is a gate, not a dashboard only.** `ambient:check` fails when a destination
+  culture lacks four day or four night observations, a route lacks six travel
+  observations, a destination lacks daytime or night events, or selection repeats on
+  consecutive days over a 30-day sample.
+
+`pnpm new:*` still covers pack, destination, character, arc, event and region scaffolding
+for M8. Those generators never invent canon either; every generated prose field is
+`TODO:` and fails the same check.
 
 ## 8. Prose and locale tools
 

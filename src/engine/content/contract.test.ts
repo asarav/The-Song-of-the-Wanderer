@@ -22,8 +22,8 @@ import { testContent, testPack } from '@engine/testing'
 const folders = Object.keys(ENTITY_SCHEMAS) as EntityFolder[]
 
 describe('content module public surface', () => {
-  it('publishes one schema for each of the fourteen folders', () => {
-    expect(folders).toHaveLength(14)
+  it('publishes one schema for each of the fifteen folders', () => {
+    expect(folders).toHaveLength(15)
     for (const folder of folders) {
       expect(typeof ENTITY_SCHEMAS[folder].safeParse).toBe('function')
     }

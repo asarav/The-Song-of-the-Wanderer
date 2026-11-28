@@ -205,6 +205,16 @@ export const DestinationSchema = z
     cast: z.array(z.string()),
     places: z.array(PlaceSchema),
     /**
+     * A daytime pool. It is drawn after exactly one day spent here, by authored weight
+     * and cooldown; major events are never drawn from it. Ambient copy is separate.
+     */
+    day: z
+      .object({
+        events: z.array(EncounterEntrySchema),
+      })
+      .strict()
+      .optional(),
+    /**
      * The place after dark: its own picture and passage, and the encounters that may
      * find the traveller there when a day ends. One fires per night, by authored weight;
      * major events are never drawn here. The night itself is presentation, not state.
@@ -503,6 +513,44 @@ export const EventSchema = z
   .strict()
 
 /**
+ * One short piece of time-of-day copy. Ambient observations are presentation only: they
+ * never change state, fire scenes or assert world truth. The seed and date choose one;
+ * the player never has to answer a card to get on with the day.
+ */
+export const AMBIENT_CONTEXTS = ['day', 'night', 'travel'] as const
+export type AmbientContext = (typeof AMBIENT_CONTEXTS)[number]
+
+export const AmbientObservationSchema = z
+  .object({
+    ...envelope,
+    context: z.enum(AMBIENT_CONTEXTS),
+    /** Cultures whose people would say this. At least one is required. */
+    cultures: z.array(z.string()).min(1),
+    scope: EventScopeSchema.optional(),
+    conditions: conditionSchema.optional(),
+    weight: z.number().min(0),
+    /** Used to avoid the same tone twice in a row. */
+    tags: z.array(z.string()).optional(),
+    text: z.string().min(1),
+    /** One plate per prose beat. Ambient copy is short by design. */
+    beatArt: z.array(z.string().min(1)).min(1),
+  })
+  .strict()
+  .superRefine((entry, ctx) => {
+    const beats = splitBeats(entry.text).length
+    if (beats > 2) {
+      ctx.addIssue({ code: 'custom', message: 'ambient copy may have at most two beats', path: ['text'] })
+    }
+    if (entry.beatArt.length !== beats) {
+      ctx.addIssue({
+        code: 'custom',
+        message: `beatArt has ${entry.beatArt.length} plates for ${beats} prose beats`,
+        path: ['beatArt'],
+      })
+    }
+  })
+
+/**
  * What an answer does dramatically. A scene of pure probing reads as an interview; the
  * model check requires at least one answer that reveals, bargains, helps, refuses, costs
  * or deflects. The tag is authored, never inferred from the text.
@@ -682,6 +730,7 @@ export type GoodDef = z.infer<typeof GoodSchema>
 export type AfflictionDef = z.infer<typeof AfflictionSchema>
 export type CharacterDef = z.infer<typeof CharacterSchema>
 export type EventDef = z.infer<typeof EventSchema>
+export type AmbientObservationDef = z.infer<typeof AmbientObservationSchema>
 export type DialogueChoiceDef = z.infer<typeof DialogueChoiceSchema>
 export type DialogueNodeDef = z.infer<typeof DialogueNodeSchema>
 export type DialogueDef = z.infer<typeof DialogueSchema>
@@ -703,6 +752,7 @@ export const ENTITY_SCHEMAS = {
   afflictions: AfflictionSchema,
   characters: CharacterSchema,
   events: EventSchema,
+  ambient: AmbientObservationSchema,
   dialogues: DialogueSchema,
   journal: JournalSchema,
   codex: CodexSchema,
@@ -722,6 +772,7 @@ export type AnyEntity =
   | AfflictionDef
   | CharacterDef
   | EventDef
+  | AmbientObservationDef
   | DialogueDef
   | JournalDef
   | CodexDef

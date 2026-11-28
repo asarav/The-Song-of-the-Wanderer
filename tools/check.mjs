@@ -20,6 +20,8 @@ const TASKS = [
   'test',
   'content:lint',
   'model:check',
+  'ambient:check',
+  'factory:check',
   'prose:lint',
   'price:check',
   'content:guard',

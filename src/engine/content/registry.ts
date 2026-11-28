@@ -14,6 +14,7 @@ import type { Condition, DslContent } from '../dsl'
 import {
   ENTITY_SCHEMAS,
   ManifestSchema,
+  type AmbientObservationDef,
   type AnyEntity,
   type CharacterDef,
   type ClimateDef,
@@ -66,6 +67,7 @@ export interface ContentIndex {
   afflictions: Map<string, AfflictionDef>
   characters: Map<string, CharacterDef>
   events: Map<string, EventDef>
+  ambient: Map<string, AmbientObservationDef>
   dialogues: Map<string, DialogueDef>
   journal: Map<string, JournalDef>
   codex: Map<string, CodexDef>
@@ -95,6 +97,7 @@ const SINGULAR: Record<EntityFolder, string> = {
   afflictions: 'affliction',
   characters: 'character',
   events: 'event',
+  ambient: 'ambient observation',
   dialogues: 'dialogue',
   journal: 'journal entry',
   codex: 'codex entry',
@@ -116,6 +119,7 @@ export function emptyContentIndex(): ContentIndex {
     afflictions: new Map(),
     characters: new Map(),
     events: new Map(),
+    ambient: new Map(),
     dialogues: new Map(),
     journal: new Map(),
     codex: new Map(),
@@ -494,6 +498,16 @@ export function buildContentIndex(packs: RawPack[]): BuildResult {
       requireRef(index, issues, 'destinations', place, path, 'presence')
   }
 
+  for (const [id, destination] of index.destinations) {
+    const path = `destinations/${id}`
+    for (const entry of destination.day?.events ?? []) {
+      requireRef(index, issues, 'events', entry.event, path, 'day events')
+    }
+    for (const entry of destination.night?.events ?? []) {
+      requireRef(index, issues, 'events', entry.event, path, 'night events')
+    }
+  }
+
   for (const [id, event] of index.events) {
     const path = `events/${id}`
     for (const destination of event.scope?.destinations ?? [])
@@ -510,6 +524,23 @@ export function buildContentIndex(packs: RawPack[]): BuildResult {
     }
     for (const followUp of event.followUps ?? []) {
       requireRef(index, issues, 'events', followUp.event, path, 'followUps')
+    }
+  }
+
+  for (const [id, entry] of index.ambient) {
+    const path = `ambient/${id}`
+    for (const culture of entry.cultures) {
+      requireRef(index, issues, 'cultures', culture, path, 'cultures')
+    }
+    for (const destination of entry.scope?.destinations ?? [])
+      requireRef(index, issues, 'destinations', destination, path, 'scope.destinations')
+    for (const route of entry.scope?.routes ?? [])
+      requireRef(index, issues, 'routes', route, path, 'scope.routes')
+    for (const region of entry.scope?.regions ?? [])
+      requireRef(index, issues, 'regions', region, path, 'scope.regions')
+    if (entry.conditions) {
+      const parsed = parseCondition(entry.conditions)
+      if (!parsed.ok) issue(issues, path, `conditions: ${parsed.issues.join('; ')}`)
     }
   }
 

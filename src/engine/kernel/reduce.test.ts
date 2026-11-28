@@ -365,6 +365,20 @@ describe('time', () => {
     )
   })
 
+  it('lets one authored daytime event fire before the night', () => {
+    const state = start()
+    state.player.flags['test.day'] = true
+    const result = run(state, { type: 'advanceTime', days: 1 })
+
+    expect(result.state.knowledge.journalEntries).toContain('journal.test.day')
+    expect(
+      result.events
+        .map((entry) => entry.event)
+        .filter((event) => event.type === 'EventFired')
+        .map((event) => (event as { event: string }).event),
+    ).toContain('evt.test.day')
+  })
+
   it('lets one authored night event fire after a day at a place', () => {
     const state = start()
     state.player.flags['test.night'] = true

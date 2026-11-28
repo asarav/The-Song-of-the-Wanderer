@@ -114,6 +114,11 @@ pnpm model:check   # wants, scene contracts, choice ids, callbacks, ties, termin
 pnpm prose:lint    # POV, anachronism, beat length, voice ceilings, probe-only nodes
 pnpm price:check   # every named price matches a money effect, or is allowlisted
 pnpm content:guard # mechanics fingerprint; use --update --reason when mechanics change
+pnpm factory -- new ambient ambient.levant.day.market  # dry run; add --write
+pnpm factory -- variants ambient-example --count 4 --seed harbor
+pnpm factory -- audit       # variation coverage and missing families
+pnpm factory:check          # recipes, determinism, duplicate ids, shipped TODO
+pnpm ambient:check          # day/night/travel coverage and selection
 pnpm playtest:review -- --persona helper  # deterministic pre-pass for a playtest
 ```
 

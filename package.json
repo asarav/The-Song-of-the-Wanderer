@@ -38,6 +38,7 @@
     "playtest:review": "tsx tools/playtest-review.ts",
     "migrate:model": "tsx tools/migrate-model.ts",
     "model:check": "tsx tools/model-check.ts",
+    "ambient:check": "tsx tools/ambient-check.ts",
     "prose:lint": "tsx tools/prose-lint.ts",
     "price:check": "tsx tools/price-check.ts",
     "content:guard": "tsx tools/content-guard.ts",
@@ -56,6 +57,8 @@
     "docs:sync": "tsx tools/docs-sync.ts",
     "docs:check": "tsx tools/docs-check.ts",
     "new:dialogue": "tsx tools/new-dialogue.ts",
+    "factory": "tsx tools/factory.ts",
+    "factory:check": "tsx tools/factory.ts check",
     "art:ledger": "tsx tools/art-ledger.ts",
     "task:finish": "tsx tools/task-finish.ts"
   },

@@ -1,0 +1,42 @@
+{
+  "id": "ambient.factory-example",
+  "kind": "ambient",
+  "pack": "pack.slice",
+  "description": "A small example of the factory's authored-fragment variation shape.",
+  "defaults": {
+    "scope": { "destinations": ["dest.ugarit"] },
+    "conditions": { "all": [] },
+    "weight": 1,
+    "provenance": {
+      "confidence": "fictional",
+      "sources": [],
+      "notes": "Factory example; replace with authored provenance before shipping."
+    }
+  },
+  "variants": [
+    {
+      "slug": "stars",
+      "context": "night",
+      "culture": "culture.levant.coastal",
+      "tags": ["stars", "omens"],
+      "art": "art.ugarit.night",
+      "text": "A sailor names the stars over the mole and says the bright one means late grain ships."
+    },
+    {
+      "slug": "temple",
+      "context": "day",
+      "culture": "culture.levant.coastal",
+      "tags": ["temple", "gods"],
+      "art": "art.ugarit.temple",
+      "text": "A singer practices one line behind the temple wall until it stops sounding like words."
+    },
+    {
+      "slug": "harbor",
+      "context": "day",
+      "culture": "culture.levant.coastal",
+      "tags": ["harbor", "work"],
+      "art": "art.ugarit.mole",
+      "text": "A porter checks a tarpaulin, then the next one, then stands looking at the water."
+    }
+  ]
+}

@@ -339,6 +339,10 @@ export function lintProse(index: ContentIndex): ProseIssue[] {
     checkText(journal.id, journal.text, undefined, undefined, true)
   }
 
+  for (const entry of index.ambient?.values() ?? []) {
+    checkText(entry.id, entry.text, entry.context, undefined, false, sourceOf(index, entry.id))
+  }
+
   for (const [opening, places] of openings) {
     if (places.length >= 3) {
       add(

@@ -11,7 +11,7 @@ import { applyEffects } from '../dsl'
 import { quoteBuy, quoteSell } from '../economy'
 import { resolveChoice, startDialogue } from '../narrative'
 import { continueJourney, startJourney } from '../narrative'
-import { fireDue, fireNight } from '../narrative'
+import { fireDay, fireDue, fireNight } from '../narrative'
 import { RngCursor } from '../rng'
 import { cloneState, type GameState } from '../state'
 import { advanceDays } from '../time'
@@ -313,6 +313,7 @@ export function reduce(state: GameState, command: Command, index: ContentIndex):
     ctx.state.calendar.day === dayBefore + 1 &&
     !ctx.state.narrative.pending
   ) {
+    fireDay(ctx)
     fireNight(ctx)
   }
 

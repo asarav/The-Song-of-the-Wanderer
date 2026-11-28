@@ -1,11 +1,11 @@
 /**
  * Write a dialogue skeleton that deliberately fails the model gate until it is finished.
  *
+ * This is a compatibility wrapper around `factory new dialogue`; there is one scaffolder.
  * Usage: `pnpm new:dialogue dlg.ugarit.example char.ugarit.amnit`
  */
 
-import { writeFile } from 'node:fs/promises'
-import { join } from 'node:path'
+import { writeScaffold } from './factory'
 
 async function main(): Promise<void> {
   const id = process.argv[2]
@@ -16,38 +16,15 @@ async function main(): Promise<void> {
     return
   }
 
-  const file = `${id.replaceAll('.', '-')}.json`
-  const skeleton = {
-    id,
-    pack: 'pack.slice',
-    contentVersion: 1,
-    speaker,
-    start: 'greet',
-    nodes: {
-      greet: {
-        text: 'TODO: the scene opens on a pressure, not a greeting.',
-        choices: [
-          {
-            text: 'TODO: an answer that does something.',
-            next: null,
-          },
-        ],
-      },
-    },
-    provenance: {
-      confidence: 'fictional',
-      sources: [],
-      notes: 'TODO: why this scene exists and what it changes.',
-    },
+  try {
+    const result = await writeScaffold('dialogue', id, { speaker, write: true })
+    process.stdout.write(
+      `new:dialogue - wrote ${result.path}\nFill the scene contract, choice ids and intents; pnpm model:check must pass.\n`,
+    )
+  } catch (error) {
+    process.stderr.write(`new:dialogue: ${(error as Error).message}\n`)
+    process.exitCode = 1
   }
-
-  await writeFile(
-    join(process.cwd(), 'src', 'content', 'packs', 'slice', 'dialogues', file),
-    `${JSON.stringify(skeleton, null, 2)}\n`,
-  )
-  process.stdout.write(
-    `new:dialogue - wrote ${file}\nFill the scene contract, choice ids and intents; pnpm model:check must pass.\n`,
-  )
 }
 
 void main()

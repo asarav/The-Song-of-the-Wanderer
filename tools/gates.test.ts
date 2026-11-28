@@ -9,6 +9,7 @@
 import { describe, expect, it } from 'vitest'
 
 import type { CharacterDef, ContentIndex, DialogueDef } from '../src/engine/content'
+import { auditContent } from './factory'
 import { checkDocs } from './docs-check'
 import { fingerprintAll, guardProblems } from './content-guard'
 import { checkInvariants } from './invariant-check'
@@ -489,6 +490,25 @@ describe('invariant:check rejects a broken authored invariant', () => {
     expect(failures).toEqual([
       { id: 'gate-tax', message: 'expected money -5 at open:pay' },
     ])
+  })
+})
+
+describe('factory audit rejects a missing ambient family', () => {
+  it('names the missing day, night, travel and event families', () => {
+    const index = {
+      destinations: new Map([
+        ['dest.test', { id: 'dest.test', cultures: ['culture.test'], encounters: [] }],
+      ]),
+      routes: new Map([['route.test', { id: 'route.test', encounters: [] }]]),
+      ambient: new Map(),
+    } as unknown as ContentIndex
+
+    const audit = auditContent(index)
+    const problems = audit.problems.join('\n')
+    expect(problems).toContain('dest.test (culture.test) has 0 day observations; 4 required')
+    expect(problems).toContain('dest.test (culture.test) has 0 night observations; 4 required')
+    expect(problems).toContain('dest.test has 0 daytime events; 2 required')
+    expect(problems).toContain('route.test has 0 travel observations; 6 required')
   })
 })
 

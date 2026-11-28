@@ -150,6 +150,15 @@ const samples: Record<EntityFolder, Record<string, unknown>> = {
     effects: [],
     provenance,
   },
+  ambient: {
+    id: 'ambient.test.day',
+    context: 'day',
+    cultures: ['culture.test'],
+    weight: 1,
+    text: 'A porter crosses the yard.',
+    beatArt: ['art.ugarit.market'],
+    provenance,
+  },
   dialogues: {
     id: 'dlg.test',
     speaker: 'char.test',
@@ -170,9 +179,9 @@ const samples: Record<EntityFolder, Record<string, unknown>> = {
 const folders = Object.keys(ENTITY_SCHEMAS) as EntityFolder[]
 
 describe('entity schemas', () => {
-  it('registers exactly the fourteen folders the milestone names', () => {
+  it('registers exactly the folders the schemas define', () => {
     expect(folders.sort()).toEqual(Object.keys(samples).sort())
-    expect(folders).toHaveLength(14)
+    expect(folders).toHaveLength(15)
   })
 
   it.each(folders)('accepts a minimal %s entity', (folder) => {
@@ -209,5 +218,20 @@ describe('entity schemas', () => {
   it('refuses a codex entry on a shelf that does not exist', () => {
     const parsed = ENTITY_SCHEMAS.codex.safeParse({ ...samples.codex, category: 'weather' })
     expect(parsed.success).toBe(false)
+  })
+
+  it('keeps ambient copy short and gives every beat its own plate', () => {
+    const long = ENTITY_SCHEMAS.ambient.safeParse({
+      ...samples.ambient,
+      text: 'One.\n\nTwo.\n\nThree.',
+      beatArt: ['art.ugarit.market', 'art.ugarit.temple', 'art.ugarit.night'],
+    })
+    expect(long.success).toBe(false)
+
+    const mismatched = ENTITY_SCHEMAS.ambient.safeParse({
+      ...samples.ambient,
+      beatArt: [],
+    })
+    expect(mismatched.success).toBe(false)
   })
 })

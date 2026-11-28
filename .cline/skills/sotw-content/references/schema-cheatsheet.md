@@ -21,6 +21,7 @@ code disagree, the code wins; update this file.
 | `events/` | `evt.` | see event shape below |
 | `dialogues/` | `dlg.` | `id`, `speaker`, `start`, `nodes`, `provenance` |
 | `storylets/` | `evt.` | `pool`, `conditions`, `weight`, `cooldownDays`, `tags[]`, `scene`, `provenance` |
+| `ambient/` | `ambient.` | `id`, `context` (`day`/`night`/`travel`), `cultures[]`, `scope`, `conditions`, `weight`, `tags[]`, `text`, `beatArt[]`, `provenance` |
 | `journal/` | `journal.` | `id`, `title`, `body`, `voice`, `knowledgeRefs[]` |
 | `codex/` | `codex.` | `id`, `title`, `body`, `sources[]`, `provenance` |
 | `languages/` | `lang.` | `id`, `family`, `script`, `related[]`, `tradeRole?`, `tiers` |
@@ -34,6 +35,17 @@ code disagree, the code wins; update this file.
 | `observances/` | `observance.` | `id`, `calendar`, `date`, `culture`, `religion`, `public`, `effects`, `provenance` |
 | `rumors/` | `rumor.` | `id`, `about`, `variants[]`, `baseDelayDays`, `hops[]` |
 | `objects/` | `object.` | `id`, `kind`, `holder`, `location`, `knowledgeRefs[]`, `provenance` |
+
+## Authoring factory
+
+`pnpm factory -- new <kind> <id>` scaffolds a valid shape with `TODO:`; add `--write` to
+create it. `pnpm factory -- variants <recipe> --count N --seed S` expands
+`tools/factory/recipes/*.json`; `pnpm factory -- audit` reports thin cultures and routes.
+Dry-run is the default and `factory:check` rejects shipped `TODO:`.
+
+Ambient rules: one or two beats, one existing `beatArt` per beat, no effects, no scene,
+no saved state. Four day and four night observations per culture, six travel observations
+per route. Astrology and divine statements are reported belief, never facts.
 
 ## Pack manifest
 
