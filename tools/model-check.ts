@@ -147,13 +147,13 @@ function main(): void {
     for (const dialogue of index.dialogues.values()) {
       const speaker = dialogue.speaker ? index.characters.get(dialogue.speaker) : undefined
       const recurring = speaker?.tier === 'major' || speaker?.tier === 'recurring'
-      // A conversation graph is one `talkTo` can open. Event scenes may also use a
-      // recurring speaker, but they are scheduled once and do not need a repeat entry.
+      // A conversation graph is one `talkTo` can open (the character's dialogue, here or
+      // in another destination). A scheduled event scene can use the same speaker, but it
+      // happens once and must not be asked for a repeat entry.
       const conversation = Boolean(
         speaker &&
           (speaker.dialogue === dialogue.id ||
-            Object.values(speaker.dialogueByDestination ?? {}).includes(dialogue.id) ||
-            (speaker.appearances ?? []).includes(dialogue.id)),
+            Object.values(speaker.dialogueByDestination ?? {}).includes(dialogue.id)),
       )
       const contract = dialogue.scene
 
