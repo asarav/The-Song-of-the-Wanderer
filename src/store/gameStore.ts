@@ -8,7 +8,14 @@
 
 import { create } from 'zustand'
 
-import type { Command, SequencedEvent } from '@engine/kernel'
+import {
+  characterName,
+  factionName,
+  goodName,
+  languageName,
+  type ContentIndex,
+} from '@engine/content'
+import { eventsOfType, type Command, type SequencedEvent } from '@engine/kernel'
 import { newGame } from '@engine/kernel'
 import { reduce } from '@engine/kernel'
 import { deserialize, SaveError, serialize } from '@engine/save'
@@ -44,7 +51,7 @@ export type GameScreen =
 export const SAVE_KEY = 'song-of-the-wanderer.save.v1'
 export const AUTOSAVE_KEY = 'song-of-the-wanderer.autosave.v1'
 
-export const STARTING_PLACES = {
+const STARTING_PLACES = {
   location: 'dest.ugarit',
   capacity: 20,
   languages: { 'lang.akkadian': { xp: 25, tier: 'basic' as const } },
@@ -74,13 +81,13 @@ export interface TimePassed {
  * A one-shot cue for the audio layer. Presentation only: rejected commands leave it
  * untouched, and it never enters a save.
  */
-export interface SoundCue {
+interface SoundCue {
   id: number
   command: Command['type']
 }
 
 interface GameStore {
-  index: ReturnType<typeof loadContentIndex>
+  index: ContentIndex
   state: GameState | null
   screen: GameScreen
   feedback: string | null
@@ -196,21 +203,16 @@ function readSave(): { state: GameState } | { error: SaveError } {
 function tradeConfirmation(
   command: Command,
   events: SequencedEvent[],
-  index: ReturnType<typeof loadContentIndex>,
+  index: ContentIndex,
 ): string | null {
   if (command.type !== 'buy' && command.type !== 'sell') return null
 
-  let silver = 0
-  let item: { id: string; delta: number } | null = null
-  for (const entry of events) {
-    if (entry.event.type === 'MoneyChanged') silver = Math.abs(entry.event.delta)
-    if (entry.event.type === 'ItemChanged') {
-      item = { id: entry.event.item, delta: entry.event.delta }
-    }
-  }
-
-  if (!item || silver === 0) return null
-  const name = index.goods.get(item.id)?.name ?? item.id
+  const money = eventsOfType(events, 'MoneyChanged').at(-1)
+  const changed = eventsOfType(events, 'ItemChanged').at(-1)
+  if (!changed || !money || money.delta === 0) return null
+  const item = { id: changed.item, delta: changed.delta }
+  const silver = Math.abs(money.delta)
+  const name = goodName(index, item.id)
   return `${command.type === 'buy' ? 'Bought' : 'Sold'} ${Math.abs(item.delta)} ${name.toLowerCase()} for ${silver} shekels.`
 }
 
@@ -220,17 +222,16 @@ function tradeConfirmation(
  */
 function languageConfirmation(
   events: SequencedEvent[],
-  index: ReturnType<typeof loadContentIndex>,
+  index: ContentIndex,
 ): string | null {
   const parts: string[] = []
-  for (const entry of events) {
-    if (entry.event.type !== 'LanguageXpGained') continue
-    if (entry.event.amount <= 0) continue
-    const name = index.languages.get(entry.event.language)?.name ?? entry.event.language
+  for (const event of eventsOfType(events, 'LanguageXpGained')) {
+    if (event.amount <= 0) continue
+    const name = languageName(index, event.language)
     parts.push(
-      entry.event.tierChanged
-        ? `Your ${name} is now ${entry.event.tier}.`
-        : `Your ${name} improves (+${entry.event.amount} xp).`,
+      event.tierChanged
+        ? `Your ${name} is now ${event.tier}.`
+        : `Your ${name} improves (+${event.amount} xp).`,
     )
   }
   return parts.length > 0 ? parts.join(' ') : null
@@ -239,10 +240,14 @@ function languageConfirmation(
 /**
  * Say when someone's regard has crossed into a readable band. The dimensions changed
  * silently before this: the number moved, the player had no way to notice.
+ *
+ * Below-band moves stay internal by design. Announcing every +1 would turn a character's
+ * regard into a score popup, and the scene itself carries the smaller reaction. The
+ * playtest review records that policy as an accepted observation rather than a gap.
  */
 function regardConfirmation(
   events: SequencedEvent[],
-  index: ReturnType<typeof loadContentIndex>,
+  index: ContentIndex,
 ): string | null {
   const phrases: Record<string, string> = {
     hostile: 'has turned against you',
@@ -252,27 +257,48 @@ function regardConfirmation(
     warm: 'is warmer with you',
     close: 'is close to you now',
   }
-  for (const entry of events) {
-    if (entry.event.type !== 'RegardChanged') continue
-    const name = index.characters.get(entry.event.character)?.name ?? entry.event.character
-    return `${name} ${phrases[entry.event.to] ?? 'has noticed you'}.`
+  const changed = eventsOfType(events, 'RegardChanged')[0]
+  if (!changed) return null
+  const name = characterName(index, changed.character)
+  return `${name} ${phrases[changed.to] ?? 'has noticed you'}.`
+}
+
+/**
+ * Say when an institution has noticed the traveller. Faction standing had no confirmation
+ * at all: it moved in the save while the player saw it only if they opened Factions.
+ */
+function factionConfirmation(
+  events: SequencedEvent[],
+  index: ContentIndex,
+): string | null {
+  const phrases: Record<string, [string, string]> = {
+    trust: ['trusts you a little more', 'trusts you a little less'],
+    favour: ['will remember the favour', 'will remember the refusal'],
+    obligation: ['will expect more of you', 'will expect less of you'],
+    standing: ['counts you a little higher', 'counts you a little lower'],
+    suspicion: ['watches you more closely', 'watches you less closely'],
   }
-  return null
+  const lines: string[] = []
+  for (const event of eventsOfType(events, 'FactionChanged')) {
+    if (event.delta === 0) continue
+    const name = factionName(index, event.faction)
+    const phrase = phrases[event.dimension]?.[event.delta > 0 ? 0 : 1]
+    lines.push(`${name} ${phrase ?? 'has noticed you'}.`)
+  }
+  return lines.length > 0 ? lines.join(' ') : null
 }
 
 /** A promise or debt is a standing record, so it is announced when it is opened. */
 function promiseConfirmation(
   events: SequencedEvent[],
-  index: ReturnType<typeof loadContentIndex>,
+  index: ContentIndex,
 ): string | null {
-  for (const entry of events) {
-    if (entry.event.type !== 'PromiseOpened') continue
-    const name = index.characters.get(entry.event.character)?.name ?? entry.event.character
-    return entry.event.kind === 'debt'
-      ? `You now owe ${name}. It is written in the journal.`
-      : `You have promised ${name}. It is written in the journal.`
-  }
-  return null
+  const opened = eventsOfType(events, 'PromiseOpened')[0]
+  if (!opened) return null
+  const name = characterName(index, opened.character)
+  return opened.kind === 'debt'
+    ? `You now owe ${name}. It is written in the journal.`
+    : `You have promised ${name}. It is written in the journal.`
 }
 
 let passages = 0
@@ -392,6 +418,7 @@ export const useGameStore = create<GameStore>((set, get) => ({
       tradeConfirmation(command, result.events, index),
       languageConfirmation(result.events, index),
       regardConfirmation(result.events, index),
+      factionConfirmation(result.events, index),
       promiseConfirmation(result.events, index),
     ].filter((line): line is string => Boolean(line))
 

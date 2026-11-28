@@ -38,17 +38,27 @@ the human/agent distinction the milestone depends on.
 4. Note the build: `git rev-parse --short HEAD` (or `uncommitted` when the tree is dirty),
    the date, and the dev server address.
 5. Choose a seed you have not used in a previous session and record it.
+6. Run the deterministic pre-pass for your persona:
+
+   ```bash
+   pnpm playtest:review -- --persona <trader|curious|helper>
+   ```
+
+   It reports candidates for clarity, confusion, character interactions, mechanics,
+   friction, tone, enjoyment proxies and inconsistencies. Pick two or three that would
+   change a player decision and test them in the browser. The pre-pass is not a session;
+   its findings are hypotheses until you reproduce them.
 
 ## Pick a persona
 
 One session, one persona. Do not blend them; the point is different priorities producing
 different friction.
 
-| Persona | Wants | Counts as friction |
-|---|---|---|
-| **Trader** | Buy low, carry, sell high, come home with more silver | Prices that cannot be compared, cargo limits that surprise, a trade that cannot be undone, unclear profit |
-| **Curious traveler** | See the place, meet people, learn what the world is | Prose that rushes, people who only exist as buttons, a codex entry with nothing to do, a map that will not show the ground |
-| **Helper** | Be useful to a person, keep a promise, be remembered | Obligations with no visible consequence, a kindness that changes nothing, no way to tell whether someone remembers |
+| Persona              | Wants                                                 | Counts as friction                                                                                                         |
+| -------------------- | ----------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| **Trader**           | Buy low, carry, sell high, come home with more silver | Prices that cannot be compared, cargo limits that surprise, a trade that cannot be undone, unclear profit                  |
+| **Curious traveler** | See the place, meet people, learn what the world is   | Prose that rushes, people who only exist as buttons, a codex entry with nothing to do, a map that will not show the ground |
+| **Helper**           | Be useful to a person, keep a promise, be remembered  | Obligations with no visible consequence, a kindness that changes nothing, no way to tell whether someone remembers         |
 
 If asked for all three, run three separate sessions and label each report by persona.
 
@@ -80,7 +90,13 @@ Every session report contains, in this order:
 1. **Header** — date, persona, seed, build, duration, screens visited, dev server.
 2. **Story of the session** — six to twelve sentences, past tense, what the player tried
    and what happened. Enough that someone else could retrace it.
-3. **Bugs** — one entry each:
+3. **Pre-pass evidence** — the command you ran and the two or three candidates you chose,
+   each marked **confirmed**, **not reproduced**, or **not visible in the replay**.
+4. **Feedback dimensions** — one or two sentences for each of clarity, confusion,
+   character interactions, mechanics, friction, emotional tone, enjoyment and
+   inconsistencies. Separate what the session showed from what you infer; do not turn a
+   proxy into a verdict.
+5. **Bugs** — one entry each:
 
    ```
    ### B1 — <one-line symptom>
@@ -92,15 +108,15 @@ Every session report contains, in this order:
    - Notes: when it started, whether reload changes it
    ```
 
-4. **Friction** — moments that are not bugs but cost the player time or confidence, each
+6. **Friction** — moments that are not bugs but cost the player time or confidence, each
    with the exact place and the question the player asked themselves ("what do I do now?").
-5. **Ideas** — one entry each, with the pillar it serves (spec §1), the player problem it
+7. **Ideas** — one entry each, with the pillar it serves (spec §1), the player problem it
    solves, the evidence from this session, and a rough cost (copy change / UI change /
    content / mechanic). Mark anything that adds a mechanic as "needs the scope gate".
-6. **Seven questions** — a verdict for each §22.1 question: **strong / promising / weak /
+8. **Seven questions** — a verdict for each §22.1 question: **strong / promising / weak /
    failed**, plus one paragraph of evidence and a confidence (low / medium / high).
    "Not enough evidence" is a legitimate verdict; do not pad.
-7. **One-line recommendation** — what you would fix first, and why.
+9. **One-line recommendation** — what you would fix first, and why.
 
 Use `references/report-template.md` as the skeleton. Copy it; do not edit it.
 

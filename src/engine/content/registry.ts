@@ -54,7 +54,7 @@ export interface RawPack {
 export interface ContentIndex {
   packs: string[]
   contentVersions: Record<string, number>
-  byId: Map<string, { folder: EntityFolder; entity: AnyEntity }>
+  byId: Map<string, { folder: EntityFolder; entity: AnyEntity; path?: string }>
   climates: Map<string, ClimateDef>
   cultures: Map<string, CultureDef>
   languages: Map<string, LanguageDef>
@@ -236,7 +236,8 @@ function checkDialogue(
   const reached = new Set<string>()
   const queue = [...openings]
   while (queue.length > 0) {
-    const nodeId = queue.shift() as string
+    const nodeId = queue.shift()
+    if (nodeId === undefined) break
     if (reached.has(nodeId)) continue
     reached.add(nodeId)
     const node = dialogue.nodes[nodeId]
@@ -362,7 +363,7 @@ export function buildContentIndex(packs: RawPack[]): BuildResult {
       }
 
       folderMap(index, file.folder).set(entity.id, entity)
-      index.byId.set(entity.id, { folder: file.folder, entity })
+      index.byId.set(entity.id, { folder: file.folder, entity, path })
       byFolder[file.folder] = (byFolder[file.folder] ?? 0) + 1
 
       if (!declaredIds.has(entity.id)) {

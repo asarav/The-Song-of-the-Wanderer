@@ -13,6 +13,12 @@
     },
     {
       "when": {
+        "flag": "palace.seal-shown"
+      },
+      "node": "again"
+    },
+    {
+      "when": {
         "flag": "kinyras.met"
       },
       "node": "again"
@@ -75,6 +81,7 @@
               }
             ]
           },
+          "unavailableNote": "You have no palace seal to show him, or he has already seen it.",
           "effects": [
             {
               "flag": "palace.seal-shown"
@@ -130,6 +137,7 @@
               }
             ]
           },
+          "unavailableNote": "You have no palace seal to show him, or he has already seen it.",
           "effects": [
             {
               "flag": "palace.seal-shown"
@@ -185,6 +193,7 @@
               }
             ]
           },
+          "unavailableNote": "You have no palace seal to show him, or he has already seen it.",
           "effects": [
             {
               "flag": "palace.seal-shown"

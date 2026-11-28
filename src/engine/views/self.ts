@@ -6,7 +6,7 @@
  * can see the whole of their situation without visiting four separate screens.
  */
 
-import type { ContentIndex } from '../content'
+import { goodName, placeName, subjectName, type ContentIndex } from '../content'
 import { itemWeight } from '../economy'
 import { deriveFactions, deriveLanguages } from '../journal'
 import type { FactionView, LanguageView } from '../journal'
@@ -90,25 +90,10 @@ function transportLabel(id: string): string {
   return TRANSPORT_LABELS[id] ?? id.replace(/^transport\./, '').replace(/-/g, ' ')
 }
 
-function placeName(index: ContentIndex, id: string): string {
-  return index.destinations.get(id)?.name ?? index.routes.get(id)?.name ?? id
-}
-
-function subjectName(index: ContentIndex, id: string): string {
-  return (
-    index.characters.get(id)?.name ??
-    index.factions.get(id)?.name ??
-    index.goods.get(id)?.name ??
-    index.destinations.get(id)?.name ??
-    index.routes.get(id)?.name ??
-    id
-  )
-}
-
 export function deriveSelf(state: GameState, index: ContentIndex): SelfView {
   const goods = state.player.inventory.map((entry) => ({
     id: entry.item,
-    name: index.goods.get(entry.item)?.name ?? entry.item,
+    name: goodName(index, entry.item),
     quantity: entry.quantity,
     weight: itemWeight(index, entry.item) * entry.quantity,
     protected: entry.protected ?? false,

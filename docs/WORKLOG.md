@@ -1794,3 +1794,22 @@ smithy illustration showed a man, contradicting Ada's dialogue and portrait.
   `prose:lint` 0/0; price/guard/invariants/docs/audio/skills clean); `pnpm build` green.
 - Still open: the external T02 fresh-reader session. M5 remains blocked until it is
   recorded; no push, PR or merge was made.
+
+## 2026-11-28 — M4b-T00b — Close the automated playtest gaps and tighten shared code
+
+- Fixed the remaining pre-pass gaps: faction changes now produce an in-scene store notice;
+  Tiro and Yada answer help with an acknowledgement beat; Ada records the blade topic the
+  scenario already expected. Added tests that assert the feedback text, dialogue node and
+  dialogue-presented event rather than only the state delta.
+- Added accepted observations to `playtest:review` for intentional below-band regard moves,
+  clamped rest at full stamina, declared repeat entries and open promises, so the human
+  session receives only open gaps. The all-scenario and trader/curious/helper reviews now
+  report 0 open findings.
+- Refactored duplicated display-name fallbacks into `src/engine/content/names.ts`, added a
+  typed `eventsOfType` helper, shared the review-note render contract, extracted the
+  reusable `LanguageRow`, and removed unsafe content-loader casts with a folder type guard.
+- Verification: `pnpm check` green (57 files / 1122 tests; 12/12 gates), `pnpm build` green
+  (existing chunk warning), and `pnpm playtest:review -- --strict` green across all 14
+  scenarios and all three personas. No human or browser session was fabricated.
+- Still open: the external T02 fresh-reader session. This entry records a checkpoint after
+  the user asked for the work to be committed and pushed.

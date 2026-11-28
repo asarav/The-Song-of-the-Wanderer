@@ -63,6 +63,7 @@
               "quantity": 1
             }
           },
+          "unavailableNote": "You have no palace seal to show him.",
           "effects": [
             {
               "flag": "arrived.ugarit"

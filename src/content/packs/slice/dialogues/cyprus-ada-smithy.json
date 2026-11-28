@@ -13,6 +13,12 @@
     },
     {
       "when": {
+        "flag": "ada.blade-asked"
+      },
+      "node": "again-work"
+    },
+    {
+      "when": {
         "flag": "ada.tripod-done"
       },
       "node": "again-work"
@@ -176,6 +182,12 @@
                 "fact": "cyprus.ada.blade-for-a-votive",
                 "source": "told",
                 "reliability": 0.7
+              }
+            },
+            {
+              "markTopic": {
+                "character": "char.cyprus.ada",
+                "topic": "blade"
               }
             }
           ],

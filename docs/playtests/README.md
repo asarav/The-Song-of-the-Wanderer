@@ -58,7 +58,18 @@ playing):
 ```bash
 pnpm simulate -- slice-day-save
 pnpm check
+pnpm playtest:review -- --persona helper
 ```
+
+`playtest:review` replays the checked-in scenarios for the chosen persona and reports
+deterministic candidates by the eight feedback dimensions: clarity, confusion, character
+interactions, mechanics, friction, emotional tone, enjoyment proxies and inconsistencies.
+It names source files and separates open findings from accepted observations (below-band
+regard moves, clamped rest at full stamina, declared repeat entries and open promises),
+so only gaps that still need judgment reach the session. It is a pre-pass, not a session: a
+finding is confirmed only by reproducing it in the browser.
+Use `--scenario <id>` for one scenario, `--json` for an agent-readable record, `--out` for
+a saved Markdown review, and `--strict` to make error-level candidates fail the command.
 
 If `pnpm dev` is not already running, start it in the background and wait for HTTP 200 on
 the origin before playing. A playtest of a dev server that will not start is a build

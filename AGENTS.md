@@ -61,7 +61,7 @@ Do not read the whole specification. It is 2,000 lines; grep the section you nee
    - tools/QA → `docs/TOOLING.md`
    - content → `docs/CONTENT.md`; history → `docs/HISTORY.md`
    - assets/visuals → `docs/ASSETS.md`
-4. Claim exactly one task by writing it into `STATUS.md` under *Active task*.
+4. Claim exactly one task by writing it into `STATUS.md` under _Active task_.
 
 **Work**
 
@@ -79,8 +79,8 @@ Do not read the whole specification. It is 2,000 lines; grep the section you nee
 
 **Handoff**
 
-A new agent needs one instruction: *"Read `AGENTS.md` and continue from
-`docs/STATUS.md`."* Everything else is on disk. Never rely on conversation memory.
+A new agent needs one instruction: _"Read `AGENTS.md` and continue from
+`docs/STATUS.md`."_ Everything else is on disk. Never rely on conversation memory.
 
 ---
 
@@ -107,14 +107,17 @@ tools/                linters, simulators, generators, save tools
 
 ```
 pnpm dev           # run the app
-pnpm check         # typecheck + lint + tests + every content gate  (the gate)
+pnpm check         # typecheck + lint + tests + every content gate (bounded parallel)
 pnpm test          # vitest
 pnpm content:lint  # validate authored content
 pnpm model:check   # wants, scene contracts, choice ids, callbacks, ties, terminal flags
 pnpm prose:lint    # POV, anachronism, beat length, voice ceilings, probe-only nodes
 pnpm price:check   # every named price matches a money effect, or is allowlisted
 pnpm content:guard # mechanics fingerprint; use --update --reason when mechanics change
+pnpm playtest:review -- --persona helper  # deterministic pre-pass for a playtest
 ```
+
+`pnpm check -- --sequential` runs the same gates one at a time when diagnosing a failure.
 
 Session start: `pnpm task:brief`. Look something up with `pnpm ask`, `pnpm entity`,
 `pnpm flag` or `pnpm impact` instead of re-reading the tree. Rewrite one graph with

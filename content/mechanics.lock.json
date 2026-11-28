@@ -7,9 +7,9 @@
       "updatedAt": "2026-11-28T00:46:40.339Z"
     },
     "dlg.cyprus.ada.smithy": {
-      "hash": "af8052824e1df5f0",
-      "reason": "M4b model migration: stable choice ids, intents and scene contracts",
-      "updatedAt": "2026-11-28T00:46:40.339Z"
+      "hash": "a19b4f4355dc6aeb",
+      "reason": "Record the blade topic Ada has already explained, and acknowledge Tiro and Yada help answers",
+      "updatedAt": "2026-11-28T01:54:58.579Z"
     },
     "dlg.cyprus.amnit": {
       "hash": "b6996d90df04c625",
@@ -27,9 +27,9 @@
       "updatedAt": "2026-11-28T00:46:40.339Z"
     },
     "dlg.cyprus.kinyras.meeting": {
-      "hash": "36e2373da89ee1d9",
-      "reason": "M4b model migration: stable choice ids, intents and scene contracts",
-      "updatedAt": "2026-11-28T00:46:40.339Z"
+      "hash": "b850be68c4b7b8cc",
+      "reason": "Enforce a second recurring graph for Tiro and Yada, and add entry branches for one-shot flags",
+      "updatedAt": "2026-11-28T01:30:06.207Z"
     },
     "dlg.cyprus.night-kiln": {
       "hash": "c5d0469f7dfd9a17",
@@ -182,9 +182,19 @@
       "updatedAt": "2026-11-28T00:46:40.339Z"
     },
     "dlg.ugarit.yada.lesson": {
-      "hash": "c20c224379d3e77c",
-      "reason": "M4b model migration: stable choice ids, intents and scene contracts",
-      "updatedAt": "2026-11-28T00:46:40.339Z"
+      "hash": "b7b7ed7030f49a82",
+      "reason": "Enforce a second recurring graph for Tiro and Yada, and add entry branches for one-shot flags",
+      "updatedAt": "2026-11-28T01:30:06.207Z"
+    },
+    "dlg.cyprus.tiro": {
+      "hash": "df18cd11b8f25172",
+      "reason": "Add acknowledgement beats for Tiro and Yada help answers, and announce faction changes in the store",
+      "updatedAt": "2026-11-28T01:53:27.819Z"
+    },
+    "dlg.ugarit.yada.archive": {
+      "hash": "0f6e7869f5b01d96",
+      "reason": "Add acknowledgement beats for Tiro and Yada help answers, and announce faction changes in the store",
+      "updatedAt": "2026-11-28T01:53:27.819Z"
     }
   }
 }

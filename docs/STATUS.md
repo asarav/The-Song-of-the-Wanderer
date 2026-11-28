@@ -1,7 +1,7 @@
 # Status
 
 **Updated:** 2026-11-28 · **Phase:** M4b — slice revision (M4 closed, ADR-0017)
-**Health:** `pnpm check` green (55 files / 1105 tests, all content gates) · `pnpm build` green (existing chunk warning)
+**Health:** `pnpm check` green (57 files / 1122 tests, all content gates) · `pnpm build` green (existing chunk warning) · `playtest:review` clean (0 open findings)
 **Active task:** M4b-T02 — the fresh-reader session (external evidence)
 
 This file is the shared memory between sessions. Rewrite it at the end of a work
@@ -45,6 +45,10 @@ The model is now data, and the data is mandatory:
   open and settle, Amnit's debt and Shipti's brother are recorded.
 - **Regard bands** — derived from the five dimensions, never stored; `RegardChanged`
   becomes a standing notice in the same channel as the language notice.
+- **Playtest pre-pass** — `pnpm playtest:review` replays every checked-in scenario and
+  persona, separates accepted design thresholds from open findings, and currently reports
+  no open findings. Faction changes are announced in the scene, and help answers land on
+  an acknowledgement beat rather than ending silently.
 - **Mechanics guard** — prose edits are free; changing choice order/ids, effects,
   conditions, entries or contracts needs `pnpm content:guard --update --reason`.
 - **Proof the gates check** — 18 broken-fixture tests in `tools/gates.test.ts` assert the

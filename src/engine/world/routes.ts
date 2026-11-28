@@ -8,7 +8,7 @@
 
 import { evaluateCondition } from '../dsl'
 import type { RouteDef, TravelModeDef } from '../content'
-import { createDslContent, type ContentIndex } from '../content'
+import { createDslContent, placeName, type ContentIndex } from '../content'
 import { RngCursor } from '../rng'
 import type { GameState } from '../state'
 import { cargoWeight } from '../economy'
@@ -45,10 +45,6 @@ function conditionHolds(state: GameState, index: ContentIndex, condition: RouteD
     content: createDslContent(index),
     rng: new RngCursor(state.rng),
   })
-}
-
-function placeName(index: ContentIndex, id: string): string {
-  return index.destinations.get(id)?.name ?? index.routes.get(id)?.name ?? id
 }
 
 /** Why this route cannot be taken, or `null` when it can. */

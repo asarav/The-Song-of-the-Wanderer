@@ -1,0 +1,21 @@
+{
+  "id": "evt.ugarit.yada-archive",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "kind": "local",
+  "title": "The archive is moving",
+  "scope": { "destinations": ["dest.ugarit"] },
+  "conditions": {
+    "any": [{ "flag": "yada.paid-lesson" }, { "flag": "yada.free-lesson" }]
+  },
+  "priority": 35,
+  "major": false,
+  "once": true,
+  "scene": "dlg.ugarit.yada.archive",
+  "effects": [],
+  "provenance": {
+    "confidence": "fictional",
+    "sources": [],
+    "notes": "A small second scene for Yada after a lesson; the archive move is invented around a plausible scribal setting."
+  }
+}

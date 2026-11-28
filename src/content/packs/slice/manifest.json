@@ -47,7 +47,8 @@
       "evt.cyprus.arrival-news",
       "evt.cyprus.amnit-arrives",
       "evt.ugarit.night-watch",
-      "evt.cyprus.night-kiln"
+      "evt.cyprus.night-kiln",
+      "evt.ugarit.yada-archive"
     ],
     "dialogues": [
       "dlg.slice.opening",
@@ -86,7 +87,9 @@
       "dlg.travel.peril-wreck",
       "dlg.travel.exhaustion",
       "dlg.ugarit.night-watch",
-      "dlg.cyprus.night-kiln"
+      "dlg.cyprus.night-kiln",
+      "dlg.cyprus.tiro",
+      "dlg.ugarit.yada.archive"
     ],
     "journal": [
       "journal.slice.opening",

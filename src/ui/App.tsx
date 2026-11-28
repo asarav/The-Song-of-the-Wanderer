@@ -7,7 +7,7 @@
 
 import { useEffect, useMemo, useRef, useState, type ReactNode, type RefObject } from 'react'
 
-import { createDslContent, type ContentIndex } from '@engine/content'
+import { characterName, createDslContent, placeName, type ContentIndex } from '@engine/content'
 import { formatDisplayDate } from '@engine/time'
 import {
   DEFAULT_DIFFICULTY,
@@ -41,6 +41,7 @@ import {
   deriveJournal,
   deriveLanguages,
   formatRegard,
+  type LanguageView,
 } from '@engine/journal'
 import { hasSavedJourney, useGameStore, type GameScreen, type TimePassed } from '@store/gameStore'
 import { artFor, type ArtAsset } from './art'
@@ -674,18 +675,13 @@ function Sidebar({
 
   if (!state) return null
 
-  const place =
-    index.destinations.get(state.player.location)?.name ??
-    index.routes.get(state.player.location)?.name ??
-    state.player.location
+  const place = placeName(index, state.player.location)
   const grain =
     state.player.inventory.find((entry) => entry.item === PASSAGE_PROVISION)?.quantity ?? 0
 
   const pending = state.narrative.pending
   const pendingSpeakerId = pending ? index.dialogues.get(pending.dialogue)?.speaker : undefined
-  const pendingSpeaker = pendingSpeakerId
-    ? (index.characters.get(pendingSpeakerId)?.name ?? pendingSpeakerId)
-    : null
+  const pendingSpeaker = pendingSpeakerId ? characterName(index, pendingSpeakerId) : null
   const activeGroup = navGroupFor(screen)
 
   return (
@@ -1613,12 +1609,7 @@ function Status() {
       ) : (
         <ul className="list">
           {view.languages.map((language) => (
-            <li key={language.id}>
-              <strong>{language.name}</strong>
-              <span>
-                {language.tier} · {language.xp} xp
-              </span>
-            </li>
+            <LanguageRow key={language.id} language={language} />
           ))}
         </ul>
       )}
@@ -1689,7 +1680,7 @@ function Status() {
   )
 }
 
-function placeName(places: { id: string; name: string }[], id: string): string {
+function placeLabel(places: { id: string; name: string }[], id: string): string {
   return places.find((place) => place.id === id)?.name ?? id
 }
 
@@ -2311,7 +2302,7 @@ function Map() {
                 <span>
                   {route.open
                     ? route.drawn
-                      ? `${route.days} days at the shortest, between ${placeName(places, route.from)} and ${placeName(places, route.to)}`
+                      ? `${route.days} days at the shortest, between ${placeLabel(places, route.from)} and ${placeLabel(places, route.to)}`
                       : `${route.days} days at the shortest, to a place not yet on your sketch`
                     : (route.reason ?? 'Not available')}
                 </span>
@@ -2883,6 +2874,29 @@ function Factions() {
   )
 }
 
+function LanguageRow({
+  language,
+  showProgress = false,
+}: {
+  language: LanguageView
+  /** The Languages screen adds the distance to the next tier; Status stays compact. */
+  showProgress?: boolean
+}) {
+  return (
+    <li>
+      <strong>{language.name}</strong>
+      <span>
+        {language.tier} · {language.xp} xp
+        {showProgress
+          ? language.nextTier
+            ? ` · ${language.xpToNext ?? 0} to ${language.nextTier}`
+            : ' · no further tier'
+          : null}
+      </span>
+    </li>
+  )
+}
+
 function Languages() {
   const state = useGameStore((s) => s.state)
   const index = useGameStore((s) => s.index)
@@ -2896,15 +2910,7 @@ function Languages() {
       {languages.length === 0 ? <p className="empty">You speak nothing yet.</p> : null}
       <ul className="list">
         {languages.map((language) => (
-          <li key={language.id}>
-            <strong>{language.name}</strong>
-            <span>
-              {language.tier} · {language.xp} xp
-              {language.nextTier
-                ? ` · ${language.xpToNext ?? 0} to ${language.nextTier}`
-                : ' · no further tier'}
-            </span>
-          </li>
+          <LanguageRow key={language.id} language={language} showProgress />
         ))}
       </ul>
       <p className="note">
@@ -3002,7 +3008,7 @@ function SavePanel() {
   const [confirmAbandon, setConfirmAbandon] = useState(false)
 
   if (!state) return null
-  const place = index.destinations.get(state.player.location)?.name ?? state.player.location
+  const place = placeName(index, state.player.location)
   const deeds = state.player.deeds.length
   const journal = state.knowledge.journalEntries.length
 

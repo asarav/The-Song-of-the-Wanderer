@@ -68,6 +68,7 @@
     }
   ],
   "appearances": [
-    "dlg.ugarit.yada.lesson"
+    "dlg.ugarit.yada.lesson",
+    "dlg.ugarit.yada.archive"
   ]
 }

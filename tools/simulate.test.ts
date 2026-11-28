@@ -1,20 +1,25 @@
 import { describe, expect, it } from 'vitest'
 
+import { reduce } from '../src/engine/kernel'
+import { createInitialState } from '../src/engine/state'
 import { loadContent, loadScenario, reportScenario } from './simulate'
 import { formatTrace, runScenario } from '../src/engine/testing'
 
 const scenarios = [
-  'slice-crossing',
-  'slice-ugarit-day',
-  'slice-cyprus-return',
+  'slice-ada-tin',
   'slice-cargo-hold',
-  'slice-recurring',
+  'slice-crossing',
+  'slice-cyprus-counter',
+  'slice-cyprus-return',
   'slice-day-save',
-  'slice-refugee',
   'slice-palace-errand',
   'slice-palace-seal',
-  'slice-sibtu-paid',
+  'slice-recurring',
+  'slice-refugee',
   'slice-sibtu-kept',
+  'slice-sibtu-news',
+  'slice-sibtu-paid',
+  'slice-ugarit-day',
 ]
 
 describe('authored scenarios', () => {
@@ -83,6 +88,54 @@ describe('the day-and-save fixture scenario', () => {
     expect(lines).toHaveLength(result.steps.length + 1)
     for (const step of result.steps) {
       expect(lines.some((line) => line.includes(`${step.index}. `))).toBe(true)
+    }
+  })
+
+  it('moves a help answer to the acknowledgement the player reads', async () => {
+    const index = await loadContent()
+    const cases = [
+      {
+        dialogue: 'dlg.cyprus.tiro',
+        choiceId: 'ask-what-he-needs',
+        location: 'dest.cyprus',
+        acknowledgement: 'That is the favor.',
+      },
+      {
+        dialogue: 'dlg.ugarit.yada.archive',
+        choiceId: 'take-the-other-handle',
+        location: 'dest.ugarit',
+        acknowledgement: 'That is the whole of the test.',
+      },
+    ]
+
+    for (const entry of cases) {
+      const state = createInitialState({ seed: `ack-${entry.dialogue}`, location: entry.location })
+      state.narrative.pending = { kind: 'dialogue', dialogue: entry.dialogue, node: 'greet' }
+
+      const result = reduce(
+        state,
+        {
+          type: 'chooseChoice',
+          choiceId: entry.choiceId,
+          dialogue: entry.dialogue,
+          node: 'greet',
+        },
+        index,
+      )
+
+      expect(result.rejected).toBeUndefined()
+      expect(result.state.narrative.pending?.node).toBe('thanks')
+      expect(
+        result.events.some(
+          ({ event }) =>
+            event.type === 'DialoguePresented' &&
+            event.dialogue === entry.dialogue &&
+            event.node === 'thanks',
+        ),
+      ).toBe(true)
+      expect(index.dialogues.get(entry.dialogue)?.nodes.thanks?.text).toContain(
+        entry.acknowledgement,
+      )
     }
   })
 

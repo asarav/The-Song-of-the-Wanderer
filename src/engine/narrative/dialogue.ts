@@ -11,8 +11,13 @@ import { evaluateCondition, pickCargoItem } from '../dsl'
 import { applyEffects } from '../dsl'
 import type { DslContent, Effect } from '../dsl'
 import { RngCursor } from '../rng'
-import type { DialogueDef, DialogueNodeDef } from '../content'
-import type { ContentIndex } from '../content'
+import {
+  characterName,
+  goodName,
+  type ContentIndex,
+  type DialogueDef,
+  type DialogueNodeDef,
+} from '../content'
 import { tierRank } from '../culture'
 import type { GameState } from '../state'
 import type { KernelContext } from '../kernel'
@@ -62,7 +67,7 @@ export function choiceCost(
     } else if ('items' in effect) {
       const { item, quantity } = effect.items
       if (quantity >= 0) continue
-      const name = index.goods.get(item)?.name ?? item
+      const name = goodName(index, item)
       cost.items = [...(cost.items ?? []), { id: item, name, quantity: -quantity }]
     } else if ('loseCargo' in effect) {
       if (effect.loseCargo.quantity > 0) {
@@ -105,7 +110,7 @@ export interface SceneView {
 export function cargoPhrase(state: GameState, index: ContentIndex): string {
   const item = pickCargoItem(state.player.inventory)
   if (!item) return "a coil of the ship's rope"
-  const name = index.goods.get(item)?.name ?? item
+  const name = goodName(index, item)
   return `the ${name.toLowerCase()}`
 }
 
@@ -146,7 +151,7 @@ export function deriveScene(
   if (!node) return null
 
   const speaker = dialogue.speaker ?? null
-  const speakerName = speaker ? (index.characters.get(speaker)?.name ?? speaker) : null
+  const speakerName = speaker ? characterName(index, speaker) : null
 
   return {
     dialogue: dialogue.id,

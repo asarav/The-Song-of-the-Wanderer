@@ -9,11 +9,12 @@
 import {
   buildContentIndex,
   contentErrorCount,
+  ENTITY_SCHEMAS,
   type ContentIndex,
+  type EntityFolder,
   type RawEntityFile,
   type RawPack,
 } from '@engine/content'
-import type { EntityFolder, Manifest } from '@engine/content'
 
 type ModuleMap = Record<string, unknown>
 
@@ -22,8 +23,12 @@ const modules = import.meta.glob('../content/packs/**/*.json', {
   import: 'default',
 }) as ModuleMap
 
+function isEntityFolder(value: string | undefined): value is EntityFolder {
+  return value !== undefined && Object.hasOwn(ENTITY_SCHEMAS, value)
+}
+
 function loadPacks(): RawPack[] {
-  const packs = new Map<string, { manifest: Manifest | null; files: RawEntityFile[] }>()
+  const packs = new Map<string, { manifest: unknown | null; files: RawEntityFile[] }>()
 
   for (const [path, data] of Object.entries(modules)) {
     const relative = path.replace(/^\.\.\/content\/packs\//, '')
@@ -34,11 +39,11 @@ function loadPacks(): RawPack[] {
     const entry = packs.get(packId) ?? { manifest: null, files: [] }
 
     if (segments.length === 2 && segments[1] === 'manifest.json') {
-      entry.manifest = data as Manifest
-    } else if (segments.length === 3) {
+      entry.manifest = data
+    } else if (segments.length === 3 && isEntityFolder(segments[1]) && segments[2]) {
       entry.files.push({
-        folder: segments[1] as EntityFolder,
-        file: segments[2] as string,
+        folder: segments[1],
+        file: segments[2],
         data,
       })
     }
@@ -46,9 +51,9 @@ function loadPacks(): RawPack[] {
     packs.set(packId, entry)
   }
 
-  return [...packs.entries()]
-    .filter(([, entry]) => entry.manifest !== null)
-    .map(([, entry]) => ({ manifest: entry.manifest as Manifest, files: entry.files }))
+  return [...packs.values()].flatMap((entry) =>
+    entry.manifest === null ? [] : [{ manifest: entry.manifest, files: entry.files }],
+  )
 }
 
 let cached: ContentIndex | null = null

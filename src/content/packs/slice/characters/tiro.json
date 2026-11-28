@@ -15,6 +15,9 @@
     "shipmaster"
   ],
   "dialogue": "dlg.ugarit.tiro.passage",
+  "dialogueByDestination": {
+    "dest.cyprus": "dlg.cyprus.tiro"
+  },
   "wants": [
     {
       "id": "full-hold",
@@ -63,6 +66,7 @@
     "maxSentenceWords": 22
   },
   "appearances": [
-    "dlg.ugarit.tiro.passage"
+    "dlg.ugarit.tiro.passage",
+    "dlg.cyprus.tiro"
   ]
 }

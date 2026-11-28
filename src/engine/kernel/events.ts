@@ -85,3 +85,11 @@ export function isEventOfType<T extends DomainEvent['type']>(
 ): event is Extract<DomainEvent, { type: T }> {
   return event.type === type
 }
+
+/** The typed events of one kind, in sequence order. */
+export function eventsOfType<T extends DomainEvent['type']>(
+  events: readonly SequencedEvent[],
+  type: T,
+): Extract<DomainEvent, { type: T }>[] {
+  return events.flatMap(({ event }) => (isEventOfType(event, type) ? [event] : []))
+}

@@ -17,6 +17,7 @@ import {
   commandNames,
   commandTypeOf,
   eventTypes,
+  eventsOfType,
   isEventOfType,
   newGame,
   reduce,
@@ -101,6 +102,11 @@ describe('kernel module public surface', () => {
     expect(second.state.meta.eventSequence).toBe(4)
     expect(eventTypes(first)).toEqual(['MoneyChanged', 'ItemChanged'])
     expect(isEventOfType(first.events[0]!.event, 'MoneyChanged')).toBe(true)
+    expect(eventsOfType(first.events, 'MoneyChanged')).toEqual([
+      { type: 'MoneyChanged', delta: -4, money: 96 },
+    ])
+    expect(eventsOfType(first.events, 'ItemChanged')).toHaveLength(1)
+    expect(eventsOfType(first.events, 'TimeAdvanced')).toEqual([])
   })
 
   it('matches the golden event list for one purchase', () => {

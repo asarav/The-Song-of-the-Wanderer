@@ -21,6 +21,8 @@ export interface ModelIssue {
   level: 'error' | 'warning'
   entity: string
   message: string
+  /** Source file from the content index, when the entity has one. */
+  source?: string
 }
 
 export interface TerminalFlag {
@@ -35,12 +37,121 @@ function effectList(effects: unknown): Record<string, unknown>[] {
   return Array.isArray(effects) ? effects.filter(isObject) : []
 }
 
+function conditionFlags(condition: unknown, out: Set<string>): void {
+  if (!isObject(condition)) return
+  if (typeof condition.flag === 'string') out.add(condition.flag)
+  for (const key of ['all', 'any']) {
+    const list = condition[key]
+    if (Array.isArray(list)) for (const entry of list) conditionFlags(entry, out)
+  }
+  if (condition.not) conditionFlags(condition.not, out)
+}
+
+function sourceOf(index: ContentIndex, id: string): string | undefined {
+  return index.byId?.get(id)?.path
+}
+
+/**
+ * Is this condition impossible against the content we actually ship?
+ *
+ * This is deliberately conservative: it only rejects references nothing writes and
+ * literal `flag` / `not flag` contradictions. Numeric or relational conditions may still
+ * be unreachable in a particular save without being dead in content.
+ */
+function deadReason(
+  condition: unknown,
+  context: {
+    flagsWritten: Set<string>
+    journalsWritten: Set<string>
+    index: ContentIndex
+  },
+): string | undefined {
+  if (!isObject(condition)) return undefined
+
+  if (typeof condition.flag === 'string' && !context.flagsWritten.has(condition.flag)) {
+    return `flag "${condition.flag}" is never written`
+  }
+  if (typeof condition.hasJournalEntry === 'string') {
+    const id = condition.hasJournalEntry
+    if (!context.journalsWritten.has(id) && !context.index.journal.has(id)) {
+      return `journal entry "${id}" is never written`
+    }
+  }
+  if (isObject(condition.itemAtLeast) && typeof condition.itemAtLeast.item === 'string') {
+    if (!context.index.goods.has(condition.itemAtLeast.item)) {
+      return `item "${condition.itemAtLeast.item}" does not exist`
+    }
+  }
+  if (typeof condition.routeOpen === 'string' && !context.index.routes.has(condition.routeOpen)) {
+    return `route "${condition.routeOpen}" does not exist`
+  }
+  if (isObject(condition.factionStanding) && typeof condition.factionStanding.faction === 'string') {
+    if (!context.index.factions.has(condition.factionStanding.faction)) {
+      return `faction "${condition.factionStanding.faction}" does not exist`
+    }
+  }
+  if (isObject(condition.languageAtLeast) && typeof condition.languageAtLeast.language === 'string') {
+    if (!context.index.languages.has(condition.languageAtLeast.language)) {
+      return `language "${condition.languageAtLeast.language}" does not exist`
+    }
+  }
+  if (typeof condition.hasAffliction === 'string' && !context.index.afflictions.has(condition.hasAffliction)) {
+    return `affliction "${condition.hasAffliction}" does not exist`
+  }
+  for (const key of ['characterAlive', 'characterAt', 'topicAsked', 'regardBand'] as const) {
+    const value = condition[key]
+    const character = typeof value === 'string' ? value : isObject(value) ? value.character : undefined
+    if (typeof character === 'string' && !context.index.characters.has(character)) {
+      return `character "${character}" does not exist`
+    }
+  }
+
+  // `not X` is true whenever X is false, so an impossible inner atom makes the negation
+  // possible, not dead. We cannot prove tautologies here.
+  if ('not' in condition) return undefined
+
+  if (Array.isArray(condition.any)) {
+    if (condition.any.length === 0) return 'any [] can never be true'
+    const reasons = condition.any.map((entry) => deadReason(entry, context))
+    return reasons.every(Boolean) ? (reasons[0] ?? 'every branch is impossible') : undefined
+  }
+
+  if (Array.isArray(condition.all)) {
+    for (const entry of condition.all) {
+      const reason = deadReason(entry, context)
+      if (reason) return reason
+    }
+    const positive = new Set<string>()
+    const negative = new Set<string>()
+    const collect = (entry: unknown): void => {
+      if (!isObject(entry)) return
+      if (typeof entry.flag === 'string') positive.add(entry.flag)
+      if (isObject(entry.not) && typeof entry.not.flag === 'string') {
+        negative.add(entry.not.flag)
+      }
+      if (Array.isArray(entry.all)) for (const child of entry.all) collect(child)
+    }
+    for (const entry of condition.all) collect(entry)
+    const contradiction = [...positive].find((flag) => negative.has(flag))
+    if (contradiction) {
+      return `requires both flag "${contradiction}" and not flag "${contradiction}"`
+    }
+  }
+
+  return undefined
+}
+
 /** The predicate. The CLI and the broken-fixture test both run this function. */
 export function checkModel(index: ContentIndex, terminals: TerminalFlag[] = []): ModelIssue[] {
   const issues: ModelIssue[] = []
 
-  const add = (level: ModelIssue['level'], entity: string, message: string): void => {
-    issues.push({ level, entity, message })
+  const add = (
+    level: ModelIssue['level'],
+    entity: string,
+    message: string,
+    source?: string,
+  ): void => {
+    issues.push({ level, entity, message, source })
   }
 
   // Every fact a scene can answer must be produced somewhere.
@@ -81,6 +192,12 @@ export function checkModel(index: ContentIndex, terminals: TerminalFlag[] = []):
   for (const event of index.events.values()) {
     for (const effect of effectList(event.effects)) noteEffect(effect)
     if (event.journal) journalsWritten.add(event.journal)
+  }
+
+  // A repeat entry is the only place a one-shot marker can stop a scene from replaying.
+  const entryFlags = new Set<string>()
+  for (const dialogue of index.dialogues.values()) {
+    for (const entry of dialogue.entries ?? []) conditionFlags(entry.when, entryFlags)
   }
 
   const resolvesCallback = (callback: string): boolean => {
@@ -132,6 +249,27 @@ export function checkModel(index: ContentIndex, terminals: TerminalFlag[] = []):
       if (!index.dialogues.has(scene)) {
         add('error', character.id, `appearance names missing scene ${scene}`)
       }
+    }
+
+    const graphs = new Set<string>()
+    if (character.dialogue) graphs.add(character.dialogue)
+    for (const scene of Object.values(character.dialogueByDestination ?? {})) {
+      graphs.add(scene)
+    }
+    for (const scene of character.appearances ?? []) graphs.add(scene)
+    for (const want of wants) {
+      if (typeof want !== 'string' && want.scene) graphs.add(want.scene)
+    }
+    for (const graph of index.dialogues.values()) {
+      if (graph.speaker === character.id) graphs.add(graph.id)
+    }
+    if (graphs.size < 2) {
+      add(
+        'error',
+        character.id,
+        `recurring character has only ${graphs.size} dialogue graph; add a second or correct the tier`,
+        sourceOf(index, character.id),
+      )
     }
 
     for (const tie of character.ties ?? []) {
@@ -204,6 +342,19 @@ export function checkModel(index: ContentIndex, terminals: TerminalFlag[] = []):
     for (const [nodeId, node] of Object.entries(dialogue.nodes)) {
       const choiceIds: string[] = []
       for (const choice of node.choices) {
+        const dead = deadReason(choice.conditions, {
+          flagsWritten,
+          journalsWritten,
+          index,
+        })
+        if (dead) {
+          add(
+            'error',
+            dialogue.id,
+            `node "${nodeId}" choice "${choice.id ?? choice.text}" can never be satisfied: ${dead}`,
+            sourceOf(index, dialogue.id),
+          )
+        }
         choices += 1
         if (choice.id) {
           ids += 1
@@ -241,6 +392,13 @@ export function checkModel(index: ContentIndex, terminals: TerminalFlag[] = []):
     if (use.writer.length === 0) continue
     if (use.reader.length === 0 && !declared.has(use.flag)) {
       add('error', use.flag, 'flag is written but never read, and not declared terminal')
+    } else if (use.reader.length > 0 && !entryFlags.has(use.flag) && !declared.has(use.flag)) {
+      add(
+        'error',
+        use.flag,
+        `one-shot flag is not read by any dialogue entry (written at ${use.writer[0] ?? 'unknown'}); add an entry or declare it terminal`,
+        sourceOf(index, use.writer[0]?.split(':')[0] ?? ''),
+      )
     }
     if (use.reader.length > 0 && declared.has(use.flag)) {
       add('warning', use.flag, 'declared terminal but read by a later condition')
@@ -274,7 +432,9 @@ async function main(): Promise<void> {
     process.stdout.write(`${JSON.stringify({ ok: errors.length === 0, issues }, null, 2)}\n`)
   } else {
     for (const issue of issues) {
-      process.stdout.write(`model:check ${issue.level} ${issue.entity}: ${issue.message}\n`)
+      process.stdout.write(
+        `model:check ${issue.level} ${issue.source ? `${issue.source}: ` : ''}${issue.entity}: ${issue.message}\n`,
+      )
     }
     process.stdout.write(
       `model:check - ${index.characters.size} characters, ${index.dialogues.size} dialogues, ${errors.length} errors, ${issues.length - errors.length} warnings\n`,

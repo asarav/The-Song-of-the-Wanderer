@@ -6,7 +6,7 @@
  * event sequence numbers. Expected failure returns the original state and a reason.
  */
 
-import { createDslContent, type ContentIndex } from '../content'
+import { characterName, createDslContent, type ContentIndex } from '../content'
 import { applyEffects } from '../dsl'
 import { quoteBuy, quoteSell } from '../economy'
 import { resolveChoice, startDialogue } from '../narrative'
@@ -189,7 +189,7 @@ function pendingSpeakerName(ctx: KernelContext): string | null {
   if (!pending) return null
   const speaker = ctx.index.dialogues.get(pending.dialogue)?.speaker
   if (!speaker) return null
-  return ctx.index.characters.get(speaker)?.name ?? speaker
+  return characterName(ctx.index, speaker)
 }
 
 const talkTo: Handler = (ctx, command) => {

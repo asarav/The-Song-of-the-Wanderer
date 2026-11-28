@@ -73,8 +73,7 @@
       "voice": {
         "register": "Jovial, familiar; “my friend” is a warning. Numbers as endearments; never threatens.",
         "address": [
-          "you",
-          "my friend"
+          "you"
         ],
         "tics": [
           "turning a charcoal stick",
@@ -419,7 +418,8 @@
       "ties": [],
       "knowledge": [],
       "appearances": [
-        "dlg.ugarit.tiro.passage"
+        "dlg.ugarit.tiro.passage",
+        "dlg.cyprus.tiro"
       ]
     },
     {
@@ -468,7 +468,8 @@
         }
       ],
       "appearances": [
-        "dlg.ugarit.yada.lesson"
+        "dlg.ugarit.yada.lesson",
+        "dlg.ugarit.yada.archive"
       ]
     }
   ]

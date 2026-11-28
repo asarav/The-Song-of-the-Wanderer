@@ -7,7 +7,7 @@
  * authored scene, so a rescue and a wreck are content, not a hard-coded table.
  */
 
-import type { ContentIndex, RouteDef, TravelModeDef } from '../content'
+import { languageName, type ContentIndex, type RouteDef, type TravelModeDef } from '../content'
 import { difficultyConfig, LANGUAGE_TIERS, type GameState } from '../state'
 
 export interface HazardFactor {
@@ -65,7 +65,7 @@ function languageFactor(state: GameState, destinationId: string, index: ContentI
     }
   }
   const tier = LANGUAGE_TIERS[best] ?? 'unfamiliar'
-  const name = index.languages.get(bestName)?.name ?? bestName
+  const name = languageName(index, bestName)
   return {
     label: `${name}: ${tier}`,
     delta: LANGUAGE_DELTA[tier] ?? 0,

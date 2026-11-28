@@ -16,6 +16,12 @@
         "flag": "yada.free-lesson"
       },
       "node": "return"
+    },
+    {
+      "when": {
+        "flag": "yada.asked-who"
+      },
+      "node": "asked"
     }
   ],
   "nodes": {
@@ -74,6 +80,7 @@
               "flag": "yada.asked-who"
             }
           },
+          "unavailableNote": "You have already asked him that.",
           "effects": [
             {
               "flag": "yada.asked-who"
@@ -87,6 +94,44 @@
           "text": "Leave him to his board.",
           "next": null,
           "id": "leave-him-to-his",
+          "intent": "deflect"
+        }
+      ]
+    },
+    "asked": {
+      "text": "He has already told you about the man from the north. \"You asked who taught me,\" he says, to the board. \"I have not changed my answer. If you want the signs, pay for them.\"",
+      "beatArt": [
+        "art.ugarit.yada"
+      ],
+      "choices": [
+        {
+          "text": "Pay for a lesson.",
+          "conditions": {
+            "moneyAtLeast": 5
+          },
+          "unavailableNote": "A lesson costs five shekels. You have less than that.",
+          "effects": [
+            {
+              "money": -5
+            },
+            {
+              "flag": "yada.paid-lesson"
+            },
+            {
+              "languageXp": {
+                "language": "lang.ugaritic",
+                "amount": 15
+              }
+            }
+          ],
+          "next": "lesson",
+          "id": "pay-after-who",
+          "intent": "cost"
+        },
+        {
+          "text": "Leave him to the board.",
+          "next": null,
+          "id": "leave-after-who",
           "intent": "deflect"
         }
       ]

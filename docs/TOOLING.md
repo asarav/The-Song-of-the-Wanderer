@@ -18,53 +18,60 @@ acceptance tests, not side projects.
 
 ## 2. Tool catalog
 
-| Command | Purpose | Milestone | Status |
-|---|---|---|---|
-| `pnpm content:lint` | Schema, IDs, provenance, references, script readings, player-facing copy | M0 (shallow) → M1 (full) | Scaffold |
-| `pnpm content:build` | Validate all packs, generate indexes and TS types | M1, extended M5 | Planned |
-| `pnpm typecheck` / `lint` / `test` | Code health | M0 | **Done** |
-| `pnpm simulate -- --scenario <id>` | Run a headless scenario | M1 | Planned |
-| `pnpm playtest:build` | Replay checkpoint scenarios into browser-loadable saves (`playtest.html`) | M4 | **Done** |
-| `pnpm save:inspect <file>` | Human-readable state dump | M1 | Planned |
-| `pnpm save:diff <a> <b>` | Diff two saves by entity | M8 | Planned |
-| `pnpm save:migrate <file> --to <v>` | Apply migrations to a save | M1, extended | Planned |
-| `pnpm timeline:validate` | Phase gaps, overlaps, orphan follow-ups | M5 | Planned |
-| `pnpm timeline:view` | HTML timeline of phases and events | M8 | Planned |
-| `pnpm content:graph` | Export dialogue, arc, route, and event graphs | M8 | Planned |
-| `pnpm content:coverage` | Unreachable scenes, orphan characters, missing phase content | M8 | Planned |
-| `pnpm content:continuity` | Fact contradictions, dates, ages, locations, dead speakers | M6, hardened M8 | Planned |
-| `pnpm simulate:long -- --years 200 --seeds 10` | Fast-forward the world, assert invariants | M8 | Planned |
-| `pnpm simulate:personas` | Auto-play trader, curious, helper | M8 | Planned |
-| `pnpm balance` | Monte Carlo markets, travel durations, language pacing | M8 | Planned |
-| `pnpm new:pack` / `new:destination` / `new:character` / `new:arc` / `new:event` | Scaffold from templates | M8 | Planned |
-| `pnpm model:check` | Wants reach scenes, contracts, choice ids, callbacks, ties, terminal flags | M4b | **Done** |
-| `pnpm prose:lint` | First person in narration, anachronisms, beat length, voice ceilings, probe-only nodes | M4b | **Done** |
-| `pnpm price:check` | Every named price matches a money effect, or is allowlisted with a reason | M4b | **Done** |
-| `pnpm content:guard` | Mechanics fingerprint; prose edits free, mechanics need `--update --reason` | M4b | **Done** |
-| `pnpm invariant:check` | Gate tax, room, lesson, cloth, toll, rope and route unlock by choice id | M4b | **Done** |
-| `pnpm task:brief` | Active task, acceptance, tree, recent changes, gates, scenarios | M4b | **Done** |
-| `pnpm ask "words"` | Full-text over content, scenarios and docs with file:line | M4b | **Done** |
-| `pnpm entity <id>` | Definition, source file, wants, ties, scenes, node ids | M4b | **Done** |
-| `pnpm flag <flag>` / `pnpm impact <id>` | Writers and readers; reverse dependencies by area | M4b | **Done** |
-| `pnpm content:workbench <id>` | Mechanics, ids, flags, scenarios, prose and guard in one view | M4b | **Done** |
-| `pnpm scene:preview <id>` | Visible text and answers with flags, regard and language forced | M4b | **Done** |
-| `pnpm manuscript [character]` | Read every scene as a script, no save or browser | M4b | **Done** |
-| `pnpm coverage:choices` | Nodes and answers no checked-in scenario touches | M4b | **Done** |
-| `pnpm affected` | Changed files → exact checks to run | M4b | **Done** |
-| `pnpm docs:sync` / `docs:check` | Generated cast, facts, flags, scenes and prices; verified, not remembered | M4b | **Done** |
-| `pnpm new:dialogue <id> <speaker>` | Contract skeleton that fails the model gate until filled | M4b | **Done** |
-| `pnpm art:ledger` | Beat plates missing, stale ledger keys, debt total | M4b | **Done** |
-| `pnpm task:finish` | check, build, content gates and docs, then the close-out checklist | M4b | **Done** |
-| `pnpm locale:extract` / `locale:check` | String catalog and placeholder validation | M8 | Planned |
-| `pnpm assets:check` | Missing asset IDs, fallback coverage | M8 | Planned |
-| `pnpm audio:build` | Download/cache CC0 beds, generate original cues, normalize, write the audio manifest | M4 exploratory / M18 final | **Done (exploratory)** |
-| `pnpm audio:check` | Audio IDs, files, loop flags, licenses, source records | M4 exploratory | **Done** |
-| `pnpm perf:budget` | Load, save, memory, pack size | M8 | Planned |
-| `pnpm studio` | Development inspector and graph viewer | M8 | Planned |
+| Command                                                                         | Purpose                                                                                | Milestone                  | Status                 |
+| ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------- | ---------------------- |
+| `pnpm content:lint`                                                             | Schema, IDs, provenance, references, script readings, player-facing copy               | M0 (shallow) → M1 (full)   | Scaffold               |
+| `pnpm content:build`                                                            | Validate all packs, generate indexes and TS types                                      | M1, extended M5            | Planned                |
+| `pnpm typecheck` / `lint` / `test`                                              | Code health                                                                            | M0                         | **Done**               |
+| `pnpm simulate -- --scenario <id>`                                              | Run a headless scenario                                                                | M1                         | Planned                |
+| `pnpm playtest:build`                                                           | Replay checkpoint scenarios into browser-loadable saves (`playtest.html`)              | M4                         | **Done**               |
+| `pnpm playtest:review`                                                          | Scenario replay + content heuristics for the eight playtest feedback dimensions        | M4b                        | **Done**               |
+| `pnpm save:inspect <file>`                                                      | Human-readable state dump                                                              | M1                         | Planned                |
+| `pnpm save:diff <a> <b>`                                                        | Diff two saves by entity                                                               | M8                         | Planned                |
+| `pnpm save:migrate <file> --to <v>`                                             | Apply migrations to a save                                                             | M1, extended               | Planned                |
+| `pnpm timeline:validate`                                                        | Phase gaps, overlaps, orphan follow-ups                                                | M5                         | Planned                |
+| `pnpm timeline:view`                                                            | HTML timeline of phases and events                                                     | M8                         | Planned                |
+| `pnpm content:graph`                                                            | Export dialogue, arc, route, and event graphs                                          | M8                         | Planned                |
+| `pnpm content:coverage`                                                         | Unreachable scenes, orphan characters, missing phase content                           | M8                         | Planned                |
+| `pnpm content:continuity`                                                       | Fact contradictions, dates, ages, locations, dead speakers                             | M6, hardened M8            | Planned                |
+| `pnpm simulate:long -- --years 200 --seeds 10`                                  | Fast-forward the world, assert invariants                                              | M8                         | Planned                |
+| `pnpm simulate:personas`                                                        | Auto-play trader, curious, helper                                                      | M8                         | Planned                |
+| `pnpm balance`                                                                  | Monte Carlo markets, travel durations, language pacing                                 | M8                         | Planned                |
+| `pnpm new:pack` / `new:destination` / `new:character` / `new:arc` / `new:event` | Scaffold from templates                                                                | M8                         | Planned                |
+| `pnpm model:check`                                                              | Wants reach scenes, contracts, choice ids, callbacks, ties, terminal flags             | M4b                        | **Done**               |
+| `pnpm prose:lint`                                                               | First person in narration, anachronisms, beat length, voice ceilings, probe-only nodes | M4b                        | **Done**               |
+| `pnpm price:check`                                                              | Every named price matches a money effect, or is allowlisted with a reason              | M4b                        | **Done**               |
+| `pnpm content:guard`                                                            | Mechanics fingerprint; prose edits free, mechanics need `--update --reason`            | M4b                        | **Done**               |
+| `pnpm invariant:check`                                                          | Gate tax, room, lesson, cloth, toll, rope and route unlock by choice id                | M4b                        | **Done**               |
+| `pnpm task:brief`                                                               | Active task, acceptance, tree, recent changes, gates, scenarios                        | M4b                        | **Done**               |
+| `pnpm ask "words"`                                                              | Full-text over content, scenarios and docs with file:line                              | M4b                        | **Done**               |
+| `pnpm entity <id>`                                                              | Definition, source file, wants, ties, scenes, node ids                                 | M4b                        | **Done**               |
+| `pnpm flag <flag>` / `pnpm impact <id>`                                         | Writers and readers; reverse dependencies by area                                      | M4b                        | **Done**               |
+| `pnpm content:workbench <id>`                                                   | Mechanics, ids, flags, scenarios, prose and guard in one view                          | M4b                        | **Done**               |
+| `pnpm scene:preview <id>`                                                       | Visible text and answers with flags, regard and language forced                        | M4b                        | **Done**               |
+| `pnpm manuscript [character]`                                                   | Read every scene as a script, no save or browser                                       | M4b                        | **Done**               |
+| `pnpm coverage:choices`                                                         | Nodes and answers no checked-in scenario touches                                       | M4b                        | **Done**               |
+| `pnpm affected`                                                                 | Changed files → exact checks to run                                                    | M4b                        | **Done**               |
+| `pnpm docs:sync` / `docs:check`                                                 | Generated cast, facts, flags, scenes and prices; verified, not remembered              | M4b                        | **Done**               |
+| `pnpm new:dialogue <id> <speaker>`                                              | Contract skeleton that fails the model gate until filled                               | M4b                        | **Done**               |
+| `pnpm art:ledger`                                                               | Beat plates missing, stale ledger keys, debt total                                     | M4b                        | **Done**               |
+| `pnpm task:finish`                                                              | check, build, content gates and docs, then the close-out checklist                     | M4b                        | **Done**               |
+| `pnpm locale:extract` / `locale:check`                                          | String catalog and placeholder validation                                              | M8                         | Planned                |
+| `pnpm assets:check`                                                             | Missing asset IDs, fallback coverage                                                   | M8                         | Planned                |
+| `pnpm audio:build`                                                              | Download/cache CC0 beds, generate original cues, normalize, write the audio manifest   | M4 exploratory / M18 final | **Done (exploratory)** |
+| `pnpm audio:check`                                                              | Audio IDs, files, loop flags, licenses, source records                                 | M4 exploratory             | **Done**               |
+| `pnpm perf:budget`                                                              | Load, save, memory, pack size                                                          | M8                         | Planned                |
+| `pnpm studio`                                                                   | Development inspector and graph viewer                                                 | M8                         | Planned                |
 
 Every gate's predicate has a deliberately broken fixture in `tools/gates.test.ts`, run by
 `pnpm test`. Fixtures live only in that file: they cannot enter a pack, the manuscript or
 a generated table, and a gate that stops checking fails the suite by expected message.
+
+`pnpm check` runs the independent gates through `tools/check.mjs` with bounded
+parallelism (four by default, or `CHECK_CONCURRENCY`). `--sequential` preserves the old
+one-at-a-time order when a failure needs isolation; `--json` reports one record per gate.
+The exit status is still non-zero if any gate fails, and failed gate output is printed in
+full after the summary.
 
 ## 3. Content studio
 
@@ -112,18 +119,18 @@ at first; editing stays in files so diffs and reviews stay honest.
 
 Layered, cheapest first:
 
-| Layer | Checks | Runs |
-|---|---|---|
-| 1. Syntax | JSON parses; no duplicate keys | Every change |
-| 2. Schema | Zod validation; unknown keys rejected | Every change |
-| 3. Identity | ID format, uniqueness, filename match | Every change |
-| 4. References | Every ID resolves; no cross-pack cycles | Every change |
-| 5. Provenance | Confidence vocabulary; sources present for historical claims | Every change |
-| 6. Temporal | Dates within phases; no impossible ages; follow-ups resolve | Merge |
-| 7. Continuity | Facts, locations, statuses, objects, arcs | Merge |
-| 8. Coverage | Reachability, orphans, phase completeness | Merge/nightly |
-| 9. Playability | Scenario suite; persona runs | Merge/nightly |
-| 10. Presentation | Prose lint, locale, assets, perf | Nightly/wave |
+| Layer            | Checks                                                       | Runs          |
+| ---------------- | ------------------------------------------------------------ | ------------- |
+| 1. Syntax        | JSON parses; no duplicate keys                               | Every change  |
+| 2. Schema        | Zod validation; unknown keys rejected                        | Every change  |
+| 3. Identity      | ID format, uniqueness, filename match                        | Every change  |
+| 4. References    | Every ID resolves; no cross-pack cycles                      | Every change  |
+| 5. Provenance    | Confidence vocabulary; sources present for historical claims | Every change  |
+| 6. Temporal      | Dates within phases; no impossible ages; follow-ups resolve  | Merge         |
+| 7. Continuity    | Facts, locations, statuses, objects, arcs                    | Merge         |
+| 8. Coverage      | Reachability, orphans, phase completeness                    | Merge/nightly |
+| 9. Playability   | Scenario suite; persona runs                                 | Merge/nightly |
+| 10. Presentation | Prose lint, locale, assets, perf                             | Nightly/wave  |
 
 A commit that fails layer 1–5 cannot merge. Layer 6–9 failures block a wave gate, not
 necessarily every commit, but are reported continuously.
@@ -290,12 +297,12 @@ playthrough needs neither.
 
 ## 11. CI tiers
 
-| Tier | When | Contents | Budget |
-|---|---|---|---|
-| 1 | Every commit | typecheck, lint, unit, changed-pack schema, fast scenarios | < 60 s |
-| 2 | Merge to main | full validation, continuity, coverage, save corpus, 3 seeded replays | < 10 min |
-| 3 | Nightly | long-run 200y × 10, personas, balance, prose, locale, perf | < 60 min |
-| 4 | Wave gate | human playtests, historical review, accessibility, full save matrix | manual |
+| Tier | When          | Contents                                                             | Budget   |
+| ---- | ------------- | -------------------------------------------------------------------- | -------- |
+| 1    | Every commit  | typecheck, lint, unit, changed-pack schema, fast scenarios           | < 60 s   |
+| 2    | Merge to main | full validation, continuity, coverage, save corpus, 3 seeded replays | < 10 min |
+| 3    | Nightly       | long-run 200y × 10, personas, balance, prose, locale, perf           | < 60 min |
+| 4    | Wave gate     | human playtests, historical review, accessibility, full save matrix  | manual   |
 
 ## 12. Tool acceptance criteria
 
@@ -311,13 +318,13 @@ A tool is done when:
 
 ## 13. Build order
 
-| Milestone | Tools |
-|---|---|
-| M1 | content:build, simulate, save:inspect, save:migrate, full content:lint |
-| M5 | timeline:validate, propagation trace, phase inspection in tests |
-| M6 | content:continuity v1, recurrence auditor, arc validation |
-| M7 | faction/culture/economy validators, balance v1 |
-| M8 | studio, coverage, long-run, personas, graph exports, generators, prose/locale/assets/perf |
+| Milestone | Tools                                                                                     |
+| --------- | ----------------------------------------------------------------------------------------- |
+| M1        | content:build, simulate, save:inspect, save:migrate, full content:lint                    |
+| M5        | timeline:validate, propagation trace, phase inspection in tests                           |
+| M6        | content:continuity v1, recurrence auditor, arc validation                                 |
+| M7        | faction/culture/economy validators, balance v1                                            |
+| M8        | studio, coverage, long-run, personas, graph exports, generators, prose/locale/assets/perf |
 
 Tools not listed for a milestone are not built early. If a check is needed sooner, add it
 to an existing tool.

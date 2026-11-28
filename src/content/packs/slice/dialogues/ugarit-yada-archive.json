@@ -1,0 +1,65 @@
+{
+  "id": "dlg.ugarit.yada.archive",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "speaker": "char.ugarit.yada",
+  "start": "greet",
+  "entries": [],
+  "nodes": {
+    "greet": {
+      "text": "Yada is carrying a basket of tablets across the yard, a reed still between two fingers. \"Do not stand there,\" he says. \"Take the other handle. The archive is moving, and I have decided I am going with it.\"",
+      "beatArt": [
+        "art.ugarit.yada"
+      ],
+      "choices": [
+        {
+          "text": "Take the other handle.",
+          "effects": [
+            {
+              "relationship": {
+                "character": "char.ugarit.yada",
+                "dimension": "trust",
+                "delta": 1
+              }
+            },
+            {
+              "markTopic": {
+                "character": "char.ugarit.yada",
+                "topic": "archive-help"
+              }
+            }
+          ],
+          "next": "thanks",
+          "id": "take-the-other-handle",
+          "intent": "help"
+        }
+      ]
+    },
+    "thanks": {
+      "text": "Yada takes the other handle and does not slow down. At the far side of the yard he sets the basket down and taps the empty corner of the board. \"You did not ask what was in them. That is the whole of the test. Come back when the tablets are shelved and I will show you what a catalogue is.\"",
+      "beatArt": [
+        "art.ugarit.yada"
+      ],
+      "choices": [
+        {
+          "text": "Let him finish the move.",
+          "next": null,
+          "id": "let-him-finish-the",
+          "intent": "deflect"
+        }
+      ]
+    }
+  },
+  "scene": {
+    "goal": "Carry the archive without being treated as furniture",
+    "obstacle": "Yada will not ask for help directly",
+    "turn": "He lets the traveler take one side of the basket",
+    "stakes": "Whether he goes with the tablets",
+    "callback": "flag:yada.paid-lesson"
+  },
+  "provenance": {
+    "confidence": "fictional",
+    "sources": [],
+    "notes": "Yada is invented. The movement and housing of archives at Ugarit is plausible; this scene is fiction."
+  }
+}

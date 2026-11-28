@@ -1,0 +1,72 @@
+{
+  "id": "dlg.cyprus.tiro",
+  "pack": "pack.slice",
+  "contentVersion": 1,
+  "speaker": "char.ugarit.tiro",
+  "start": "greet",
+  "entries": [
+    {
+      "when": {
+        "flag": "tiro.passage"
+      },
+      "node": "greet"
+    }
+  ],
+  "nodes": {
+    "greet": {
+      "text": "Tiro is on the Cypriot quay with a coil of rope over one shoulder and the same flat look he wore at Ugarit. \"You again,\" he says. \"The island has not sunk, and the boat has not learned to fly. If you want the return tide, be at the mole before the light.\"",
+      "beatArt": [
+        "art.ugarit.tiro"
+      ],
+      "choices": [
+        {
+          "text": "Ask what he needs carried back.",
+          "effects": [
+            {
+              "relationship": {
+                "character": "char.ugarit.tiro",
+                "dimension": "trust",
+                "delta": 1
+              }
+            },
+            {
+              "markTopic": {
+                "character": "char.ugarit.tiro",
+                "topic": "return-help"
+              }
+            }
+          ],
+          "next": "thanks",
+          "id": "ask-what-he-needs",
+          "intent": "help"
+        }
+      ]
+    },
+    "thanks": {
+      "text": "Tiro looks at the crate, then at the boat. \"Lamps. Two of them, and you keep them out of the wet.\" He jerks his chin toward the mole. \"That is the favor. Now you can say you paid for your passage.\"",
+      "beatArt": [
+        "art.ugarit.tiro"
+      ],
+      "choices": [
+        {
+          "text": "Leave him to the tide.",
+          "next": null,
+          "id": "leave-him-to-the-tide",
+          "intent": "deflect"
+        }
+      ]
+    }
+  },
+  "scene": {
+    "goal": "Arrange the return crossing without paying for a second introduction",
+    "obstacle": "Tiro treats every conversation as a delay before the tide",
+    "turn": "He names the mole and the hour instead of a price",
+    "stakes": "A place on the return boat",
+    "callback": "flag:tiro.passage"
+  },
+  "provenance": {
+    "confidence": "fictional",
+    "sources": [],
+    "notes": "Tiro is invented. A shipmaster working both Ugarit and Cyprus is plausible for the coastal trade."
+  }
+}

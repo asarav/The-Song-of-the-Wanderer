@@ -12,6 +12,23 @@
 
 <six to twelve sentences: what this player tried, in order, and what happened.>
 
+## Pre-pass evidence
+
+- **Command:** `pnpm playtest:review -- --persona <persona>`
+- **Candidates tested:**
+  1. <candidate> — confirmed | not reproduced | not visible in the replay
+
+## Feedback dimensions
+
+- **Clarity:** <what was easy or hard to understand, and where>
+- **Confusion:** <the moment the player asked “what do I do now?”, if any>
+- **Character interactions:** <who wanted what, who remembered, who felt like a button>
+- **Mechanics:** <what the player understood about cost, time, cargo, language, standing>
+- **Friction:** <cost in time or confidence, even when nothing was broken>
+- **Emotional tone:** <what the session made the player feel, with the moment it rested on>
+- **Enjoyment:** <what the player wanted to do next; do not infer a rating from metrics>
+- **Inconsistencies:** <story, journal, price or state that disagreed with itself>
+
 ## Bugs
 
 ### B1 — <one-line symptom>
@@ -27,9 +44,9 @@
 
 ## Friction
 
-| Where | What the player was trying to do | What cost them time or confidence |
-|---|---|---|
-| <screen, day> | <intention> | <the moment and the question they asked themselves> |
+| Where         | What the player was trying to do | What cost them time or confidence                   |
+| ------------- | -------------------------------- | --------------------------------------------------- |
+| <screen, day> | <intention>                      | <the moment and the question they asked themselves> |
 
 ## Ideas
 
@@ -43,15 +60,15 @@
 
 ## The seven questions
 
-| # | Question | Verdict | Confidence |
-|---|---|---|---|
-| 1 | Travel loop enjoyment | strong / promising / weak / failed / not enough evidence | low / medium / high |
-| 2 | Trading as a reason to travel | | |
-| 3 | Character memorability and desire to return | | |
-| 4 | Language progression as reward, not obstruction | | |
-| 5 | Faction relationships as understandable opportunity | | |
-| 6 | Vivid, distinctive ancient world | | |
-| 7 | Mystery as curiosity, not confusion | | |
+| #   | Question                                            | Verdict                                                  | Confidence          |
+| --- | --------------------------------------------------- | -------------------------------------------------------- | ------------------- |
+| 1   | Travel loop enjoyment                               | strong / promising / weak / failed / not enough evidence | low / medium / high |
+| 2   | Trading as a reason to travel                       |                                                          |                     |
+| 3   | Character memorability and desire to return         |                                                          |                     |
+| 4   | Language progression as reward, not obstruction     |                                                          |                     |
+| 5   | Faction relationships as understandable opportunity |                                                          |                     |
+| 6   | Vivid, distinctive ancient world                    |                                                          |                     |
+| 7   | Mystery as curiosity, not confusion                 |                                                          |                     |
 
 <one paragraph of evidence per question, quoting the moment it rests on>
 

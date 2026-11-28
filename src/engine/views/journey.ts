@@ -2,7 +2,7 @@
  * Derived journey views.
  */
 
-import type { ContentIndex } from '../content'
+import { placeName, type ContentIndex } from '../content'
 import { formatDisplayDate } from '../time'
 import type { GameState } from '../state'
 
@@ -27,10 +27,6 @@ export interface JourneyView {
   daysRemaining: number
   stopsRemaining: number
   stops: JourneyStopView[]
-}
-
-function placeName(index: ContentIndex, id: string): string {
-  return index.destinations.get(id)?.name ?? index.routes.get(id)?.name ?? id
 }
 
 export function deriveJourney(state: GameState, index: ContentIndex): JourneyView | null {

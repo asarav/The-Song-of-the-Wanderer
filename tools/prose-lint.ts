@@ -23,6 +23,8 @@ export interface ProseIssue {
   entity: string
   node?: string
   message: string
+  /** Source file from the content index, when the entity has one. */
+  source?: string
 }
 
 const FIRST_PERSON = /\b(I|me|my|mine|myself|we|us|our|ours)\b/gi
@@ -78,6 +80,49 @@ const ANACHRONISMS = [
 
 const QUOTED = /"[^"]*"|“[^”]*”|‘[^’]*’/g
 
+/** Statements that answer the protagonist's mystery instead of leaving it open. */
+const MYSTERY_ASSERTIONS = [
+  /\byou are (?:a |the )?(?:god|goddess|divine|immortal|deity|ninshubur|messenger)\b/i,
+  /\byou are not (?:a |the )?(?:god|goddess|divine|immortal|deity)\b/i,
+  /\byou (?:were|have been) (?:a |the )?(?:god|goddess|divine|immortal|deity)\b/i,
+  /\b(?:this|it) proves (?:that )?you\b/i,
+  /\bthe truth is (?:that )?you\b/i,
+]
+
+const TIC_STOPWORDS = new Set([
+  'about',
+  'after',
+  'again',
+  'before',
+  'does',
+  'into',
+  'never',
+  'over',
+  'that',
+  'their',
+  'them',
+  'then',
+  'they',
+  'this',
+  'what',
+  'when',
+  'where',
+  'which',
+  'while',
+  'with',
+])
+
+function sourceOf(index: ContentIndex, id: string): string | undefined {
+  return index.byId?.get(id)?.path
+}
+
+function contentWords(text: string): string[] {
+  return text
+    .toLowerCase()
+    .split(/[^a-z']+/)
+    .filter((word) => word.length > 3 && !TIC_STOPWORDS.has(word))
+}
+
 /** Remove quoted speech so narration rules do not flag a character's own words. */
 function narration(text: string): string {
   return text.replace(QUOTED, ' ').replace(/\b(says|said|reads|wrote|writes):[^\n]*/gi, ' ')
@@ -108,8 +153,9 @@ export function lintProse(index: ContentIndex): ProseIssue[] {
     entity: string,
     message: string,
     node?: string,
+    source?: string,
   ): void => {
-    issues.push({ level, entity, node, message })
+    issues.push({ level, entity, node, message, source })
   }
 
   const openings = new Map<string, string[]>()
@@ -120,21 +166,34 @@ export function lintProse(index: ContentIndex): ProseIssue[] {
     node: string | undefined,
     voice: CharacterDef | undefined,
     allowFirstPerson = false,
+    source?: string,
   ): void => {
     if (!allowFirstPerson && narration(text).match(FIRST_PERSON)) {
       const found = narration(text).match(FIRST_PERSON)?.[0]
-      add('error', entity, `first person "${found}" in second-person narration`, node)
+      add('error', entity, `first person "${found}" in second-person narration`, node, source)
     }
     const lower = narration(text).toLowerCase()
     for (const word of ANACHRONISMS) {
       if (new RegExp(`\\b${word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`).test(lower)) {
-        add('error', entity, `modern word "${word}" in period prose`, node)
+        add('error', entity, `modern word "${word}" in period prose`, node, source)
       }
     }
     for (const beat of splitBeats(text)) {
       const count = words(beat)
-      if (count > 140) add('error', entity, `beat of ${count} words is too long`, node)
-      else if (count > 90) add('warning', entity, `beat of ${count} words reads long`, node)
+      if (count > 140) add('error', entity, `beat of ${count} words is too long`, node, source)
+      else if (count > 90) add('warning', entity, `beat of ${count} words reads long`, node, source)
+    }
+
+    for (const assertion of MYSTERY_ASSERTIONS) {
+      if (assertion.test(text)) {
+        add(
+          'error',
+          entity,
+          `mystery is stated outright (${assertion.source}); keep it a question`,
+          node,
+          source,
+        )
+      }
     }
 
     const opening = splitBeats(text)[0]?.split(/\s+/).slice(0, 5).join(' ').toLowerCase()
@@ -151,10 +210,11 @@ export function lintProse(index: ContentIndex): ProseIssue[] {
           const count = words(sentence)
           if (count > ceiling) {
             add(
-              'warning',
+              'error',
               entity,
               `sentence of ${count} words exceeds ${voice.name}'s ceiling of ${ceiling}`,
               node,
+              source,
             )
           }
         }
@@ -164,18 +224,67 @@ export function lintProse(index: ContentIndex): ProseIssue[] {
 
   for (const dialogue of index.dialogues.values()) {
     const speaker = dialogue.speaker ? index.characters.get(dialogue.speaker) : undefined
+    const source = sourceOf(index, dialogue.id)
     for (const [nodeId, node] of Object.entries(dialogue.nodes)) {
-      checkText(dialogue.id, node.text, nodeId, speaker)
+      checkText(dialogue.id, node.text, nodeId, speaker, false, source)
       for (const [language, variants] of Object.entries(node.textByLanguage ?? {})) {
         for (const [tier, text] of Object.entries(variants)) {
           // A translated variant is one continuous utterance, often without quote marks.
-          checkText(dialogue.id, text, `${nodeId}/${language}/${tier}`, speaker, true)
+          checkText(dialogue.id, text, `${nodeId}/${language}/${tier}`, speaker, true, source)
         }
       }
 
       const probes = node.choices.filter((choice) => choice.intent === 'probe')
       if (probes.length >= 2 && probes.length === node.choices.length) {
-        add('warning', dialogue.id, `node "${nodeId}" offers only questions`, nodeId)
+        add('warning', dialogue.id, `node "${nodeId}" offers only questions`, nodeId, source)
+      }
+    }
+  }
+
+  for (const character of index.characters.values()) {
+    if (character.tier !== 'major' && character.tier !== 'recurring') continue
+    const voice = character.voice
+    if (!voice) continue
+    const source = sourceOf(index, character.id)
+    const scenes = [...index.dialogues.values()].filter(
+      (dialogue) => dialogue.speaker === character.id,
+    )
+    const prose = scenes.flatMap((dialogue) =>
+      Object.values(dialogue.nodes).map((node) => node.text),
+    )
+    const speech = prose.flatMap(quotedSpeech).join(' ')
+    const staged = prose.join('\n').toLowerCase()
+
+    if (!voice.tics || voice.tics.length === 0) {
+      add('error', character.id, 'voice has no tics to stage', undefined, source)
+    } else {
+      for (const tic of voice.tics) {
+        const wordsInTic = contentWords(tic)
+        if (wordsInTic.length > 0 && !wordsInTic.some((word) => staged.includes(word))) {
+          add(
+            'error',
+            character.id,
+            `tic "${tic}" never appears in ${character.name}'s scenes`,
+            undefined,
+            source,
+          )
+        }
+      }
+    }
+
+    if (!voice.address || voice.address.length === 0) {
+      add('error', character.id, 'voice has no address form', undefined, source)
+    } else {
+      for (const form of voice.address) {
+        if (!speech.toLowerCase().includes(form.toLowerCase())) {
+          add(
+            'error',
+            character.id,
+            `address form "${form}" never appears in ${character.name}'s speech`,
+            undefined,
+            source,
+          )
+        }
       }
     }
   }
@@ -215,7 +324,7 @@ function main(): void {
     } else {
       for (const issue of issues) {
         process.stdout.write(
-          `prose:lint ${issue.level} ${issue.entity}${issue.node ? `:${issue.node}` : ''}: ${issue.message}\n`,
+          `prose:lint ${issue.level} ${issue.source ? `${issue.source}: ` : ''}${issue.entity}${issue.node ? `:${issue.node}` : ''}: ${issue.message}\n`,
         )
       }
       process.stdout.write(

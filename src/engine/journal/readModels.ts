@@ -6,8 +6,13 @@
  * protagonist has not learned.
  */
 
-import type { CodexCategory, ContentIndex } from '../content'
-import { createDslContent } from '../content'
+import {
+  createDslContent,
+  factionName,
+  languageName,
+  type CodexCategory,
+  type ContentIndex,
+} from '../content'
 import { evaluateCondition } from '../dsl'
 import { nextTier, xpToNextTier } from '../culture'
 import { RngCursor } from '../rng'
@@ -159,7 +164,7 @@ export interface LanguageView {
 export function deriveLanguages(state: GameState, index: ContentIndex): LanguageView[] {
   return Object.entries(state.player.languages).map(([id, progress]) => ({
     id,
-    name: index.languages.get(id)?.name ?? id,
+    name: languageName(index, id),
     tier: progress.tier,
     xp: progress.xp,
     nextTier: nextTier(progress.tier),
@@ -187,7 +192,7 @@ function factionBand(standing: number): string {
 export function deriveFactions(state: GameState, index: ContentIndex): FactionView[] {
   return Object.entries(state.narrative.factions).map(([id, faction]) => ({
     id,
-    name: index.factions.get(id)?.name ?? id,
+    name: factionName(index, id),
     type: index.factions.get(id)?.type ?? 'community',
     standing: faction.standing,
     band: factionBand(faction.standing),

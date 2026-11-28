@@ -177,6 +177,27 @@ describe('game store', () => {
     expect(useGameStore.getState().feedback).toBeNull()
   })
 
+  it('announces when a faction notices the traveller', () => {
+    const state = createInitialState({ seed: 'store-faction', location: 'dest.ugarit' })
+    state.narrative.pending = {
+      kind: 'dialogue',
+      dialogue: 'dlg.ugarit.faction-request',
+      node: 'ask',
+    }
+    useGameStore.setState({ state, screen: 'scene' })
+
+    useGameStore.getState().dispatch({
+      type: 'chooseChoice',
+      choiceId: 'what-is-it-for',
+      dialogue: 'dlg.ugarit.faction-request',
+      node: 'ask',
+    })
+
+    expect(useGameStore.getState().feedback).toBe(
+      'The palace at Ugarit will remember the favour.',
+    )
+  })
+
   it('reports a rejection without changing the state', () => {
     start()
     const before = JSON.stringify(useGameStore.getState().state)

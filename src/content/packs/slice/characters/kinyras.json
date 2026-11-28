@@ -45,8 +45,7 @@
   "voice": {
     "register": "Jovial, familiar; “my friend” is a warning. Numbers as endearments; never threatens.",
     "address": [
-      "you",
-      "my friend"
+      "you"
     ],
     "tics": [
       "turning a charcoal stick",

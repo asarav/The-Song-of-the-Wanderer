@@ -187,6 +187,67 @@ describe('model:check rejects broken character and scene models', () => {
     expect(messages(issues)).toContain('choice ids must be unique within node "open"')
   })
 
+  it('rejects a one-shot flag read only by a choice condition', () => {
+    const oneShot = dialogue({
+      nodes: {
+        open: {
+          text: 'A clerk waits with a tally board.',
+          choices: [
+            {
+              id: 'ask',
+              intent: 'help',
+              text: 'Ask.',
+              conditions: { flag: 'once-only' },
+            },
+            {
+              id: 'pay',
+              intent: 'bargain',
+              text: 'Pay.',
+              effects: [{ flag: 'once-only' }, { flag: 'seen' }],
+            },
+          ],
+        },
+      },
+    })
+    const issues = checkModel(indexOf({ characters: [character()], dialogues: [oneShot] }))
+    expect(messages(issues).some((message) => message.includes('one-shot flag'))).toBe(true)
+  })
+
+  it('rejects a recurring character with only one dialogue graph', () => {
+    const issues = checkModel(indexOf({ characters: [character()], dialogues: [dialogue()] }))
+    expect(messages(issues)).toContain(
+      'recurring character has only 1 dialogue graph; add a second or correct the tier',
+    )
+  })
+
+  it('rejects a choice whose condition can never be satisfied', () => {
+    const dead = dialogue({
+      nodes: {
+        open: {
+          text: 'A clerk waits with a tally board.',
+          choices: [
+            {
+              id: 'impossible',
+              intent: 'help',
+              text: 'Ask about the missing flag.',
+              conditions: { flag: 'nothing-writes-this' },
+            },
+            {
+              id: 'pay',
+              intent: 'bargain',
+              text: 'Pay.',
+              effects: [{ flag: 'seen' }],
+            },
+          ],
+        },
+      },
+    })
+    const issues = checkModel(indexOf({ characters: [character()], dialogues: [dead] }))
+    expect(messages(issues)).toContain(
+      'node "open" choice "impossible" can never be satisfied: flag "nothing-writes-this" is never written',
+    )
+  })
+
   it('rejects a flag that is written but never read', () => {
     const unread = dialogue({
       nodes: {
@@ -285,6 +346,68 @@ describe('prose:lint rejects broken prose', () => {
       }),
     )
     expect(messages(issues)).toContain("sentence of 9 words exceeds Test's ceiling of 5")
+    expect(issues.find((issue) => issue.message.includes('ceiling'))?.level).toBe('error')
+  })
+
+  it('rejects a voice tic that is never staged', () => {
+    const speaker = character({
+      voice: {
+        register: 'plain',
+        address: ['you'],
+        tics: ['polishing a bicycle'],
+        avoid: [],
+        sampleLines: ['One.', 'Two.', 'Three.'],
+        maxSentenceWords: 22,
+      },
+    } as unknown as Partial<CharacterDef>)
+    const issues = lintProse(
+      indexOf({
+        characters: [speaker],
+        dialogues: [
+          dialogue({
+            nodes: { open: { text: '"You are late."', choices: [] } },
+          }),
+        ],
+      }),
+    )
+    expect(messages(issues)).toContain('tic "polishing a bicycle" never appears in Test\'s scenes')
+  })
+
+  it('rejects an address form that is never used', () => {
+    const speaker = character({
+      voice: {
+        register: 'plain',
+        address: ['thou'],
+        tics: ['turning a reed'],
+        avoid: [],
+        sampleLines: ['One.', 'Two.', 'Three.'],
+        maxSentenceWords: 22,
+      },
+    } as unknown as Partial<CharacterDef>)
+    const issues = lintProse(
+      indexOf({
+        characters: [speaker],
+        dialogues: [
+          dialogue({
+            nodes: { open: { text: 'He turns a reed. "You are late."', choices: [] } },
+          }),
+        ],
+      }),
+    )
+    expect(messages(issues)).toContain('address form "thou" never appears in Test\'s speech')
+  })
+
+  it('rejects prose that states the mystery outright', () => {
+    const issues = lintProse(
+      indexOf({
+        dialogues: [
+          dialogue({ nodes: { open: { text: 'You are a god.', choices: [] } } }),
+        ],
+      }),
+    )
+    expect(messages(issues).some((message) => message.includes('mystery is stated outright'))).toBe(
+      true,
+    )
   })
 })
 
