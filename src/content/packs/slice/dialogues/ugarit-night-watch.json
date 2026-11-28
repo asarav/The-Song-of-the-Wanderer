@@ -4,30 +4,84 @@
   "contentVersion": 1,
   "speaker": "char.ugarit.hannu",
   "start": "greet",
+  "entries": [
+    {
+      "when": {
+        "flag": "hannu.night-met"
+      },
+      "node": "again"
+    }
+  ],
   "provenance": {
     "confidence": "plausible",
-    "sources": ["Ugarit harbor administration, general"],
+    "sources": [
+      "Ugarit harbor administration, general"
+    ],
     "notes": "Hannu's night watch and the warehouse counting are invented; the harbor setting is plausible."
   },
   "nodes": {
     "greet": {
-      "text": "The gate is shut, but the mole is not empty. A man with a lamp walks the stones, stopping at each hull the way a scribe stops at each line.\n\n**Hannu** lifts the lamp so it lights your face and not his.\n\n\"You are up late for a man with cargo to sell in the morning.\"",
+      "text": "The gate is shut, but the mole is not empty. A man with a lamp walks the stones, stopping at each hull the way a scribe stops at each line.\n\n**Hannu** lifts the lamp so it lights your face and not his.\n\n\"You are up late for a man with cargo to sell in the morning.\" His voice is rougher than at the gate, and he has not shaved.",
       "choices": [
-        { "text": "Ask what he is looking for.", "next": "watch" },
-        { "text": "Say you could not sleep.", "next": "sleepless" },
-        { "text": "Leave him to the stones.", "next": null }
+        {
+          "text": "Ask what he is looking for.",
+          "effects": [
+            {
+              "flag": "hannu.night-met"
+            }
+          ],
+          "next": "watch",
+          "id": "ask-what-he-is",
+          "intent": "probe"
+        },
+        {
+          "text": "Say you could not sleep.",
+          "effects": [
+            {
+              "flag": "hannu.night-met"
+            }
+          ],
+          "next": "sleepless",
+          "id": "say-you-could-not",
+          "intent": "reveal"
+        },
+        {
+          "text": "Leave him to the stones.",
+          "next": null,
+          "id": "leave-him-to-the",
+          "intent": "deflect"
+        }
       ]
     },
     "watch": {
-      "text": "\"Rope,\" he says. \"Tar. A hull sitting too low. The sea takes a boat quietly, and the harbor is blamed in the morning.\"\n\nHe moves the lamp along the next mooring. \"Your jars are on the second shelf in the warehouse. I counted them myself. Do not make me count them again.\"",
-      "choices": [{ "text": "Thank him and go.", "next": null }]
+      "text": "\"Rope,\" he says. \"Tar. A hull sitting too low. The sea takes a boat quietly, and the harbor is blamed in the morning.\"\n\nHe moves the lamp along the next mooring. \"The jars you landed with are on the second shelf in the warehouse. The harbor stores what the tide would take. The fee is a shekel a night, and I have waived it for the one night, so do not make me count them again.\" He coughs. \"Go to bed. One of us should.\"",
+      "choices": [
+        {
+          "text": "Thank him and go.",
+          "effects": [
+            {
+              "knowledge": {
+                "fact": "ugarit.warehouse.stores-cargo",
+                "source": "told",
+                "reliability": 0.8
+              }
+            }
+          ],
+          "next": null,
+          "id": "thank-him-and-go",
+          "intent": "reveal"
+        }
+      ]
     },
     "sleepless": {
-      "text": "\"Then walk,\" he says. \"Walking is cheaper than drinking, and it does not lie to you about the morning.\"\n\nHe hands you nothing and asks for nothing. The lamp goes on down the mole, and the dark closes behind it.",
+      "text": "\"Then walk,\" he says. \"Walking is cheaper than drinking, and it does not lie to you about the morning.\"\n\nHe hands you nothing and asks for nothing. The lamp goes on down the mole, and the dark closes behind it. Then, without turning: \"My house is empty. That is not a complaint. It is a reason to keep walking.\"",
       "choices": [
         {
           "text": "Walk a while.",
           "effects": [
+            {
+              "flag": "hannu.night-sleepless"
+            },
             {
               "knowledge": {
                 "fact": "ugarit.mole.night-watch",
@@ -36,9 +90,34 @@
               }
             }
           ],
-          "next": null
+          "next": null,
+          "id": "walk-a-while",
+          "intent": "reveal"
+        }
+      ]
+    },
+    "again": {
+      "text": "The lamp comes up, finds your face, and goes on down the mole.\n\n\"Still walking,\" Hannu says. \"So am I. The difference is that I am paid for it.\" He stops at the last hull and holds the lamp low. \"Tell me the truth. Does the gate look smaller at night, or is it the lamp?\"",
+      "beatArt": [
+        "art.ugarit.night",
+        "art.ugarit.hannu"
+      ],
+      "choices": [
+        {
+          "text": "Walk with him as far as the last hull.",
+          "next": null,
+          "id": "walk-with-him-as",
+          "intent": "reveal"
         }
       ]
     }
+  },
+  "scene": {
+    "goal": "Walk the mole without being taken for a thief",
+    "obstacle": "Hannu's lamp and his silence",
+    "turn": "He admits the house is empty",
+    "stakes": "A bed and a witness",
+    "want": "no-incident",
+    "callback": "flag:arrived.ugarit"
   }
 }

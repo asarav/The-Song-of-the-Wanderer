@@ -5,18 +5,70 @@
   "name": "Belet",
   "art": "art.ugarit.belet",
   "culture": "culture.levant.coastal",
-  "languages": ["lang.ugaritic", "lang.akkadian"],
+  "languages": [
+    "lang.ugaritic",
+    "lang.akkadian"
+  ],
   "home": "dest.ugarit",
   "tier": "major",
-  "roles": ["temple singer", "ritual specialist"],
+  "roles": [
+    "temple singer",
+    "ritual specialist"
+  ],
   "dialogue": "dlg.ugarit.belet.temple",
-  "wants": ["the feast to be sung properly", "to know why a name will not leave her alone"],
-  "fears": ["being right about something she cannot prove"],
+  "wants": [
+    {
+      "id": "the-feast",
+      "text": "The feast sung properly",
+      "stake": "Her place in the temple",
+      "scene": "dlg.ugarit.belet.temple"
+    },
+    {
+      "id": "the-name",
+      "text": "To know why the name will not leave her",
+      "stake": "Her sister’s memory",
+      "scene": "dlg.ugarit.mystery"
+    }
+  ],
+  "fears": [
+    "being right about something she cannot prove"
+  ],
   "contradiction": "She trusts her craft and distrusts her own conclusions.",
-  "presence": ["dest.ugarit"],
+  "presence": [
+    "dest.ugarit"
+  ],
   "provenance": {
     "confidence": "fictional",
     "sources": [],
     "notes": "An invented temple singer. Cult personnel and liturgical performance are attested at Ugarit."
-  }
+  },
+  "voice": {
+    "register": "Liturgical cadence in ordinary speech; sudden bluntness; grief held under work.",
+    "address": [
+      "you"
+    ],
+    "tics": [
+      "turning a lamp down without putting it out",
+      "folding cloth already folded"
+    ],
+    "avoid": [
+      "comfort",
+      "certainty"
+    ],
+    "sampleLines": [
+      "If you have come to look, look from the doorway.",
+      "Names are not only names. If they were, I would be out of work.",
+      "It has been a year and the word is still strange."
+    ],
+    "maxSentenceWords": 30
+  },
+  "knowledge": [
+    {
+      "fact": "ninshubur.in-the-hymn"
+    }
+  ],
+  "appearances": [
+    "dlg.ugarit.belet.temple",
+    "dlg.ugarit.mystery"
+  ]
 }

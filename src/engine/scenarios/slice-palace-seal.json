@@ -7,23 +7,76 @@
     "location": "dest.cyprus",
     "money": 100,
     "capacity": 20,
-    "languages": { "lang.akkadian": { "xp": 25, "tier": "basic" } },
-    "knownRoutes": ["route.ugarit-cyprus"],
-    "knownDestinations": ["dest.ugarit", "dest.cyprus"],
-    "inventory": [{ "item": "good.palace-seal", "quantity": 1 }]
+    "languages": {
+      "lang.akkadian": {
+        "xp": 25,
+        "tier": "basic"
+      }
+    },
+    "knownRoutes": [
+      "route.ugarit-cyprus"
+    ],
+    "knownDestinations": [
+      "dest.ugarit",
+      "dest.cyprus"
+    ],
+    "inventory": [
+      {
+        "item": "good.palace-seal",
+        "quantity": 1
+      }
+    ]
   },
   "commands": [
-    { "type": "chooseDialogue", "choice": 0 },
-    { "type": "chooseDialogue", "choice": 0 },
-    { "type": "talkTo", "character": "char.cyprus.kinyras" },
-    { "type": "chooseDialogue", "choice": 2 },
-    { "type": "chooseDialogue", "choice": 0 }
+    {
+      "type": "chooseChoice",
+      "choiceId": "in-a-small-boat",
+      "dialogue": "dlg.cyprus.arrival",
+      "node": "door"
+    },
+    {
+      "type": "chooseChoice",
+      "choiceId": "take-the-room",
+      "dialogue": "dlg.cyprus.arrival",
+      "node": "room"
+    },
+    {
+      "type": "talkTo",
+      "character": "char.cyprus.kinyras"
+    },
+    {
+      "type": "chooseChoice",
+      "choiceId": "show-him-the-seal",
+      "dialogue": "dlg.cyprus.kinyras.meeting",
+      "node": "greet"
+    },
+    {
+      "type": "chooseChoice",
+      "choiceId": "take-it-back",
+      "dialogue": "dlg.cyprus.kinyras.meeting",
+      "node": "seal"
+    }
   ],
   "assert": [
-    { "path": "player.flags.palace.seal-shown", "equals": true },
-    { "path": "knowledge.journalEntries", "contains": "journal.slice.seal-delivered" },
-    { "path": "narrative.factions.faction.ugarit.palace.favour", "equals": 1 },
-    { "path": "player.inventory.0.item", "equals": "good.palace-seal" },
-    { "path": "narrative.pending", "equals": null }
+    {
+      "path": "player.flags.palace.seal-shown",
+      "equals": true
+    },
+    {
+      "path": "knowledge.journalEntries",
+      "contains": "journal.slice.seal-delivered"
+    },
+    {
+      "path": "narrative.factions.faction.ugarit.palace.favour",
+      "equals": 1
+    },
+    {
+      "path": "player.inventory.0.item",
+      "equals": "good.palace-seal"
+    },
+    {
+      "path": "narrative.pending",
+      "equals": null
+    }
   ]
 }

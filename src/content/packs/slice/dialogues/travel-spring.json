@@ -5,29 +5,46 @@
   "start": "seep",
   "nodes": {
     "seep": {
-      "beatArt": ["art.land.levant", "art.cyprus.landing"],
+      "beatArt": [
+        "art.land.levant",
+        "art.cyprus.landing"
+      ],
       "text": "The boat is pulled into a shingle cove while the master waits for the wind to turn. Above the tideline there is a seep of fresh water in the rock, and a track of birds going down to it.\n\nOne of the men looks at the birds. Another looks at the water. Nobody tells you which is the better use of an hour.",
       "choices": [
         {
           "text": "Fill every skin at the seep.",
           "effects": [
-            { "stamina": 1 },
-            { "treatment": "water" }
+            {
+              "stamina": 1
+            },
+            {
+              "treatment": "water"
+            }
           ],
-          "next": null
+          "next": null,
+          "id": "fill-every-skin-at",
+          "intent": "cost"
         },
         {
           "text": "Hunt the reeds with one of the men.",
           "effects": [
-            { "stamina": 1 },
-            { "treatment": "food" }
+            {
+              "stamina": 1
+            },
+            {
+              "treatment": "food"
+            }
           ],
-          "next": null
+          "next": null,
+          "id": "hunt-the-reeds-with",
+          "intent": "cost"
         },
         {
           "text": "Keep watch on the boat.",
           "effects": [],
-          "next": null
+          "next": null,
+          "id": "keep-watch-on-the",
+          "intent": "reveal"
         }
       ]
     }

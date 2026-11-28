@@ -10,15 +10,37 @@
         {
           "text": "They weigh it and they argue about the weight.",
           "effects": [
-            { "knowledge": { "fact": "cyprus.copper-by-weight", "source": "told", "reliability": 0.7 } }
+            {
+              "knowledge": {
+                "fact": "cyprus.copper-by-weight",
+                "source": "told",
+                "reliability": 0.7
+              }
+            }
           ],
-          "next": "news"
+          "next": "news",
+          "id": "they-weigh-it-and",
+          "intent": "reveal"
         },
-        { "text": "Ask him where he is bound.", "next": "news" },
+        {
+          "text": "Ask him where he is bound.",
+          "next": "news",
+          "id": "ask-him-where-he",
+          "intent": "probe"
+        },
         {
           "text": "Say you do not know and let him talk.",
-          "effects": [{ "languageXp": { "language": "lang.akkadian", "amount": 2 } }],
-          "next": "end"
+          "effects": [
+            {
+              "languageXp": {
+                "language": "lang.akkadian",
+                "amount": 2
+              }
+            }
+          ],
+          "next": "end",
+          "id": "say-you-do-not",
+          "intent": "reveal"
         }
       ]
     },
@@ -28,15 +50,30 @@
         {
           "text": "Remember the name.",
           "effects": [
-            { "knowledge": { "fact": "kinyras.buys-at-yard-price", "source": "told", "reliability": 0.6 } }
+            {
+              "knowledge": {
+                "fact": "kinyras.buys-at-yard-price",
+                "source": "told",
+                "reliability": 0.6
+              }
+            }
           ],
-          "next": "end"
+          "next": "end",
+          "id": "remember-the-name",
+          "intent": "reveal"
         }
       ]
     },
     "end": {
       "text": "He talks until the light goes, and then he is sick over the side and apologizes for it, and the night is easier after that.",
-      "choices": [{ "text": "Watch the water.", "next": null }]
+      "choices": [
+        {
+          "text": "Watch the water.",
+          "next": null,
+          "id": "watch-the-water",
+          "intent": "reveal"
+        }
+      ]
     }
   },
   "provenance": {

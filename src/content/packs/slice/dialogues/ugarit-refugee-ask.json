@@ -12,32 +12,86 @@
         {
           "text": "I will take it to the yard and sell it at what it is worth.",
           "effects": [
-            { "flag": "refugee.helped" },
-            { "journal": { "entry": "journal.slice.refugee-helped" } },
-            { "relationship": { "character": "char.ugarit.sibtu", "dimension": "obligation", "delta": 2 } },
-            { "faction": { "faction": "faction.ugarit.merchants", "dimension": "trust", "delta": 1 } }
+            {
+              "flag": "refugee.helped"
+            },
+            {
+              "journal": {
+                "entry": "journal.slice.refugee-helped"
+              }
+            },
+            {
+              "relationship": {
+                "character": "char.ugarit.sibtu",
+                "dimension": "obligation",
+                "delta": 2
+              }
+            },
+            {
+              "faction": {
+                "faction": "faction.ugarit.merchants",
+                "dimension": "trust",
+                "delta": 1
+              }
+            },
+            {
+              "promise": {
+                "id": "promise.sibtu.cloth",
+                "character": "char.ugarit.sibtu",
+                "kind": "debt",
+                "text": "Five shekels for Sibtu’s cloth, once it is sold"
+              }
+            }
           ],
-          "next": "thanks"
+          "next": "thanks",
+          "id": "i-will-take-it",
+          "intent": "help"
         },
         {
           "text": "I can lend you the silver instead.",
-          "conditions": { "moneyAtLeast": 15 },
+          "conditions": {
+            "moneyAtLeast": 15
+          },
           "unavailableNote": "You do not have fifteen shekels to lend, and she would know if you offered less.",
           "effects": [
-            { "money": -15 },
-            { "flag": "refugee.helped" },
-            { "journal": { "entry": "journal.slice.refugee-helped" } },
-            { "relationship": { "character": "char.ugarit.sibtu", "dimension": "obligation", "delta": 2 } }
+            {
+              "money": -15
+            },
+            {
+              "flag": "refugee.helped"
+            },
+            {
+              "journal": {
+                "entry": "journal.slice.refugee-helped"
+              }
+            },
+            {
+              "relationship": {
+                "character": "char.ugarit.sibtu",
+                "dimension": "obligation",
+                "delta": 2
+              }
+            }
           ],
-          "next": "thanks"
+          "next": "thanks",
+          "id": "i-can-lend-you",
+          "intent": "cost"
         },
         {
           "text": "I have my own affairs to think of.",
           "effects": [
-            { "flag": "refugee.refused" },
-            { "journal": { "entry": "journal.slice.refugee-refused" } }
+            {
+              "flag": "refugee.refused"
+            },
+            {
+              "journal": {
+                "entry": "journal.slice.refugee-refused"
+              }
+            }
           ],
-          "next": "refused"
+          "next": "refused",
+          "id": "i-have-my-own",
+          "intent": "reveal"
         }
       ]
     },
@@ -48,24 +102,63 @@
         {
           "text": "Take the bundle.",
           "effects": [
-            { "flag": "carries.sibtu-cloth" },
-            { "flag": "sibtu.cloth-taken" },
-            { "items": { "item": "good.sibtu-cloth", "quantity": 1 } },
-            { "schedule": { "event": "evt.cyprus.arrival-news", "inDays": 8 } }
+            {
+              "flag": "carries.sibtu-cloth"
+            },
+            {
+              "flag": "sibtu.cloth-taken"
+            },
+            {
+              "items": {
+                "item": "good.sibtu-cloth",
+                "quantity": 1
+              }
+            },
+            {
+              "schedule": {
+                "event": "evt.cyprus.arrival-news",
+                "inDays": 8
+              }
+            },
+            {
+              "promise": {
+                "id": "promise.sibtu.cloth",
+                "character": "char.ugarit.sibtu",
+                "kind": "debt",
+                "text": "Five shekels for Sibtu’s cloth, once it is sold"
+              }
+            }
           ],
-          "next": null
+          "next": null,
+          "id": "take-the-bundle",
+          "intent": "cost"
         }
       ]
     },
     "refused": {
       "art": "art.ugarit.cloth-refused",
       "text": "\"No. Of course not.\" She cuts the cord with her thumbnail and starts folding the cloth back into the chest, and the room is very quiet.",
-      "choices": [{ "text": "Leave.", "next": null }]
+      "choices": [
+        {
+          "text": "Leave.",
+          "next": null,
+          "id": "leave",
+          "intent": "deflect"
+        }
+      ]
     }
   },
   "provenance": {
     "confidence": "fictional",
     "sources": [],
     "notes": "The refugee thread's request. Invented."
+  },
+  "scene": {
+    "goal": "Find a buyer without going to the yard",
+    "obstacle": "No flax, no protector, and a cousin with a roof",
+    "turn": "She hands over the cloth",
+    "stakes": "The household",
+    "want": "not-a-burden",
+    "callback": "flag:sibtu.met"
   }
 }

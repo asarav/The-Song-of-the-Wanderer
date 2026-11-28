@@ -9,21 +9,46 @@
       "choices": [
         {
           "text": "Pass them water.",
-                    "effects": [
+          "effects": [
             {
               "flag": "refugees.helped-on-water"
             },
-            { "relationship": { "character": "char.ugarit.sibtu", "dimension": "trust", "delta": 0 } }
+            {
+              "relationship": {
+                "character": "char.ugarit.sibtu",
+                "dimension": "trust",
+                "delta": 0
+              }
+            }
           ],
-          "next": "water"
+          "next": "water",
+          "id": "pass-them-water",
+          "intent": "help"
         },
-        { "text": "Ask where they are bound.", "next": "bound" },
-        { "text": "Look away.", "next": "away" }
+        {
+          "text": "Ask where they are bound.",
+          "next": "bound",
+          "id": "ask-where-they-are",
+          "intent": "probe"
+        },
+        {
+          "text": "Look away.",
+          "next": "away",
+          "id": "look-away",
+          "intent": "reveal"
+        }
       ]
     },
     "water": {
       "text": "The water goes into a jar that is already half full of something else. The woman says a word you do not know and touches her forehead, and the boats drift apart.",
-      "choices": [{ "text": "Watch them until they are small.", "next": null }]
+      "choices": [
+        {
+          "text": "Watch them until they are small.",
+          "next": null,
+          "id": "watch-them-until-they",
+          "intent": "reveal"
+        }
+      ]
     },
     "bound": {
       "text": "\"Ugarit. My cousin has a roof.\" She says it as a fact she has rehearsed. \"Inland is finished for us this year.\"\n\nThe master says nothing until they are out of earshot. \"There will be more of them by the autumn.\"",
@@ -31,20 +56,37 @@
         {
           "text": "Say nothing.",
           "effects": [
-            { "knowledge": { "fact": "displacement.inland-to-coast", "source": "witnessed", "reliability": 0.8 } }
+            {
+              "knowledge": {
+                "fact": "displacement.inland-to-coast",
+                "source": "witnessed",
+                "reliability": 0.8
+              }
+            }
           ],
-          "next": null
+          "next": null,
+          "id": "say-nothing",
+          "intent": "deflect"
         }
       ]
     },
     "away": {
       "text": "You look at the water instead. The master looks at you, and then at the sail, and then at the water, and the boat goes on.",
-      "choices": [{ "text": "Keep looking at the water.", "next": null }]
+      "choices": [
+        {
+          "text": "Keep looking at the water.",
+          "next": null,
+          "id": "keep-looking-at-the",
+          "intent": "reveal"
+        }
+      ]
     }
   },
   "provenance": {
     "confidence": "plausible",
-    "sources": ["Local displacement in the Late Bronze Age Levant, general"],
+    "sources": [
+      "Local displacement in the Late Bronze Age Levant, general"
+    ],
     "notes": "Invented scene. Movement of households for a failed harvest is plausible and is not the later collapse."
   }
 }

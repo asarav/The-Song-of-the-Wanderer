@@ -5,18 +5,77 @@
   "name": "Kinyras",
   "art": "art.cyprus.kinyras",
   "culture": "culture.cyprus.harbour",
-  "languages": ["lang.akkadian", "lang.cypriot"],
+  "languages": [
+    "lang.akkadian",
+    "lang.cypriot"
+  ],
   "home": "dest.cyprus",
   "tier": "major",
-  "roles": ["copper broker"],
+  "roles": [
+    "copper broker"
+  ],
   "dialogue": "dlg.cyprus.kinyras.meeting",
-  "wants": ["a buyer who will not argue about weight", "his name in a mainland merchant's ledger"],
-  "fears": ["a shipment that arrives short", "being cut out of the mainland trade"],
+  "wants": [
+    {
+      "id": "a-buyer",
+      "text": "A buyer who will not argue about weight",
+      "stake": "The yard’s margin",
+      "scene": "dlg.cyprus.kinyras.meeting"
+    },
+    {
+      "id": "ledger-name",
+      "text": "His name in a mainland merchant’s ledger",
+      "stake": "The trade his father lost",
+      "scene": "dlg.cyprus.copper-offer"
+    }
+  ],
+  "fears": [
+    "a shipment that arrives short",
+    "being cut out of the mainland trade"
+  ],
   "contradiction": "He bargains hard and keeps his word exactly.",
-  "presence": ["dest.cyprus"],
+  "presence": [
+    "dest.cyprus"
+  ],
   "provenance": {
     "confidence": "fictional",
     "sources": [],
     "notes": "An invented broker. Copper is central to Late Cypriot exchange; the individual is fictional."
-  }
+  },
+  "voice": {
+    "register": "Jovial, familiar; “my friend” is a warning. Numbers as endearments; never threatens.",
+    "address": [
+      "you",
+      "my friend"
+    ],
+    "tics": [
+      "turning a charcoal stick",
+      "tapping the tally board once"
+    ],
+    "avoid": [
+      "anger",
+      "explaining the trick"
+    ],
+    "sampleLines": [
+      "Do not tell me the crossing was good. Nobody’s crossing is good.",
+      "I do not weigh opinions.",
+      "We are both richer and neither of us is happy. That is a good deal."
+    ],
+    "maxSentenceWords": 24
+  },
+  "ties": [
+    {
+      "character": "char.cyprus.shipti",
+      "kind": "neighbor"
+    }
+  ],
+  "knowledge": [
+    {
+      "fact": "kinyras.buys-at-yard-price"
+    }
+  ],
+  "appearances": [
+    "dlg.cyprus.kinyras.meeting",
+    "dlg.cyprus.copper-offer"
+  ]
 }

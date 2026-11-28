@@ -6,28 +6,93 @@
     "location": "dest.ugarit",
     "money": 100,
     "capacity": 20,
-    "languages": { "lang.akkadian": { "xp": 25, "tier": "basic" } },
-    "knownRoutes": ["route.ugarit-cyprus"],
-    "knownDestinations": ["dest.ugarit", "dest.cyprus"],
+    "languages": {
+      "lang.akkadian": {
+        "xp": 25,
+        "tier": "basic"
+      }
+    },
+    "knownRoutes": [
+      "route.ugarit-cyprus"
+    ],
+    "knownDestinations": [
+      "dest.ugarit",
+      "dest.cyprus"
+    ],
     "inventory": [
-      { "item": "good.copper", "quantity": 2 },
-      { "item": "good.grain", "quantity": 1 }
+      {
+        "item": "good.copper",
+        "quantity": 2
+      },
+      {
+        "item": "good.grain",
+        "quantity": 1
+      }
     ]
   },
   "commands": [
-    { "type": "travel", "route": "route.ugarit-cyprus", "mode": "mode.coastal" },
-    { "type": "resolveEncounter", "choice": 0 },
-    { "type": "resolveEncounter", "choice": 0 },
-    { "type": "resolveEncounter", "choice": 0 },
-    { "type": "resolveEncounter", "choice": 0 },
-    { "type": "resolveEncounter", "choice": 0 },
-    { "type": "resolveEncounter", "choice": 0 }
+    {
+      "type": "travel",
+      "route": "route.ugarit-cyprus",
+      "mode": "mode.coastal"
+    },
+    {
+      "type": "chooseChoice",
+      "choiceId": "go-over-the-side",
+      "dialogue": "dlg.travel.cargo-shift",
+      "node": "shift"
+    },
+    {
+      "type": "chooseChoice",
+      "choiceId": "change-into-something-dry",
+      "dialogue": "dlg.travel.cargo-shift",
+      "node": "wet"
+    },
+    {
+      "type": "chooseChoice",
+      "choiceId": "drink-from-the-standing",
+      "dialogue": "dlg.travel.peril-thirst",
+      "node": "skin"
+    },
+    {
+      "type": "chooseChoice",
+      "choiceId": "stay-until-the-light",
+      "dialogue": "dlg.travel.quiet-night",
+      "node": "night"
+    },
+    {
+      "type": "chooseChoice",
+      "choiceId": "say-nothing-and-let",
+      "dialogue": "dlg.travel.checkpoint",
+      "node": "hail"
+    },
+    {
+      "type": "chooseChoice",
+      "choiceId": "count-what-is-left",
+      "dialogue": "dlg.travel.checkpoint",
+      "node": "settled"
+    }
   ],
   "assert": [
-    { "path": "player.location", "equals": "dest.cyprus" },
-    { "path": "player.inventory", "length": 1 },
-    { "path": "player.inventory.0.item", "equals": "good.copper" },
-    { "path": "player.inventory.0.quantity", "equals": 1 },
-    { "path": "player.inventory.0.quantity", "equals": 1 }
+    {
+      "path": "player.location",
+      "equals": "dest.cyprus"
+    },
+    {
+      "path": "player.inventory",
+      "length": 1
+    },
+    {
+      "path": "player.inventory.0.item",
+      "equals": "good.copper"
+    },
+    {
+      "path": "player.inventory.0.quantity",
+      "equals": 1
+    },
+    {
+      "path": "player.inventory.0.quantity",
+      "equals": 1
+    }
   ]
 }

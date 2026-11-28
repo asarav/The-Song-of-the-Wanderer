@@ -9,72 +9,159 @@
       "choices": [
         {
           "text": "Say nothing and let the master handle it.",
-          "conditions": { "moneyAtLeast": 6 },
+          "conditions": {
+            "moneyAtLeast": 6
+          },
           "unavailableNote": "You do not have six shekels for the master's fee.",
-          "effects": [{ "money": -6 }],
-          "next": "settled"
+          "effects": [
+            {
+              "money": -6
+            }
+          ],
+          "next": "settled",
+          "id": "say-nothing-and-let",
+          "intent": "cost"
         },
         {
           "text": "Show the palace seal.",
-          "conditions": { "itemAtLeast": { "item": "good.palace-seal", "quantity": 1 } },
+          "conditions": {
+            "itemAtLeast": {
+              "item": "good.palace-seal",
+              "quantity": 1
+            }
+          },
           "unavailableNote": "You have no seal to show them, and they would not believe a description of one.",
           "effects": [
-            { "faction": { "faction": "faction.ugarit.palace", "dimension": "standing", "delta": 1 } },
-            { "flag": "passed.checkpoint.by-seal" }
+            {
+              "faction": {
+                "faction": "faction.ugarit.palace",
+                "dimension": "standing",
+                "delta": 1
+              }
+            },
+            {
+              "flag": "passed.checkpoint.by-seal"
+            }
           ],
-          "next": "seal"
+          "next": "seal",
+          "id": "show-the-palace-seal",
+          "intent": "help"
         },
         {
           "text": "Pay the toll.",
-          "conditions": { "moneyAtLeast": 10 },
+          "conditions": {
+            "moneyAtLeast": 10
+          },
           "unavailableNote": "You do not have ten shekels for the toll.",
-          "effects": [{ "money": -10 }],
-          "next": "paid"
+          "effects": [
+            {
+              "money": -10
+            }
+          ],
+          "next": "paid",
+          "id": "pay-the-toll",
+          "intent": "cost"
         },
         {
           "text": "Argue the toll in Akkadian.",
-          "conditions": { "languageAtLeast": { "language": "lang.akkadian", "tier": "conversational" } },
+          "conditions": {
+            "languageAtLeast": {
+              "language": "lang.akkadian",
+              "tier": "conversational"
+            }
+          },
           "unavailableNote": "Your Akkadian is not quick enough to argue a toll.",
-          "effects": [{ "money": -4 }],
-          "next": "argued"
+          "effects": [
+            {
+              "money": -4
+            }
+          ],
+          "next": "argued",
+          "id": "argue-the-toll-in",
+          "intent": "cost"
         },
         {
           "text": "Keep your silver and work the rest of the crossing.",
-          "conditions": { "not": { "moneyAtLeast": 6 } },
-          "unavailableNote": "You have enough silver to let the master settle it.",
           "effects": [
-            { "advanceTime": { "days": 1 } },
-            { "flag": "worked.passage.toll" }
+            {
+              "advanceTime": {
+                "days": 1
+              }
+            },
+            {
+              "flag": "worked.passage.toll"
+            }
           ],
-          "next": "worked"
+          "next": "worked",
+          "id": "keep-your-silver-and",
+          "intent": "reveal"
         }
       ]
     },
     "seal": {
       "text": "The seal is looked at, handed back, and not mentioned again. The patrol boat peels away toward the shore.\n\n\"That was worth more than the toll,\" the master says. \"Try not to spend it all at once.\"",
-      "choices": [{ "text": "Watch them go.", "next": null }]
+      "choices": [
+        {
+          "text": "Watch them go.",
+          "next": null,
+          "id": "watch-them-go",
+          "intent": "reveal"
+        }
+      ]
     },
     "settled": {
       "text": "The master speaks for you, briefly and without warmth, and takes his fee out of your purse for the trouble. The patrol boat turns away without ceremony.",
-      "choices": [{ "text": "Count what is left.", "next": null }]
+      "choices": [
+        {
+          "text": "Count what is left.",
+          "next": null,
+          "id": "count-what-is-left",
+          "intent": "reveal"
+        }
+      ]
     },
     "paid": {
       "text": "The silver goes into a bag that is already full. Nobody writes a receipt. The patrol boat turns away without ceremony.",
-      "choices": [{ "text": "Count what is left.", "next": null }]
+      "choices": [
+        {
+          "text": "Count what is left.",
+          "next": null,
+          "id": "count-what-is-left",
+          "intent": "reveal"
+        }
+      ]
     },
     "argued": {
       "text": "You argue the toll down to four shekels and pay it, and the patrol boat leaves before you can be asked to repeat the argument.",
-      "choices": [{ "text": "Let it go.", "next": null }]
+      "choices": [
+        {
+          "text": "Let it go.",
+          "next": null,
+          "id": "let-it-go",
+          "intent": "reveal"
+        }
+      ]
     },
     "worked": {
       "text": "The master speaks for you and then puts you to work: bailing, hauling, and holding a steering oar until your hands stop being yours. The patrol boat turns away without ceremony. You keep your silver and lose a day.",
-      "beatArt": ["art.ugarit.harbour"],
-      "choices": [{ "text": "Earn your passage.", "next": null }]
+      "beatArt": [
+        "art.ugarit.harbour"
+      ],
+      "choices": [
+        {
+          "text": "Earn your passage.",
+          "next": null,
+          "id": "earn-your-passage",
+          "intent": "reveal"
+        }
+      ]
     }
   },
   "provenance": {
     "confidence": "plausible",
-    "sources": ["Late Bronze Age maritime tolls and patrols, general"],
+    "sources": [
+      "Late Bronze Age maritime tolls and patrols, general"
+    ],
     "notes": "Tolls and patrols are plausible; this encounter is invented."
   }
 }

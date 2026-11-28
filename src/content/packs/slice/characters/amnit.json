@@ -6,19 +6,85 @@
   "pronunciation": "AM-nit",
   "art": "art.ugarit.amnit",
   "culture": "culture.levant.coastal",
-  "languages": ["lang.ugaritic", "lang.akkadian"],
+  "languages": [
+    "lang.ugaritic",
+    "lang.akkadian"
+  ],
   "home": "dest.ugarit",
   "tier": "recurring",
-  "roles": ["merchant", "household head"],
+  "roles": [
+    "merchant",
+    "household head"
+  ],
   "dialogue": "dlg.ugarit.amnit.meeting",
-  "dialogueByDestination": { "dest.cyprus": "dlg.cyprus.amnit" },
-  "wants": ["a contract that survives the winter", "her household's name kept clean"],
-  "fears": ["a palace requisition", "being thought a bad creditor"],
+  "dialogueByDestination": {
+    "dest.cyprus": "dlg.cyprus.amnit"
+  },
+  "wants": [
+    {
+      "id": "winter-contract",
+      "text": "A grain contract that survives the winter",
+      "stake": "Her household's name",
+      "scene": "dlg.ugarit.amnit.meeting"
+    },
+    {
+      "id": "clean-name",
+      "text": "Her household's name kept clean",
+      "stake": "Credit with the quarter",
+      "scene": "dlg.cyprus.amnit"
+    }
+  ],
+  "fears": [
+    "a palace requisition",
+    "being thought a bad creditor"
+  ],
   "contradiction": "She distrusts officials and needs their permission.",
-  "presence": ["dest.ugarit", "dest.cyprus"],
+  "presence": [
+    "dest.ugarit",
+    "dest.cyprus"
+  ],
   "provenance": {
     "confidence": "fictional",
     "sources": [],
     "notes": "Invented merchant in a documented city. Her trade in grain and oil is plausible for the period."
-  }
+  },
+  "voice": {
+    "register": "Brisk merchant. Short declaratives, dry arithmetic, weights as feeling.",
+    "address": [
+      "you"
+    ],
+    "tics": [
+      "weighing a thing before naming a price",
+      "turning a jar so the mark faces the wall"
+    ],
+    "avoid": [
+      "self-pity",
+      "raised voice"
+    ],
+    "sampleLines": [
+      "Ask me something worth the interruption.",
+      "That is the yard’s price. The price for you is the same, because I have decided to like you.",
+      "A man who pays a messenger has decided not to pay you."
+    ],
+    "maxSentenceWords": 22
+  },
+  "ties": [
+    {
+      "character": "char.ugarit.sibtu",
+      "kind": "neighbor"
+    },
+    {
+      "character": "char.ugarit.hannu",
+      "kind": "patron"
+    }
+  ],
+  "knowledge": [
+    {
+      "fact": "sibtu.lives-in-workshop-quarter"
+    }
+  ],
+  "appearances": [
+    "dlg.ugarit.amnit.meeting",
+    "dlg.cyprus.amnit"
+  ]
 }

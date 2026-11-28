@@ -7,34 +7,132 @@
     "location": "dest.ugarit",
     "money": 120,
     "capacity": 20,
-    "languages": { "lang.akkadian": { "xp": 25, "tier": "basic" } },
-    "knownRoutes": ["route.ugarit-cyprus"],
-    "knownDestinations": ["dest.ugarit"],
-    "inventory": [{ "item": "good.olive-oil", "quantity": 2 }]
+    "languages": {
+      "lang.akkadian": {
+        "xp": 25,
+        "tier": "basic"
+      }
+    },
+    "knownRoutes": [
+      "route.ugarit-cyprus"
+    ],
+    "knownDestinations": [
+      "dest.ugarit"
+    ],
+    "inventory": [
+      {
+        "item": "good.olive-oil",
+        "quantity": 2
+      }
+    ]
   },
   "commands": [
-    { "type": "chooseDialogue", "choice": 0 },
-    { "type": "chooseDialogue", "choice": 0 },
-    { "type": "chooseDialogue", "choice": 0 },
-    { "type": "talkTo", "character": "char.ugarit.sibtu" },
-    { "type": "chooseDialogue", "choice": 0 },
-    { "type": "chooseDialogue", "choice": 0 },
-    { "type": "chooseDialogue", "choice": 0 },
-    { "type": "advanceTime", "days": 1 },
-    { "type": "chooseDialogue", "choice": 0 },
-    { "type": "chooseDialogue", "choice": 0 },
-    { "type": "sell", "item": "good.sibtu-cloth", "quantity": 1 },
-    { "type": "talkTo", "character": "char.ugarit.sibtu" },
-    { "type": "chooseDialogue", "choice": 1 },
-    { "type": "chooseDialogue", "choice": 0 }
+    {
+      "type": "chooseChoice",
+      "choiceId": "go-up-the-hill",
+      "dialogue": "dlg.slice.opening",
+      "node": "shore"
+    },
+    {
+      "type": "chooseChoice",
+      "choiceId": "give-your-name-and",
+      "dialogue": "dlg.ugarit.arrival",
+      "node": "gate"
+    },
+    {
+      "type": "chooseChoice",
+      "choiceId": "go-up-the-hill",
+      "dialogue": "dlg.ugarit.arrival",
+      "node": "ledger"
+    },
+    {
+      "type": "talkTo",
+      "character": "char.ugarit.sibtu"
+    },
+    {
+      "type": "chooseChoice",
+      "choiceId": "you-are-not-from",
+      "dialogue": "dlg.ugarit.sibtu.ask",
+      "node": "greet"
+    },
+    {
+      "type": "chooseChoice",
+      "choiceId": "ask-nothing-more",
+      "dialogue": "dlg.ugarit.sibtu.ask",
+      "node": "story"
+    },
+    {
+      "type": "chooseChoice",
+      "choiceId": "tomorrow-then",
+      "dialogue": "dlg.ugarit.sibtu.ask",
+      "node": "need"
+    },
+    {
+      "type": "advanceTime",
+      "days": 1
+    },
+    {
+      "type": "chooseChoice",
+      "choiceId": "i-will-take-it",
+      "dialogue": "dlg.ugarit.refugee-ask",
+      "node": "ask"
+    },
+    {
+      "type": "chooseChoice",
+      "choiceId": "take-the-bundle",
+      "dialogue": "dlg.ugarit.refugee-ask",
+      "node": "thanks"
+    },
+    {
+      "type": "sell",
+      "item": "good.sibtu-cloth",
+      "quantity": 1
+    },
+    {
+      "type": "talkTo",
+      "character": "char.ugarit.sibtu"
+    },
+    {
+      "type": "chooseChoice",
+      "choiceId": "i-cannot-give-it",
+      "dialogue": "dlg.ugarit.sibtu.ask",
+      "node": "settle"
+    },
+    {
+      "type": "chooseChoice",
+      "choiceId": "leave",
+      "dialogue": "dlg.ugarit.sibtu.ask",
+      "node": "kept"
+    }
   ],
   "assert": [
-    { "path": "knowledge.journalEntries", "contains": "journal.slice.refugee-helped" },
-    { "path": "knowledge.journalEntries", "contains": "journal.slice.sibtu-cloth-kept" },
-    { "path": "player.flags.sibtu.cloth-settled", "equals": true },
-    { "path": "narrative.relationships.char.ugarit.sibtu.trust", "equals": -1 },
-    { "path": "player.money", "equals": 122 },
-    { "path": "player.inventory", "length": 1 },
-    { "path": "narrative.pending", "equals": null }
+    {
+      "path": "knowledge.journalEntries",
+      "contains": "journal.slice.refugee-helped"
+    },
+    {
+      "path": "knowledge.journalEntries",
+      "contains": "journal.slice.sibtu-cloth-kept"
+    },
+    {
+      "path": "player.flags.sibtu.cloth-settled",
+      "equals": true
+    },
+    {
+      "path": "narrative.relationships.char.ugarit.sibtu.trust",
+      "equals": -1
+    },
+    {
+      "path": "player.money",
+      "equals": 122
+    },
+    {
+      "path": "player.inventory",
+      "length": 1
+    },
+    {
+      "path": "narrative.pending",
+      "equals": null
+    }
   ]
 }

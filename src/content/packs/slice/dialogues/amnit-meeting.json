@@ -5,137 +5,300 @@
   "speaker": "char.ugarit.amnit",
   "start": "greet",
   "entries": [
-    { "when": { "flag": "amnit.harbour" }, "node": "again-harbour" },
-    { "when": { "hasJournalEntry": "journal.slice.amnit-met" }, "node": "again" }
+    {
+      "when": {
+        "flag": "amnit.harbour"
+      },
+      "node": "again-harbour"
+    },
+    {
+      "when": {
+        "hasJournalEntry": "journal.slice.amnit-met"
+      },
+      "node": "again"
+    }
   ],
   "nodes": {
     "greet": {
-      "text": "You have the look of someone who slept on a boat.",
+      "text": "The woman at the scale does not look up. She has a scoop of emmer in one hand and a weight in the other, and she watches the beam the way a mother watches a child on a roof. A boy waits beside her with a tally board and the patience of someone paid by the day. \"You have the look of someone who slept on a boat,\" she says, to the grain. \"Stand at the end of the mat. Not that end. The end where I can see your hands.\"",
       "choices": [
         {
           "text": "Only the last three nights.",
           "effects": [
-            { "flag": "amnit.met" },
-            { "relationship": { "character": "char.ugarit.amnit", "dimension": "trust", "delta": 1 } }
+            {
+              "flag": "amnit.met"
+            },
+            {
+              "relationship": {
+                "character": "char.ugarit.amnit",
+                "dimension": "trust",
+                "delta": 1
+              }
+            }
           ],
-          "next": "laughs"
+          "next": "laughs",
+          "id": "only-the-last-three",
+          "intent": "help"
         },
         {
           "text": "I slept on the mole. The tide was generous.",
           "effects": [
-            { "flag": "amnit.met" },
-            { "relationship": { "character": "char.ugarit.amnit", "dimension": "affection", "delta": 1 } }
+            {
+              "flag": "amnit.met"
+            },
+            {
+              "relationship": {
+                "character": "char.ugarit.amnit",
+                "dimension": "affection",
+                "delta": 1
+              }
+            }
           ],
-          "next": "laughs"
+          "next": "laughs",
+          "id": "i-slept-on-the",
+          "intent": "help"
         },
-        { "text": "(Say nothing.)", "next": null }
+        {
+          "text": "(Say nothing.)",
+          "next": null,
+          "id": "say-nothing",
+          "intent": "deflect"
+        }
       ]
     },
     "again": {
-      "text": "The jar has moved and the mat has not.\n\n\"You again. The light is still good, and I am still counting.\"",
+      "text": "The jar has moved and the mat has not. She has a new bruise across the back of her hand and has not bothered to explain it; the boy with the board is gone, and the scale is turned so the beam faces the wall.\n\n\"You again. The light is still good, and I am still counting.\" She tips the scale with one finger and watches it settle. \"Ask me something worth the interruption, or take the weight off my mat.\"",
       "choices": [
         {
           "text": "I have copper to sell.",
-          "conditions": { "itemAtLeast": { "item": "good.copper", "quantity": 1 } },
+          "conditions": {
+            "itemAtLeast": {
+              "item": "good.copper",
+              "quantity": 1
+            }
+          },
           "unavailableNote": "You have no copper to show her, and she does not trade promises.",
           "effects": [
-            { "languageXp": { "language": "lang.ugaritic", "amount": 2 } },
-            { "journal": { "entry": "journal.slice.amnit-met" } }
+            {
+              "languageXp": {
+                "language": "lang.ugaritic",
+                "amount": 2
+              }
+            },
+            {
+              "journal": {
+                "entry": "journal.slice.amnit-met"
+              }
+            }
           ],
-          "next": "copper"
+          "next": "copper",
+          "id": "i-have-copper-to",
+          "intent": "reveal"
         },
         {
           "text": "What is moving through the harbor?",
           "effects": [
-            { "flag": "amnit.harbour" },
-            { "journal": { "entry": "journal.slice.rumour" } },
-            { "schedule": { "event": "evt.ugarit.market-rumour", "inDays": 1 } }
+            {
+              "flag": "amnit.harbour"
+            },
+            {
+              "journal": {
+                "entry": "journal.slice.rumour"
+              }
+            },
+            {
+              "schedule": {
+                "event": "evt.ugarit.market-rumour",
+                "inDays": 1
+              }
+            }
           ],
-          "next": "harbour"
+          "next": "harbour",
+          "id": "what-is-moving-through",
+          "intent": "probe"
         },
-        { "text": "Another time.", "next": null }
+        {
+          "text": "Another time.",
+          "next": null,
+          "id": "another-time",
+          "intent": "deflect"
+        }
       ]
     },
     "again-harbour": {
-      "text": "\"You have already had the harbor news.\" She turns a jar so the mark faces the wall. \"Ask me something I have not answered.\"",
+      "text": "\"You have already had the harbor news.\" She turns a jar so the potter's mark faces the wall, and the movement is final. \"Ask me something I have not answered, or go and let me finish before the light goes.\"",
       "choices": [
         {
           "text": "Any word of Sibtu?",
-          "next": "sibtu"
+          "next": "sibtu",
+          "id": "any-word-of-sibtu",
+          "intent": "reveal"
         },
         {
           "text": "I have copper to sell.",
-          "conditions": { "itemAtLeast": { "item": "good.copper", "quantity": 1 } },
+          "conditions": {
+            "itemAtLeast": {
+              "item": "good.copper",
+              "quantity": 1
+            }
+          },
           "unavailableNote": "You have no copper to show her, and she does not trade promises.",
           "effects": [
-            { "languageXp": { "language": "lang.ugaritic", "amount": 2 } },
-            { "journal": { "entry": "journal.slice.amnit-met" } }
+            {
+              "languageXp": {
+                "language": "lang.ugaritic",
+                "amount": 2
+              }
+            },
+            {
+              "journal": {
+                "entry": "journal.slice.amnit-met"
+              }
+            }
           ],
-          "next": "copper"
+          "next": "copper",
+          "id": "i-have-copper-to",
+          "intent": "reveal"
         },
-        { "text": "Then I will not waste the light.", "next": null }
+        {
+          "text": "Then I will not waste the light.",
+          "next": null,
+          "id": "then-i-will-not",
+          "intent": "reveal"
+        }
       ]
     },
     "laughs": {
-      "text": "She moves a jar off a mat and does not invite you to sit, which is its own kind of invitation.",
+      "text": "She moves a jar off the mat with her foot and does not invite you to sit, which is its own kind of invitation. \"Then sit,\" she says. \"The good end of the table is for people who pay, but you can have the end where the wind is not.\"",
       "textByLanguage": {
         "lang.akkadian": {
-          "basic": "Then sit where the light is. The good end of the table is for people who pay.",
-          "conversational": "Then you will want the good end of the table, where the light is and the wind is not.",
-          "fluent": "Then you will want the good end of the table. Sit before I change my mind about the light."
+          "basic": "Then sit where the light is. The good end of the table is for people who pay; the end by the wall is for people who are still deciding.",
+          "conversational": "Then you will want the good end of the table, where the light is and the wind is not. Sit before the boy decides you are a customer and starts being polite.",
+          "fluent": "Then you will want the good end of the table. Sit before I change my mind about the light, and do not tell my cousin I have started feeding strangers again."
         }
       },
       "choices": [
         {
           "text": "I have copper to sell.",
-          "conditions": { "itemAtLeast": { "item": "good.copper", "quantity": 1 } },
+          "conditions": {
+            "itemAtLeast": {
+              "item": "good.copper",
+              "quantity": 1
+            }
+          },
           "unavailableNote": "You have no copper to show her, and she does not trade promises.",
           "effects": [
-            { "languageXp": { "language": "lang.ugaritic", "amount": 2 } },
-            { "journal": { "entry": "journal.slice.amnit-met" } },
-            { "schedule": { "event": "evt.ugarit.market-rumour", "inDays": 1 } }
+            {
+              "languageXp": {
+                "language": "lang.ugaritic",
+                "amount": 2
+              }
+            },
+            {
+              "journal": {
+                "entry": "journal.slice.amnit-met"
+              }
+            },
+            {
+              "schedule": {
+                "event": "evt.ugarit.market-rumour",
+                "inDays": 1
+              }
+            }
           ],
-          "next": "copper"
+          "next": "copper",
+          "id": "i-have-copper-to",
+          "intent": "reveal"
         },
         {
           "text": "What is moving through the harbor?",
           "effects": [
-            { "flag": "amnit.harbour" },
-            { "journal": { "entry": "journal.slice.amnit-met" } },
-            { "journal": { "entry": "journal.slice.rumour" } },
-            { "schedule": { "event": "evt.ugarit.market-rumour", "inDays": 1 } }
+            {
+              "flag": "amnit.harbour"
+            },
+            {
+              "journal": {
+                "entry": "journal.slice.amnit-met"
+              }
+            },
+            {
+              "journal": {
+                "entry": "journal.slice.rumour"
+              }
+            },
+            {
+              "schedule": {
+                "event": "evt.ugarit.market-rumour",
+                "inDays": 1
+              }
+            }
           ],
-          "next": "harbour"
+          "next": "harbour",
+          "id": "what-is-moving-through",
+          "intent": "probe"
         },
-        { "text": "Another time.", "next": null }
+        {
+          "text": "Another time.",
+          "next": null,
+          "id": "another-time",
+          "intent": "deflect"
+        }
       ]
     },
     "copper": {
-      "text": "\"Copper goes to the island and comes back as copper, which is the only honest thing about it.\" She names a price that is not an offer and waits to see whether you argue.",
+      "text": "\"Copper goes to the island and comes back as copper, which is the only honest thing about it.\" She names the yard's price without looking at the ingot, then looks at you instead. \"That is what it is worth. The price for you is the same, because I have decided to like you. Do not make me regret the arithmetic.\"",
       "choices": [
-        { "text": "That is a fair price.", "next": null },
+        {
+          "text": "That is a fair price.",
+          "next": null,
+          "id": "that-is-a-fair",
+          "intent": "reveal"
+        },
         {
           "text": "It is not.",
           "effects": [
-            { "relationship": { "character": "char.ugarit.amnit", "dimension": "respect", "delta": 1 } }
+            {
+              "relationship": {
+                "character": "char.ugarit.amnit",
+                "dimension": "respect",
+                "delta": 1
+              }
+            }
           ],
-          "next": null
+          "next": null,
+          "id": "it-is-not",
+          "intent": "help"
         }
       ]
     },
     "harbour": {
-      "text": "\"Grain is dear. The inland road is worse. Two households came down to the coast this month and my cousin has taken in one of them.\"\n\nShe says it the way people say a thing they have already decided not to be frightened of.",
-      "choices": [{ "text": "Ask which household.", "next": "sibtu" }]
+      "text": "\"Grain is dear. The inland road is worse. Two households came down to the coast this month and my cousin has taken in one of them.\"\n\nShe says it the way people say a thing they have already decided not to be frightened of. Then she moves the weight on the scale a finger's width, because the sentence has cost her something and she would rather you looked at that.",
+      "choices": [
+        {
+          "text": "Ask which household.",
+          "next": "sibtu",
+          "id": "ask-which-household",
+          "intent": "probe"
+        }
+      ]
     },
     "sibtu": {
-      "text": "\"A weaver called Sibtu. She is in the workshop quarter and she will not ask you for anything, which is how you will know she needs it.\"",
+      "text": "\"A weaver called Sibtu. She is in the workshop quarter and she will not ask you for anything, which is how you will know she needs it.\" Amnit sets the weight down. \"If you go, go because you want to. I have already done my part, and my part has a limit.\"",
       "choices": [
         {
           "text": "Remember the name.",
           "effects": [
-            { "knowledge": { "fact": "sibtu.lives-in-workshop-quarter", "source": "told", "reliability": 0.9 } }
+            {
+              "knowledge": {
+                "fact": "sibtu.lives-in-workshop-quarter",
+                "source": "told",
+                "reliability": 0.9
+              }
+            }
           ],
-          "next": null
+          "next": null,
+          "id": "remember-the-name",
+          "intent": "reveal"
         }
       ]
     }
@@ -144,5 +307,13 @@
     "confidence": "fictional",
     "sources": [],
     "notes": "Amnit is canon for the slice. Her speech is invented; the trade detail is plausible."
+  },
+  "scene": {
+    "goal": "Sell grain without being cheated",
+    "obstacle": "A stranger who smells of the boat and has no ledger",
+    "turn": "She offers the good end of the mat",
+    "stakes": "Her household's credit",
+    "want": "winter-contract",
+    "callback": "journal:journal.slice.opening"
   }
 }

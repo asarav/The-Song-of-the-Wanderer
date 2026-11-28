@@ -5,18 +5,71 @@
   "name": "Ada",
   "art": "art.cyprus.ada",
   "culture": "culture.cyprus.harbour",
-  "languages": ["lang.cypriot", "lang.akkadian"],
+  "languages": [
+    "lang.cypriot",
+    "lang.akkadian"
+  ],
   "home": "dest.cyprus",
   "tier": "recurring",
-  "roles": ["smith", "workshop owner"],
+  "roles": [
+    "smith",
+    "workshop owner"
+  ],
   "dialogue": "dlg.cyprus.ada.smithy",
-  "wants": ["tin enough to finish the season's work", "her daughter to learn the trade properly"],
-  "fears": ["a workshop without metal"],
+  "wants": [
+    {
+      "id": "tin",
+      "text": "Tin enough to finish the season",
+      "stake": "The workshop’s orders",
+      "scene": "dlg.cyprus.ada.smithy"
+    },
+    {
+      "id": "daughter",
+      "text": "Her daughter to learn the trade properly",
+      "stake": "The girl’s future",
+      "scene": "dlg.cyprus.night-kiln"
+    }
+  ],
+  "fears": [
+    "a workshop without metal"
+  ],
   "contradiction": "She is proud of work she considers invisible.",
-  "presence": ["dest.cyprus"],
+  "presence": [
+    "dest.cyprus"
+  ],
   "provenance": {
     "confidence": "fictional",
     "sources": [],
     "notes": "An invented smith. Copper and bronze working on Cyprus is attested. A woman running a bronze workshop is unusual in the surviving evidence but not excluded; she is written as a plausible local case, and the art and dialogue agree that the smith is Ada, with her daughter sorting charcoal."
-  }
+  },
+  "voice": {
+    "register": "Blunt, technical, talks to the metal. Affection arrives as instruction.",
+    "address": [
+      "you",
+      "girl"
+    ],
+    "tics": [
+      "weighing tin in her hand before the scale",
+      "watching the color of the coals"
+    ],
+    "avoid": [
+      "praise of her own work",
+      "saying the girl’s name in front of strangers"
+    ],
+    "sampleLines": [
+      "Put it on the scale. Do not tell me it is good; the scale decides.",
+      "The good blades go to men who will use them and never think of me.",
+      "She has the hands. She does not yet have the patience."
+    ],
+    "maxSentenceWords": 20
+  },
+  "knowledge": [
+    {
+      "fact": "cyprus.ada.father-sold-yard"
+    }
+  ],
+  "appearances": [
+    "dlg.cyprus.ada.smithy",
+    "dlg.cyprus.night-kiln"
+  ]
 }

@@ -19,22 +19,31 @@
       "choices": [
         {
           "text": "Go up the hill to the gate.",
-          "next": null
+          "next": null,
+          "id": "go-up-the-hill",
+          "intent": "reveal"
         },
         {
           "text": "Ask the man with the tally board what oil fetches here.",
-          "next": "price"
+          "next": "price",
+          "id": "ask-the-man-with",
+          "intent": "probe"
         }
       ],
       "nextDialogue": "dlg.ugarit.arrival"
     },
     "price": {
       "text": "\"**Oil** is oil,\" he says, without looking up from the board. \"Seven the jar up the hill this week. Nine if the levies are late and the palace decides it is buying.\"\n\nHe wets the stylus, writes something that is not about you, and waits for you to move.",
-      "beatArt": ["art.ugarit.hannu", "art.good.palace-seal"],
+      "beatArt": [
+        "art.ugarit.hannu",
+        "art.good.palace-seal"
+      ],
       "choices": [
         {
           "text": "Go up the hill to the gate.",
-          "next": null
+          "next": null,
+          "id": "go-up-the-hill",
+          "intent": "reveal"
         }
       ],
       "nextDialogue": "dlg.ugarit.arrival"

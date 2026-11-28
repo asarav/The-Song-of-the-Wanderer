@@ -7,25 +7,85 @@
     "location": "dest.ugarit",
     "money": 120,
     "capacity": 20,
-    "languages": { "lang.akkadian": { "xp": 25, "tier": "basic" } },
-    "knownDestinations": ["dest.ugarit"],
+    "languages": {
+      "lang.akkadian": {
+        "xp": 25,
+        "tier": "basic"
+      }
+    },
+    "knownDestinations": [
+      "dest.ugarit"
+    ],
     "knownRoutes": [],
-    "inventory": [{ "item": "good.olive-oil", "quantity": 2 }]
+    "inventory": [
+      {
+        "item": "good.olive-oil",
+        "quantity": 2
+      }
+    ]
   },
   "commands": [
-    { "type": "chooseDialogue", "choice": 0 },
-    { "type": "chooseDialogue", "choice": 0 },
-    { "type": "chooseDialogue", "choice": 0 },
-    { "type": "talkTo", "character": "char.ugarit.sibtu" },
-    { "type": "chooseDialogue", "choice": 0 },
-    { "type": "chooseDialogue", "choice": 0 },
-    { "type": "chooseDialogue", "choice": 0 },
-    { "type": "advanceTime", "days": 1 }
+    {
+      "type": "chooseChoice",
+      "choiceId": "go-up-the-hill",
+      "dialogue": "dlg.slice.opening",
+      "node": "shore"
+    },
+    {
+      "type": "chooseChoice",
+      "choiceId": "give-your-name-and",
+      "dialogue": "dlg.ugarit.arrival",
+      "node": "gate"
+    },
+    {
+      "type": "chooseChoice",
+      "choiceId": "go-up-the-hill",
+      "dialogue": "dlg.ugarit.arrival",
+      "node": "ledger"
+    },
+    {
+      "type": "talkTo",
+      "character": "char.ugarit.sibtu"
+    },
+    {
+      "type": "chooseChoice",
+      "choiceId": "you-are-not-from",
+      "dialogue": "dlg.ugarit.sibtu.ask",
+      "node": "greet"
+    },
+    {
+      "type": "chooseChoice",
+      "choiceId": "ask-nothing-more",
+      "dialogue": "dlg.ugarit.sibtu.ask",
+      "node": "story"
+    },
+    {
+      "type": "chooseChoice",
+      "choiceId": "tomorrow-then",
+      "dialogue": "dlg.ugarit.sibtu.ask",
+      "node": "need"
+    },
+    {
+      "type": "advanceTime",
+      "days": 1
+    }
   ],
   "assert": [
-    { "path": "narrative.pending.dialogue", "equals": "dlg.ugarit.refugee-ask" },
-    { "path": "narrative.pending.node", "equals": "ask" },
-    { "path": "knowledge.journalEntries", "contains": "journal.slice.refugee-asked" },
-    { "path": "world.scheduled", "length": 0 }
+    {
+      "path": "narrative.pending.dialogue",
+      "equals": "dlg.ugarit.refugee-ask"
+    },
+    {
+      "path": "narrative.pending.node",
+      "equals": "ask"
+    },
+    {
+      "path": "knowledge.journalEntries",
+      "contains": "journal.slice.refugee-asked"
+    },
+    {
+      "path": "world.scheduled",
+      "length": 0
+    }
   ]
 }

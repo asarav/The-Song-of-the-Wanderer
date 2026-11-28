@@ -4,58 +4,132 @@
   "contentVersion": 1,
   "speaker": "char.ugarit.amnit",
   "start": "yard",
-  "entries": [{ "when": { "flag": "amnit.cyprus" }, "node": "again" }],
+  "entries": [
+    {
+      "when": {
+        "flag": "amnit.cyprus"
+      },
+      "node": "again"
+    }
+  ],
   "nodes": {
     "yard": {
-      "text": "She is already in the yard with her sleeves tied back, arguing about the weight of somebody else's copper, and she sees you before you decide whether to interrupt.\n\n\"You took the fast boat and I took the cheap one, and here we both are.\"",
+      "text": "She is already in the yard with her sleeves tied back, arguing about the weight of somebody else's copper, and she sees you before you decide whether to interrupt.\n\n\"You took the fast boat and I took the cheap one, and here we both are.\" She does not smile until the argument is finished, and then she smiles at you and not at the copper. \"Do not tell the yard we know each other. I am here to collect a debt, and a friendly face makes a debtor brave.\"",
       "choices": [
         {
           "text": "You did not say you were crossing.",
           "effects": [
-            { "flag": "amnit.cyprus" },
-            { "relationship": { "character": "char.ugarit.amnit", "dimension": "affection", "delta": 1 } }
+            {
+              "flag": "amnit.cyprus"
+            },
+            {
+              "relationship": {
+                "character": "char.ugarit.amnit",
+                "dimension": "affection",
+                "delta": 1
+              }
+            }
           ],
-          "next": "answer"
+          "next": "answer",
+          "id": "you-did-not-say",
+          "intent": "help"
         },
         {
           "text": "What is worth the crossing?",
           "effects": [
-            { "flag": "amnit.cyprus" },
-            { "knowledge": { "fact": "amnit.buys-copper-on-the-island", "source": "told", "reliability": 0.8 } }
+            {
+              "flag": "amnit.cyprus"
+            },
+            {
+              "knowledge": {
+                "fact": "amnit.buys-copper-on-the-island",
+                "source": "told",
+                "reliability": 0.8
+              }
+            }
           ],
-          "next": "answer"
+          "next": "answer",
+          "id": "what-is-worth-the",
+          "intent": "probe"
         }
       ]
     },
     "again": {
-      "text": "\"You again. The wedding was yesterday and the copper is still here.\" She shifts a crate with her foot and does not offer you her hands, which are full.\n\n\"Ask me something I have not already answered.\"",
+      "text": "\"You again. The wedding was yesterday and the copper is still here.\" She shifts a crate with her foot and does not offer you her hands, which are full.\n\n\"Ask me something I have not already answered. Or help me carry this, and I will tell you something for free.\"",
       "choices": [
         {
           "text": "Does the debt get collected?",
-          "next": "debt"
+          "next": "debt",
+          "id": "does-the-debt-get",
+          "intent": "probe"
         },
         {
           "text": "What is worth the crossing?",
           "effects": [
-            { "knowledge": { "fact": "amnit.buys-copper-on-the-island", "source": "told", "reliability": 0.8 } }
+            {
+              "knowledge": {
+                "fact": "amnit.buys-copper-on-the-island",
+                "source": "told",
+                "reliability": 0.8
+              }
+            }
           ],
-          "next": "answer"
+          "next": "answer",
+          "id": "what-is-worth-the",
+          "intent": "probe"
         },
-        { "text": "Let her work.", "next": null }
+        {
+          "text": "Let her work.",
+          "next": null,
+          "id": "let-her-work",
+          "intent": "reveal"
+        }
       ]
     },
     "answer": {
-      "text": "\"Copper, and a cousin's wedding, and a debt I would rather collect in person.\" She hands the board to a boy and gives you her full attention for exactly as long as she can afford. \"Do not tell the harbor I said the wedding.\"\n\nSomeone calls her name from the smithy and she is already turning.",
-      "choices": [{ "text": "Let her go.", "next": null }]
+      "text": "\"Copper, and a cousin's wedding, and a debt I would rather collect in person.\" She hands the board to a boy and gives you her full attention for exactly as long as she can afford.\n\n\"Do not tell the harbor I said the wedding. My cousin has been telling everyone I came for the bride, and I have been letting him.\" She glances at the ingots. \"The debt is the real reason. The man who owes me is charming. Charming men pay late.\"",
+      "choices": [
+        {
+          "text": "Let her go.",
+          "next": null,
+          "id": "let-her-go",
+          "intent": "reveal"
+        }
+      ]
     },
     "debt": {
-      "text": "\"In person, or it does not get collected. A man who pays a messenger has decided not to pay you.\"\n\nShe says it without heat, the way she says weights.",
-      "choices": [{ "text": "Remember it.", "next": null }]
+      "text": "\"In person, or it does not get collected. A man who pays a messenger has decided not to pay you.\"\n\nShe says it without heat, the way she says weights. Then she looks at you. \"You are a stranger here. If I need a witness, will you stand? It is not dangerous. It is only standing where he can see you.\"",
+      "choices": [
+        {
+          "text": "Remember it.",
+          "next": null,
+          "id": "remember-it",
+          "intent": "reveal",
+          "effects": [
+            {
+              "promise": {
+                "id": "promise.amnit.debt",
+                "character": "char.ugarit.amnit",
+                "kind": "debt",
+                "text": "A cousin’s debt Amnit means to collect in person"
+              }
+            }
+          ]
+        }
+      ]
     }
   },
   "provenance": {
     "confidence": "fictional",
     "sources": [],
     "notes": "Amnit's second appearance, invented."
+  },
+  "scene": {
+    "goal": "Collect a debt in person",
+    "obstacle": "Her name is no good on this island",
+    "turn": "She asks the traveller to stand as witness",
+    "stakes": "The debt and her cousin's household",
+    "want": "clean-name",
+    "callback": "journal:journal.slice.amnit-met"
   }
 }

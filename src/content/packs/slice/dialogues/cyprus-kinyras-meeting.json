@@ -5,111 +5,258 @@
   "speaker": "char.cyprus.kinyras",
   "start": "greet",
   "entries": [
-    { "when": { "hasJournalEntry": "journal.slice.copper-deal" }, "node": "after-deal" },
-    { "when": { "flag": "kinyras.met" }, "node": "again" }
+    {
+      "when": {
+        "hasJournalEntry": "journal.slice.copper-deal"
+      },
+      "node": "after-deal"
+    },
+    {
+      "when": {
+        "flag": "kinyras.met"
+      },
+      "node": "again"
+    }
   ],
   "nodes": {
     "greet": {
-      "text": "You have the smell of the mainland on you. Ugarit?\n\nHe does not look up from the ingots. He is counting them with a piece of charcoal on a board, and the count is not going to be good news for somebody.",
+      "text": "He has a board under one arm and a piece of charcoal in the other hand, and he is counting ingots in a stack that has already been counted. A boy stands at his elbow with a tally stick and the expression of someone who has been hit for correcting him.\n\n\"You have the smell of the mainland on you. Ugarit?\" He does not look up. \"Do not tell me the crossing was good. Nobody's crossing is good, and I am not in the mood to be lied to before lunch.\"",
       "choices": [
         {
           "text": "Ugarit.",
           "effects": [
-            { "flag": "kinyras.met" },
-            { "relationship": { "character": "char.cyprus.kinyras", "dimension": "trust", "delta": 1 } }
+            {
+              "flag": "kinyras.met"
+            },
+            {
+              "relationship": {
+                "character": "char.cyprus.kinyras",
+                "dimension": "trust",
+                "delta": 1
+              }
+            }
           ],
-          "next": "offer"
+          "next": "offer",
+          "id": "ugarit",
+          "intent": "help"
         },
         {
           "text": "Does it matter?",
           "effects": [
-            { "flag": "kinyras.met" },
-            { "relationship": { "character": "char.cyprus.kinyras", "dimension": "respect", "delta": 1 } }
+            {
+              "flag": "kinyras.met"
+            },
+            {
+              "relationship": {
+                "character": "char.cyprus.kinyras",
+                "dimension": "respect",
+                "delta": 1
+              }
+            }
           ],
-          "next": "offer"
+          "next": "offer",
+          "id": "does-it-matter",
+          "intent": "help"
         },
         {
           "text": "Show him the seal and say nothing.",
           "conditions": {
             "all": [
-              { "itemAtLeast": { "item": "good.palace-seal", "quantity": 1 } },
-              { "not": { "flag": "palace.seal-shown" } }
+              {
+                "itemAtLeast": {
+                  "item": "good.palace-seal",
+                  "quantity": 1
+                }
+              },
+              {
+                "not": {
+                  "flag": "palace.seal-shown"
+                }
+              }
             ]
           },
           "effects": [
-            { "flag": "palace.seal-shown" },
-            { "faction": { "faction": "faction.ugarit.palace", "dimension": "favour", "delta": 1 } },
-            { "journal": { "entry": "journal.slice.seal-delivered" } }
+            {
+              "flag": "palace.seal-shown"
+            },
+            {
+              "faction": {
+                "faction": "faction.ugarit.palace",
+                "dimension": "favour",
+                "delta": 1
+              }
+            },
+            {
+              "journal": {
+                "entry": "journal.slice.seal-delivered"
+              }
+            }
           ],
-          "next": "seal"
+          "next": "seal",
+          "id": "show-him-the-seal",
+          "intent": "help"
         }
       ]
     },
     "again": {
-      "text": "\"You again. The ingots have not learned to weigh less.\" He does not put the board down, which is as close as he comes to an invitation.",
+      "text": "\"You again. The ingots have not learned to weigh less.\" He does not put the board down, which is as close as he comes to an invitation. \"Say your business. The boy is expensive and the light is going.\"",
       "choices": [
-        { "text": "What is copper worth today?", "next": "offer" },
+        {
+          "text": "What is copper worth today?",
+          "next": "offer",
+          "id": "what-is-copper-worth",
+          "intent": "probe"
+        },
         {
           "text": "Does the yard buy grain?",
-          "next": "grain"
+          "next": "grain",
+          "id": "does-the-yard-buy",
+          "intent": "probe"
         },
         {
           "text": "Show him the seal and say nothing.",
           "conditions": {
             "all": [
-              { "itemAtLeast": { "item": "good.palace-seal", "quantity": 1 } },
-              { "not": { "flag": "palace.seal-shown" } }
+              {
+                "itemAtLeast": {
+                  "item": "good.palace-seal",
+                  "quantity": 1
+                }
+              },
+              {
+                "not": {
+                  "flag": "palace.seal-shown"
+                }
+              }
             ]
           },
           "effects": [
-            { "flag": "palace.seal-shown" },
-            { "faction": { "faction": "faction.ugarit.palace", "dimension": "favour", "delta": 1 } },
-            { "journal": { "entry": "journal.slice.seal-delivered" } }
+            {
+              "flag": "palace.seal-shown"
+            },
+            {
+              "faction": {
+                "faction": "faction.ugarit.palace",
+                "dimension": "favour",
+                "delta": 1
+              }
+            },
+            {
+              "journal": {
+                "entry": "journal.slice.seal-delivered"
+              }
+            }
           ],
-          "next": "seal"
+          "next": "seal",
+          "id": "show-him-the-seal",
+          "intent": "help"
         },
-        { "text": "Leave him to the count.", "next": null }
+        {
+          "text": "Leave him to the count.",
+          "next": null,
+          "id": "leave-him-to-the",
+          "intent": "deflect"
+        }
       ]
     },
     "after-deal": {
-      "text": "\"The count is settled.\" He taps the board, once. \"You came back, which most men do not, and you did not ask me to repeat the terms, which is rarer.\"",
+      "text": "\"The count is settled.\" He taps the board, once. \"You came back, which most men do not, and you did not ask me to repeat the terms, which is rarer.\" He looks at you properly for the first time. \"My father lost this yard to a man who was charming. I bought it back one ingot at a time, and I do not trust charming.\"",
       "choices": [
-        { "text": "What is copper worth today?", "next": "offer" },
+        {
+          "text": "What is copper worth today?",
+          "next": "offer",
+          "id": "what-is-copper-worth",
+          "intent": "probe"
+        },
         {
           "text": "Show him the seal and say nothing.",
           "conditions": {
             "all": [
-              { "itemAtLeast": { "item": "good.palace-seal", "quantity": 1 } },
-              { "not": { "flag": "palace.seal-shown" } }
+              {
+                "itemAtLeast": {
+                  "item": "good.palace-seal",
+                  "quantity": 1
+                }
+              },
+              {
+                "not": {
+                  "flag": "palace.seal-shown"
+                }
+              }
             ]
           },
           "effects": [
-            { "flag": "palace.seal-shown" },
-            { "faction": { "faction": "faction.ugarit.palace", "dimension": "favour", "delta": 1 } },
-            { "journal": { "entry": "journal.slice.seal-delivered" } }
+            {
+              "flag": "palace.seal-shown"
+            },
+            {
+              "faction": {
+                "faction": "faction.ugarit.palace",
+                "dimension": "favour",
+                "delta": 1
+              }
+            },
+            {
+              "journal": {
+                "entry": "journal.slice.seal-delivered"
+              }
+            }
           ],
-          "next": "seal"
+          "next": "seal",
+          "id": "show-him-the-seal",
+          "intent": "help"
         },
-        { "text": "Leave him to the count.", "next": null }
+        {
+          "text": "Leave him to the count.",
+          "next": null,
+          "id": "leave-him-to-the",
+          "intent": "deflect"
+        }
       ]
     },
     "seal": {
       "art": "art.good.palace-seal",
-      "text": "You put the seal on the board between you and say nothing.\n\nHe looks at it for exactly as long as it takes to decide not to look at it. \"Tell the gate the count is short. They will know what it means.\"",
-      "beatArt": ["art.good.palace-seal", "art.cyprus.kinyras"],
-      "choices": [{ "text": "Take it back.", "next": null }]
+      "text": "You put the seal on the board between you and say nothing.\n\nHe looks at it for exactly as long as it takes to decide not to look at it. \"Tell the gate the count is short. They will know what it means.\" Then, because the boy is listening: \"And tell them Kinyras counted it himself. Twice.\"",
+      "beatArt": [
+        "art.good.palace-seal",
+        "art.cyprus.kinyras"
+      ],
+      "choices": [
+        {
+          "text": "Take it back.",
+          "next": null,
+          "id": "take-it-back",
+          "intent": "reveal"
+        }
+      ]
     },
     "grain": {
-      "text": "\"The yard buys whatever the boats cannot eat. Grain is not copper; it does not wait to be sold.\"\n\nHe says it as a fact about grain, not about you.",
-      "choices": [{ "text": "Remember it.", "next": null }]
+      "text": "\"The yard buys whatever the boats cannot eat. Grain is not copper; it does not wait to be sold.\"\n\nHe says it as a fact about grain, not about you. Then he adds, \"If you have grain, bring it at first light. The price is better before the harbor wakes up and starts lying.\"",
+      "choices": [
+        {
+          "text": "Remember it.",
+          "next": null,
+          "id": "remember-it",
+          "intent": "reveal"
+        }
+      ]
     },
     "offer": {
-      "text": "\"Copper is nine the ingot at the yard. Ten to a stranger who has not learned to ask. Tomorrow it is whatever the boats say.\" He taps the board. \"Come back when you have decided, and bring something worth weighing.\"",
+      "text": "\"Copper is nine the ingot at the yard. Ten to a stranger who has not learned to ask. Tomorrow it is whatever the boats say.\" He taps the board. \"Come back when you have decided, and bring something worth weighing. I do not weigh opinions.\"",
       "choices": [
         {
           "text": "Leave him to the count.",
-          "effects": [{ "schedule": { "event": "evt.cyprus.copper-offer", "inDays": 1 } }],
-          "next": null
+          "effects": [
+            {
+              "schedule": {
+                "event": "evt.cyprus.copper-offer",
+                "inDays": 1
+              }
+            }
+          ],
+          "next": null,
+          "id": "leave-him-to-the",
+          "intent": "deflect"
         }
       ]
     }
@@ -118,5 +265,13 @@
     "confidence": "fictional",
     "sources": [],
     "notes": "Kinyras is invented. Copper by weight is period-plausible."
+  },
+  "scene": {
+    "goal": "Find out what copper is worth",
+    "obstacle": "A broker counting what he has already counted",
+    "turn": "He names the yard price without being asked twice",
+    "stakes": "A first trade on the island",
+    "want": "a-buyer",
+    "callback": "journal:journal.slice.opening"
   }
 }

@@ -6,44 +6,122 @@
   "start": "recognize",
   "nodes": {
     "recognize": {
-      "text": "She is waiting in the doorway of the temple with her hands still.\n\n\"I have been singing the same line for three days. Ninshubur. And then you come in from the harbor with that face, and I stop being able to sing it.\"",
+      "text": "She is waiting in the doorway of the temple with her hands still.\n\n\"I have been singing the same line for three days. Ninshubur. And then you come in from the harbor with that face, and I stop being able to sing it.\" She does not step aside. \"Tell me what you know, and tell me plainly. I have had enough of people being careful with me.\"",
       "choices": [
         {
           "text": "It is a name from the east. A messenger's name.",
-          "conditions": { "languageAtLeast": { "language": "lang.akkadian", "tier": "basic" } },
+          "conditions": {
+            "languageAtLeast": {
+              "language": "lang.akkadian",
+              "tier": "basic"
+            }
+          },
           "unavailableNote": "You do not have the Akkadian to say it, and a guess would be worse.",
           "effects": [
-            { "knowledge": { "fact": "ninshubur.a-messengers-name", "source": "told", "reliability": 0.7 } }
+            {
+              "knowledge": {
+                "fact": "ninshubur.a-messengers-name",
+                "source": "told",
+                "reliability": 0.7
+              }
+            }
           ],
-          "next": "east"
+          "next": "east",
+          "id": "it-is-a-name",
+          "intent": "reveal"
         },
-        { "text": "I have never heard it.", "next": "never" },
-        { "text": "What do you want me to say?", "next": "want" }
+        {
+          "text": "I have never heard it.",
+          "next": "never",
+          "id": "i-have-never-heard",
+          "intent": "reveal"
+        },
+        {
+          "text": "What do you want me to say?",
+          "next": "want",
+          "id": "what-do-you-want",
+          "intent": "probe"
+        }
       ]
     },
     "east": {
-      "text": "\"A servant of the lady of the evening. A messenger.\" She says it slowly, testing it. \"That is what the trader said, and then he would not say more, and I have been singing it at strangers ever since.\"",
-      "choices": [{ "text": "Ask what she expects.", "next": "want" }]
+      "text": "\"A servant of the lady of the evening. A messenger.\" She says it slowly, testing it. \"That is what the trader said, and then he would not say more, and I have been singing it at strangers ever since.\" She looks at her hands. \"My sister would have liked you. She liked people who answered.\"",
+      "choices": [
+        {
+          "text": "Ask what she expects.",
+          "next": "want",
+          "id": "ask-what-she-expects",
+          "intent": "probe"
+        }
+      ]
     },
     "never": {
-      "text": "\"No. But the hymn knows you, and I would like to know how.\"\n\nShe does not say it as an accusation. That is somehow worse.",
-      "choices": [{ "text": "Say nothing.", "next": null }]
+      "text": "\"No. But the hymn knows you, and I would like to know how.\"\n\nShe does not say it as an accusation. That is somehow worse. \"You are not the first stranger I have sung it at. You are the first who did not ask me to sing it again.\"",
+      "choices": [
+        {
+          "text": "Say nothing.",
+          "next": null,
+          "id": "say-nothing",
+          "intent": "deflect"
+        }
+      ]
     },
     "want": {
-      "text": "\"I want to know whether the name is older than the man wearing it. If it is, it is a hymn. If it is not, it is a joke, and I have been made part of it.\"",
+      "text": "\"I want to know whether the name is older than the man wearing it. If it is, it is a hymn. If it is not, it is a joke, and I have been made part of it.\" She folds her arms. \"My sister is dead a year and I am still arguing with a word. You may think that is foolish. I do not.\"",
       "choices": [
-        { "text": "I cannot answer that.", "next": "cannot" },
-        { "text": "Neither can I.", "next": null }
+        {
+          "text": "I cannot answer that.",
+          "next": "cannot",
+          "id": "i-cannot-answer-that",
+          "intent": "reveal"
+        },
+        {
+          "text": "And if it is a joke? What will you do then?",
+          "next": "joke",
+          "id": "and-if-it-is",
+          "intent": "reveal"
+        }
+      ]
+    },
+    "joke": {
+      "text": "\"Then I will sing something else, and the name will go back to being a name.\" She says it as if the decision were already made. \"But not until I know which it is. I owe her that much, and she is not here to argue.\"",
+      "beatArt": [
+        "art.ugarit.temple"
+      ],
+      "choices": [
+        {
+          "text": "Leave her to her hymn.",
+          "next": null,
+          "id": "leave-her-to-her",
+          "intent": "deflect"
+        }
       ]
     },
     "cannot": {
       "text": "\"Then we are both waiting.\" She goes back inside. The singing starts again, four lines, and stops in the same place.",
-      "choices": [{ "text": "Leave.", "next": null }]
+      "choices": [
+        {
+          "text": "Leave.",
+          "next": null,
+          "id": "leave",
+          "intent": "deflect"
+        }
+      ]
     }
   },
   "provenance": {
     "confidence": "fictional",
-    "sources": ["Ninshubur as a divine name in Sumerian and Akkadian sources, general"],
+    "sources": [
+      "Ninshubur as a divine name in Sumerian and Akkadian sources, general"
+    ],
     "notes": "The theonym is documented. The recognition scene is fiction: no line asserts an identity with the traveler or with any later figure."
+  },
+  "scene": {
+    "goal": "Find out why the name follows her",
+    "obstacle": "She cannot prove what she suspects",
+    "turn": "She names the trader and the funeral",
+    "stakes": "Her sister's memory",
+    "want": "the-name",
+    "callback": "flag:belet.hymn"
   }
 }

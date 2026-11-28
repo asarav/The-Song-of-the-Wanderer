@@ -5,119 +5,289 @@
   "speaker": "char.ugarit.belet",
   "start": "greet",
   "entries": [
-    { "when": { "hasJournalEntry": "journal.slice.mystery" }, "node": "after-mystery" },
-    { "when": { "flag": "belet.oil" }, "node": "again-oil" },
-    { "when": { "flag": "belet.hymn" }, "node": "again-hymn" }
+    {
+      "when": {
+        "hasJournalEntry": "journal.slice.mystery"
+      },
+      "node": "after-mystery"
+    },
+    {
+      "when": {
+        "flag": "belet.oil"
+      },
+      "node": "again-oil"
+    },
+    {
+      "when": {
+        "flag": "belet.hymn"
+      },
+      "node": "again-hymn"
+    }
   ],
   "nodes": {
     "greet": {
-      "text": "You stand in the doorway like someone waiting to be recognized.",
+      "text": "She is singing to a lamp, or to the space above it, and stops when your shadow falls across the threshold. The temple is cold and the lamps are not doing their job. \"If you have come to look, look from the doorway. If you have come to buy, the oil is behind me, and I will not pretend the goddess needs your silver more than she needs the lamp lit.\"",
       "choices": [
         {
           "text": "What are you singing?",
-          "effects": [{ "flag": "belet.hymn" }],
-          "next": "hymn"
+          "effects": [
+            {
+              "flag": "belet.hymn"
+            }
+          ],
+          "next": "hymn",
+          "id": "what-are-you-singing",
+          "intent": "probe"
         },
         {
           "text": "Do you need oil for the lamps?",
-          "conditions": { "itemAtLeast": { "item": "good.olive-oil", "quantity": 1 } },
+          "conditions": {
+            "itemAtLeast": {
+              "item": "good.olive-oil",
+              "quantity": 1
+            }
+          },
           "unavailableNote": "You have no oil on you, and the temple does not take a promise of oil.",
           "effects": [
-            { "flag": "belet.oil" },
-            { "items": { "item": "good.olive-oil", "quantity": -1 } },
-            { "money": 6 },
-            { "languageXp": { "language": "lang.ugaritic", "amount": 2 } }
+            {
+              "flag": "belet.oil"
+            },
+            {
+              "items": {
+                "item": "good.olive-oil",
+                "quantity": -1
+              }
+            },
+            {
+              "money": 6
+            },
+            {
+              "languageXp": {
+                "language": "lang.ugaritic",
+                "amount": 2
+              }
+            }
           ],
-          "next": "oil"
+          "next": "oil",
+          "id": "do-you-need-oil",
+          "intent": "cost"
         },
-        { "text": "(Leave her to it.)", "next": null }
+        {
+          "text": "(Leave her to it.)",
+          "next": null,
+          "id": "leave-her-to-it",
+          "intent": "deflect"
+        }
       ]
     },
     "again-hymn": {
-      "text": "\"You again.\" She is folding a cloth that has already been folded. \"I have not found another verse, if that is what you came for.\"",
+      "text": "\"You again.\" She is folding a cloth that has already been folded. \"I have not found another verse, if that is what you came for. I have found three versions of the same line and none of them sing.\"",
       "choices": [
         {
           "text": "It is still only a name.",
-          "next": "only"
+          "next": "only",
+          "id": "it-is-still-only",
+          "intent": "reveal"
         },
         {
           "text": "Do you need oil for the lamps?",
-          "conditions": { "itemAtLeast": { "item": "good.olive-oil", "quantity": 1 } },
+          "conditions": {
+            "itemAtLeast": {
+              "item": "good.olive-oil",
+              "quantity": 1
+            }
+          },
           "unavailableNote": "You have no oil on you, and the temple does not take a promise of oil.",
           "effects": [
-            { "flag": "belet.oil" },
-            { "items": { "item": "good.olive-oil", "quantity": -1 } },
-            { "money": 6 },
-            { "languageXp": { "language": "lang.ugaritic", "amount": 2 } }
+            {
+              "flag": "belet.oil"
+            },
+            {
+              "items": {
+                "item": "good.olive-oil",
+                "quantity": -1
+              }
+            },
+            {
+              "money": 6
+            },
+            {
+              "languageXp": {
+                "language": "lang.ugaritic",
+                "amount": 2
+              }
+            }
           ],
-          "next": "oil"
+          "next": "oil",
+          "id": "do-you-need-oil",
+          "intent": "cost"
         },
-        { "text": "Leave her the silence.", "next": null }
+        {
+          "text": "Leave her the silence.",
+          "next": null,
+          "id": "leave-her-the-silence",
+          "intent": "deflect"
+        }
       ]
     },
     "again-oil": {
-      "text": "The jar is gone and the lamps are still burning. She looks at you the way a woman looks at a jar that has been filled twice.\n\n\"You are becoming reliable. I am not sure it suits a traveler.\"",
+      "text": "The jar is gone and the lamps are still burning. She looks at you the way a woman looks at a jar that has been filled twice.\n\n\"You are becoming reliable. I am not sure it suits a traveler.\" She moves a stool with her foot, which is as close as she comes to asking you to stay.",
       "choices": [
         {
           "text": "Do you need more oil?",
-          "conditions": { "itemAtLeast": { "item": "good.olive-oil", "quantity": 1 } },
+          "conditions": {
+            "itemAtLeast": {
+              "item": "good.olive-oil",
+              "quantity": 1
+            }
+          },
           "unavailableNote": "You have no oil on you, and the temple does not take a promise of oil.",
           "effects": [
-            { "items": { "item": "good.olive-oil", "quantity": -1 } },
-            { "money": 6 },
-            { "languageXp": { "language": "lang.ugaritic", "amount": 2 } }
+            {
+              "items": {
+                "item": "good.olive-oil",
+                "quantity": -1
+              }
+            },
+            {
+              "money": 6
+            },
+            {
+              "languageXp": {
+                "language": "lang.ugaritic",
+                "amount": 2
+              }
+            }
           ],
-          "next": "oil"
+          "next": "oil",
+          "id": "do-you-need-more",
+          "intent": "cost"
         },
         {
           "text": "What are you singing?",
-          "effects": [{ "flag": "belet.hymn" }],
-          "next": "hymn"
+          "effects": [
+            {
+              "flag": "belet.hymn"
+            }
+          ],
+          "next": "hymn",
+          "id": "what-are-you-singing",
+          "intent": "probe"
         },
-        { "text": "(Leave her to it.)", "next": null }
+        {
+          "text": "(Leave her to it.)",
+          "next": null,
+          "id": "leave-her-to-it",
+          "intent": "deflect"
+        }
       ]
     },
     "after-mystery": {
-      "text": "She does not sing now. The doorway is the same and the stillness in it is not.\n\n\"You came back. Good. I have stopped singing it at strangers.\"",
+      "text": "She does not sing now. The doorway is the same and the stillness in it is not.\n\n\"You came back. Good. I have stopped singing it at strangers, and the temple has noticed.\" She looks at the lamp. \"They have asked me to sing the palace version at the feast. The short one.\"",
       "choices": [
-        { "text": "Ask what changed.", "next": "changed" },
-        { "text": "Leave her the silence.", "next": null }
+        {
+          "text": "Ask what changed.",
+          "next": "changed",
+          "id": "ask-what-changed",
+          "intent": "probe"
+        },
+        {
+          "text": "Leave her the silence.",
+          "next": null,
+          "id": "leave-her-the-silence",
+          "intent": "deflect"
+        }
       ]
     },
     "changed": {
-      "text": "\"Nothing changed. I only stopped.\"\n\nShe says it as if stopping were a kind of work.",
-      "choices": [{ "text": "Nod.", "next": null }]
+      "text": "\"Nothing changed. I only stopped.\"\n\nShe says it as if stopping were a kind of work. Then, because you are still there: \"My sister used to say the long version was for people with time to be sad. She had time. I have a feast to prepare.\"",
+      "choices": [
+        {
+          "text": "Nod.",
+          "next": null,
+          "id": "nod",
+          "intent": "reveal"
+        }
+      ]
     },
     "hymn": {
-      "text": "\"A hymn to the lady of the evening. My grandmother's version, which is longer and worse than the palace's.\"\n\nShe sings four lines under her breath, then stops on the last one. \"There is a name in it that does not belong to this city. Ninshubur.\"",
+      "text": "\"A hymn to the lady of the evening. My grandmother's version, which is longer and worse than the palace's.\" She sings four lines under her breath, then stops on the last one. \"There is a name in it that does not belong to this city. Ninshubur.\"\n\nShe waits for you to say something, and when you do not, she adds, quieter: \"My sister sang it at the funeral. I thought it was grief, making a word strange. It has been a year and the word is still strange.\"",
       "choices": [
         {
           "text": "Where did you hear it?",
           "effects": [
-            { "schedule": { "event": "evt.ugarit.mystery", "inDays": 1 } },
-            { "languageXp": { "language": "lang.ugaritic", "amount": 3 } }
+            {
+              "schedule": {
+                "event": "evt.ugarit.mystery",
+                "inDays": 1
+              }
+            },
+            {
+              "languageXp": {
+                "language": "lang.ugaritic",
+                "amount": 3
+              }
+            }
           ],
-          "next": "heard"
+          "next": "heard",
+          "id": "where-did-you-hear",
+          "intent": "probe"
         },
-        { "text": "It is only a name.", "next": "only" }
+        {
+          "text": "It is only a name.",
+          "next": "only",
+          "id": "it-is-only-a",
+          "intent": "reveal"
+        }
       ]
     },
     "heard": {
-      "text": "\"From a trader who came down from the north with a jar of bad wine and a good story. He said it the way you say a man's name, not a god's. Then he would not say it again.\"\n\nShe looks at the door, and then at you, and then at the door again.",
-      "choices": [{ "text": "Leave her the silence.", "next": null }]
+      "text": "\"From a trader who came down from the north with a jar of bad wine and a good story. He said it the way you say a man's name, not a god's. Then he would not say it again.\"\n\nShe looks at the door, and then at you, and then at the door again. \"My sister gave him a cup and he gave her a name. That is all I know. If you find him, do not tell him I have been singing it.\"",
+      "choices": [
+        {
+          "text": "Leave her the silence.",
+          "next": null,
+          "id": "leave-her-the-silence",
+          "intent": "deflect"
+        }
+      ]
     },
     "only": {
-      "text": "\"Names are not only names. If they were, I would be out of work.\"",
-      "choices": [{ "text": "Concede the point.", "next": null }]
+      "text": "\"Names are not only names. If they were, I would be out of work.\" She turns the lamp down, not enough to put it out. \"And my sister would still be alive, which is a different argument.\"",
+      "choices": [
+        {
+          "text": "Concede the point.",
+          "next": null,
+          "id": "concede-the-point",
+          "intent": "reveal"
+        }
+      ]
     },
     "oil": {
-      "text": "She weighs the jar in her hands, sniffs it, and pays without haggling, which means it was worth more.",
-      "choices": [{ "text": "Take the silver.", "next": null }]
+      "text": "She weighs the jar in her hands, sniffs it, and pays without haggling, which means it was worth more. \"Good oil,\" she says, as if the words cost her. \"The goddess will not notice, but I will.\"",
+      "choices": [
+        {
+          "text": "Take the silver.",
+          "next": null,
+          "id": "take-the-silver",
+          "intent": "reveal"
+        }
+      ]
     }
   },
   "provenance": {
     "confidence": "fictional",
-    "sources": ["Ninshubur in Sumerian and Akkadian sources, general"],
-    "notes": "Belet is invented. The theonym is attested; the trader's story and the recognition are fiction and assert no identity."
+    "sources": [
+      "Ninshubur in Sumerian and Akkadian sources, general"
+    ],
+    "notes": "Belet is invented. The theonym is attested; the trader's story, the sister and the recognition are fiction and assert no identity."
+  },
+  "scene": {
+    "goal": "Hear the hymn and learn the name",
+    "obstacle": "Belet's grief and the temple's short version",
+    "turn": "She admits her sister sang it at the funeral",
+    "stakes": "The feast and her sister's memory",
+    "want": "the-feast",
+    "callback": "journal:journal.slice.opening"
   }
 }

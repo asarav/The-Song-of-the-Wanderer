@@ -5,18 +5,75 @@
   "name": "Shipti",
   "art": "art.cyprus.shipti",
   "culture": "culture.cyprus.harbour",
-  "languages": ["lang.akkadian", "lang.cypriot"],
+  "languages": [
+    "lang.akkadian",
+    "lang.cypriot"
+  ],
   "home": "dest.cyprus",
   "tier": "local",
-  "roles": ["innkeeper"],
+  "roles": [
+    "innkeeper"
+  ],
   "dialogue": "dlg.cyprus.shipti.inn",
-  "wants": ["travelers who pay on time", "news from the mainland"],
-  "fears": ["a quiet season"],
+  "wants": [
+    {
+      "id": "paying-travelers",
+      "text": "Travelers who pay on time",
+      "stake": "The inn through the quiet season",
+      "scene": "dlg.cyprus.shipti.inn"
+    },
+    {
+      "id": "news",
+      "text": "News from the mainland",
+      "stake": "A brother who owes her",
+      "scene": "dlg.cyprus.shipti.inn"
+    }
+  ],
+  "fears": [
+    "a quiet season"
+  ],
   "contradiction": "She pretends not to listen and remembers everything.",
-  "presence": ["dest.cyprus"],
+  "presence": [
+    "dest.cyprus"
+  ],
   "provenance": {
     "confidence": "fictional",
     "sources": [],
     "notes": "An invented innkeeper; lodging for travelers is a plausible harbor institution."
-  }
+  },
+  "voice": {
+    "register": "Oblique and watchful; hospitality as a weapon. Remembers everything she pretends not to hear.",
+    "address": [
+      "you"
+    ],
+    "tics": [
+      "mending a net she does not own",
+      "biting thread"
+    ],
+    "avoid": [
+      "direct questions about her brother",
+      "thanks"
+    ],
+    "sampleLines": [
+      "The yard is honest and the harbor is not.",
+      "I am not its keeper, and I am not yours.",
+      "If it is about my brother, do not tell me yet."
+    ],
+    "maxSentenceWords": 24
+  },
+  "ties": [
+    {
+      "character": "char.cyprus.kinyras",
+      "kind": "neighbor"
+    }
+  ],
+  "knowledge": [
+    {
+      "fact": "letter.addressed-from-ugarit"
+    }
+  ],
+  "appearances": [
+    "dlg.cyprus.arrival",
+    "dlg.cyprus.shipti.inn"
+  ]
 }

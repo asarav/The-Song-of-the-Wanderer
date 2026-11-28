@@ -5,114 +5,299 @@
   "speaker": "char.cyprus.ada",
   "start": "light",
   "entries": [
-    { "when": { "flag": "ada.tin" }, "node": "again-tin" },
-    { "when": { "flag": "ada.asked-word" }, "node": "again-word" },
-    { "when": { "flag": "ada.work" }, "node": "again-work" }
+    {
+      "when": {
+        "flag": "ada.tin"
+      },
+      "node": "again-tin"
+    },
+    {
+      "when": {
+        "flag": "ada.tripod-done"
+      },
+      "node": "again-work"
+    },
+    {
+      "when": {
+        "flag": "ada.asked-word"
+      },
+      "node": "again-word"
+    },
+    {
+      "when": {
+        "flag": "ada.work"
+      },
+      "node": "again-work"
+    }
   ],
   "nodes": {
     "light": {
-      "text": "You are standing in the light.\n\nShe does not stop working. The hammer comes down, the piece turns, the hammer comes down. A girl of about nine — her daughter — is sorting charcoal by size and watching you instead.",
+      "text": "You are standing in the light.\n\nShe does not stop working. The hammer comes down, the piece turns, the hammer comes down. A girl of about nine — her daughter — is sorting charcoal by size and watching you instead. \"If you are buying, the price is on the wall. If you are selling, put it on the scale. If you are admiring, admire from the door; the sparks have opinions.\"",
       "choices": [
         {
           "text": "I have tin.",
-          "conditions": { "itemAtLeast": { "item": "good.tin", "quantity": 1 } },
+          "conditions": {
+            "itemAtLeast": {
+              "item": "good.tin",
+              "quantity": 1
+            }
+          },
           "unavailableNote": "You have no tin, and she does not buy the idea of tin.",
           "effects": [
-            { "flag": "ada.tin" },
-            { "items": { "item": "good.tin", "quantity": -1 } },
-            { "money": 16 },
-            { "relationship": { "character": "char.cyprus.ada", "dimension": "trust", "delta": 1 } }
+            {
+              "flag": "ada.tin"
+            },
+            {
+              "items": {
+                "item": "good.tin",
+                "quantity": -1
+              }
+            },
+            {
+              "money": 16
+            },
+            {
+              "relationship": {
+                "character": "char.cyprus.ada",
+                "dimension": "trust",
+                "delta": 1
+              }
+            }
           ],
-          "next": "tin"
+          "next": "tin",
+          "id": "i-have-tin",
+          "intent": "cost"
         },
         {
           "text": "What are you making?",
-          "effects": [{ "flag": "ada.work" }],
-          "next": "work"
+          "effects": [
+            {
+              "flag": "ada.work"
+            }
+          ],
+          "next": "work",
+          "id": "what-are-you-making",
+          "intent": "probe"
         },
-        { "text": "I will come back.", "next": null }
+        {
+          "text": "I will come back.",
+          "next": null,
+          "id": "i-will-come-back",
+          "intent": "reveal"
+        }
       ]
     },
     "again-tin": {
-      "text": "She remembers the weight before she remembers your face.\n\n\"More tin? Put it on the scale. Do not tell me it is good; the scale decides.\"",
+      "text": "She remembers the weight before she remembers your face.\n\n\"More tin? Put it on the scale. Do not tell me it is good; the scale decides.\" The girl has stopped sorting and is watching the pan, and Ada does not tell her to look away. \"You can watch,\" she says, to the girl. \"You will be weighing it yourself soon enough.\"",
       "choices": [
         {
           "text": "I have tin.",
-          "conditions": { "itemAtLeast": { "item": "good.tin", "quantity": 1 } },
+          "conditions": {
+            "itemAtLeast": {
+              "item": "good.tin",
+              "quantity": 1
+            }
+          },
           "unavailableNote": "You have no tin, and she does not buy the idea of tin.",
           "effects": [
-            { "items": { "item": "good.tin", "quantity": -1 } },
-            { "money": 16 },
-            { "relationship": { "character": "char.cyprus.ada", "dimension": "trust", "delta": 1 } }
+            {
+              "items": {
+                "item": "good.tin",
+                "quantity": -1
+              }
+            },
+            {
+              "money": 16
+            },
+            {
+              "relationship": {
+                "character": "char.cyprus.ada",
+                "dimension": "trust",
+                "delta": 1
+              }
+            }
           ],
-          "next": "tin"
+          "next": "tin",
+          "id": "i-have-tin",
+          "intent": "cost"
         },
         {
-          "text": "What are you making now?",
-          "effects": [{ "flag": "ada.work" }],
-          "next": "work"
+          "text": "Ask what is on the bench now.",
+          "next": "again-work",
+          "id": "ask-what-is-on",
+          "intent": "probe"
         },
-        { "text": "Not today.", "next": null }
+        {
+          "text": "Not today.",
+          "next": null,
+          "id": "not-today",
+          "intent": "deflect"
+        }
       ]
     },
     "again-word": {
-      "text": "\"You will not need it,\" she says, before you ask. \"Nobody buys a tripod twice.\"\n\nShe is already reaching for the next piece.",
+      "text": "\"You will not need it,\" she says, before you ask. \"Nobody buys a tripod twice.\"\n\nShe is already reaching for the next piece, and the girl has taken up the small hammer to tap the charcoal loose. \"If you are going to stand there, hold the light. My hands are full and the light is a child's job.\"",
       "choices": [
         {
-          "text": "What are you making now?",
-          "effects": [{ "flag": "ada.work" }],
-          "next": "work"
+          "text": "Ask what is on the bench now.",
+          "next": "again-work",
+          "id": "ask-what-is-on",
+          "intent": "probe"
         },
-        { "text": "Leave her to it.", "next": null }
+        {
+          "text": "Leave her to it.",
+          "next": null,
+          "id": "leave-her-to-it",
+          "intent": "deflect"
+        }
       ]
     },
     "again-work": {
-      "text": "The tripod is finished and gone to a man who will never use it. She is starting something with a narrower neck, and the girl is holding the light without being told.",
+      "text": "The tripod went to its man. She is starting something with a narrower neck — a blade blank, longer than her forearm — and the girl is pumping the bellows without being told.\n\n\"You again,\" she says. \"Stand clear of the sparks or go back to the yard. And do not talk to the girl while she is counting. She loses count and then I lose my temper.\"",
+      "beatArt": [
+        "art.cyprus.smithy",
+        "art.cyprus.ada"
+      ],
       "choices": [
         {
-          "text": "Ask what the islanders call this one.",
-          "conditions": { "not": { "flag": "ada.asked-word" } },
-          "unavailableNote": "She has already told you, and you have already forgotten.",
-          "effects": [{ "languageXp": { "language": "lang.cypriot", "amount": 5 } }],
-          "next": "word"
+          "text": "Ask what the blade is for.",
+          "conditions": {
+            "not": {
+              "flag": "ada.blade-asked"
+            }
+          },
+          "unavailableNote": "She has already told you, and does not repeat herself.",
+          "effects": [
+            {
+              "flag": "ada.blade-asked"
+            },
+            {
+              "knowledge": {
+                "fact": "cyprus.ada.blade-for-a-votive",
+                "source": "told",
+                "reliability": 0.7
+              }
+            }
+          ],
+          "next": "blade",
+          "id": "ask-what-the-blade",
+          "intent": "probe"
         },
         {
-          "text": "Watch her finish it.",
-          "effects": [{ "languageXp": { "language": "lang.cypriot", "amount": 3 } }],
-          "next": null
+          "text": "Watch the blade until it cools.",
+          "effects": [
+            {
+              "languageXp": {
+                "language": "lang.cypriot",
+                "amount": 2
+              }
+            }
+          ],
+          "next": null,
+          "id": "watch-the-blade-until",
+          "intent": "reveal"
+        },
+        {
+          "text": "Leave her to it.",
+          "next": null,
+          "id": "leave-her-to-it",
+          "intent": "deflect"
+        }
+      ]
+    },
+    "blade": {
+      "text": "\"A votive,\" she says. \"Someone promised a blade to a goddess and then did not want to give up a good one. So I make a bad one beautifully.\"\n\nShe turns the blank over. \"That is most of my work, if you want the truth of it. The good blades go to men who will use them and never think of me. The beautiful bad ones go to the goddess, and she does not write.\"",
+      "beatArt": [
+        "art.cyprus.ada",
+        "art.cyprus.smithy"
+      ],
+      "choices": [
+        {
+          "text": "Leave her to it.",
+          "next": null,
+          "id": "leave-her-to-it",
+          "intent": "deflect"
         }
       ]
     },
     "tin": {
-      "text": "She weighs it in her hand, then on the scale, then in her hand again. \"Good tin. Not the gray stuff.\" The silver comes out of a jar and not from under the floor, which is a courtesy.",
-      "choices": [{ "text": "Take the silver.", "next": null }]
+      "text": "She weighs it in her hand, then on the scale, then in her hand again. \"Good tin. Not the gray stuff.\" The silver comes out of a jar and not from under the floor, which is a courtesy. \"Tell the yard you sold to Ada. They will not believe you, but it will make them ask.\"",
+      "choices": [
+        {
+          "text": "Take the silver.",
+          "next": null,
+          "id": "take-the-silver",
+          "intent": "reveal"
+        }
+      ]
     },
     "work": {
-      "text": "\"A tripod for a man who will never use it. He wants it to look like the one his father had.\" She turns the piece. \"The island word for this is not a word I can write. So I make it and he calls it what he likes.\"",
+      "text": "\"A tripod for a man who will never use it. He wants it to look like the one his father had.\" She turns the piece. \"The island word for this is not a word I can write. So I make it and he calls it what he likes. My father would have called it something worse, and charged more.\"",
       "choices": [
         {
           "text": "Ask what the islanders call it.",
           "effects": [
-            { "flag": "ada.asked-word" },
-            { "languageXp": { "language": "lang.cypriot", "amount": 5 } }
+            {
+              "flag": "ada.asked-word"
+            },
+            {
+              "flag": "ada.tripod-done"
+            },
+            {
+              "languageXp": {
+                "language": "lang.cypriot",
+                "amount": 5
+              }
+            }
           ],
-          "next": "word"
+          "next": "word",
+          "id": "ask-what-the-islanders",
+          "intent": "probe"
         },
         {
           "text": "Watch her finish it.",
-          "effects": [{ "languageXp": { "language": "lang.cypriot", "amount": 3 } }],
-          "next": null
+          "effects": [
+            {
+              "flag": "ada.tripod-done"
+            },
+            {
+              "languageXp": {
+                "language": "lang.cypriot",
+                "amount": 3
+              }
+            }
+          ],
+          "next": null,
+          "id": "watch-her-finish-it",
+          "intent": "reveal"
         }
       ]
     },
     "word": {
-      "text": "She says it twice, slowly, and then laughs at your face. \"You will not need it. Nobody buys a tripod twice.\"",
-      "choices": [{ "text": "Try to remember it anyway.", "next": null }]
+      "text": "She says it twice, slowly, and then laughs at your face. \"You will not need it. Nobody buys a tripod twice.\" The girl says it again, quieter, and Ada pretends not to hear, which is how you know she is pleased.",
+      "choices": [
+        {
+          "text": "Try to remember it anyway.",
+          "next": null,
+          "id": "try-to-remember-it",
+          "intent": "reveal"
+        }
+      ]
     }
   },
   "provenance": {
     "confidence": "fictional",
-    "sources": ["Late Cypriot bronze working, general"],
+    "sources": [
+      "Late Cypriot bronze working, general"
+    ],
     "notes": "Ada and the workshop are invented; copper and tin working on the island is attested."
+  },
+  "scene": {
+    "goal": "Sell the tin without being cheated",
+    "obstacle": "Ada's scale and her daughter's eyes",
+    "turn": "She lets the girl watch the weighing",
+    "stakes": "The workshop's season",
+    "want": "tin",
+    "callback": "journal:journal.slice.opening"
   }
 }

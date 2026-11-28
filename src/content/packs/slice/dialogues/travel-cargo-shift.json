@@ -10,31 +10,80 @@
         {
           "text": "Go over the side after it.",
           "effects": [
-            { "stamina": -3 },
-            { "loseCargo": { "quantity": 1 } },
-            { "flag": "went.overboard" }
+            {
+              "stamina": -3
+            },
+            {
+              "loseCargo": {
+                "quantity": 1
+              }
+            },
+            {
+              "flag": "went.overboard"
+            }
           ],
-          "next": "wet"
+          "next": "wet",
+          "id": "go-over-the-side",
+          "intent": "cost"
         },
         {
           "text": "Wake the crew properly.",
-          "effects": [{ "flag": "woke.crew" }],
-          "next": "crew"
+          "effects": [
+            {
+              "flag": "woke.crew"
+            }
+          ],
+          "next": "crew",
+          "id": "wake-the-crew-properly",
+          "intent": "reveal"
         },
-        { "text": "Let it go.", "effects": [{ "loseCargo": { "quantity": 1 } }], "next": "lost" }
+        {
+          "text": "Let it go.",
+          "effects": [
+            {
+              "loseCargo": {
+                "quantity": 1
+              }
+            }
+          ],
+          "next": "lost",
+          "id": "let-it-go",
+          "intent": "cost"
+        }
       ]
     },
     "wet": {
       "text": "You go over the side and come up with rope and water and nothing worth keeping. The crew hauls you back aboard with the particular disgust of men who have done this before, and the hold is lighter by what the sea took.",
-      "choices": [{ "text": "Change into something dry.", "next": null }]
+      "choices": [
+        {
+          "text": "Change into something dry.",
+          "next": null,
+          "id": "change-into-something-dry",
+          "intent": "reveal"
+        }
+      ]
     },
     "crew": {
       "text": "They are awake before you finish the sentence. The lashing is remade properly, and a boy is sent to check the rest, and the master says nothing to you at all, which is approval.",
-      "choices": [{ "text": "Go back to sleep.", "next": null }]
+      "choices": [
+        {
+          "text": "Go back to sleep.",
+          "next": null,
+          "id": "go-back-to-sleep",
+          "intent": "reveal"
+        }
+      ]
     },
     "lost": {
       "text": "It is gone. The sea keeps its accounts in a different ledger.",
-      "choices": [{ "text": "Go back to sleep.", "next": null }]
+      "choices": [
+        {
+          "text": "Go back to sleep.",
+          "next": null,
+          "id": "go-back-to-sleep",
+          "intent": "reveal"
+        }
+      ]
     }
   },
   "provenance": {

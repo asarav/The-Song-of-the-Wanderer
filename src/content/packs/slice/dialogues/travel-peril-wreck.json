@@ -5,26 +5,55 @@
   "start": "reef",
   "nodes": {
     "reef": {
-      "beatArt": ["art.cyprus.landing", "art.ugarit.mole"],
+      "beatArt": [
+        "art.cyprus.landing",
+        "art.ugarit.mole"
+      ],
       "text": "The sound is not a wave. It is a long grinding, the kind that travels up through the deck and into your teeth. The boat turns broadside. Somebody is shouting a name that is not yours. {cargo} shifts once, all together, and then the water comes over the side.\n\nThere is a light on the shore. It is a long way off.",
       "choices": [
         {
           "text": "Hold to the cargo and shout for help.",
           "effects": [
-            { "loseCargo": { "quantity": 1 } },
-            { "stamina": -8 },
-            { "affliction": { "id": "aff.wound", "source": "the wreck" } }
+            {
+              "loseCargo": {
+                "quantity": 1
+              }
+            },
+            {
+              "stamina": -8
+            },
+            {
+              "affliction": {
+                "id": "aff.wound",
+                "source": "the wreck"
+              }
+            }
           ],
-          "next": null
+          "next": null,
+          "id": "hold-to-the-cargo",
+          "intent": "cost"
         },
         {
           "text": "Swim for the light and let the load go.",
           "effects": [
-            { "loseCargo": { "quantity": 2 } },
-            { "stamina": -8 },
-            { "affliction": { "id": "aff.wound", "source": "the wreck" } }
+            {
+              "loseCargo": {
+                "quantity": 2
+              }
+            },
+            {
+              "stamina": -8
+            },
+            {
+              "affliction": {
+                "id": "aff.wound",
+                "source": "the wreck"
+              }
+            }
           ],
-          "next": null
+          "next": null,
+          "id": "swim-for-the-light",
+          "intent": "cost"
         }
       ]
     }

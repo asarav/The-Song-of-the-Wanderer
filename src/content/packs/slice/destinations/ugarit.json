@@ -6,13 +6,30 @@
   "kind": "port",
   "art": "art.ugarit.harbour",
   "region": "region.levant",
-  "beatArt": ["art.ugarit.harbour", "art.ugarit.mole", "art.ugarit.temple", "art.ugarit.night"],
-  "intro": "The harbor is a smell before it is a sight: **tar, fish, wet rope**, and someone's burnt porridge. Beyond the moles the city climbs a low hill in the color of bread crust — flat roofs, a few taller rooms, and a **palace wall** keeping its own weather.\n\nCarts come down to the water between **warehouses**. A clerk argues with a sailor about the weight of a jar, and both of them are right. **Scribes** sit in the shade of the gate with their boards on their knees, and a boy sells water from a jar taller than he is.\n\nNobody hurries, and everything is being counted. The sea is on three sides of the air here; gulls take what falls. In the evening the wind turns and carries a **hymn** up from the temple, thin and deliberate, practiced rather than performed.\n\nYou have been in this harbor before. Or in one so like it that the difference does not matter yet.",
-  "cultures": ["culture.levant.coastal"],
-  "languages": ["lang.akkadian", "lang.ugaritic"],
+  "beatArt": [
+    "art.ugarit.harbour",
+    "art.ugarit.mole",
+    "art.ugarit.temple",
+    "art.ugarit.night",
+    "art.ugarit.tiro"
+  ],
+  "intro": "The harbor is a smell before it is a sight: **tar, fish, wet rope**, and someone's burnt porridge. Beyond the moles the city climbs a low hill in the color of bread crust — flat roofs, a few taller rooms, and a **palace wall** keeping its own weather.\n\nCarts come down to the water between **warehouses**. A clerk argues with a sailor about the weight of a jar, and both of them are right. **Scribes** sit in the shade of the gate with their boards on their knees, and a boy sells water from a jar taller than he is.\n\nNobody hurries, and everything is being counted. The sea is on three sides of the air here; gulls take what falls. In the evening the wind turns and carries a **hymn** up from the temple, thin and deliberate, practiced rather than performed.\n\nYou have been in this harbor before. Or in one so like it that the difference does not matter yet.\n\nThe boat that crosses to Cyprus is **Tiro's**, at the mole. He will not come to you; no shipmaster ever does.",
+  "cultures": [
+    "culture.levant.coastal"
+  ],
+  "languages": [
+    "lang.akkadian",
+    "lang.ugaritic"
+  ],
   "currency": "weighed silver",
-  "mapPosition": { "x": 70, "y": 56 },
-  "institutions": ["faction.ugarit.palace", "faction.ugarit.merchants"],
+  "mapPosition": {
+    "x": 70,
+    "y": 56
+  },
+  "institutions": [
+    "faction.ugarit.palace",
+    "faction.ugarit.merchants"
+  ],
   "cast": [
     "char.ugarit.amnit",
     "char.ugarit.hannu",
@@ -25,79 +42,175 @@
     {
       "id": "act.ugarit.market",
       "art": "art.ugarit.market",
-      "mapPosition": { "x": 58, "y": 44 },
+      "mapPosition": {
+        "x": 58,
+        "y": 44
+      },
       "name": "The market",
       "kind": "market",
       "description": "Mats, jars, and a scale that everyone watches. Grain, oil, and cloth change hands; copper comes up from the ships.",
-      "cast": ["char.ugarit.amnit"],
-      "actions": ["trade"]
+      "cast": [
+        "char.ugarit.amnit"
+      ],
+      "actions": [
+        "trade"
+      ]
     },
     {
       "id": "act.ugarit.harbour",
       "art": "art.ugarit.mole",
-      "mapPosition": { "x": 24, "y": 72 },
+      "mapPosition": {
+        "x": 24,
+        "y": 72
+      },
       "name": "The harbor",
       "kind": "harbour",
       "description": "Masters, porters, and ships' boys. Passage can be arranged here, and news arrives before cargo does.",
-      "cast": ["char.ugarit.hannu", "char.ugarit.tiro"],
-      "actions": ["passage"]
+      "cast": [
+        "char.ugarit.hannu",
+        "char.ugarit.tiro"
+      ],
+      "actions": [
+        "passage"
+      ]
     },
     {
       "id": "act.ugarit.palace-gate",
       "art": "art.ugarit.palace-gate",
-      "mapPosition": { "x": 74, "y": 22 },
+      "mapPosition": {
+        "x": 74,
+        "y": 22
+      },
       "name": "The palace gate",
       "kind": "palace",
       "description": "Officials, petitioners, and a scribe who decides who is worth the gate's time.",
-      "cast": ["char.ugarit.yada"]
+      "cast": [
+        "char.ugarit.yada"
+      ]
     },
     {
       "id": "act.ugarit.temple",
       "art": "art.ugarit.temple",
-      "mapPosition": { "x": 48, "y": 16 },
+      "mapPosition": {
+        "x": 48,
+        "y": 16
+      },
       "name": "The temple",
       "kind": "temple",
       "description": "Cool stone, oil smoke, and a singer practicing a hymn for a feast that has not been announced.",
-      "cast": ["char.ugarit.belet"]
+      "cast": [
+        "char.ugarit.belet"
+      ]
     },
     {
       "id": "act.ugarit.workshops",
       "art": "art.ugarit.workshops",
-      "mapPosition": { "x": 26, "y": 34 },
+      "mapPosition": {
+        "x": 26,
+        "y": 34
+      },
       "name": "The workshop quarter",
       "kind": "quarter",
       "description": "Potters, weavers, and a household that has taken in relatives from inland and has not yet decided how to feel about it.",
-      "cast": ["char.ugarit.sibtu"]
+      "cast": [
+        "char.ugarit.sibtu"
+      ]
     }
   ],
   "night": {
     "art": "art.ugarit.night",
-    "beatArt": ["art.ugarit.night"],
+    "beatArt": [
+      "art.ugarit.night"
+    ],
     "text": "The gate is shut and the moles are lit with oil lamps. Water slaps at the hulls; a dog answers another dog across the quarter; the temple keeps one light burning above the roofs.",
-    "events": [{ "event": "evt.ugarit.night-watch", "weight": 1 }]
+    "events": [
+      {
+        "event": "evt.ugarit.night-watch",
+        "weight": 1
+      }
+    ]
   },
   "market": {
     "priceModifier": 1,
     "goods": [
-      { "item": "good.grain", "basePrice": 4, "stock": 30 },
-      { "item": "good.olive-oil", "basePrice": 7, "stock": 12 },
-      { "item": "good.wine", "basePrice": 9, "stock": 10 },
-      { "item": "good.copper", "basePrice": 15, "stock": 4 },
-      { "item": "good.tin", "basePrice": 18, "stock": 3 },
-      { "item": "good.cedar", "basePrice": 11, "stock": 6 },
-      { "item": "good.pottery", "basePrice": 3, "stock": 20 },
-      { "item": "good.textile", "basePrice": 8, "stock": 8 },
-      { "item": "good.sibtu-cloth", "basePrice": 8, "stock": 0, "fixedPrice": 5 },
-      { "item": "good.incense", "basePrice": 14, "stock": 5 }
+      {
+        "item": "good.grain",
+        "basePrice": 4,
+        "stock": 30
+      },
+      {
+        "item": "good.olive-oil",
+        "basePrice": 7,
+        "stock": 12
+      },
+      {
+        "item": "good.wine",
+        "basePrice": 9,
+        "stock": 10
+      },
+      {
+        "item": "good.copper",
+        "basePrice": 15,
+        "stock": 4
+      },
+      {
+        "item": "good.tin",
+        "basePrice": 18,
+        "stock": 3
+      },
+      {
+        "item": "good.cedar",
+        "basePrice": 11,
+        "stock": 6
+      },
+      {
+        "item": "good.pottery",
+        "basePrice": 3,
+        "stock": 20
+      },
+      {
+        "item": "good.textile",
+        "basePrice": 8,
+        "stock": 8
+      },
+      {
+        "item": "good.sibtu-cloth",
+        "basePrice": 8,
+        "stock": 0,
+        "fixedPrice": 5
+      },
+      {
+        "item": "good.incense",
+        "basePrice": 14,
+        "stock": 5
+      }
     ]
   },
   "onArrival": "evt.ugarit.arrival",
-  "states": ["tense", "festival"],
-  "stateModifiers": [
-    { "state": "tense", "multiplier": 1.25, "categories": ["food"] },
-    { "state": "festival", "multiplier": 1.1 }
+  "states": [
+    "tense",
+    "festival"
   ],
-  "routes": ["route.ugarit-cyprus"],
+  "stateNotes": {
+    "tense": "The inland road is spoken of carefully and food is dear; grain costs more than it did last month.",
+    "festival": "A feast has been announced, and every stall asks a little more for the trouble."
+  },
+  "stateModifiers": [
+    {
+      "state": "tense",
+      "multiplier": 1.25,
+      "categories": [
+        "food"
+      ]
+    },
+    {
+      "state": "festival",
+      "multiplier": 1.1
+    }
+  ],
+  "routes": [
+    "route.ugarit-cyprus"
+  ],
   "provenance": {
     "confidence": "documented",
     "sources": [

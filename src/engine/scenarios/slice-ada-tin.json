@@ -1,0 +1,52 @@
+{
+  "id": "scenario.slice.ada-tin",
+  "seed": "slice-ada-tin-001",
+  "start": {
+    "date": "1230-04-06",
+    "location": "dest.cyprus",
+    "money": 5,
+    "capacity": 20,
+    "languages": { "lang.akkadian": { "xp": 25, "tier": "basic" } },
+    "knownDestinations": ["dest.ugarit", "dest.cyprus"],
+    "knownRoutes": ["route.ugarit-cyprus"],
+    "inventory": [{ "item": "good.tin", "quantity": 1 }]
+  },
+  "commands": [
+    { "type": "talkTo", "character": "char.cyprus.ada" },
+    {
+      "type": "chooseChoice",
+      "choiceId": "i-have-tin",
+      "dialogue": "dlg.cyprus.ada.smithy",
+      "node": "light"
+    },
+    {
+      "type": "chooseChoice",
+      "choiceId": "take-the-silver",
+      "dialogue": "dlg.cyprus.ada.smithy",
+      "node": "tin"
+    },
+    { "type": "talkTo", "character": "char.cyprus.ada" },
+    {
+      "type": "chooseChoice",
+      "choiceId": "ask-what-is-on",
+      "dialogue": "dlg.cyprus.ada.smithy",
+      "node": "again-tin"
+    },
+    {
+      "type": "chooseChoice",
+      "choiceId": "ask-what-the-blade",
+      "dialogue": "dlg.cyprus.ada.smithy",
+      "node": "again-work"
+    }
+  ],
+  "assert": [
+    { "path": "player.money", "equals": 21 },
+    { "path": "player.flags.ada.tin", "equals": true },
+    { "path": "narrative.relationships.char.cyprus.ada.trust", "equals": 1 },
+    { "path": "narrative.characterStates.char.cyprus.ada.topics", "contains": "blade" },
+    {
+      "path": "player.inventory",
+      "length": 0
+    }
+  ]
+}

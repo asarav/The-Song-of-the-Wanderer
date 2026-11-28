@@ -11,28 +11,62 @@
         {
           "text": "Go to the gate.",
           "effects": [
-            { "flag": "palace.letter.answered" },
-            { "faction": { "faction": "faction.ugarit.palace", "dimension": "suspicion", "delta": 1 } }
+            {
+              "flag": "palace.letter.answered"
+            },
+            {
+              "faction": {
+                "faction": "faction.ugarit.palace",
+                "dimension": "suspicion",
+                "delta": 1
+              }
+            }
           ],
-          "next": "gate"
+          "next": "gate",
+          "id": "go-to-the-gate",
+          "intent": "help"
         },
         {
           "text": "Burn it.",
           "effects": [
-            { "flag": "palace.letter.burned" },
-            { "faction": { "faction": "faction.ugarit.palace", "dimension": "suspicion", "delta": 2 } }
+            {
+              "flag": "palace.letter.burned"
+            },
+            {
+              "faction": {
+                "faction": "faction.ugarit.palace",
+                "dimension": "suspicion",
+                "delta": 2
+              }
+            }
           ],
-          "next": "burn"
+          "next": "burn",
+          "id": "burn-it",
+          "intent": "help"
         }
       ]
     },
     "gate": {
       "text": "He is not there. The wall is in shadow and the second hour comes and goes, and a scribe you do not know watches you from the gate and writes nothing down.",
-      "choices": [{ "text": "Walk back down to the harbor.", "next": null }]
+      "choices": [
+        {
+          "text": "Walk back down to the harbor.",
+          "next": null,
+          "id": "walk-back-down-to",
+          "intent": "reveal"
+        }
+      ]
     },
     "burn": {
       "text": "The tablet does not burn well. It cracks, and the pieces go into the water, and the harbor keeps its own accounts.",
-      "choices": [{ "text": "Walk away.", "next": null }]
+      "choices": [
+        {
+          "text": "Walk away.",
+          "next": null,
+          "id": "walk-away",
+          "intent": "reveal"
+        }
+      ]
     }
   },
   "provenance": {

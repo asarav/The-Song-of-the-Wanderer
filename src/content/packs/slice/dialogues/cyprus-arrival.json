@@ -7,23 +7,43 @@
   "nodes": {
     "door": {
       "text": "The island comes up gray and long, and by afternoon the smell reaches you before the harbor does: charcoal, hot stone, and something mineral underneath. You leave the landing with salt on your hands and climb into the town.\n\nThe inn is two rooms and a courtyard, and the woman in the doorway has already decided you are a customer and is prepared to be wrong about it.\n\n\"You came over the water, then. Everyone comes over the water.\"",
-      "beatArt": ["art.cyprus.arrival", "art.cyprus.inn", "art.cyprus.landing"],
+      "beatArt": [
+        "art.cyprus.arrival",
+        "art.cyprus.inn",
+        "art.cyprus.landing"
+      ],
       "choices": [
         {
           "text": "In a small boat, and I paid for the privilege.",
           "effects": [
-            { "relationship": { "character": "char.cyprus.shipti", "dimension": "trust", "delta": 1 } }
+            {
+              "relationship": {
+                "character": "char.cyprus.shipti",
+                "dimension": "trust",
+                "delta": 1
+              }
+            }
           ],
-          "next": "room"
+          "next": "room",
+          "id": "in-a-small-boat",
+          "intent": "help"
         },
         {
           "text": "What is the price of a room?",
-          "next": "room"
+          "next": "room",
+          "id": "what-is-the-price",
+          "intent": "probe"
         },
         {
           "text": "I sleep where I land.",
-          "effects": [{ "flag": "cyprus.sleeps-outside" }],
-          "next": "outside"
+          "effects": [
+            {
+              "flag": "cyprus.sleeps-outside"
+            }
+          ],
+          "next": "outside",
+          "id": "i-sleep-where-i",
+          "intent": "reveal"
         }
       ]
     },
@@ -33,27 +53,65 @@
       "choices": [
         {
           "text": "Take the room.",
-          "conditions": { "moneyAtLeast": 3 },
+          "conditions": {
+            "moneyAtLeast": 3
+          },
           "unavailableNote": "You do not have three shekels for a room, and she is not running a charity.",
           "effects": [
-            { "money": -3 },
-            { "stamina": 2 },
-            { "advanceTime": { "days": 1 } },
-            { "relationship": { "character": "char.cyprus.shipti", "dimension": "trust", "delta": 1 } }
+            {
+              "money": -3
+            },
+            {
+              "stamina": 2
+            },
+            {
+              "advanceTime": {
+                "days": 1
+              }
+            },
+            {
+              "relationship": {
+                "character": "char.cyprus.shipti",
+                "dimension": "trust",
+                "delta": 1
+              }
+            }
           ],
-          "next": null
+          "next": null,
+          "id": "take-the-room",
+          "intent": "cost"
         },
-        { "text": "Not at that price.", "next": null }
+        {
+          "text": "Not at that price.",
+          "next": null,
+          "id": "not-at-that-price",
+          "intent": "reveal"
+        }
       ]
     },
     "outside": {
       "text": "\"Then sleep behind the smithy. Ada will not mind, and the dogs will tell you if anyone does.\"",
-      "choices": [{ "text": "Remember the smithy.", "next": null }]
+      "choices": [
+        {
+          "text": "Remember the smithy.",
+          "next": null,
+          "id": "remember-the-smithy",
+          "intent": "reveal"
+        }
+      ]
     }
   },
   "provenance": {
     "confidence": "fictional",
     "sources": [],
     "notes": "The island arrival scene; invented."
+  },
+  "scene": {
+    "goal": "Find a bed for the night",
+    "obstacle": "A stranger at the door who has already priced him",
+    "turn": "She warns him about the yard and the harbor",
+    "stakes": "A night’s shelter",
+    "want": "paying-travelers",
+    "callback": "journal:journal.slice.opening"
   }
 }

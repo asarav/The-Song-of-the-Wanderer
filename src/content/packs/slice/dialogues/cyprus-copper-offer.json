@@ -6,82 +6,175 @@
   "start": "offer",
   "nodes": {
     "offer": {
-      "text": "He has the board under his arm and the count finished.\n\n\"Grain, is it? The yard is short and the boats are late. I will give you twenty-four shekels for the measure and not ask where it came from. The copper stays mine; carry it home and you can argue with the harbor dues instead, and the dues will win.\"",
+      "text": "\"Grain, is it? The yard is short and the boats are late. I will give you twenty-four shekels for the measure and not ask where it came from. The copper stays mine; carry it home and you can argue with the harbor dues instead, and the dues will win.\" He does not smile. \"Well? My time is worth what the grain is worth, and neither of us is getting younger.\"",
       "choices": [
         {
           "text": "Agreed.",
-          "conditions": { "itemAtLeast": { "item": "good.grain", "quantity": 1 } },
+          "conditions": {
+            "itemAtLeast": {
+              "item": "good.grain",
+              "quantity": 1
+            }
+          },
           "unavailableNote": "You have no grain to weigh, and he does not trade in promises.",
           "effects": [
-            { "items": { "item": "good.grain", "quantity": -1 } },
-            { "money": 24 },
-            { "faction": { "faction": "faction.ugarit.merchants", "dimension": "trust", "delta": 1 } },
-            { "journal": { "entry": "journal.slice.copper-deal" } },
+            {
+              "items": {
+                "item": "good.grain",
+                "quantity": -1
+              }
+            },
+            {
+              "money": 24
+            },
+            {
+              "faction": {
+                "faction": "faction.ugarit.merchants",
+                "dimension": "trust",
+                "delta": 1
+              }
+            },
+            {
+              "journal": {
+                "entry": "journal.slice.copper-deal"
+              }
+            },
             {
               "deed": {
                 "id": "deed.copper-agreed",
                 "kind": "traded",
                 "subject": "good.grain",
-                "witnesses": ["char.cyprus.kinyras"]
+                "witnesses": [
+                  "char.cyprus.kinyras"
+                ]
               }
             }
           ],
-          "next": "done"
+          "next": "done",
+          "id": "agreed",
+          "intent": "cost"
         },
         {
           "text": "Thirty-six, or I carry it to the yard myself.",
           "conditions": {
             "all": [
-              { "relationship": { "character": "char.cyprus.kinyras", "dimension": "respect", "atLeast": 1 } },
-              { "itemAtLeast": { "item": "good.grain", "quantity": 1 } }
+              {
+                "relationship": {
+                  "character": "char.cyprus.kinyras",
+                  "dimension": "respect",
+                  "atLeast": 1
+                }
+              },
+              {
+                "itemAtLeast": {
+                  "item": "good.grain",
+                  "quantity": 1
+                }
+              }
             ]
           },
           "unavailableNote": "He does not respect you enough to hear a counter-offer.",
           "effects": [
-            { "items": { "item": "good.grain", "quantity": -1 } },
-            { "money": 36 },
             {
-              "relationship": { "character": "char.cyprus.kinyras", "dimension": "respect", "delta": 1 }
+              "items": {
+                "item": "good.grain",
+                "quantity": -1
+              }
+            },
+            {
+              "money": 36
+            },
+            {
+              "relationship": {
+                "character": "char.cyprus.kinyras",
+                "dimension": "respect",
+                "delta": 1
+              }
             }
           ],
-          "next": "hard"
+          "next": "hard",
+          "id": "thirty-six-or-i",
+          "intent": "cost"
         },
-        { "text": "Not today.", "next": null }
+        {
+          "text": "Not today.",
+          "next": null,
+          "id": "not-today",
+          "intent": "deflect"
+        }
       ]
     },
     "done": {
-      "text": "\"Then we are both richer and neither of us is happy. That is a good deal.\" He makes a mark on the board and does not offer to write anything else down.",
+      "text": "\"Then we are both richer and neither of us is happy. That is a good deal.\" He makes a mark on the board and does not offer to write anything else down. \"If the yard asks, you sold to me at the price I said. If your friend asks, you did better.\"",
       "choices": [
         {
           "text": "Count the silver.",
           "effects": [
-            { "schedule": { "event": "evt.cyprus.return-letter", "inDays": 2 } },
-            { "knowledge": { "fact": "kinyras.buys-at-yard-price", "source": "witnessed", "reliability": 0.9 } }
+            {
+              "schedule": {
+                "event": "evt.cyprus.return-letter",
+                "inDays": 2
+              }
+            },
+            {
+              "knowledge": {
+                "fact": "kinyras.buys-at-yard-price",
+                "source": "witnessed",
+                "reliability": 0.9
+              }
+            }
           ],
-          "next": null
+          "next": null,
+          "id": "count-the-silver",
+          "intent": "reveal"
         }
       ]
     },
     "hard": {
-      "text": "\"Thirty-six.\" He says it without heat, the way a man says a number he has already decided on. \"You argue like a man who has been cheated before. Good. Come back when you have more to sell.\"",
+      "text": "\"Thirty-six.\" He says it without heat, the way a man says a number he has already decided on. \"You argue like a man who has been cheated before. Good. Come back when you have more to sell, and bring the same face. I like a man whose face does not change.\"",
       "choices": [
         {
           "text": "Take the silver.",
           "effects": [
-            { "faction": { "faction": "faction.ugarit.merchants", "dimension": "trust", "delta": 1 } },
-            { "journal": { "entry": "journal.slice.copper-deal" } },
+            {
+              "faction": {
+                "faction": "faction.ugarit.merchants",
+                "dimension": "trust",
+                "delta": 1
+              }
+            },
+            {
+              "journal": {
+                "entry": "journal.slice.copper-deal"
+              }
+            },
             {
               "deed": {
                 "id": "deed.copper-agreed",
                 "kind": "traded",
                 "subject": "good.grain",
-                "witnesses": ["char.cyprus.kinyras"]
+                "witnesses": [
+                  "char.cyprus.kinyras"
+                ]
               }
             },
-            { "knowledge": { "fact": "kinyras.buys-at-yard-price", "source": "witnessed", "reliability": 0.9 } },
-            { "schedule": { "event": "evt.cyprus.return-letter", "inDays": 2 } }
+            {
+              "knowledge": {
+                "fact": "kinyras.buys-at-yard-price",
+                "source": "witnessed",
+                "reliability": 0.9
+              }
+            },
+            {
+              "schedule": {
+                "event": "evt.cyprus.return-letter",
+                "inDays": 2
+              }
+            }
           ],
-          "next": null
+          "next": null,
+          "id": "take-the-silver",
+          "intent": "help"
         }
       ]
     }
@@ -90,5 +183,13 @@
     "confidence": "fictional",
     "sources": [],
     "notes": "The trade beat; invented. Copper by weight is period-plausible."
+  },
+  "scene": {
+    "goal": "Sell the grain at the yard price",
+    "obstacle": "Kinyras's count and the late boats",
+    "turn": "He respects an argument and raises the price",
+    "stakes": "The season's margin",
+    "want": "ledger-name",
+    "callback": "flag:kinyras.met"
   }
 }

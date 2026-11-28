@@ -7,45 +7,186 @@
     "location": "dest.ugarit",
     "money": 120,
     "capacity": 20,
-    "languages": { "lang.akkadian": { "xp": 25, "tier": "basic" } },
-    "knownRoutes": ["route.ugarit-cyprus"],
-    "knownDestinations": ["dest.ugarit"],
+    "languages": {
+      "lang.akkadian": {
+        "xp": 25,
+        "tier": "basic"
+      }
+    },
+    "knownRoutes": [
+      "route.ugarit-cyprus"
+    ],
+    "knownDestinations": [
+      "dest.ugarit"
+    ],
     "inventory": [
-      { "item": "good.olive-oil", "quantity": 2 },
-      { "item": "good.grain", "quantity": 1 }
+      {
+        "item": "good.olive-oil",
+        "quantity": 2
+      },
+      {
+        "item": "good.grain",
+        "quantity": 1
+      }
     ]
   },
   "commands": [
-    { "type": "chooseDialogue", "choice": 0 },
-    { "type": "chooseDialogue", "choice": 0 },
-    { "type": "chooseDialogue", "choice": 0 },
-    { "type": "talkTo", "character": "char.ugarit.amnit" },
-    { "type": "chooseDialogue", "choice": 0 },
-    { "type": "chooseDialogue", "choice": 1 },
-    { "type": "chooseDialogue", "choice": 0 },
-    { "type": "chooseDialogue", "choice": 0 },
-    { "type": "travel", "route": "route.ugarit-cyprus", "mode": "mode.open" },
-    { "type": "resolveEncounter", "choice": 0 },
-    { "type": "resolveEncounter", "choice": 0 },
-    { "type": "resolveEncounter", "choice": 0 },
-    { "type": "resolveEncounter", "choice": 0 },
-    { "type": "resolveEncounter", "choice": 0 },
-    { "type": "resolveEncounter", "choice": 0 },
-    { "type": "resolveEncounter", "choice": 0 },
-    { "type": "resolveEncounter", "choice": 0 },
-    { "type": "advanceTime", "days": 1 },
-    { "type": "chooseDialogue", "choice": 0 },
-    { "type": "chooseDialogue", "choice": 0 },
-    { "type": "talkTo", "character": "char.ugarit.amnit" },
-    { "type": "chooseDialogue", "choice": 0 },
-    { "type": "chooseDialogue", "choice": 0 },
-    { "type": "talkTo", "character": "char.ugarit.amnit" }
+    {
+      "type": "chooseChoice",
+      "choiceId": "go-up-the-hill",
+      "dialogue": "dlg.slice.opening",
+      "node": "shore"
+    },
+    {
+      "type": "chooseChoice",
+      "choiceId": "give-your-name-and",
+      "dialogue": "dlg.ugarit.arrival",
+      "node": "gate"
+    },
+    {
+      "type": "chooseChoice",
+      "choiceId": "go-up-the-hill",
+      "dialogue": "dlg.ugarit.arrival",
+      "node": "ledger"
+    },
+    {
+      "type": "talkTo",
+      "character": "char.ugarit.amnit"
+    },
+    {
+      "type": "chooseChoice",
+      "choiceId": "only-the-last-three",
+      "dialogue": "dlg.ugarit.amnit.meeting",
+      "node": "greet"
+    },
+    {
+      "type": "chooseChoice",
+      "choiceId": "what-is-moving-through",
+      "dialogue": "dlg.ugarit.amnit.meeting",
+      "node": "laughs"
+    },
+    {
+      "type": "chooseChoice",
+      "choiceId": "ask-which-household",
+      "dialogue": "dlg.ugarit.amnit.meeting",
+      "node": "harbour"
+    },
+    {
+      "type": "chooseChoice",
+      "choiceId": "remember-the-name",
+      "dialogue": "dlg.ugarit.amnit.meeting",
+      "node": "sibtu"
+    },
+    {
+      "type": "travel",
+      "route": "route.ugarit-cyprus",
+      "mode": "mode.open"
+    },
+    {
+      "type": "chooseChoice",
+      "choiceId": "go-over-the-side",
+      "dialogue": "dlg.travel.cargo-shift",
+      "node": "shift"
+    },
+    {
+      "type": "chooseChoice",
+      "choiceId": "change-into-something-dry",
+      "dialogue": "dlg.travel.cargo-shift",
+      "node": "wet"
+    },
+    {
+      "type": "chooseChoice",
+      "choiceId": "stay-until-the-light",
+      "dialogue": "dlg.travel.quiet-night",
+      "node": "night"
+    },
+    {
+      "type": "chooseChoice",
+      "choiceId": "take-the-rope",
+      "dialogue": "dlg.travel.wreckage",
+      "node": "sight"
+    },
+    {
+      "type": "chooseChoice",
+      "choiceId": "leave-it-at-that",
+      "dialogue": "dlg.travel.wreckage",
+      "node": "rope"
+    },
+    {
+      "type": "chooseChoice",
+      "choiceId": "say-nothing-and-let",
+      "dialogue": "dlg.travel.checkpoint",
+      "node": "hail"
+    },
+    {
+      "type": "chooseChoice",
+      "choiceId": "count-what-is-left",
+      "dialogue": "dlg.travel.checkpoint",
+      "node": "settled"
+    },
+    {
+      "type": "chooseChoice",
+      "choiceId": "in-a-small-boat",
+      "dialogue": "dlg.cyprus.arrival",
+      "node": "door"
+    },
+    {
+      "type": "advanceTime",
+      "days": 1
+    },
+    {
+      "type": "chooseChoice",
+      "choiceId": "you-did-not-say",
+      "dialogue": "dlg.cyprus.amnit",
+      "node": "yard"
+    },
+    {
+      "type": "chooseChoice",
+      "choiceId": "let-her-go",
+      "dialogue": "dlg.cyprus.amnit",
+      "node": "answer"
+    },
+    {
+      "type": "talkTo",
+      "character": "char.ugarit.amnit"
+    },
+    {
+      "type": "chooseChoice",
+      "choiceId": "does-the-debt-get",
+      "dialogue": "dlg.cyprus.amnit",
+      "node": "again"
+    },
+    {
+      "type": "chooseChoice",
+      "choiceId": "remember-it",
+      "dialogue": "dlg.cyprus.amnit",
+      "node": "debt"
+    },
+    {
+      "type": "talkTo",
+      "character": "char.ugarit.amnit"
+    }
   ],
   "assert": [
-    { "path": "narrative.pending.node", "equals": "again" },
-    { "path": "knowledge.journalEntries", "contains": "journal.slice.amnit-met" },
-    { "path": "narrative.characterStates.char.ugarit.amnit.location", "equals": "dest.cyprus" },
-    { "path": "narrative.relationships.char.ugarit.amnit.trust", "equals": 2 },
-    { "path": "player.location", "equals": "dest.cyprus" }
+    {
+      "path": "narrative.pending.node",
+      "equals": "again"
+    },
+    {
+      "path": "knowledge.journalEntries",
+      "contains": "journal.slice.amnit-met"
+    },
+    {
+      "path": "narrative.characterStates.char.ugarit.amnit.location",
+      "equals": "dest.cyprus"
+    },
+    {
+      "path": "narrative.relationships.char.ugarit.amnit.trust",
+      "equals": 2
+    },
+    {
+      "path": "player.location",
+      "equals": "dest.cyprus"
+    }
   ]
 }

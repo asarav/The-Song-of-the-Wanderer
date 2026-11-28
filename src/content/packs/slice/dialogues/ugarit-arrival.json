@@ -4,59 +4,143 @@
   "contentVersion": 1,
   "speaker": "char.ugarit.hannu",
   "start": "gate",
+  "scene": {
+    "goal": "Get through the gate without an incident",
+    "obstacle": "Hannu's ledger and the palace audit",
+    "turn": "He gives directions and a warning instead of a fine",
+    "stakes": "A night on the mole",
+    "want": "no-incident",
+    "callback": "journal:journal.slice.opening"
+  },
   "nodes": {
     "gate": {
-      "text": "The gate is closing. The man behind the board has a stylus he has not yet wet.\n\n\"**Name. Cargo. And whether you have been in this harbor before.**\"",
+      "text": "The gate is closing. The man behind the board has a stylus he has not yet wet and a piece of bread on the wall beside him that he has forgotten. He looks at your hands before he looks at your face.\n\n\"Name. Cargo. And whether you have been in this harbor before.\" He says it the way a man says a list he has said all day. Behind him a porter is arguing with a scribe about a jar, and neither of them is winning.",
       "choices": [
         {
-          "text": "Give the name you use here, and the two jars of oil.",
+          "text": "Give your name, and the truth about your cargo.",
           "effects": [
-            { "flag": "arrived.ugarit" },
-            { "money": -3 },
-            { "relationship": { "character": "char.ugarit.hannu", "delta": 1 } }
+            {
+              "flag": "arrived.ugarit"
+            },
+            {
+              "money": -3
+            },
+            {
+              "relationship": {
+                "character": "char.ugarit.hannu",
+                "dimension": "trust",
+                "delta": 1
+              }
+            },
+            {
+              "knowledge": {
+                "fact": "ugarit.harbor-tax",
+                "source": "told",
+                "reliability": 1
+              }
+            }
           ],
-          "next": "ledger"
+          "next": "ledger",
+          "id": "give-your-name-and",
+          "intent": "cost"
         },
         {
-          "text": "Say nothing and let him look at you.",
-          "effects": [{ "flag": "arrived.ugarit" }],
-          "next": "silence"
+          "text": "Give your name, and say nothing about the cargo.",
+          "effects": [
+            {
+              "flag": "arrived.ugarit"
+            }
+          ],
+          "next": "silence",
+          "id": "give-your-name-and-2",
+          "intent": "reveal"
         },
         {
-          "text": "Show him the seal.",
-          "conditions": { "itemAtLeast": { "item": "good.palace-seal", "quantity": 1 } },
-          "unavailableNote": "You have no seal to show him.",
+          "text": "Show him the palace seal and say nothing.",
+          "conditions": {
+            "itemAtLeast": {
+              "item": "good.palace-seal",
+              "quantity": 1
+            }
+          },
           "effects": [
-            { "flag": "arrived.ugarit" },
-            { "faction": { "faction": "faction.ugarit.palace", "dimension": "standing", "delta": 1 } }
+            {
+              "flag": "arrived.ugarit"
+            },
+            {
+              "faction": {
+                "faction": "faction.ugarit.palace",
+                "dimension": "standing",
+                "delta": 1
+              }
+            }
           ],
-          "next": "seal"
+          "next": "seal",
+          "id": "show-him-the-palace",
+          "intent": "help"
         }
       ]
     },
     "ledger": {
-      "text": "He writes. The **harbor tax** is three shekels for a man carrying oil, and nobody has ever explained why. You put them on the board and he counts them without looking up.\n\n\"The **market** is up the hill. The inn is behind the **workshop quarter**. Do not sleep on the mole; the tide comes in and the **harbor master** will charge you for the rescue.\"",
+      "text": "He writes. The **harbor tax** is three shekels for a man carrying oil, and nobody has ever explained why. You put them on the board and he counts them without looking up, twice, though there are only three.\n\n\"The **market** is up the hill. The inn is behind the **workshop quarter**. Do not sleep on the mole; the tide comes in and the harbor master will charge you for the rescue.\" He wets the stylus at last. \"And keep your jars where I can count them. I am not asking twice.\"",
       "choices": [
-        { "text": "Go up the hill.", "next": null },
-        { "text": "Ask where a person can find work.", "next": "work" }
+        {
+          "text": "Go up the hill.",
+          "next": null,
+          "id": "go-up-the-hill",
+          "intent": "reveal"
+        },
+        {
+          "text": "Ask where a person can find work.",
+          "next": "work",
+          "id": "ask-where-a-person",
+          "intent": "probe"
+        }
       ]
     },
     "silence": {
-      "text": "\"A man who will not give a name gives me a problem, not a crime.\" He writes something short.\n\n\"Go on, then. The **market** is up the hill.\"",
-      "choices": [{ "text": "Go up the hill.", "next": null }]
+      "text": "\"A man who will not give a name gives me a problem, not a crime.\" He writes something short, and the stylus scratches.\n\n\"Go on, then. The **market** is up the hill.\" He turns the board a little so you cannot read it. \"And if you are still here at dark, do not be still here at the gate.\"",
+      "choices": [
+        {
+          "text": "Go up the hill.",
+          "next": null,
+          "id": "go-up-the-hill",
+          "intent": "reveal"
+        },
+        {
+          "text": "Ask where a person can find work.",
+          "next": "work",
+          "id": "ask-where-a-person",
+          "intent": "probe"
+        }
+      ]
     },
     "seal": {
-      "text": "He looks at the seal for exactly as long as it takes to decide not to look at it. \"Then you are expected, or you are trouble. Either way, not at this gate.\"\n\nHe steps aside.",
-      "choices": [{ "text": "Go through.", "next": null }]
+      "text": "He looks at the seal for exactly as long as it takes to decide not to look at it. Then he looks at your face, and something in it closes.\n\n\"Then you are expected, or you are trouble. Either way, not at this gate.\" He steps aside, and does not wish you well.",
+      "choices": [
+        {
+          "text": "Go through.",
+          "next": null,
+          "id": "go-through",
+          "intent": "reveal"
+        }
+      ]
     },
     "work": {
-      "text": "\"Work is the **harbor**, or the yard, or the loom. If you can write, the scribes at the gate will fight over you and then underpay you.\"",
-      "choices": [{ "text": "Remember it.", "next": null }]
+      "text": "\"Work is the **harbor**, or the yard, or the loom. If you can write, the scribes at the gate will fight over you and then underpay you.\" He picks up the bread, looks at it, and puts it down again. \"They always underpay you.\"",
+      "choices": [
+        {
+          "text": "Remember it.",
+          "next": null,
+          "id": "remember-it",
+          "intent": "reveal"
+        }
+      ]
     }
   },
   "provenance": {
     "confidence": "fictional",
     "sources": [],
-    "notes": "The opening scene. Hannu is invented; harbor dues and gate scribes are plausible period detail."
+    "notes": "The gate scene and Hannu are invented; harbor dues and gate scribes are period-plausible."
   }
 }

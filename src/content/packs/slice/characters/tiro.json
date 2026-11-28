@@ -5,18 +5,64 @@
   "name": "Tiro",
   "art": "art.ugarit.tiro",
   "culture": "culture.levant.coastal",
-  "languages": ["lang.ugaritic", "lang.akkadian"],
+  "languages": [
+    "lang.ugaritic",
+    "lang.akkadian"
+  ],
   "home": "dest.ugarit",
   "tier": "recurring",
-  "roles": ["shipmaster"],
+  "roles": [
+    "shipmaster"
+  ],
   "dialogue": "dlg.ugarit.tiro.passage",
-  "wants": ["a full hold and an early tide", "to be owed a favor by someone useful"],
-  "fears": ["a winter crossing with a tired crew"],
+  "wants": [
+    {
+      "id": "full-hold",
+      "text": "A full hold and an early tide",
+      "stake": "The crew’s wages",
+      "scene": "dlg.ugarit.tiro.passage"
+    },
+    {
+      "id": "a-favor",
+      "text": "A favor owed by someone useful",
+      "stake": "The next winter",
+      "scene": "dlg.ugarit.tiro.passage"
+    }
+  ],
+  "fears": [
+    "a winter crossing with a tired crew"
+  ],
   "contradiction": "He complains about passengers and cannot afford to lose them.",
-  "presence": ["dest.ugarit", "dest.cyprus"],
+  "presence": [
+    "dest.ugarit",
+    "dest.cyprus"
+  ],
   "provenance": {
     "confidence": "fictional",
     "sources": [],
     "notes": "An invented shipmaster; maritime traffic between the Levant and Cyprus is attested in general terms."
-  }
+  },
+  "voice": {
+    "register": "Fatalistic shipmaster. Names the sea instead of the fear; bargaining as ritual.",
+    "address": [
+      "you"
+    ],
+    "tics": [
+      "mending rope that does not need mending",
+      "spitting over the side"
+    ],
+    "avoid": [
+      "thanks",
+      "the wreck by name"
+    ],
+    "sampleLines": [
+      "Everyone wants the island, and the island does not want any of us.",
+      "A man who works is easier to take than one who does not.",
+      "I have enough storms."
+    ],
+    "maxSentenceWords": 22
+  },
+  "appearances": [
+    "dlg.ugarit.tiro.passage"
+  ]
 }

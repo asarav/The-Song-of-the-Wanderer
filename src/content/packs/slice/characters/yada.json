@@ -5,18 +5,69 @@
   "name": "Yada",
   "art": "art.ugarit.yada",
   "culture": "culture.levant.coastal",
-  "languages": ["lang.ugaritic", "lang.akkadian"],
+  "languages": [
+    "lang.ugaritic",
+    "lang.akkadian"
+  ],
   "home": "dest.ugarit",
   "tier": "recurring",
-  "roles": ["scribe", "teacher"],
+  "roles": [
+    "scribe",
+    "teacher"
+  ],
   "dialogue": "dlg.ugarit.yada.lesson",
-  "wants": ["a copy of a text he has only heard of", "a student who does not waste his morning"],
-  "fears": ["the archive being moved without him"],
+  "wants": [
+    {
+      "id": "the-text",
+      "text": "A copy of a text he has only heard of",
+      "stake": "The one thing his teacher left him wanting",
+      "scene": "dlg.ugarit.yada.lesson"
+    },
+    {
+      "id": "a-student",
+      "text": "A student who does not waste his morning",
+      "stake": "His hand and his patience",
+      "scene": "dlg.ugarit.yada.lesson"
+    }
+  ],
+  "fears": [
+    "the archive being moved without him"
+  ],
   "contradiction": "He teaches for money and resents being paid for it.",
-  "presence": ["dest.ugarit"],
+  "presence": [
+    "dest.ugarit"
+  ],
   "provenance": {
     "confidence": "fictional",
     "sources": [],
     "notes": "An invented scribe. Scribal schools and archives are attested at Ugarit."
-  }
+  },
+  "voice": {
+    "register": "Precise and contemptuous; corrections are affection. Bad proverbs, never explained.",
+    "address": [
+      "you"
+    ],
+    "tics": [
+      "turning a reed between two fingers",
+      "tapping the empty corner of the board"
+    ],
+    "avoid": [
+      "praise",
+      "explaining the joke"
+    ],
+    "sampleLines": [
+      "You write like a man copying a sign he does not love.",
+      "Four of them are the same sign being lazy.",
+      "Do not tell anyone I said that."
+    ],
+    "maxSentenceWords": 26
+  },
+  "knowledge": [
+    {
+      "fact": "archive.being-moved"
+    }
+  ],
+  "appearances": [
+    "dlg.ugarit.yada.lesson"
+  ]
 }

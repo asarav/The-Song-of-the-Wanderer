@@ -6,33 +6,120 @@
     "location": "dest.cyprus",
     "money": 100,
     "capacity": 20,
-    "languages": { "lang.akkadian": { "xp": 25, "tier": "basic" } },
-    "knownRoutes": ["route.ugarit-cyprus"],
-    "knownDestinations": ["dest.ugarit", "dest.cyprus"],
-    "inventory": [{ "item": "good.grain", "quantity": 1 }]
+    "languages": {
+      "lang.akkadian": {
+        "xp": 25,
+        "tier": "basic"
+      }
+    },
+    "knownRoutes": [
+      "route.ugarit-cyprus"
+    ],
+    "knownDestinations": [
+      "dest.ugarit",
+      "dest.cyprus"
+    ],
+    "inventory": [
+      {
+        "item": "good.grain",
+        "quantity": 1
+      }
+    ]
   },
   "commands": [
-    { "type": "talkTo", "character": "char.cyprus.kinyras" },
-    { "type": "chooseDialogue", "choice": 1 },
-    { "type": "chooseDialogue", "choice": 0 },
-    { "type": "advanceTime", "days": 1 },
-    { "type": "chooseDialogue", "choice": 1 },
-    { "type": "chooseDialogue", "choice": 0 },
-    { "type": "advanceTime", "days": 2 },
-    { "type": "chooseDialogue", "choice": 0 },
-    { "type": "chooseDialogue", "choice": 0 }
+    {
+      "type": "talkTo",
+      "character": "char.cyprus.kinyras"
+    },
+    {
+      "type": "chooseChoice",
+      "choiceId": "does-it-matter",
+      "dialogue": "dlg.cyprus.kinyras.meeting",
+      "node": "greet"
+    },
+    {
+      "type": "chooseChoice",
+      "choiceId": "leave-him-to-the",
+      "dialogue": "dlg.cyprus.kinyras.meeting",
+      "node": "offer"
+    },
+    {
+      "type": "advanceTime",
+      "days": 1
+    },
+    {
+      "type": "chooseChoice",
+      "choiceId": "thirty-six-or-i",
+      "dialogue": "dlg.cyprus.copper-offer",
+      "node": "offer"
+    },
+    {
+      "type": "chooseChoice",
+      "choiceId": "take-the-silver",
+      "dialogue": "dlg.cyprus.copper-offer",
+      "node": "hard"
+    },
+    {
+      "type": "advanceTime",
+      "days": 2
+    },
+    {
+      "type": "chooseChoice",
+      "choiceId": "take-it",
+      "dialogue": "dlg.cyprus.return-letter",
+      "node": "letter"
+    },
+    {
+      "type": "chooseChoice",
+      "choiceId": "put-it-inside-your",
+      "dialogue": "dlg.cyprus.return-letter",
+      "node": "read"
+    }
   ],
   "assert": [
-    { "path": "knowledge.journalEntries", "contains": "journal.slice.copper-deal" },
-    { "path": "knowledge.journalEntries", "contains": "journal.slice.letter" },
-    { "path": "player.money", "equals": 136 },
-    { "path": "player.inventory", "length": 0 },
-    { "path": "narrative.relationships.char.cyprus.kinyras.respect", "equals": 2 },
-    { "path": "narrative.factions.faction.ugarit.merchants.trust", "equals": 1 },
-    { "path": "player.deeds", "length": 1 },
-    { "path": "player.deeds.0.id", "equals": "deed.copper-agreed" },
-    { "path": "knowledge.entries.0.fact", "equals": "kinyras.buys-at-yard-price" },
-    { "path": "player.flags.carries.palace-letter", "equals": true },
-    { "path": "narrative.pending", "equals": null }
+    {
+      "path": "knowledge.journalEntries",
+      "contains": "journal.slice.copper-deal"
+    },
+    {
+      "path": "knowledge.journalEntries",
+      "contains": "journal.slice.letter"
+    },
+    {
+      "path": "player.money",
+      "equals": 136
+    },
+    {
+      "path": "player.inventory",
+      "length": 0
+    },
+    {
+      "path": "narrative.relationships.char.cyprus.kinyras.respect",
+      "equals": 2
+    },
+    {
+      "path": "narrative.factions.faction.ugarit.merchants.trust",
+      "equals": 1
+    },
+    {
+      "path": "player.deeds",
+      "length": 1
+    },
+    {
+      "path": "player.deeds.0.id",
+      "equals": "deed.copper-agreed"
+    },
+    {
+      "path": "knowledge.entries.0.fact",
+      "equals": "kinyras.buys-at-yard-price"
+    },
+    {
+      "path": "player.flags.carries.palace-letter",
+      "equals": true
+    },
+    {
+      "path": "narrative.pending",
+      "equals": null
+    }
   ]
 }

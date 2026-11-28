@@ -11,22 +11,60 @@
         {
           "text": "Take it.",
           "effects": [
-            { "flag": "carries.palace-letter" },
-            { "journal": { "entry": "journal.slice.letter" } },
-            { "knowledge": { "fact": "letter.addressed-from-ugarit", "source": "witnessed", "reliability": 0.9 } }
+            {
+              "flag": "carries.palace-letter"
+            },
+            {
+              "journal": {
+                "entry": "journal.slice.letter"
+              }
+            },
+            {
+              "knowledge": {
+                "fact": "letter.addressed-from-ugarit",
+                "source": "witnessed",
+                "reliability": 0.9
+              }
+            }
           ],
-          "next": "read"
+          "next": "read",
+          "id": "take-it",
+          "intent": "reveal"
         },
-        { "text": "Leave it.", "effects": [{ "flag": "left.palace-letter" }], "next": "left" }
+        {
+          "text": "Leave it.",
+          "effects": [
+            {
+              "flag": "left.palace-letter"
+            }
+          ],
+          "next": "left",
+          "id": "leave-it",
+          "intent": "deflect"
+        }
       ]
     },
     "read": {
       "text": "The seal is Ugarit's. The hand is Hannu's, and the signs are cramped as if written quickly. It says: come back. It does not say why.\n\nShipti has already turned back to the net.",
-      "choices": [{ "text": "Put it inside your tunic.", "next": null }]
+      "choices": [
+        {
+          "text": "Put it inside your tunic.",
+          "next": null,
+          "id": "put-it-inside-your",
+          "intent": "reveal"
+        }
+      ]
     },
     "left": {
       "text": "\"Then it stays.\" She puts it back on the shelf, face down, and the conversation is over.",
-      "choices": [{ "text": "Leave the courtyard.", "next": null }]
+      "choices": [
+        {
+          "text": "Leave the courtyard.",
+          "next": null,
+          "id": "leave-the-courtyard",
+          "intent": "deflect"
+        }
+      ]
     }
   },
   "provenance": {

@@ -7,31 +7,117 @@
     "location": "dest.ugarit",
     "money": 120,
     "capacity": 20,
-    "languages": { "lang.akkadian": { "xp": 25, "tier": "basic" } },
-    "knownRoutes": ["route.ugarit-cyprus"],
-    "knownDestinations": ["dest.ugarit"],
-    "inventory": [{ "item": "good.olive-oil", "quantity": 2 }]
+    "languages": {
+      "lang.akkadian": {
+        "xp": 25,
+        "tier": "basic"
+      }
+    },
+    "knownRoutes": [
+      "route.ugarit-cyprus"
+    ],
+    "knownDestinations": [
+      "dest.ugarit"
+    ],
+    "inventory": [
+      {
+        "item": "good.olive-oil",
+        "quantity": 2
+      }
+    ]
   },
   "commands": [
-    { "type": "chooseDialogue", "choice": 0 },
-    { "type": "chooseDialogue", "choice": 0 },
-    { "type": "chooseDialogue", "choice": 0 },
-    { "type": "buy", "item": "good.grain", "quantity": 2 },
-    { "type": "talkTo", "character": "char.ugarit.amnit" },
-    { "type": "chooseDialogue", "choice": 0 },
-    { "type": "chooseDialogue", "choice": 2 },
-    { "type": "travel", "route": "route.ugarit-cyprus", "mode": "mode.coastal" },
-    { "type": "resolveEncounter", "choice": 0 },
-    { "type": "resolveEncounter", "choice": 0 },
-    { "type": "resolveEncounter", "choice": 0 },
-    { "type": "resolveEncounter", "choice": 0 },
-    { "type": "resolveEncounter", "choice": 0 },
-    { "type": "resolveEncounter", "choice": 0 }
+    {
+      "type": "chooseChoice",
+      "choiceId": "go-up-the-hill",
+      "dialogue": "dlg.slice.opening",
+      "node": "shore"
+    },
+    {
+      "type": "chooseChoice",
+      "choiceId": "give-your-name-and",
+      "dialogue": "dlg.ugarit.arrival",
+      "node": "gate"
+    },
+    {
+      "type": "chooseChoice",
+      "choiceId": "go-up-the-hill",
+      "dialogue": "dlg.ugarit.arrival",
+      "node": "ledger"
+    },
+    {
+      "type": "buy",
+      "item": "good.grain",
+      "quantity": 2
+    },
+    {
+      "type": "talkTo",
+      "character": "char.ugarit.amnit"
+    },
+    {
+      "type": "chooseChoice",
+      "choiceId": "only-the-last-three",
+      "dialogue": "dlg.ugarit.amnit.meeting",
+      "node": "greet"
+    },
+    {
+      "type": "chooseChoice",
+      "choiceId": "another-time",
+      "dialogue": "dlg.ugarit.amnit.meeting",
+      "node": "laughs"
+    },
+    {
+      "type": "travel",
+      "route": "route.ugarit-cyprus",
+      "mode": "mode.coastal"
+    },
+    {
+      "type": "chooseChoice",
+      "choiceId": "stay-until-the-light",
+      "dialogue": "dlg.travel.quiet-night",
+      "node": "night"
+    },
+    {
+      "type": "chooseChoice",
+      "choiceId": "say-nothing-and-let",
+      "dialogue": "dlg.travel.checkpoint",
+      "node": "hail"
+    },
+    {
+      "type": "chooseChoice",
+      "choiceId": "count-what-is-left",
+      "dialogue": "dlg.travel.checkpoint",
+      "node": "settled"
+    },
+    {
+      "type": "chooseChoice",
+      "choiceId": "in-a-small-boat",
+      "dialogue": "dlg.cyprus.arrival",
+      "node": "door"
+    },
+    {
+      "type": "chooseChoice",
+      "choiceId": "take-the-room",
+      "dialogue": "dlg.cyprus.arrival",
+      "node": "room"
+    }
   ],
   "assert": [
-    { "path": "knowledge.journalEntries", "contains": "journal.slice.opening" },
-    { "path": "knowledge.knownDestinations", "contains": "dest.cyprus" },
-    { "path": "narrative.relationships.char.ugarit.amnit.trust", "equals": 1 },
-    { "path": "player.deeds.0.kind", "equals": "travelled" }
+    {
+      "path": "knowledge.journalEntries",
+      "contains": "journal.slice.opening"
+    },
+    {
+      "path": "knowledge.knownDestinations",
+      "contains": "dest.cyprus"
+    },
+    {
+      "path": "narrative.relationships.char.ugarit.amnit.trust",
+      "equals": 1
+    },
+    {
+      "path": "player.deeds.0.kind",
+      "equals": "travelled"
+    }
   ]
 }

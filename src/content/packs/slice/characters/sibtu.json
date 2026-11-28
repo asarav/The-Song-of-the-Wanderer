@@ -5,18 +5,77 @@
   "name": "Sibtu",
   "art": "art.ugarit.sibtu",
   "culture": "culture.levant.coastal",
-  "languages": ["lang.ugaritic"],
+  "languages": [
+    "lang.ugaritic"
+  ],
   "home": "dest.ugarit",
   "tier": "major",
-  "roles": ["weaver", "household head"],
+  "roles": [
+    "weaver",
+    "household head"
+  ],
   "dialogue": "dlg.ugarit.sibtu.ask",
-  "wants": ["work for three more pairs of hands", "not to be a burden on her cousin"],
-  "fears": ["being sent back inland", "the children forgetting their father's house"],
+  "wants": [
+    {
+      "id": "work-for-hands",
+      "text": "Work for three more pairs of hands",
+      "stake": "Four children in a cousin’s room",
+      "scene": "dlg.ugarit.sibtu.ask"
+    },
+    {
+      "id": "not-a-burden",
+      "text": "Not to be a burden on her cousin",
+      "stake": "The last of her standing",
+      "scene": "dlg.ugarit.refugee-ask"
+    }
+  ],
+  "fears": [
+    "being sent back inland",
+    "the children forgetting their father's house"
+  ],
   "contradiction": "She asks for help and resents needing it.",
-  "presence": ["dest.ugarit", "dest.cyprus"],
+  "presence": [
+    "dest.ugarit",
+    "dest.cyprus"
+  ],
   "provenance": {
     "confidence": "fictional",
     "sources": [],
     "notes": "An invented displaced household. Local displacement for harvest failure or insecurity is plausible and not attributed to the later collapse."
-  }
+  },
+  "voice": {
+    "register": "Terse, concrete, refuses pity. Speaks to the loom; uses the children to end a conversation.",
+    "address": [
+      "you"
+    ],
+    "tics": [
+      "cutting thread with her teeth",
+      "not looking up from the shuttle"
+    ],
+    "avoid": [
+      "begging",
+      "saying her husband is dead"
+    ],
+    "sampleLines": [
+      "Sit, if you can sit without being asked twice.",
+      "I cannot go to the yard myself without someone deciding I am for sale.",
+      "He is not dead. I would know."
+    ],
+    "maxSentenceWords": 16
+  },
+  "ties": [
+    {
+      "character": "char.ugarit.amnit",
+      "kind": "neighbor"
+    }
+  ],
+  "knowledge": [
+    {
+      "fact": "sibtu.husband-stayed-inland"
+    }
+  ],
+  "appearances": [
+    "dlg.ugarit.sibtu.ask",
+    "dlg.ugarit.refugee-ask"
+  ]
 }

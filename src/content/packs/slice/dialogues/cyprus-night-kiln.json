@@ -4,33 +4,81 @@
   "contentVersion": 1,
   "speaker": "char.cyprus.ada",
   "start": "greet",
+  "entries": [
+    {
+      "when": {
+        "flag": "ada.night-met"
+      },
+      "node": "again"
+    }
+  ],
   "provenance": {
     "confidence": "plausible",
-    "sources": ["Late Cypriot copper and pottery working, general"],
+    "sources": [
+      "Late Cypriot copper and pottery working, general"
+    ],
     "notes": "A night firing is plausible; Ada's words and the yard scene are invented."
   },
   "nodes": {
     "greet": {
-      "text": "The yard is dark except for one kiln. Its mouth throws a red square onto the ground, and **Ada** sits inside that square with her sleeves pushed past her elbows.\n\nShe does not look up. \"You again. Stand where the heat reaches you, or go back to bed.\"",
+      "text": "The yard is dark except for one kiln. Its mouth throws a red square onto the ground, and **Ada** sits inside that square with her sleeves pushed past her elbows.\n\nShe does not look up. \"You again. Stand where the heat reaches you, or go back to bed. And do not wake the girl; she has been at the charcoal since dawn.\"",
       "choices": [
         {
           "text": "Take the bellows without being asked.",
           "effects": [
-            { "languageXp": { "language": "lang.cypriot", "amount": 4 } },
-            { "relationship": { "character": "char.cyprus.ada", "dimension": "respect", "delta": 1 } }
+            {
+              "flag": "ada.night-met"
+            },
+            {
+              "languageXp": {
+                "language": "lang.cypriot",
+                "amount": 4
+              }
+            },
+            {
+              "relationship": {
+                "character": "char.cyprus.ada",
+                "dimension": "respect",
+                "delta": 1
+              }
+            }
           ],
-          "next": "bellows"
+          "next": "bellows",
+          "id": "take-the-bellows-without",
+          "intent": "help"
         },
-        { "text": "Ask why she is firing so late.", "next": "why" },
-        { "text": "Leave her to it.", "next": null }
+        {
+          "text": "Ask why she is firing so late.",
+          "effects": [
+            {
+              "flag": "ada.night-met"
+            }
+          ],
+          "next": "why",
+          "id": "ask-why-she-is",
+          "intent": "probe"
+        },
+        {
+          "text": "Leave her to it.",
+          "next": null,
+          "id": "leave-her-to-it",
+          "intent": "deflect"
+        }
       ]
     },
     "bellows": {
-      "text": "The leather is warm and stiff. You work it until your shoulders ache and the coals go from red to a white that hurts to look at.\n\nAda watches the color, not you. \"Good. Again.\"\n\nWhen she finally banks the fire, the sky over the sea has begun to gray. She says nothing about thanks. She hands you a cup of water and sits down beside you, which is her way.",
-      "choices": [{ "text": "Drink and watch the sky.", "next": null }]
+      "text": "The leather is warm and stiff. You work it until your shoulders ache and the coals go from red to a white that hurts to look at.\n\nAda watches the color, not you. \"Good. Again.\"\n\nWhen she finally banks the fire, the sky over the sea has begun to gray. She says nothing about thanks. She hands you a cup of water and sits down beside you, which is her way. \"The girl will be better than me,\" she says, to the kiln. \"She has the hands. She does not yet have the patience. Do not tell her I said the first part.\"",
+      "choices": [
+        {
+          "text": "Drink and watch the sky.",
+          "next": null,
+          "id": "drink-and-watch-the",
+          "intent": "reveal"
+        }
+      ]
     },
     "why": {
-      "text": "\"Because the tin came late, and the mold will not wait for daylight,\" she says.\n\nShe turns a clay mold over in her hands. \"Tomorrow a man from Enkomi will tell me the price of copper has fallen. Tonight it is still worth what it is worth.\"",
+      "text": "\"Because the tin came late, and the mold will not wait for daylight,\" she says.\n\nShe turns a clay mold over in her hands. \"Tomorrow a man from Enkomi will tell me the price of copper has fallen. Tonight it is still worth what it is worth.\" She sets the mold down. \"My father sold this yard for a debt. I am not going to sell it for a price some man decides on his way to lunch.\"",
       "choices": [
         {
           "text": "Ask what she thinks it will be worth tomorrow.",
@@ -43,14 +91,79 @@
               }
             }
           ],
-          "next": "worth"
+          "next": "worth",
+          "id": "ask-what-she-thinks",
+          "intent": "probe"
         },
-        { "text": "Let her get back to it.", "next": null }
+        {
+          "text": "Let her get back to it.",
+          "next": null,
+          "id": "let-her-get-back",
+          "intent": "reveal"
+        }
       ]
     },
     "worth": {
       "text": "\"Less than tonight and more than the man from Enkomi will say.\" She smiles at the fire. \"That is not a prophecy. That is how a yard works.\"",
-      "choices": [{ "text": "Leave her the dark and the heat.", "next": null }]
+      "choices": [
+        {
+          "text": "Leave her the dark and the heat.",
+          "next": null,
+          "id": "leave-her-the-dark",
+          "intent": "deflect"
+        }
+      ]
+    },
+    "again": {
+      "text": "The kiln is cold tonight. Ada sits on the bench with a cracked mold in her lap, turning it over and over as if the break might move.\n\n\"Not every night is a firing,\" she says. \"Sit if you are staying.\" The girl is asleep against the wall with the charcoal basket still in her arms. \"She will not leave it. I have stopped asking.\"",
+      "beatArt": [
+        "art.cyprus.night",
+        "art.cyprus.ada"
+      ],
+      "choices": [
+        {
+          "text": "Ask whether the mold can be mended.",
+          "effects": [
+            {
+              "languageXp": {
+                "language": "lang.cypriot",
+                "amount": 1
+              }
+            }
+          ],
+          "next": "mend",
+          "id": "ask-whether-the-mold",
+          "intent": "probe"
+        },
+        {
+          "text": "Sit with her until the lamp goes down.",
+          "next": null,
+          "id": "sit-with-her-until",
+          "intent": "reveal"
+        }
+      ]
+    },
+    "mend": {
+      "text": "\"It can be fired again and it will crack in the same place, or it can be broken clean and made into something smaller.\" She sets it down. \"Most things are like that. The girl wants to keep it as it is. I want to make a cup.\"",
+      "beatArt": [
+        "art.cyprus.ada"
+      ],
+      "choices": [
+        {
+          "text": "Let her get back to it.",
+          "next": null,
+          "id": "let-her-get-back",
+          "intent": "reveal"
+        }
+      ]
     }
+  },
+  "scene": {
+    "goal": "See the firing through",
+    "obstacle": "The tin came late and the mould will not wait",
+    "turn": "She talks about her father selling the yard",
+    "stakes": "The workshop and the girl’s future",
+    "want": "daughter",
+    "callback": "flag:ada.work"
   }
 }

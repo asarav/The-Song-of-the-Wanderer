@@ -9,31 +9,75 @@
       "choices": [
         {
           "text": "Say the word back.",
-          "effects": [{ "languageXp": { "language": "lang.cypriot", "amount": 2 } }],
-          "next": "word"
+          "effects": [
+            {
+              "languageXp": {
+                "language": "lang.cypriot",
+                "amount": 2
+              }
+            }
+          ],
+          "next": "word",
+          "id": "say-the-word-back",
+          "intent": "reveal"
         },
         {
           "text": "Ask in Akkadian what it means.",
-          "conditions": { "languageAtLeast": { "language": "lang.akkadian", "tier": "basic" } },
+          "conditions": {
+            "languageAtLeast": {
+              "language": "lang.akkadian",
+              "tier": "basic"
+            }
+          },
           "unavailableNote": "You do not have enough Akkadian to ask.",
-          "effects": [{ "languageXp": { "language": "lang.cypriot", "amount": 1 } }],
-          "next": "ask"
+          "effects": [
+            {
+              "languageXp": {
+                "language": "lang.cypriot",
+                "amount": 1
+              }
+            }
+          ],
+          "next": "ask",
+          "id": "ask-in-akkadian-what",
+          "intent": "probe"
         },
-        { "text": "Let it pass.", "next": null }
+        {
+          "text": "Let it pass.",
+          "next": null,
+          "id": "let-it-pass",
+          "intent": "reveal"
+        }
       ]
     },
     "word": {
       "text": "They laugh, but not at you. The word is repeated, and then another, and by the end of the watch you have four words and no idea how to put them together.",
-      "choices": [{ "text": "Keep the four words.", "next": null }]
+      "choices": [
+        {
+          "text": "Keep the four words.",
+          "next": null,
+          "id": "keep-the-four-words",
+          "intent": "reveal"
+        }
+      ]
     },
     "ask": {
       "text": "\"Wind,\" the man says in Akkadian, and then makes a gesture that means the wind is wrong. \"Also a name. Maybe a man's name. Maybe the wind's.\"",
-      "choices": [{ "text": "Nod as if that settles it.", "next": null }]
+      "choices": [
+        {
+          "text": "Nod as if that settles it.",
+          "next": null,
+          "id": "nod-as-if-that",
+          "intent": "reveal"
+        }
+      ]
     }
   },
   "provenance": {
     "confidence": "plausible",
-    "sources": ["Cypro-Minoan and the island's unattested speech, general"],
+    "sources": [
+      "Cypro-Minoan and the island's unattested speech, general"
+    ],
     "notes": "The island's language is real but undeciphered; the game gives exposure without translation."
   }
 }

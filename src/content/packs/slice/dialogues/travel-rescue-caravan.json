@@ -5,25 +5,45 @@
   "start": "dust",
   "nodes": {
     "dust": {
-      "beatArt": ["art.land.levant", "art.ugarit.mole"],
+      "beatArt": [
+        "art.land.levant",
+        "art.ugarit.mole"
+      ],
       "text": "The bells arrive over the water before the animals do. A salt caravan has come down to the shingle while the boat waits out the afternoon: six donkeys, a boy running ahead to clear the path, and a master who looks at your face, then at the empty skin at your belt, and says nothing about either. He lifts a hand, and the line stops.\n\n\"You are ashore dry,\" he says. \"That is a choice, or it is bad planning. Which?\"",
       "choices": [
         {
           "text": "Drink, and give thanks to whatever brought them.",
           "effects": [
-            { "stamina": 2 },
-            { "treatment": "water" }
+            {
+              "stamina": 2
+            },
+            {
+              "treatment": "water"
+            }
           ],
-          "next": null
+          "next": null,
+          "id": "drink-and-give-thanks",
+          "intent": "cost"
         },
         {
           "text": "Ask for a place in the shade until the heat passes.",
           "effects": [
-            { "stamina": 1 },
-            { "treatment": "water" },
-            { "flag": { "name": "road.caravan-debt", "value": true } }
+            {
+              "stamina": 1
+            },
+            {
+              "treatment": "water"
+            },
+            {
+              "flag": {
+                "name": "road.caravan-debt",
+                "value": true
+              }
+            }
           ],
-          "next": null
+          "next": null,
+          "id": "ask-for-a-place",
+          "intent": "cost"
         }
       ]
     }

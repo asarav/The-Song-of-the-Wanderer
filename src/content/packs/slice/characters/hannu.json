@@ -5,18 +5,71 @@
   "name": "Hannu",
   "art": "art.ugarit.hannu",
   "culture": "culture.levant.coastal",
-  "languages": ["lang.akkadian", "lang.ugaritic"],
+  "languages": [
+    "lang.akkadian",
+    "lang.ugaritic"
+  ],
   "home": "dest.ugarit",
   "tier": "major",
-  "roles": ["harbor official", "palace servant"],
+  "roles": [
+    "harbor official",
+    "palace servant"
+  ],
   "dialogue": "dlg.ugarit.hannu.gate",
-  "wants": ["the dues collected", "no incident he has to explain"],
-  "fears": ["being blamed for someone else's cargo"],
+  "wants": [
+    {
+      "id": "no-incident",
+      "text": "No incident he has to explain",
+      "stake": "His post at the gate",
+      "scene": "dlg.ugarit.hannu.gate"
+    },
+    {
+      "id": "son-posting",
+      "text": "His son’s place at the harbor school",
+      "stake": "The only future he can buy",
+      "scene": "dlg.ugarit.night-watch"
+    }
+  ],
+  "fears": [
+    "being blamed for someone else's cargo"
+  ],
   "contradiction": "He enforces rules he thinks are foolish.",
-  "presence": ["dest.ugarit"],
+  "presence": [
+    "dest.ugarit"
+  ],
   "provenance": {
     "confidence": "fictional",
     "sources": [],
     "notes": "An invented official in a documented institution."
-  }
+  },
+  "voice": {
+    "register": "Bureaucratic, terse, numbers before names. Dry mercy when he thinks no one is looking.",
+    "address": [
+      "you"
+    ],
+    "tics": [
+      "wetting a stylus he does not need",
+      "turning the board so it cannot be read"
+    ],
+    "avoid": [
+      "confession",
+      "compliments"
+    ],
+    "sampleLines": [
+      "Name. Cargo. And whether you have been in this harbor before.",
+      "The board does not forget.",
+      "Eat something. The palace does not bargain with the tired."
+    ],
+    "maxSentenceWords": 18
+  },
+  "knowledge": [
+    {
+      "fact": "ugarit.harbor-tax"
+    }
+  ],
+  "appearances": [
+    "dlg.ugarit.arrival",
+    "dlg.ugarit.hannu.gate",
+    "dlg.ugarit.night-watch"
+  ]
 }

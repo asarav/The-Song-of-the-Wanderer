@@ -62,6 +62,15 @@
   },
   "market": {
     "priceModifier": 1.1,
+    "art": {
+      "good.copper": "art.cyprus.good-copper",
+      "good.grain": "art.cyprus.good-grain",
+      "good.pottery": "art.cyprus.good-pottery",
+      "good.olive-oil": "art.cyprus.good-olive-oil",
+      "good.tin": "art.cyprus.good-tin",
+      "good.textile": "art.cyprus.good-textile",
+      "good.incense": "art.cyprus.good-incense"
+    },
     "goods": [
       { "item": "good.copper", "basePrice": 9, "stock": 12 },
       { "item": "good.grain", "basePrice": 6, "stock": 12 },
@@ -74,6 +83,9 @@
   },
   "onArrival": "evt.cyprus.arrival",
   "states": ["busy"],
+  "stateNotes": {
+    "busy": "The yard is working at full tilt; everyone here has somewhere else to be."
+  },
   "routes": ["route.ugarit-cyprus"],
   "provenance": {
     "confidence": "strongly-supported",

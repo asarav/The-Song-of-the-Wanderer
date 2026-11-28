@@ -11,17 +11,38 @@
         {
           "text": "What is it for?",
           "effects": [
-            { "faction": { "faction": "faction.ugarit.palace", "dimension": "favour", "delta": 1 } },
-            { "schedule": { "event": "evt.ugarit.letter-followup", "inDays": 4 } }
+            {
+              "faction": {
+                "faction": "faction.ugarit.palace",
+                "dimension": "favour",
+                "delta": 1
+              }
+            },
+            {
+              "schedule": {
+                "event": "evt.ugarit.letter-followup",
+                "inDays": 4
+              }
+            }
           ],
-          "next": "what"
+          "next": "what",
+          "id": "what-is-it-for",
+          "intent": "help"
         },
         {
           "text": "I am not a courier.",
           "effects": [
-            { "faction": { "faction": "faction.ugarit.palace", "dimension": "standing", "delta": -1 } }
+            {
+              "faction": {
+                "faction": "faction.ugarit.palace",
+                "dimension": "standing",
+                "delta": -1
+              }
+            }
           ],
-          "next": "refuse"
+          "next": "refuse",
+          "id": "i-am-not-a",
+          "intent": "help"
         }
       ]
     },
@@ -31,16 +52,34 @@
         {
           "text": "Take the pouch.",
           "effects": [
-            { "items": { "item": "good.palace-seal", "quantity": 1 } },
-            { "journal": { "entry": "journal.slice.faction-request" } }
+            {
+              "items": {
+                "item": "good.palace-seal",
+                "quantity": 1
+              }
+            },
+            {
+              "journal": {
+                "entry": "journal.slice.faction-request"
+              }
+            }
           ],
-          "next": null
+          "next": null,
+          "id": "take-the-pouch",
+          "intent": "cost"
         }
       ]
     },
     "refuse": {
       "text": "\"Then forget the gate, and the gate will forget you.\" He is already walking away. \"Do not come back at the second hour.\"",
-      "choices": [{ "text": "Let him go.", "next": null }]
+      "choices": [
+        {
+          "text": "Let him go.",
+          "next": null,
+          "id": "let-him-go",
+          "intent": "reveal"
+        }
+      ]
     }
   },
   "provenance": {

@@ -5,25 +5,42 @@
   "start": "mule",
   "nodes": {
     "mule": {
-      "beatArt": ["art.ugarit.temple", "art.ugarit.workshops"],
+      "beatArt": [
+        "art.ugarit.temple",
+        "art.ugarit.workshops"
+      ],
       "text": "The boat puts in at a shingle cove to wait for the wind, and the woman is already there, sitting beside a mule that is carrying more than she is. She looks up when the gangplank goes down and does not ask permission to look. Her hands are clean, which on this coast means something.\n\n\"You are carrying a thing that is not cargo,\" she says. \"Show me, or do not. But do not pretend it is nothing.\"",
       "choices": [
         {
           "text": "Pay her two shekels.",
           "effects": [
-            { "money": -2 },
-            { "treatment": "healer" },
-            { "stamina": 1 }
+            {
+              "money": -2
+            },
+            {
+              "treatment": "healer"
+            },
+            {
+              "stamina": 1
+            }
           ],
-          "next": null
+          "next": null,
+          "id": "pay-her-two-shekels",
+          "intent": "cost"
         },
         {
           "text": "Work for the treatment instead.",
           "effects": [
-            { "stamina": -1 },
-            { "treatment": "healer" }
+            {
+              "stamina": -1
+            },
+            {
+              "treatment": "healer"
+            }
           ],
-          "next": null
+          "next": null,
+          "id": "work-for-the-treatment",
+          "intent": "cost"
         }
       ]
     }

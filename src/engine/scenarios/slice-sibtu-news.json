@@ -7,44 +7,196 @@
     "location": "dest.ugarit",
     "money": 120,
     "capacity": 20,
-    "languages": { "lang.akkadian": { "xp": 25, "tier": "basic" } },
-    "knownRoutes": ["route.ugarit-cyprus"],
-    "knownDestinations": ["dest.ugarit"],
-    "inventory": [{ "item": "good.olive-oil", "quantity": 2 }]
+    "languages": {
+      "lang.akkadian": {
+        "xp": 25,
+        "tier": "basic"
+      }
+    },
+    "knownRoutes": [
+      "route.ugarit-cyprus"
+    ],
+    "knownDestinations": [
+      "dest.ugarit"
+    ],
+    "inventory": [
+      {
+        "item": "good.olive-oil",
+        "quantity": 2
+      }
+    ]
   },
   "commands": [
-    { "type": "chooseDialogue", "choice": 0 },
-    { "type": "chooseDialogue", "choice": 0 },
-    { "type": "chooseDialogue", "choice": 0 },
-    { "type": "talkTo", "character": "char.ugarit.sibtu" },
-    { "type": "chooseDialogue", "choice": 0 },
-    { "type": "chooseDialogue", "choice": 0 },
-    { "type": "chooseDialogue", "choice": 0 },
-    { "type": "advanceTime", "days": 1 },
-    { "type": "chooseDialogue", "choice": 0 },
-    { "type": "chooseDialogue", "choice": 0 },
-    { "type": "sell", "item": "good.sibtu-cloth", "quantity": 1 },
-    { "type": "talkTo", "character": "char.ugarit.sibtu" },
-    { "type": "chooseDialogue", "choice": 0 },
-    { "type": "chooseDialogue", "choice": 0 },
-    { "type": "buy", "item": "good.grain", "quantity": 2 },
-    { "type": "travel", "route": "route.ugarit-cyprus", "mode": "mode.coastal" },
-    { "type": "resolveEncounter", "choice": 0 },
-    { "type": "resolveEncounter", "choice": 0 },
-    { "type": "resolveEncounter", "choice": 0 },
-    { "type": "resolveEncounter", "choice": 0 },
-    { "type": "resolveEncounter", "choice": 0 },
-    { "type": "resolveEncounter", "choice": 0 },
-    { "type": "resolveEncounter", "choice": 0 },
-    { "type": "resolveEncounter", "choice": 0 },
-    { "type": "resolveEncounter", "choice": 0 },
-    { "type": "advanceTime", "days": 8 }
+    {
+      "type": "chooseChoice",
+      "choiceId": "go-up-the-hill",
+      "dialogue": "dlg.slice.opening",
+      "node": "shore"
+    },
+    {
+      "type": "chooseChoice",
+      "choiceId": "give-your-name-and",
+      "dialogue": "dlg.ugarit.arrival",
+      "node": "gate"
+    },
+    {
+      "type": "chooseChoice",
+      "choiceId": "go-up-the-hill",
+      "dialogue": "dlg.ugarit.arrival",
+      "node": "ledger"
+    },
+    {
+      "type": "talkTo",
+      "character": "char.ugarit.sibtu"
+    },
+    {
+      "type": "chooseChoice",
+      "choiceId": "you-are-not-from",
+      "dialogue": "dlg.ugarit.sibtu.ask",
+      "node": "greet"
+    },
+    {
+      "type": "chooseChoice",
+      "choiceId": "ask-nothing-more",
+      "dialogue": "dlg.ugarit.sibtu.ask",
+      "node": "story"
+    },
+    {
+      "type": "chooseChoice",
+      "choiceId": "tomorrow-then",
+      "dialogue": "dlg.ugarit.sibtu.ask",
+      "node": "need"
+    },
+    {
+      "type": "advanceTime",
+      "days": 1
+    },
+    {
+      "type": "chooseChoice",
+      "choiceId": "i-will-take-it",
+      "dialogue": "dlg.ugarit.refugee-ask",
+      "node": "ask"
+    },
+    {
+      "type": "chooseChoice",
+      "choiceId": "take-the-bundle",
+      "dialogue": "dlg.ugarit.refugee-ask",
+      "node": "thanks"
+    },
+    {
+      "type": "sell",
+      "item": "good.sibtu-cloth",
+      "quantity": 1
+    },
+    {
+      "type": "talkTo",
+      "character": "char.ugarit.sibtu"
+    },
+    {
+      "type": "chooseChoice",
+      "choiceId": "give-her-the-five",
+      "dialogue": "dlg.ugarit.sibtu.ask",
+      "node": "settle"
+    },
+    {
+      "type": "chooseChoice",
+      "choiceId": "leave-her-to-it",
+      "dialogue": "dlg.ugarit.sibtu.ask",
+      "node": "settled"
+    },
+    {
+      "type": "buy",
+      "item": "good.grain",
+      "quantity": 2
+    },
+    {
+      "type": "travel",
+      "route": "route.ugarit-cyprus",
+      "mode": "mode.coastal"
+    },
+    {
+      "type": "chooseChoice",
+      "choiceId": "stay-until-the-light",
+      "dialogue": "dlg.travel.quiet-night",
+      "node": "night"
+    },
+    {
+      "type": "chooseChoice",
+      "choiceId": "pass-them-water",
+      "dialogue": "dlg.travel.refugees",
+      "node": "boat"
+    },
+    {
+      "type": "chooseChoice",
+      "choiceId": "watch-them-until-they",
+      "dialogue": "dlg.travel.refugees",
+      "node": "water"
+    },
+    {
+      "type": "chooseChoice",
+      "choiceId": "say-nothing-and-let",
+      "dialogue": "dlg.travel.checkpoint",
+      "node": "hail"
+    },
+    {
+      "type": "chooseChoice",
+      "choiceId": "count-what-is-left",
+      "dialogue": "dlg.travel.checkpoint",
+      "node": "settled"
+    },
+    {
+      "type": "chooseChoice",
+      "choiceId": "take-a-bucket-and",
+      "dialogue": "dlg.travel.squall",
+      "node": "weather"
+    },
+    {
+      "type": "chooseChoice",
+      "choiceId": "sleep-when-it-is",
+      "dialogue": "dlg.travel.squall",
+      "node": "after"
+    },
+    {
+      "type": "chooseChoice",
+      "choiceId": "in-a-small-boat",
+      "dialogue": "dlg.cyprus.arrival",
+      "node": "door"
+    },
+    {
+      "type": "chooseChoice",
+      "choiceId": "take-the-room",
+      "dialogue": "dlg.cyprus.arrival",
+      "node": "room"
+    },
+    {
+      "type": "advanceTime",
+      "days": 8
+    }
   ],
   "assert": [
-    { "path": "player.location", "equals": "dest.cyprus" },
-    { "path": "knowledge.journalEntries", "contains": "journal.slice.sibtu-cloth-settled" },
-    { "path": "knowledge.journalEntries", "contains": "journal.slice.sibtu-news" },
-    { "target": "events", "step": 25, "path": "eventTypes", "contains": "JournalEntryAdded" },
-    { "target": "events", "step": 25, "path": "eventTypes", "contains": "KnowledgeLearned" }
+    {
+      "path": "player.location",
+      "equals": "dest.cyprus"
+    },
+    {
+      "path": "knowledge.journalEntries",
+      "contains": "journal.slice.sibtu-cloth-settled"
+    },
+    {
+      "path": "knowledge.journalEntries",
+      "contains": "journal.slice.sibtu-news"
+    },
+    {
+      "target": "events",
+      "step": 25,
+      "path": "eventTypes",
+      "contains": "JournalEntryAdded"
+    },
+    {
+      "target": "events",
+      "step": 25,
+      "path": "eventTypes",
+      "contains": "KnowledgeLearned"
+    }
   ]
 }

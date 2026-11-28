@@ -7,28 +7,101 @@
     "location": "dest.ugarit",
     "money": 120,
     "capacity": 20,
-    "languages": { "lang.akkadian": { "xp": 25, "tier": "basic" } },
-    "knownRoutes": ["route.ugarit-cyprus"],
-    "knownDestinations": ["dest.ugarit"],
-    "inventory": [{ "item": "good.olive-oil", "quantity": 2 }]
+    "languages": {
+      "lang.akkadian": {
+        "xp": 25,
+        "tier": "basic"
+      }
+    },
+    "knownRoutes": [
+      "route.ugarit-cyprus"
+    ],
+    "knownDestinations": [
+      "dest.ugarit"
+    ],
+    "inventory": [
+      {
+        "item": "good.olive-oil",
+        "quantity": 2
+      }
+    ]
   },
   "commands": [
-    { "type": "chooseDialogue", "choice": 0 },
-    { "type": "chooseDialogue", "choice": 0 },
-    { "type": "chooseDialogue", "choice": 0 },
-    { "type": "talkTo", "character": "char.ugarit.hannu" },
-    { "type": "chooseDialogue", "choice": 0 },
-    { "type": "chooseDialogue", "choice": 0 },
-    { "type": "advanceTime", "days": 1 },
-    { "type": "chooseDialogue", "choice": 0 },
-    { "type": "chooseDialogue", "choice": 0 }
+    {
+      "type": "chooseChoice",
+      "choiceId": "go-up-the-hill",
+      "dialogue": "dlg.slice.opening",
+      "node": "shore"
+    },
+    {
+      "type": "chooseChoice",
+      "choiceId": "give-your-name-and",
+      "dialogue": "dlg.ugarit.arrival",
+      "node": "gate"
+    },
+    {
+      "type": "chooseChoice",
+      "choiceId": "go-up-the-hill",
+      "dialogue": "dlg.ugarit.arrival",
+      "node": "ledger"
+    },
+    {
+      "type": "talkTo",
+      "character": "char.ugarit.hannu"
+    },
+    {
+      "type": "chooseChoice",
+      "choiceId": "i-need-the-palace",
+      "dialogue": "dlg.ugarit.hannu.gate",
+      "node": "greet"
+    },
+    {
+      "type": "chooseChoice",
+      "choiceId": "i-will-come",
+      "dialogue": "dlg.ugarit.hannu.gate",
+      "node": "errand"
+    },
+    {
+      "type": "advanceTime",
+      "days": 1
+    },
+    {
+      "type": "chooseChoice",
+      "choiceId": "what-is-it-for",
+      "dialogue": "dlg.ugarit.faction-request",
+      "node": "ask"
+    },
+    {
+      "type": "chooseChoice",
+      "choiceId": "take-the-pouch",
+      "dialogue": "dlg.ugarit.faction-request",
+      "node": "what"
+    }
   ],
   "assert": [
-    { "path": "knowledge.journalEntries", "contains": "journal.slice.faction-request" },
-    { "path": "player.flags.hannu.errand", "equals": true },
-    { "path": "player.inventory.1.item", "equals": "good.palace-seal" },
-    { "path": "narrative.factions.faction.ugarit.palace.favour", "equals": 1 },
-    { "path": "world.scheduled", "length": 1 },
-    { "path": "narrative.pending", "equals": null }
+    {
+      "path": "knowledge.journalEntries",
+      "contains": "journal.slice.faction-request"
+    },
+    {
+      "path": "player.flags.hannu.errand",
+      "equals": true
+    },
+    {
+      "path": "player.inventory.1.item",
+      "equals": "good.palace-seal"
+    },
+    {
+      "path": "narrative.factions.faction.ugarit.palace.favour",
+      "equals": 1
+    },
+    {
+      "path": "world.scheduled",
+      "length": 1
+    },
+    {
+      "path": "narrative.pending",
+      "equals": null
+    }
   ]
 }

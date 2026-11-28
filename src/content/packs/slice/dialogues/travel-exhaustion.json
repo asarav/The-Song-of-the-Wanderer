@@ -6,18 +6,40 @@
   "nodes": {
     "returned": {
       "text": "You come to yourself on a bench of warm stone, outside the town you left. The light is wrong: two days wrong. There is a lamp at the shrine beside you, and the person who tends it has already put a bowl of water at your hand and gone back to their work.\n\nThe load you were carrying is lighter than it was. The road took its fee in goods, not silver. It has given you back, but not everything.",
-      "beatArt": ["art.ugarit.night", "art.ugarit.temple"],
-      "choices": [{ "text": "Take stock.", "next": "stock" }]
+      "beatArt": [
+        "art.ugarit.night",
+        "art.ugarit.temple"
+      ],
+      "choices": [
+        {
+          "text": "Take stock.",
+          "next": "stock",
+          "id": "take-stock",
+          "intent": "reveal"
+        }
+      ]
     },
     "stock": {
       "text": "You remember the boat, the water, and the moment when holding on stopped being a thing your body would do. After that there is only the shrine, the lamp, and the two days everyone else used without you.\n\nA votive bowl sits at the foot of the stone. You do not know whose it is. You know you are expected to leave something.",
-      "beatArt": ["art.ugarit.temple", "art.ugarit.harbour"],
-      "choices": [{ "text": "Get up.", "next": null }]
+      "beatArt": [
+        "art.ugarit.temple",
+        "art.ugarit.harbour"
+      ],
+      "choices": [
+        {
+          "text": "Get up.",
+          "next": null,
+          "id": "get-up",
+          "intent": "reveal"
+        }
+      ]
     }
   },
   "provenance": {
     "confidence": "fictional",
-    "sources": ["Late Bronze Age Levantine roadside shrines and votive practice, general"],
+    "sources": [
+      "Late Bronze Age Levantine roadside shrines and votive practice, general"
+    ],
     "notes": "The shrine and the return are invented. Roadside shrines, lamps and votive bowls are attested in general terms; this is not a reconstruction of a specific rite."
   }
 }

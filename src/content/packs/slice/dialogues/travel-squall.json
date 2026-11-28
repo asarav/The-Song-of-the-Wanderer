@@ -10,22 +10,46 @@
         {
           "text": "Take a bucket and bail.",
           "effects": [
-            { "flag": "helped.bail" },
-            { "stamina": -1 },
-            { "languageXp": { "language": "lang.cypriot", "amount": 1 } }
+            {
+              "flag": "helped.bail"
+            },
+            {
+              "stamina": -1
+            },
+            {
+              "languageXp": {
+                "language": "lang.cypriot",
+                "amount": 1
+              }
+            }
           ],
-          "next": "after"
+          "next": "after",
+          "id": "take-a-bucket-and",
+          "intent": "cost"
         },
         {
           "text": "Keep out of the crew's way.",
-          "effects": [{ "flag": "stayed.clear" }],
-          "next": "after"
+          "effects": [
+            {
+              "flag": "stayed.clear"
+            }
+          ],
+          "next": "after",
+          "id": "keep-out-of-the",
+          "intent": "reveal"
         }
       ]
     },
     "after": {
-      "text": "By dark the wind has gone around and the sea is merely tired. Nobody thanks you, and nobody tells you to stop, and the boat goes on.",
-      "choices": [{ "text": "Sleep when it is your turn.", "next": null }]
+      "text": "By dark the wind has gone around and the sea is merely tired. The boy who caught the water jar sits down beside you and holds out a corner of bread without meeting your eye. The master says nothing, but he stops shouting your name as though it were a job. The boat goes on.",
+      "choices": [
+        {
+          "text": "Sleep when it is your turn.",
+          "next": null,
+          "id": "sleep-when-it-is",
+          "intent": "reveal"
+        }
+      ]
     }
   },
   "provenance": {

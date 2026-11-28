@@ -5,13 +5,28 @@
   "speaker": "char.ugarit.hannu",
   "start": "greet",
   "entries": [
-    { "when": { "flag": "palace.letter.answered" }, "node": "after-answered" },
-    { "when": { "flag": "palace.letter.burned" }, "node": "after-burned" },
-    { "when": { "flag": "hannu.errand" }, "node": "again" }
+    {
+      "when": {
+        "flag": "palace.letter.answered"
+      },
+      "node": "after-answered"
+    },
+    {
+      "when": {
+        "flag": "palace.letter.burned"
+      },
+      "node": "after-burned"
+    },
+    {
+      "when": {
+        "flag": "hannu.errand"
+      },
+      "node": "again"
+    }
   ],
   "nodes": {
     "greet": {
-      "text": "The gate remembers faces better than names. Yours is familiar and I cannot place it, which is the worst of both.",
+      "text": "The gate remembers faces better than names. Yours is familiar and he cannot place it, which is the worst of both. He has a board in front of him and a lamp that smokes, and he turns the board a little as you stop. \"If you are selling, the market is up the hill. If you are complaining, I am the wrong desk.\"",
       "choices": [
         {
           "text": "I need the palace's ear.",
@@ -24,26 +39,54 @@
           },
           "unavailableNote": "Hannu does not know your face well enough to ask you for a favor.",
           "effects": [
-            { "flag": "hannu.errand" },
-            { "schedule": { "event": "evt.ugarit.faction-request", "inDays": 1 } }
+            {
+              "flag": "hannu.errand"
+            },
+            {
+              "schedule": {
+                "event": "evt.ugarit.faction-request",
+                "inDays": 1
+              }
+            }
           ],
-          "next": "errand"
+          "next": "errand",
+          "id": "i-need-the-palace",
+          "intent": "reveal"
         },
         {
           "text": "I have a seal.",
-          "conditions": { "itemAtLeast": { "item": "good.palace-seal", "quantity": 1 } },
+          "conditions": {
+            "itemAtLeast": {
+              "item": "good.palace-seal",
+              "quantity": 1
+            }
+          },
           "unavailableNote": "You have no seal to show him, and he has already looked at your hands.",
           "effects": [
-            { "flag": "hannu.errand" },
-            { "schedule": { "event": "evt.ugarit.faction-request", "inDays": 1 } }
+            {
+              "flag": "hannu.errand"
+            },
+            {
+              "schedule": {
+                "event": "evt.ugarit.faction-request",
+                "inDays": 1
+              }
+            }
           ],
-          "next": "errand"
+          "next": "errand",
+          "id": "i-have-a-seal",
+          "intent": "reveal"
         },
-        { "text": "Only passing.", "next": "passing" }
+        {
+          "text": "Only passing.",
+          "next": "passing",
+          "id": "only-passing",
+          "intent": "reveal"
+        }
       ]
     },
     "again": {
-      "text": "\"Second hour. You know where the shadow is.\" He turns the board a little so you cannot read it. \"Or have you come to tell me you have forgotten?\"",
+      "text": "\"Second hour. You know where the shadow is.\" He turns the board so you cannot read it. \"Or have you come to tell me you have forgotten?\" The lamp smokes between you. He does not move it. \"Men forget. The board does not.\"",
       "choices": [
         {
           "text": "I need the palace's ear.",
@@ -56,45 +99,115 @@
           },
           "unavailableNote": "Hannu does not know your face well enough to ask you for a favor.",
           "effects": [
-            { "schedule": { "event": "evt.ugarit.faction-request", "inDays": 1 } }
+            {
+              "schedule": {
+                "event": "evt.ugarit.faction-request",
+                "inDays": 1
+              }
+            }
           ],
-          "next": "errand"
+          "next": "errand",
+          "id": "i-need-the-palace",
+          "intent": "reveal"
         },
-        { "text": "What does the palace want?", "next": "wants" },
-        { "text": "Only passing.", "next": "passing" }
+        {
+          "text": "What does the palace want?",
+          "next": "wants",
+          "id": "what-does-the-palace",
+          "intent": "probe"
+        },
+        {
+          "text": "Only passing.",
+          "next": "passing",
+          "id": "only-passing",
+          "intent": "reveal"
+        }
       ]
     },
     "after-answered": {
-      "text": "He does not mention the tablet.\n\n\"You went to the shadow and I was not there. You did as you were told, which is not the same as being trusted.\"",
+      "text": "He does not mention the tablet.\n\n\"You went to the shadow and I was not there. You did as you were told, which is not the same as being trusted.\" He looks at the gate behind you. \"Do not come back with a story. Come back with the thing itself, or do not come back.\"",
       "choices": [
-        { "text": "Ask whether the errand is finished.", "next": "finished" },
-        { "text": "Only passing.", "next": "passing" }
+        {
+          "text": "Ask whether the errand is finished.",
+          "next": "finished",
+          "id": "ask-whether-the-errand",
+          "intent": "probe"
+        },
+        {
+          "text": "Only passing.",
+          "next": "passing",
+          "id": "only-passing",
+          "intent": "reveal"
+        }
       ]
     },
     "after-burned": {
-      "text": "He does not mention the tablet either. He looks at your hands, then at the gate, and writes nothing.\n\n\"You smell of smoke. The gate keeps its own accounts.\"",
-      "choices": [{ "text": "Leave him to his board.", "next": null }]
+      "text": "He does not mention the tablet either. He looks at your hands, then at the gate, and writes nothing.\n\n\"You smell of smoke. The gate keeps its own accounts.\" He wets the stylus, then puts it down. \"My son asked me once why the gate keeps two ledgers. I told him one is for the palace. He is at the harbor school now, learning to keep the other.\"",
+      "choices": [
+        {
+          "text": "Leave him to his board.",
+          "next": null,
+          "id": "leave-him-to-his",
+          "intent": "deflect"
+        }
+      ]
     },
     "wants": {
-      "text": "\"A man who can carry a thing from one gate to another without opening it.\"\n\nHe wets the stylus at last. \"That is all I will say at this gate.\"",
-      "choices": [{ "text": "Remember it.", "next": null }]
+      "text": "\"A man who can carry a thing from one gate to another without opening it.\"\n\nHe wets the stylus at last. \"That is all I will say at this gate, and if you repeat it I will say I said nothing. The wall has ears and the wall does not pay for them.\"",
+      "choices": [
+        {
+          "text": "Remember it.",
+          "next": null,
+          "id": "remember-it",
+          "intent": "reveal"
+        }
+      ]
     },
     "finished": {
-      "text": "\"It was finished before you went.\"\n\nHe says it without apology, and goes back to the board.",
-      "choices": [{ "text": "Leave him to it.", "next": null }]
+      "text": "\"It was finished before you went.\"\n\nHe says it without apology, and goes back to the board. Then, because he is not a cruel man: \"You did not open it. That is the part that mattered.\"",
+      "choices": [
+        {
+          "text": "Leave him to it.",
+          "next": null,
+          "id": "leave-him-to-it",
+          "intent": "deflect"
+        }
+      ]
     },
     "errand": {
-      "text": "\"Not here.\" He does not look up. \"Come back at the second hour and stand where the wall is in shadow. If I am not there, I was never asked.\"",
-      "choices": [{ "text": "I will come.", "next": null }]
+      "text": "\"Not here.\" He does not look up. \"Come back at the second hour and stand where the wall is in shadow. If I am not there, I was never asked.\" He pushes the bread along the wall toward you, an inch. \"Eat something. You look like a man who has been sleeping on the mole, and the palace does not bargain with the tired.\"",
+      "choices": [
+        {
+          "text": "I will come.",
+          "next": null,
+          "id": "i-will-come",
+          "intent": "reveal"
+        }
+      ]
     },
     "passing": {
-      "text": "\"Everyone is passing. Some of them are passing through my ledger.\"",
-      "choices": [{ "text": "Leave him to it.", "next": null }]
+      "text": "\"Everyone is passing. Some of them are passing through my ledger.\" He turns the board a little, and the lamp smokes.",
+      "choices": [
+        {
+          "text": "Leave him to it.",
+          "next": null,
+          "id": "leave-him-to-it",
+          "intent": "deflect"
+        }
+      ]
     }
   },
   "provenance": {
     "confidence": "fictional",
     "sources": [],
     "notes": "Hannu's gate scene; invented."
+  },
+  "scene": {
+    "goal": "Get through the gate without an incident",
+    "obstacle": "Hannu's ledger and the palace audit",
+    "turn": "He gives directions and a warning instead of a fine",
+    "stakes": "A night on the mole",
+    "want": "no-incident",
+    "callback": "journal:journal.slice.opening"
   }
 }
